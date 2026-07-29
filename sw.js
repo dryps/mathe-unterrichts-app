@@ -1,10 +1,14 @@
-const CACHE_NAME = "mathe-unterrichts-app-v1";
+const CACHE_NAME = "mathe-unterrichts-app-v3";
 const APP_FILES = [
   "./",
   "./index.html",
   "./styles.css",
   "./src/app.js",
   "./src/geometry.js",
+  "./dreiecksungleichung.html",
+  "./triangle-inequality.css",
+  "./src/triangle-inequality-app.js",
+  "./src/triangle-inequality-geometry.js",
   "./manifest.webmanifest",
   "./icon.svg",
 ];
@@ -50,4 +54,3 @@ self.addEventListener("fetch", (event) => {
     ),
   );
 });
-

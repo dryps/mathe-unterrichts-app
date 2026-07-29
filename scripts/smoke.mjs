@@ -12,6 +12,10 @@ const expectedFiles = [
   "/styles.css",
   "/src/app.js",
   "/src/geometry.js",
+  "/dreiecksungleichung.html",
+  "/triangle-inequality.css",
+  "/src/triangle-inequality-app.js",
+  "/src/triangle-inequality-geometry.js",
   "/sw.js",
   "/manifest.webmanifest",
   "/icon.svg",
@@ -32,4 +36,3 @@ try {
 } finally {
   server.kill("SIGTERM");
 }
-

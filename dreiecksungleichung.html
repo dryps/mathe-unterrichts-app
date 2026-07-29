@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f6f7fb" />
+    <meta
+      name="description"
+      content="Interaktive Veranschaulichung der Dreiecksungleichung."
+    />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./triangle-inequality.css" />
+    <title>Wann kann überhaupt ein Dreieck entstehen?</title>
+  </head>
+  <body>
+    <main class="inequality-shell">
+      <header class="inequality-header">
+        <div>
+          <p class="eyebrow">Dreiecke · 7. Klasse</p>
+          <h1>Wann kann überhaupt ein Dreieck entstehen?</h1>
+          <p class="subtitle">Dreiecksungleichung</p>
+        </div>
+        <p class="local-note" aria-label="Datenschutzstatus">
+          <span aria-hidden="true">●</span>
+          lokal · ohne Speicherung
+        </p>
+      </header>
+
+      <section class="module-layout" aria-labelledby="construction-title">
+        <div class="construction-panel">
+          <h2 id="construction-title" class="visually-hidden">
+            Zirkelbögen zu drei Seitenlängen
+          </h2>
+          <svg
+            id="inequality-board"
+            class="construction-board"
+            viewBox="0 0 800 840"
+            preserveAspectRatio="xMidYMid meet"
+            role="img"
+            aria-labelledby="board-title board-description"
+          >
+            <title id="board-title">Konstruktion mit zwei Zirkelbögen</title>
+            <desc id="board-description">
+              Die längste Seite liegt als Grundseite fest. Zwei Zirkelbögen zeigen,
+              ob die beiden übrigen Seiten einen gemeinsamen Eckpunkt erreichen.
+            </desc>
+
+            <rect class="board-background" x="2" y="2" width="796" height="836" rx="32" />
+            <line class="base-guide" x1="170" y1="420" x2="630" y2="420" />
+            <path id="mirror-triangle" class="mirror-triangle" d="" />
+            <path id="possible-triangle" class="possible-triangle" d="" />
+            <polyline id="degenerate-line" class="degenerate-line" points="" hidden />
+            <path id="left-arc" class="compass-arc arc-left" d="" />
+            <path id="right-arc" class="compass-arc arc-right" d="" />
+
+            <circle class="base-point" cx="170" cy="420" r="15" />
+            <circle class="base-point" cx="630" cy="420" r="15" />
+            <circle id="intersection-upper" class="intersection-point" r="15" hidden />
+            <circle id="intersection-lower" class="intersection-point mirror" r="12" hidden />
+            <circle id="tangent-point" class="tangent-point" r="17" hidden />
+
+            <text id="left-radius-label" class="radius-label left" x="230" y="365">a = 5</text>
+            <text id="right-radius-label" class="radius-label right" x="570" y="365">b = 6</text>
+            <text id="base-label" class="base-label" x="400" y="458">c = 8</text>
+          </svg>
+        </div>
+
+        <div class="control-panel">
+          <div class="side-inputs" aria-label="Seitenlängen einstellen">
+            <article class="side-card">
+              <p class="side-name">Seite a</p>
+              <p class="side-value" data-side-value="0">5</p>
+              <div class="stepper">
+                <button
+                  type="button"
+                  data-side-control
+                  data-index="0"
+                  data-delta="-1"
+                  aria-label="Seite a verkleinern"
+                >−</button>
+                <button
+                  type="button"
+                  data-side-control
+                  data-index="0"
+                  data-delta="1"
+                  aria-label="Seite a vergrößern"
+                >+</button>
+              </div>
+            </article>
+
+            <article class="side-card">
+              <p class="side-name">Seite b</p>
+              <p class="side-value" data-side-value="1">6</p>
+              <div class="stepper">
+                <button
+                  type="button"
+                  data-side-control
+                  data-index="1"
+                  data-delta="-1"
+                  aria-label="Seite b verkleinern"
+                >−</button>
+                <button
+                  type="button"
+                  data-side-control
+                  data-index="1"
+                  data-delta="1"
+                  aria-label="Seite b vergrößern"
+                >+</button>
+              </div>
+            </article>
+
+            <article class="side-card">
+              <p class="side-name">Seite c</p>
+              <p class="side-value" data-side-value="2">8</p>
+              <div class="stepper">
+                <button
+                  type="button"
+                  data-side-control
+                  data-index="2"
+                  data-delta="-1"
+                  aria-label="Seite c verkleinern"
+                >−</button>
+                <button
+                  type="button"
+                  data-side-control
+                  data-index="2"
+                  data-delta="1"
+                  aria-label="Seite c vergrößern"
+                >+</button>
+              </div>
+            </article>
+          </div>
+
+          <div class="result-panel" aria-live="polite" aria-atomic="true">
+            <p id="inequality-equation" class="inequality-equation">5 + 6 &gt; 8</p>
+            <div id="triangle-status" class="triangle-status" data-state="possible">
+              <p id="status-title" class="status-title">Dreieck möglich</p>
+              <p id="status-detail" class="status-detail">
+                Die Zirkelbögen schneiden sich.
+              </p>
+            </div>
+          </div>
+
+          <button id="inequality-reset" class="reset-button" type="button">
+            <span aria-hidden="true">↺</span>
+            Zurücksetzen
+          </button>
+        </div>
+      </section>
+
+      <p class="rule">
+        Die beiden kürzeren Seiten müssen zusammen länger sein als die längste.
+      </p>
+
+      <noscript>Für die interaktive Darstellung muss JavaScript aktiviert sein.</noscript>
+    </main>
+
+    <script type="module" src="./src/triangle-inequality-app.js"></script>
+  </body>
+</html>
