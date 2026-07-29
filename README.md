@@ -13,6 +13,18 @@ Die drei Eckpunkte eines großen Dreiecks lassen sich mit Touch, Maus oder Tasta
 verschieben. Innenwinkel, Winkelbögen und die Rechnung
 `α + β + γ = 180°` aktualisieren sich unmittelbar.
 
+## Zweites Aha-Modul
+
+**Wann kann überhaupt ein Dreieck entstehen?**
+
+*Dreiecksungleichung*
+
+Unter `dreiecksungleichung.html` lassen sich drei ganzzahlige Seitenlängen von 1 bis
+20 mit großen Plus- und Minus-Schaltflächen verändern. Die längste Seite wird
+automatisch als Grundseite verwendet. Zwei Zirkelbögen zeigen unmittelbar, ob sie
+sich in zwei Punkten schneiden, genau berühren oder nicht erreichen. Parallel
+erscheint die konkrete Beziehung der beiden kürzeren Seiten zur längsten Seite.
+
 ## Mathematische Regeln
 
 - Die Innenwinkel werden aus den tatsächlichen Punktkoordinaten mit Skalarprodukt

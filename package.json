@@ -7,10 +7,10 @@
   "scripts": {
     "start": "node scripts/serve.mjs",
     "test": "node --test",
-    "test:smoke": "node scripts/smoke.mjs"
+    "test:smoke": "node scripts/smoke.mjs",
+    "test:visual": "node scripts/render-inequality-states.mjs"
   },
   "engines": {
     "node": ">=20"
   }
 }
-
