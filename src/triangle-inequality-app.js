@@ -43,12 +43,20 @@ const resetButton = document.querySelector("#inequality-reset");
 
 let sides = [...INITIAL_SIDES];
 
+function setSvgVisibility(element, isVisible) {
+  element.removeAttribute("hidden");
+  element.setAttribute("visibility", isVisible ? "visible" : "hidden");
+  element.setAttribute("aria-hidden", String(!isVisible));
+}
+
 function setPoint(element, point) {
   if (!point) {
-    element.hidden = true;
+    setSvgVisibility(element, false);
+    element.setAttribute("cx", "");
+    element.setAttribute("cy", "");
     return;
   }
-  element.hidden = false;
+  setSvgVisibility(element, true);
   element.setAttribute("cx", point.x.toFixed(2));
   element.setAttribute("cy", point.y.toFixed(2));
 }
@@ -77,9 +85,12 @@ function renderConstruction() {
   rightArc.setAttribute("d", construction.arcs.right);
   upperTriangle.setAttribute("d", construction.upperTriangle);
   mirrorTriangle.setAttribute("d", construction.mirrorTriangle);
+  setSvgVisibility(upperTriangle, Boolean(construction.upperTriangle));
+  setSvgVisibility(mirrorTriangle, Boolean(construction.mirrorTriangle));
 
   const isDegenerate = analysis.state === "degenerate" && construction.tangentPoint;
-  degenerateLine.hidden = !isDegenerate;
+  setSvgVisibility(degenerateLine, Boolean(isDegenerate));
+  degenerateLine.setAttribute("points", "");
   if (isDegenerate) {
     degenerateLine.setAttribute(
       "points",
