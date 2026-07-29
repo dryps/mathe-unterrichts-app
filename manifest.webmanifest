@@ -1,0 +1,21 @@
+{
+  "name": "Mathe im Unterricht",
+  "short_name": "Mathe Aha",
+  "description": "Kurze interaktive Aha-Momente für den Mathematikunterricht.",
+  "lang": "de",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f4f7fb",
+  "theme_color": "#f4f7fb",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
+
