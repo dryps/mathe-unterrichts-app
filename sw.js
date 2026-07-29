@@ -1,4 +1,4 @@
-const CACHE_NAME = "mathe-unterrichts-app-v2";
+const CACHE_NAME = "mathe-unterrichts-app-v3";
 const APP_FILES = [
   "./",
   "./index.html",
