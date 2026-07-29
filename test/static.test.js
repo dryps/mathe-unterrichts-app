@@ -3,7 +3,7 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 const files = {
-  html: await readFile(new URL("../index.html", import.meta.url), "utf8"),
+  html: await readFile(new URL("../winkelsumme.html", import.meta.url), "utf8"),
   app: await readFile(new URL("../src/app.js", import.meta.url), "utf8"),
   css: await readFile(new URL("../styles.css", import.meta.url), "utf8"),
   worker: await readFile(new URL("../sw.js", import.meta.url), "utf8"),
@@ -58,3 +58,4 @@ test("Anwendung nutzt keine Speicherung, Analyse oder externen URLs", () => {
     /(?:src|href)=["']https?:\/\/|fetch\(\s*["'`]https?:\/\//,
   );
 });
+

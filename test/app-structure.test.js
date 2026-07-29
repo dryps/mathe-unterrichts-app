@@ -1,0 +1,95 @@
+import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
+import test from "node:test";
+
+const files = {
+  home: await readFile(new URL("../index.html", import.meta.url), "utf8"),
+  homeCss: await readFile(new URL("../home.css", import.meta.url), "utf8"),
+  navigationCss: await readFile(new URL("../navigation.css", import.meta.url), "utf8"),
+  shell: await readFile(new URL("../src/shell.js", import.meta.url), "utf8"),
+  angles: await readFile(new URL("../winkelsumme.html", import.meta.url), "utf8"),
+  inequality: await readFile(new URL("../dreiecksungleichung.html", import.meta.url), "utf8"),
+  worker: await readFile(new URL("../sw.js", import.meta.url), "utf8"),
+  manifest: await readFile(new URL("../manifest.webmanifest", import.meta.url), "utf8"),
+};
+
+test("Startseite zeigt Titel, Untertitel und genau das Kapitel Dreiecke", () => {
+  assert.match(files.home, /<h1>Mathe im Unterricht<\/h1>/);
+  assert.match(files.home, /Interaktive Aha-Momente/);
+  assert.equal((files.home.match(/class="chapter"/g) ?? []).length, 1);
+  assert.match(files.home, /<h2 id="chapter-title">Dreiecke<\/h2>/);
+  assert.doesNotMatch(files.home, /<ul|<ol/);
+});
+
+test("Startseite enthält genau die zwei angenommenen großen Modulkarten", () => {
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 2);
+  assert.match(files.home, /href="\.\/winkelsumme\.html"/);
+  assert.match(files.home, /Warum bleiben es immer 180°\?/);
+  assert.match(files.home, /<span class="module-subtitle">Winkelsumme<\/span>/);
+  assert.match(files.home, /href="\.\/dreiecksungleichung\.html"/);
+  assert.match(files.home, /Wann kann überhaupt ein Dreieck entstehen\?/);
+  assert.match(files.home, /<span class="module-subtitle">Dreiecksungleichung<\/span>/);
+  assert.equal((files.home.match(/class="module-status"/g) ?? []).length, 2);
+  assert.equal((files.home.match(/fertig/g) ?? []).length, 2);
+});
+
+test("Beide Module führen ausschließlich zur Übersicht Dreiecke zurück", () => {
+  for (const module of [files.angles, files.inequality]) {
+    assert.equal((module.match(/class="module-navigation"/g) ?? []).length, 1);
+    assert.match(module, /class="module-back-link" href="\.\/#dreiecke">← Dreiecke<\/a>/);
+    assert.doesNotMatch(module, /Suche|Einstellungen|Favoriten|Statistik|Anmelden/);
+  }
+});
+
+test("Startseite ist für iPad, Querformat und Klassenraumbildschirm ausgelegt", () => {
+  assert.match(files.homeCss, /grid-template-columns: repeat\(2, minmax\(0, 1fr\)\)/);
+  assert.match(files.homeCss, /@media \(max-width: 720px\)/);
+  assert.match(files.homeCss, /@media \(orientation: landscape\)/);
+  assert.match(files.homeCss, /width: min\(100%, 1280px\)/);
+  assert.match(files.homeCss, /min-height: clamp\(220px, 28vw, 330px\)/);
+  assert.match(files.navigationCss, /min-height: 46px/);
+  assert.equal(JSON.parse(files.manifest).display, "standalone");
+  assert.equal(JSON.parse(files.manifest).start_url, "./");
+});
+
+test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und beide Module", () => {
+  for (const file of [
+    "index.html",
+    "home.css",
+    "navigation.css",
+    "src/shell.js",
+    "winkelsumme.html",
+    "styles.css",
+    "src/app.js",
+    "src/geometry.js",
+    "dreiecksungleichung.html",
+    "triangle-inequality.css",
+    "src/triangle-inequality-app.js",
+    "src/triangle-inequality-geometry.js",
+    "manifest.webmanifest",
+    "icon.svg",
+  ]) {
+    assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
+  }
+  assert.match(files.shell, /serviceWorker\.register/);
+  assert.match(files.worker, /mathe-unterrichts-app-v4/);
+});
+
+test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", () => {
+  const runtime = [
+    files.home,
+    files.homeCss,
+    files.navigationCss,
+    files.shell,
+    files.angles,
+    files.inequality,
+    files.worker,
+  ].join("\n");
+  assert.doesNotMatch(runtime, /localStorage|sessionStorage|indexedDB|document\.cookie/);
+  assert.doesNotMatch(runtime, /analytics|telemetry|track\(/i);
+  assert.doesNotMatch(
+    runtime,
+    /(?:src|href)=["']https?:\/\/|fetch\(\s*["'`]https?:\/\//,
+  );
+});
+

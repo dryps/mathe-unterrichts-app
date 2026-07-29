@@ -1,7 +1,11 @@
-const CACHE_NAME = "mathe-unterrichts-app-v3";
+const CACHE_NAME = "mathe-unterrichts-app-v4";
 const APP_FILES = [
   "./",
   "./index.html",
+  "./home.css",
+  "./navigation.css",
+  "./src/shell.js",
+  "./winkelsumme.html",
   "./styles.css",
   "./src/app.js",
   "./src/geometry.js",
