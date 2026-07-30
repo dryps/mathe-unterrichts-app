@@ -52,14 +52,12 @@ a {
   margin-bottom: clamp(42px, 7vw, 88px);
 }
 
-.eyebrow,
-.chapter-label {
-  margin: 0 0 6px;
+.grade-label {
+  margin: 0 0 8px;
   color: var(--blue);
-  font-size: clamp(0.82rem, 1.4vw, 1rem);
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
   font-weight: 850;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
 }
 
 h1,
@@ -221,4 +219,3 @@ noscript {
     box-shadow: 0 26px 80px rgb(30 41 59 / 14%);
   }
 }
-

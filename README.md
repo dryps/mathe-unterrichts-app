@@ -4,8 +4,9 @@ Eine eigenständige Sammlung kurzer interaktiver Aha-Momente für den Mathematik
 Die App ergänzt GoodNotes nur dort, wo Bewegung und dynamische Veränderung einen
 sichtbaren fachlichen Mehrwert bieten.
 
-Die Startseite „Mathe im Unterricht“ führt über große Karten zum Kapitel
-„Dreiecke“. Beide Module besitzen einen einzigen Rückweg zur Kapitelübersicht.
+Die Startseite „Mathe im Unterricht“ ist direkt dem Bereich „Klasse 7“
+zugeordnet und führt über große Karten zum Buchkapitel „2. Dreiecke“. Beide
+Module besitzen einen einzigen Rückweg zur Kapitelübersicht.
 
 ## Erstes Aha-Modul
 

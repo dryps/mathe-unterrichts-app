@@ -13,11 +13,14 @@ const files = {
   manifest: await readFile(new URL("../manifest.webmanifest", import.meta.url), "utf8"),
 };
 
-test("Startseite zeigt Titel, Untertitel und genau das Kapitel Dreiecke", () => {
+test("Startseite zeigt die verbindliche Hierarchie für Klasse 7 und Kapitel 2", () => {
   assert.match(files.home, /<h1>Mathe im Unterricht<\/h1>/);
   assert.match(files.home, /Interaktive Aha-Momente/);
+  assert.match(files.home, /<p class="grade-label">Klasse 7<\/p>/);
   assert.equal((files.home.match(/class="chapter"/g) ?? []).length, 1);
-  assert.match(files.home, /<h2 id="chapter-title">Dreiecke<\/h2>/);
+  assert.match(files.home, /<h2 id="chapter-title">2\. Dreiecke<\/h2>/);
+  assert.doesNotMatch(files.home, /Private Unterrichts-App|>Kapitel</);
+  assert.doesNotMatch(files.home, /Rationale Zahlen|Klasse 8|Klasse 9|Klassenauswahl/);
   assert.doesNotMatch(files.home, /<ul|<ol/);
 });
 
@@ -47,6 +50,7 @@ test("Startseite ist für iPad, Querformat und Klassenraumbildschirm ausgelegt",
   assert.match(files.homeCss, /@media \(orientation: landscape\)/);
   assert.match(files.homeCss, /width: min\(100%, 1280px\)/);
   assert.match(files.homeCss, /min-height: clamp\(220px, 28vw, 330px\)/);
+  assert.match(files.homeCss, /\.grade-label/);
   assert.match(files.navigationCss, /min-height: 46px/);
   assert.equal(JSON.parse(files.manifest).display, "standalone");
   assert.equal(JSON.parse(files.manifest).start_url, "./");
@@ -72,7 +76,7 @@ test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und beide Module
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
   assert.match(files.shell, /serviceWorker\.register/);
-  assert.match(files.worker, /mathe-unterrichts-app-v4/);
+  assert.match(files.worker, /mathe-unterrichts-app-v5/);
 });
 
 test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", () => {

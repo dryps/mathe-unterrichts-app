@@ -6,7 +6,8 @@ Prüfdatum: 30. Juli 2026
 
 - Startseite „Mathe im Unterricht“
 - Untertitel „Interaktive Aha-Momente“
-- Kapitelübersicht „Dreiecke“
+- Klassenstufe „Klasse 7“
+- Buchkapitel „2. Dreiecke“
 - zwei große Modulkarten:
   - „Warum bleiben es immer 180°?“ – „Winkelsumme“
   - „Wann kann überhaupt ein Dreieck entstehen?“ – „Dreiecksungleichung“
@@ -26,11 +27,12 @@ und Geometriedateien beider Module wurden nicht verändert.
 - 3 von 3 Dreiecksungleichungszustände als SVG gerendert
 - JavaScript-Syntaxprüfungen bestanden
 - genau ein Kapitel und genau zwei Modulkarten bestätigt
+- keine Klassenauswahl, keine leeren Klassenstufen und kein Kapitelplatzhalter
 - beide Karten und beide Rückwege bestätigt
 - keine Suche, Einstellungen, Konten, Favoriten oder Statistiken
 - Hochformat-, Querformat- und Großbildschirmregeln statisch bestätigt
 - Home-Bildschirm-Konfiguration über Manifest bestätigt
-- gemeinsamer Service-Worker-Cache auf Version 4 bestätigt
+- gemeinsamer Service-Worker-Cache auf Version 5 bestätigt
 - keine Speicherung, Analyse oder externen Laufzeitaufrufe
 
 ## Browser- und Betriebsgrenzen
