@@ -8,37 +8,40 @@ Prüfdatum: 30. Juli 2026
 - Untertitel „Interaktive Aha-Momente“
 - Klassenstufe „Klasse 7“
 - Buchkapitel „2. Dreiecke“
-- vier große Modulkarten:
+- fünf große Modulkarten:
   - „Warum bleiben es immer 180°?“ – „Winkelsumme“
   - „Wann kann überhaupt ein Dreieck entstehen?“ – „Dreiecksungleichung“
   - „Warum wird bei der Dreiecksfläche durch 2 geteilt?“ – „Flächeninhalt“
   - „Warum treffen sich die Mittelsenkrechten genau dort?“ –
     „Mittelsenkrechten und Umkreis“
-- Status „fertig“ auf allen vier Karten
+  - „Warum treffen sich die Winkelhalbierenden genau dort?“ –
+    „Winkelhalbierende und Inkreis“
+- Status „fertig“ auf allen fünf Karten
 - ein einziger Rückweg „← Dreiecke“ in jedem Modul
-- gemeinsamer Offline-Cache für Übersicht, Navigation und alle vier Module
+- gemeinsamer Offline-Cache für Übersicht, Navigation und alle fünf Module
 
 Das bisher unter `index.html` liegende Winkelsummen-Modul wurde inhaltlich
 unverändert nach `winkelsumme.html` übernommen. Die mathematischen JavaScript-
-und Geometriedateien aller drei bestehenden Module wurden beim Ergänzen des
-vierten Moduls nicht verändert.
+und Geometriedateien aller vier bestehenden Module wurden beim Ergänzen des
+fünften Moduls nicht verändert.
 
 ## Automatische Prüfungen
 
-- 125 von 125 Node-Tests bestanden
-- die vollständige bisherige Suite mit 87 Tests bleibt grün
-- 26 von 26 lokale Laufzeitressourcen erreichbar
+- 173 von 173 Node-Tests bestanden
+- die vollständige bisherige Suite mit 128 Tests bleibt grün
+- 31 von 31 lokale Laufzeitressourcen erreichbar
 - 3 von 3 Dreiecksungleichungszustände als SVG gerendert
 - 6 von 6 Dreiecksflächenzustände als SVG gerendert
 - 7 von 7 Mittelsenkrechtenzustände als SVG gerendert
+- 7 von 7 Winkelhalbierendenzustände als SVG gerendert
 - JavaScript-Syntaxprüfungen bestanden
-- genau ein Kapitel und genau vier Modulkarten bestätigt
+- genau ein Kapitel und genau fünf Modulkarten bestätigt
 - keine Klassenauswahl, keine leeren Klassenstufen und kein Kapitelplatzhalter
-- alle vier Karten und Rückwege bestätigt
+- alle fünf Karten und Rückwege bestätigt
 - keine Suche, Einstellungen, Konten, Favoriten oder Statistiken
 - Hochformat-, Querformat- und Großbildschirmregeln statisch bestätigt
 - Home-Bildschirm-Konfiguration über Manifest bestätigt
-- gemeinsamer Service-Worker-Cache auf Version 7 bestätigt
+- gemeinsamer Service-Worker-Cache auf Version 8 bestätigt
 - keine Speicherung, Analyse oder externen Laufzeitaufrufe
 
 ## Browser- und Betriebsgrenzen
@@ -56,6 +59,11 @@ Für das vierte Modul prüft eine eigene DOM- und Interaktionssimulation
 Pointer-Drag für P und die Eckpunkte, Mehrfachtipps, sämtliche Zustandswechsel,
 Schutzrückmeldungen, Zurücksetzen, erneuten Aufbau und das Entfernen früherer
 SVG-Zustände.
+
+Für das fünfte Modul prüft eine eigene DOM- und Interaktionssimulation Touch-
+und Maus-Pointer für P und die Eckpunkte, die gestaffelte Eingabesperre,
+Mehrfachtipps, alle Zustandswechsel, Schutzrückmeldungen, Zurücksetzen, erneuten
+Aufbau und das Entfernen früherer SVG-Zustände.
 
 Deshalb bleiben als reale Betriebsprüfungen offen:
 
