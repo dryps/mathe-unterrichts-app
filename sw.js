@@ -1,4 +1,4 @@
-const CACHE_NAME = "mathe-unterrichts-app-v6";
+const CACHE_NAME = "mathe-unterrichts-app-v7";
 const APP_FILES = [
   "./",
   "./index.html",
@@ -19,6 +19,11 @@ const APP_FILES = [
   "./src/triangle-area-animation.js",
   "./src/triangle-area-geometry.js",
   "./src/triangle-area-state.js",
+  "./mittelsenkrechten.html",
+  "./circumcircle.css",
+  "./src/circumcircle-app.js",
+  "./src/circumcircle-geometry.js",
+  "./src/circumcircle-state.js",
   "./manifest.webmanifest",
   "./icon.svg",
 ];

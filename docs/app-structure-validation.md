@@ -8,33 +8,37 @@ Prüfdatum: 30. Juli 2026
 - Untertitel „Interaktive Aha-Momente“
 - Klassenstufe „Klasse 7“
 - Buchkapitel „2. Dreiecke“
-- drei große Modulkarten:
+- vier große Modulkarten:
   - „Warum bleiben es immer 180°?“ – „Winkelsumme“
   - „Wann kann überhaupt ein Dreieck entstehen?“ – „Dreiecksungleichung“
   - „Warum wird bei der Dreiecksfläche durch 2 geteilt?“ – „Flächeninhalt“
-- Status „fertig“ auf allen drei Karten
+  - „Warum treffen sich die Mittelsenkrechten genau dort?“ –
+    „Mittelsenkrechten und Umkreis“
+- Status „fertig“ auf allen vier Karten
 - ein einziger Rückweg „← Dreiecke“ in jedem Modul
-- gemeinsamer Offline-Cache für Übersicht, Navigation und alle drei Module
+- gemeinsamer Offline-Cache für Übersicht, Navigation und alle vier Module
 
 Das bisher unter `index.html` liegende Winkelsummen-Modul wurde inhaltlich
 unverändert nach `winkelsumme.html` übernommen. Die mathematischen JavaScript-
-und Geometriedateien beider bestehenden Module wurden beim Ergänzen des dritten
-Moduls nicht verändert.
+und Geometriedateien aller drei bestehenden Module wurden beim Ergänzen des
+vierten Moduls nicht verändert.
 
 ## Automatische Prüfungen
 
-- 87 von 87 Node-Tests bestanden
-- die vollständige bisherige Suite mit 55 Tests bleibt grün
-- 21 von 21 lokale Laufzeitressourcen erreichbar
+- 125 von 125 Node-Tests bestanden
+- die vollständige bisherige Suite mit 87 Tests bleibt grün
+- 26 von 26 lokale Laufzeitressourcen erreichbar
 - 3 von 3 Dreiecksungleichungszustände als SVG gerendert
+- 6 von 6 Dreiecksflächenzustände als SVG gerendert
+- 7 von 7 Mittelsenkrechtenzustände als SVG gerendert
 - JavaScript-Syntaxprüfungen bestanden
-- genau ein Kapitel und genau drei Modulkarten bestätigt
+- genau ein Kapitel und genau vier Modulkarten bestätigt
 - keine Klassenauswahl, keine leeren Klassenstufen und kein Kapitelplatzhalter
-- alle drei Karten und Rückwege bestätigt
+- alle vier Karten und Rückwege bestätigt
 - keine Suche, Einstellungen, Konten, Favoriten oder Statistiken
 - Hochformat-, Querformat- und Großbildschirmregeln statisch bestätigt
 - Home-Bildschirm-Konfiguration über Manifest bestätigt
-- gemeinsamer Service-Worker-Cache auf Version 6 bestätigt
+- gemeinsamer Service-Worker-Cache auf Version 7 bestätigt
 - keine Speicherung, Analyse oder externen Laufzeitaufrufe
 
 ## Browser- und Betriebsgrenzen
@@ -43,10 +47,15 @@ Die Cloud-Browserinstanz darf die lokale Adresse der Work-Umgebung nicht
 öffnen. Eine Hostingvorschau wurde nicht erzeugt, weil diese Phase ausdrücklich
 keine Veröffentlichung vorsieht.
 
-Für das dritte Modul wurde zusätzlich eine lokale DOM- und
-Interaktionssimulation durchgeführt. Geprüft wurden Touch- und Maus-Pointer,
-Mehrfachtipps, Eingabesperre, Animation, deterministischer Endzustand,
-Spitzenbewegung nach der Ergänzung, Zurücksetzen und erneute Ergänzung.
+Für das dritte Modul besteht weiterhin die lokale DOM- und
+Interaktionssimulation für Touch- und Maus-Pointer, Mehrfachtipps,
+Eingabesperre, Animation, deterministischen Endzustand, Spitzenbewegung,
+Zurücksetzen und erneute Ergänzung.
+
+Für das vierte Modul prüft eine eigene DOM- und Interaktionssimulation
+Pointer-Drag für P und die Eckpunkte, Mehrfachtipps, sämtliche Zustandswechsel,
+Schutzrückmeldungen, Zurücksetzen, erneuten Aufbau und das Entfernen früherer
+SVG-Zustände.
 
 Deshalb bleiben als reale Betriebsprüfungen offen:
 
