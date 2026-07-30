@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f4f7fb" />
+    <meta
+      name="description"
+      content="Interaktiver Aha-Moment zu Winkelhalbierenden und Inkreis."
+    />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./incircle.css" />
+    <link rel="stylesheet" href="./navigation.css" />
+    <title>Warum treffen sich die Winkelhalbierenden genau dort?</title>
+  </head>
+  <body>
+    <main class="incircle-shell">
+      <nav class="module-navigation" aria-label="Modulnavigation">
+        <a class="module-back-link" href="./#dreiecke">← Dreiecke</a>
+      </nav>
+
+      <header class="incircle-header">
+        <div>
+          <p class="eyebrow">Dreiecke · 7. Klasse</p>
+          <h1>Warum treffen sich die Winkelhalbierenden genau dort?</h1>
+          <p class="subtitle">Winkelhalbierende und Inkreis</p>
+        </div>
+        <p class="local-note" aria-label="Datenschutzstatus">
+          <span aria-hidden="true">●</span>
+          lokal · ohne Speicherung
+        </p>
+      </header>
+
+      <section class="incircle-visualizer" aria-labelledby="incircle-board-title">
+        <h2 id="incircle-board-title" class="visually-hidden">
+          Dreieck mit Winkelhalbierenden, Inkreismittelpunkt und Inkreis
+        </h2>
+
+        <svg
+          id="incircle-board"
+          class="incircle-board"
+          viewBox="0 0 1200 760"
+          preserveAspectRatio="xMidYMid meet"
+          role="img"
+          aria-labelledby="incircle-svg-title incircle-svg-description"
+          data-state="first"
+        >
+          <title id="incircle-svg-title">Von der Winkelhalbierenden zum Inkreis</title>
+          <desc id="incircle-svg-description">
+            Bewege P auf der ersten Winkelhalbierenden. Zeige danach alle
+            Winkelhalbierenden und schließlich den Inkreis.
+          </desc>
+          <rect class="board-background" x="2" y="2" width="1196" height="756" rx="32" />
+
+          <polygon id="incircle-triangle" class="triangle-fill" points="" />
+          <circle id="incircle" class="incircle" visibility="hidden" aria-hidden="true" />
+
+          <g id="bisector-1">
+            <line id="bisector-line-1" class="bisector-line bisector-one" />
+          </g>
+          <g id="bisector-2" visibility="hidden" aria-hidden="true">
+            <line id="bisector-line-2" class="bisector-line bisector-two" />
+          </g>
+          <g id="bisector-3" visibility="hidden" aria-hidden="true">
+            <line id="bisector-line-3" class="bisector-line bisector-three" />
+          </g>
+
+          <line id="side-ab" class="triangle-side" />
+          <line id="side-bc" class="triangle-side" />
+          <line id="side-ca" class="triangle-side" />
+
+          <g id="angle-a-group">
+            <polyline id="angle-a-first" class="angle-arc" points="" />
+            <polyline id="angle-a-second" class="angle-arc" points="" />
+            <circle id="angle-a-mark-first" class="angle-equality-mark" r="6" />
+            <circle id="angle-a-mark-second" class="angle-equality-mark" r="6" />
+          </g>
+
+          <g id="test-point-group">
+            <line id="test-lot-ab" class="test-distance" />
+            <line id="test-lot-ac" class="test-distance" />
+            <polyline id="test-right-ab" class="right-angle test-right-angle" points="" />
+            <polyline id="test-right-ac" class="right-angle test-right-angle" points="" />
+            <line id="test-mark-ab" class="length-mark test-length-mark" />
+            <line id="test-mark-ac" class="length-mark test-length-mark" />
+            <circle id="test-foot-ab" class="foot-dot test-foot-dot" r="10" />
+            <circle id="test-foot-ac" class="foot-dot test-foot-dot" r="10" />
+            <g id="test-point-control" data-drag-kind="test">
+              <circle
+                id="test-point-handle"
+                class="point-hit test-hit"
+                data-drag-kind="test"
+                r="64"
+                tabindex="0"
+                role="button"
+                aria-label="Testpunkt P auf der ersten Winkelhalbierenden bewegen"
+              />
+              <circle class="test-point-dot" r="18" aria-hidden="true" />
+              <text class="point-label test-label" x="29" y="-24">P</text>
+            </g>
+          </g>
+
+          <g id="center-group" visibility="hidden" aria-hidden="true">
+            <line id="radius-ab" class="radius-line" />
+            <line id="radius-bc" class="radius-line" />
+            <line id="radius-ca" class="radius-line" />
+            <polyline id="center-right-ab" class="right-angle center-right-angle" points="" />
+            <polyline id="center-right-bc" class="right-angle center-right-angle" points="" />
+            <polyline id="center-right-ca" class="right-angle center-right-angle" points="" />
+            <line id="radius-mark-ab" class="length-mark radius-length-mark" />
+            <line id="radius-mark-bc" class="length-mark radius-length-mark" />
+            <line id="radius-mark-ca" class="length-mark radius-length-mark" />
+            <circle id="touch-ab" class="touch-dot" r="11" />
+            <circle id="touch-bc" class="touch-dot" r="11" />
+            <circle id="touch-ca" class="touch-dot" r="11" />
+            <text id="radius-label-ab" class="radius-label">r</text>
+            <text id="radius-label-bc" class="radius-label">r</text>
+            <text id="radius-label-ca" class="radius-label">r</text>
+            <g id="center-control">
+              <circle class="center-dot" r="18" />
+              <text class="point-label center-label" x="28" y="-23">I</text>
+            </g>
+            <text id="radius-equality" class="equality-label" x="1030" y="94">
+              r = r = r
+            </text>
+          </g>
+
+          <g id="vertex-A-control" class="vertex-control" data-drag-kind="vertex" data-key="A">
+            <circle class="point-hit vertex-hit" data-drag-kind="vertex" data-key="A" r="58" />
+            <circle class="vertex-dot" r="15" aria-hidden="true" />
+            <text class="point-label vertex-label" x="-33" y="39">A</text>
+          </g>
+          <g id="vertex-B-control" class="vertex-control" data-drag-kind="vertex" data-key="B">
+            <circle class="point-hit vertex-hit" data-drag-kind="vertex" data-key="B" r="58" />
+            <circle class="vertex-dot" r="15" aria-hidden="true" />
+            <text class="point-label vertex-label" x="30" y="39">B</text>
+          </g>
+          <g id="vertex-C-control" class="vertex-control" data-drag-kind="vertex" data-key="C">
+            <circle class="point-hit vertex-hit" data-drag-kind="vertex" data-key="C" r="58" />
+            <circle class="vertex-dot" r="15" aria-hidden="true" />
+            <text class="point-label vertex-label" x="0" y="-29">C</text>
+          </g>
+        </svg>
+      </section>
+
+      <section class="incircle-insight" aria-live="polite" aria-atomic="true">
+        <div>
+          <p id="incircle-insight" class="insight-text">
+            Jeder Punkt auf der Winkelhalbierenden ist von beiden Schenkeln gleich weit entfernt.
+          </p>
+          <p id="incircle-feedback" class="feedback-text" hidden></p>
+        </div>
+        <div class="incircle-controls">
+          <button id="incircle-next" class="primary-button" type="button">
+            Alle Winkelhalbierenden zeigen
+          </button>
+          <button id="incircle-reset" class="reset-button" type="button">
+            Zurücksetzen
+          </button>
+        </div>
+      </section>
+
+      <noscript>Für die interaktive Darstellung muss JavaScript aktiviert sein.</noscript>
+    </main>
+
+    <script type="module" src="./src/incircle-app.js"></script>
+  </body>
+</html>

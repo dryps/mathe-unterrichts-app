@@ -5,7 +5,7 @@ Die App ergänzt GoodNotes nur dort, wo Bewegung und dynamische Veränderung ein
 sichtbaren fachlichen Mehrwert bieten.
 
 Die Startseite „Mathe im Unterricht“ ist direkt dem Bereich „Klasse 7“
-zugeordnet und führt über große Karten zum Buchkapitel „2. Dreiecke“. Alle vier
+zugeordnet und führt über große Karten zum Buchkapitel „2. Dreiecke“. Alle fünf
 Module besitzen einen einzigen Rückweg zur Kapitelübersicht.
 
 ## Erstes Aha-Modul
@@ -60,6 +60,20 @@ dritte Mittelsenkrechte, ihr gemeinsamer Schnittpunkt M mit `MA = MB = MC` und
 schließlich der Umkreis. Im Endzustand lassen sich A, B und C bewegen; sämtliche
 Mittelpunkte, Mittelsenkrechten, Radiusstrecken und der Kreis folgen unmittelbar.
 
+## Fünftes Aha-Modul
+
+**Warum treffen sich die Winkelhalbierenden genau dort?**
+
+*Winkelhalbierende und Inkreis*
+
+Unter `winkelhalbierende.html` bewegt sich P ausschließlich auf der ersten
+inneren Winkelhalbierenden. Seine senkrechten Lotstrecken zu AB und AC bleiben
+gleich lang. Danach erscheinen die übrigen Winkelhalbierenden, ihr gemeinsamer
+Schnittpunkt I und drei gleich markierte Seitenabstände. Im letzten Schritt zeigt
+der Inkreis, dass diese gemeinsame Entfernung sein Radius ist. Erst dann lassen
+sich A, B und C bewegen; Winkelhalbierende, I, Lotfüße, Berührpunkte und Inkreis
+folgen unmittelbar.
+
 ## Mathematische Regeln
 
 - Die Innenwinkel werden aus den tatsächlichen Punktkoordinaten mit Skalarprodukt
@@ -91,6 +105,7 @@ Voraussetzung: Node.js 20 oder neuer.
 npm test
 npm run test:smoke
 npm run test:circumcircle-visual
+npm run test:incircle-visual
 npm start
 ```
 

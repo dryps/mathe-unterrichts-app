@@ -90,7 +90,7 @@ test("Hochformat, Querformat, kleine Breite und Klassenraumbildschirm besitzen R
   assert.match(files.css, /\.circumcircle-board[\s\S]*touch-action: none/);
 });
 
-test("Offline-Cache enthält das vollständige vierte Modul auf Version 7", () => {
+test("Offline-Cache enthält das vollständige vierte Modul im gemeinsamen Cache", () => {
   for (const file of [
     "mittelsenkrechten.html",
     "circumcircle.css",
@@ -100,7 +100,7 @@ test("Offline-Cache enthält das vollständige vierte Modul auf Version 7", () =
   ]) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
-  assert.match(files.worker, /mathe-unterrichts-app-v7/);
+  assert.match(files.worker, /mathe-unterrichts-app-v8/);
   assert.match(files.app, /serviceWorker\.register/);
 });
 

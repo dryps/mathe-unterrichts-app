@@ -14,9 +14,29 @@ const files = {
     new URL("../mittelsenkrechten.html", import.meta.url),
     "utf8",
   ),
+  incircle: await readFile(
+    new URL("../winkelhalbierende.html", import.meta.url),
+    "utf8",
+  ),
   worker: await readFile(new URL("../sw.js", import.meta.url), "utf8"),
   manifest: await readFile(new URL("../manifest.webmanifest", import.meta.url), "utf8"),
 };
+
+function mediaBlock(source, marker) {
+  const start = source.indexOf(marker);
+  assert.notEqual(start, -1, `Media Query fehlt: ${marker}`);
+  const end = source.indexOf("\n@media", start + marker.length);
+  return source.slice(start, end === -1 ? source.length : end);
+}
+
+const portraitTabletCss = mediaBlock(
+  files.homeCss,
+  "@media (min-width: 721px) and (max-width: 1040px)",
+);
+const landscapeTabletCss = mediaBlock(
+  files.homeCss,
+  "@media (orientation: landscape) and (min-width: 900px) and (max-width: 1500px)",
+);
 
 test("Startseite zeigt die verbindliche Hierarchie für Klasse 7 und Kapitel 2", () => {
   assert.match(files.home, /<h1>Mathe im Unterricht<\/h1>/);
@@ -29,8 +49,8 @@ test("Startseite zeigt die verbindliche Hierarchie für Klasse 7 und Kapitel 2",
   assert.doesNotMatch(files.home, /<ul|<ol/);
 });
 
-test("Startseite enthält genau die vier angenommenen großen Modulkarten", () => {
-  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 4);
+test("Startseite enthält genau die fünf angenommenen großen Modulkarten", () => {
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 5);
   assert.match(files.home, /href="\.\/winkelsumme\.html"/);
   assert.match(files.home, /Warum bleiben es immer 180°\?/);
   assert.match(files.home, /<span class="module-subtitle">Winkelsumme<\/span>/);
@@ -46,8 +66,14 @@ test("Startseite enthält genau die vier angenommenen großen Modulkarten", () =
     files.home,
     /<span class="module-subtitle">Mittelsenkrechten und Umkreis<\/span>/,
   );
-  assert.equal((files.home.match(/class="module-status"/g) ?? []).length, 4);
-  assert.equal((files.home.match(/fertig/g) ?? []).length, 4);
+  assert.match(files.home, /href="\.\/winkelhalbierende\.html"/);
+  assert.match(files.home, /Warum treffen sich die Winkelhalbierenden genau dort\?/);
+  assert.match(
+    files.home,
+    /<span class="module-subtitle">Winkelhalbierende und Inkreis<\/span>/,
+  );
+  assert.equal((files.home.match(/class="module-status"/g) ?? []).length, 5);
+  assert.equal((files.home.match(/fertig/g) ?? []).length, 5);
 });
 
 test("Alle Module führen ausschließlich zur Übersicht Dreiecke zurück", () => {
@@ -56,6 +82,7 @@ test("Alle Module führen ausschließlich zur Übersicht Dreiecke zurück", () =
     files.inequality,
     files.area,
     files.circumcircle,
+    files.incircle,
   ]) {
     assert.equal((module.match(/class="module-navigation"/g) ?? []).length, 1);
     assert.match(module, /class="module-back-link" href="\.\/#dreiecke">← Dreiecke<\/a>/);
@@ -69,13 +96,70 @@ test("Startseite ist für iPad, Querformat und Klassenraumbildschirm ausgelegt",
   assert.match(files.homeCss, /@media \(orientation: landscape\)/);
   assert.match(files.homeCss, /width: min\(100%, 1280px\)/);
   assert.match(files.homeCss, /min-height: clamp\(220px, 28vw, 330px\)/);
+  assert.match(
+    portraitTabletCss,
+    /grid-template-columns: repeat\(2, minmax\(0, 1fr\)\)/,
+  );
   assert.match(files.homeCss, /\.grade-label/);
   assert.match(files.navigationCss, /min-height: 46px/);
   assert.equal(JSON.parse(files.manifest).display, "standalone");
   assert.equal(JSON.parse(files.manifest).start_url, "./");
 });
 
-test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und alle vier Module", () => {
+test("iPad-Querformat ordnet fünf Karten in einem zentrierten Sechsspaltenraster an", () => {
+  assert.match(
+    landscapeTabletCss,
+    /grid-template-columns: repeat\(6, minmax\(0, 1fr\)\)/,
+  );
+  assert.match(landscapeTabletCss, /grid-auto-rows: 1fr/);
+  assert.match(landscapeTabletCss, /\.module-card\s*\{[\s\S]*grid-column: span 2/);
+  assert.match(
+    landscapeTabletCss,
+    /\.module-card:nth-child\(4\)\s*\{\s*grid-column: 2 \/ span 2/,
+  );
+  assert.match(
+    landscapeTabletCss,
+    /\.module-card:nth-child\(5\)\s*\{\s*grid-column: 4 \/ span 2/,
+  );
+});
+
+test("iPad-Querformat verdichtet Karten und Kopf ohne Texte abzuschneiden", () => {
+  assert.match(
+    landscapeTabletCss,
+    /padding-top: max\(24px, env\(safe-area-inset-top\)\)/,
+  );
+  assert.match(landscapeTabletCss, /\.home-header\s*\{[\s\S]*margin-bottom: 20px/);
+  assert.match(
+    landscapeTabletCss,
+    /h1\s*\{\s*font-size: clamp\(2\.1rem, 4vw, 3\.4rem\)/,
+  );
+  assert.match(
+    landscapeTabletCss,
+    /min-height: clamp\(218px, 22vh, 232px\)/,
+  );
+  assert.match(
+    landscapeTabletCss,
+    /padding: clamp\(16px, 1\.7vw, 24px\)/,
+  );
+  assert.match(
+    landscapeTabletCss,
+    /\.module-status\s*\{[\s\S]*margin-bottom: clamp\(11px, 1\.4vw, 16px\)/,
+  );
+  assert.match(
+    landscapeTabletCss,
+    /\.module-title\s*\{[\s\S]*max-width: none[\s\S]*font-size: clamp\(1\.2rem, 1\.9vw, 1\.7rem\)/,
+  );
+  assert.match(
+    landscapeTabletCss,
+    /\.module-subtitle\s*\{[\s\S]*font-size: clamp\(0\.94rem, 1\.35vw, 1\.12rem\)/,
+  );
+  assert.doesNotMatch(
+    landscapeTabletCss,
+    /text-overflow|line-clamp|white-space:\s*nowrap|overflow:\s*hidden/,
+  );
+});
+
+test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und alle fünf Module", () => {
   for (const file of [
     "index.html",
     "home.css",
@@ -100,13 +184,18 @@ test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und alle vier Mo
     "src/circumcircle-app.js",
     "src/circumcircle-geometry.js",
     "src/circumcircle-state.js",
+    "winkelhalbierende.html",
+    "incircle.css",
+    "src/incircle-app.js",
+    "src/incircle-geometry.js",
+    "src/incircle-state.js",
     "manifest.webmanifest",
     "icon.svg",
   ]) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
   assert.match(files.shell, /serviceWorker\.register/);
-  assert.match(files.worker, /mathe-unterrichts-app-v7/);
+  assert.match(files.worker, /mathe-unterrichts-app-v8/);
 });
 
 test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", () => {
@@ -119,6 +208,7 @@ test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", 
     files.inequality,
     files.area,
     files.circumcircle,
+    files.incircle,
     files.worker,
   ].join("\n");
   assert.doesNotMatch(runtime, /localStorage|sessionStorage|indexedDB|document\.cookie/);
