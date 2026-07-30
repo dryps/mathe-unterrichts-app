@@ -9,6 +9,10 @@ const server = spawn(process.execPath, ["scripts/serve.mjs"], {
 
 const expectedFiles = [
   "/",
+  "/home.css",
+  "/navigation.css",
+  "/src/shell.js",
+  "/winkelsumme.html",
   "/styles.css",
   "/src/app.js",
   "/src/geometry.js",
@@ -36,3 +40,4 @@ try {
 } finally {
   server.kill("SIGTERM");
 }
+

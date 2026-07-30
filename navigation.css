@@ -1,0 +1,44 @@
+.module-navigation {
+  margin: 0 0 14px;
+}
+
+.module-back-link {
+  display: inline-flex;
+  min-height: 46px;
+  padding: 0 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 999px;
+  align-items: center;
+  color: #334155;
+  background: rgb(255 255 255 / 88%);
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-decoration: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.module-back-link:focus-visible {
+  outline: 4px solid rgb(37 99 235 / 28%);
+  outline-offset: 3px;
+}
+
+.module-back-link:active {
+  transform: scale(0.98);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .module-back-link {
+    transition:
+      background-color 140ms ease,
+      border-color 140ms ease,
+      transform 80ms ease;
+  }
+
+  .module-back-link:hover {
+    border-color: #94a3b8;
+    background: #ffffff;
+  }
+}
+

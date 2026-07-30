@@ -6,20 +6,19 @@
     <meta name="theme-color" content="#f4f7fb" />
     <meta
       name="description"
-      content="Interaktive Veranschaulichung der Winkelsumme im Dreieck."
+      content="Private Übersicht interaktiver Aha-Momente für den Mathematikunterricht."
     />
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" href="./icon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css" />
-    <title>Warum bleiben es immer 180°?</title>
+    <link rel="stylesheet" href="./home.css" />
+    <title>Mathe im Unterricht</title>
   </head>
   <body>
-    <main class="app-shell">
-      <header class="app-header">
+    <main class="home-shell">
+      <header class="home-header">
         <div>
-          <p class="eyebrow">Dreiecke · 7. Klasse</p>
-          <h1>Warum bleiben es immer 180°?</h1>
-          <p class="subtitle">Winkelsumme im Dreieck</p>
+          <h1>Mathe im Unterricht</h1>
+          <p class="home-subtitle">Interaktive Aha-Momente</p>
         </div>
         <p class="local-note" aria-label="Datenschutzstatus">
           <span aria-hidden="true">●</span>
@@ -27,86 +26,30 @@
         </p>
       </header>
 
-      <section class="visualizer" aria-labelledby="explore-title">
-        <h2 id="explore-title" class="visually-hidden">
-          Verändere das Dreieck und beobachte seine Innenwinkel
-        </h2>
-
-        <svg
-          id="triangle-board"
-          viewBox="0 0 1000 680"
-          preserveAspectRatio="xMidYMid meet"
-          role="img"
-          aria-labelledby="board-title board-description"
-        >
-          <title id="board-title">Interaktives Dreieck</title>
-          <desc id="board-description">
-            Verschiebe die drei großen Eckpunkte. Die Innenwinkel und ihre Summe
-            werden sofort neu berechnet.
-          </desc>
-
-          <rect class="board-background" x="2" y="2" width="996" height="676" rx="34" />
-          <g id="angle-sectors" aria-hidden="true"></g>
-          <polygon id="triangle-shape" class="triangle-shape" points="" aria-hidden="true" />
-          <g id="angle-arcs" aria-hidden="true"></g>
-          <g id="angle-labels" aria-hidden="true"></g>
-
-          <g id="vertex-controls">
-            <g class="vertex-control" data-index="0">
-              <circle
-                class="drag-hit"
-                data-index="0"
-                r="60"
-                tabindex="0"
-                role="button"
-                aria-label="Eckpunkt A verschieben"
-              />
-              <circle class="vertex-dot vertex-a" data-index="0" r="15" aria-hidden="true" />
-            </g>
-            <g class="vertex-control" data-index="1">
-              <circle
-                class="drag-hit"
-                data-index="1"
-                r="60"
-                tabindex="0"
-                role="button"
-                aria-label="Eckpunkt B verschieben"
-              />
-              <circle class="vertex-dot vertex-b" data-index="1" r="15" aria-hidden="true" />
-            </g>
-            <g class="vertex-control" data-index="2">
-              <circle
-                class="drag-hit"
-                data-index="2"
-                r="60"
-                tabindex="0"
-                role="button"
-                aria-label="Eckpunkt C verschieben"
-              />
-              <circle class="vertex-dot vertex-c" data-index="2" r="15" aria-hidden="true" />
-            </g>
-          </g>
-        </svg>
-
-        <div class="result-panel" aria-live="polite" aria-atomic="true">
-          <p class="result-label">Die Winkelsumme bleibt</p>
-          <p id="angle-equation" class="angle-equation">50° + 50° + 80° = 180°</p>
+      <section id="dreiecke" class="chapter" aria-labelledby="chapter-title">
+        <div class="chapter-heading">
+          <p class="grade-label">Klasse 7</p>
+          <h2 id="chapter-title">2. Dreiecke</h2>
         </div>
 
-        <div class="controls">
-          <p id="interaction-hint" class="interaction-hint">
-            Ziehe an den drei farbigen Eckpunkten.
-          </p>
-          <button id="reset-button" class="reset-button" type="button">
-            <span aria-hidden="true">↺</span>
-            Zurücksetzen
-          </button>
+        <div class="module-grid">
+          <a class="module-card" href="./winkelsumme.html">
+            <span class="module-status"><span aria-hidden="true">●</span> fertig</span>
+            <span class="module-title">Warum bleiben es immer 180°?</span>
+            <span class="module-subtitle">Winkelsumme</span>
+          </a>
+
+          <a class="module-card" href="./dreiecksungleichung.html">
+            <span class="module-status"><span aria-hidden="true">●</span> fertig</span>
+            <span class="module-title">Wann kann überhaupt ein Dreieck entstehen?</span>
+            <span class="module-subtitle">Dreiecksungleichung</span>
+          </a>
         </div>
       </section>
 
-      <noscript>Für die interaktive Darstellung muss JavaScript aktiviert sein.</noscript>
+      <noscript>Die Übersicht funktioniert; für die Module muss JavaScript aktiviert sein.</noscript>
     </main>
 
-    <script type="module" src="./src/app.js"></script>
+    <script type="module" src="./src/shell.js"></script>
   </body>
 </html>

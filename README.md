@@ -4,12 +4,16 @@ Eine eigenständige Sammlung kurzer interaktiver Aha-Momente für den Mathematik
 Die App ergänzt GoodNotes nur dort, wo Bewegung und dynamische Veränderung einen
 sichtbaren fachlichen Mehrwert bieten.
 
-## Pilotmodul
+Die Startseite „Mathe im Unterricht“ ist direkt dem Bereich „Klasse 7“
+zugeordnet und führt über große Karten zum Buchkapitel „2. Dreiecke“. Beide
+Module besitzen einen einzigen Rückweg zur Kapitelübersicht.
+
+## Erstes Aha-Modul
 
 **Warum bleiben es immer 180°?**  
 *Winkelsumme im Dreieck*
 
-Die drei Eckpunkte eines großen Dreiecks lassen sich mit Touch, Maus oder Tastatur
+Unter `winkelsumme.html` lassen sich die drei Eckpunkte eines großen Dreiecks lassen sich mit Touch, Maus oder Tastatur
 verschieben. Innenwinkel, Winkelbögen und die Rechnung
 `α + β + γ = 180°` aktualisieren sich unmittelbar.
 
@@ -64,3 +68,4 @@ Danach ist die App unter `http://127.0.0.1:4173` erreichbar.
 Die optionale Animation „Winkel zusammenlegen“ ist nicht Teil von V1. Sie bleibt
 als mögliche V2-Erweiterung offen, damit das erste Modul im Unterricht fokussiert
 und technisch klein bleibt.
+
