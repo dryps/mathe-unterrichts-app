@@ -1,4 +1,4 @@
-const CACHE_NAME = "mathe-unterrichts-app-v5";
+const CACHE_NAME = "mathe-unterrichts-app-v6";
 const APP_FILES = [
   "./",
   "./index.html",
@@ -13,6 +13,12 @@ const APP_FILES = [
   "./triangle-inequality.css",
   "./src/triangle-inequality-app.js",
   "./src/triangle-inequality-geometry.js",
+  "./dreiecksflaeche.html",
+  "./triangle-area.css",
+  "./src/triangle-area-app.js",
+  "./src/triangle-area-animation.js",
+  "./src/triangle-area-geometry.js",
+  "./src/triangle-area-state.js",
   "./manifest.webmanifest",
   "./icon.svg",
 ];

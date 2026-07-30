@@ -8,7 +8,8 @@
     "start": "node scripts/serve.mjs",
     "test": "node --test",
     "test:smoke": "node scripts/smoke.mjs",
-    "test:visual": "node scripts/render-inequality-states.mjs"
+    "test:visual": "node scripts/render-inequality-states.mjs",
+    "test:area-visual": "node scripts/render-area-states.mjs"
   },
   "engines": {
     "node": ">=20"

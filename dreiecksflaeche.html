@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f4f7fb" />
+    <meta
+      name="description"
+      content="Interaktiver Aha-Moment zur Flächenformel des Dreiecks."
+    />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./triangle-area.css" />
+    <link rel="stylesheet" href="./navigation.css" />
+    <title>Warum wird bei der Dreiecksfläche durch 2 geteilt?</title>
+  </head>
+  <body>
+    <main class="area-shell">
+      <nav class="module-navigation" aria-label="Modulnavigation">
+        <a class="module-back-link" href="./#dreiecke">← Dreiecke</a>
+      </nav>
+
+      <header class="area-header">
+        <div>
+          <p class="eyebrow">Dreiecke · 7. Klasse</p>
+          <h1>Warum wird bei der Dreiecksfläche durch 2 geteilt?</h1>
+          <p class="subtitle">Flächeninhalt</p>
+        </div>
+        <p class="local-note" aria-label="Datenschutzstatus">
+          <span aria-hidden="true">●</span>
+          lokal · ohne Speicherung
+        </p>
+      </header>
+
+      <section class="area-visualizer" aria-labelledby="area-board-title">
+        <h2 id="area-board-title" class="visually-hidden">
+          Dreieck mit Grundseite, Höhe und ergänztem kongruentem Dreieck
+        </h2>
+
+        <svg
+          id="area-board"
+          class="area-board"
+          viewBox="0 0 1200 760"
+          preserveAspectRatio="xMidYMid meet"
+          role="img"
+          aria-labelledby="area-svg-title area-svg-description"
+          data-state="initial"
+        >
+          <title id="area-svg-title">Vom Dreieck zum Parallelogramm</title>
+          <desc id="area-svg-description">
+            Verschiebe die obere Spitze. Ergänze anschließend ein kongruentes Dreieck,
+            sodass beide zusammen ein Parallelogramm bilden.
+          </desc>
+          <rect class="board-background" x="2" y="2" width="1196" height="756" rx="32" />
+
+          <polygon
+            id="parallelogram-highlight"
+            class="parallelogram-highlight"
+            points=""
+            visibility="hidden"
+            aria-hidden="true"
+          />
+          <polygon
+            id="completed-copy"
+            class="copy-triangle"
+            points=""
+            visibility="hidden"
+            aria-hidden="true"
+          />
+          <polygon id="original-triangle" class="original-triangle" points="" />
+          <polygon
+            id="animated-copy"
+            class="animated-copy"
+            points=""
+            visibility="hidden"
+            aria-hidden="true"
+          />
+          <polygon
+            id="parallelogram-outline"
+            class="parallelogram-outline"
+            points=""
+            visibility="hidden"
+            aria-hidden="true"
+          />
+
+          <line id="height-line" class="height-line" />
+          <circle id="height-foot" class="height-foot" r="8" />
+          <polyline id="right-angle" class="right-angle" points="" />
+          <text id="area-base-label" class="geometry-label base-label">g</text>
+          <text id="area-height-label" class="geometry-label height-label">h</text>
+
+          <g id="area-apex-control">
+            <circle
+              id="area-apex-handle"
+              class="apex-hit"
+              r="66"
+              tabindex="0"
+              role="button"
+              aria-label="Obere Dreiecksspitze verschieben"
+            />
+            <circle class="apex-dot" r="16" aria-hidden="true" />
+          </g>
+        </svg>
+      </section>
+
+      <section class="area-insight" aria-live="polite" aria-atomic="true">
+        <p id="area-prompt" class="area-prompt">
+          Wie können wir das Dreieck zu einer bekannten Figur ergänzen?
+        </p>
+        <div id="area-formulas" class="area-formulas" hidden>
+          <p aria-label="Fläche des Parallelogramms ist g mal h">
+            A<sub>Parallelogramm</sub> = g · h
+          </p>
+          <p aria-label="Fläche des Dreiecks ist g mal h geteilt durch 2">
+            A<sub>Dreieck</sub> = (g · h) / 2
+          </p>
+        </div>
+        <div class="area-controls">
+          <button id="supplement-button" class="primary-button" type="button">
+            Zweites Dreieck ergänzen
+          </button>
+          <button id="area-reset" class="reset-button" type="button">
+            Zurücksetzen
+          </button>
+        </div>
+      </section>
+
+      <noscript>Für die interaktive Darstellung muss JavaScript aktiviert sein.</noscript>
+    </main>
+
+    <script type="module" src="./src/triangle-area-app.js"></script>
+  </body>
+</html>

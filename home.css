@@ -108,7 +108,7 @@ h2 {
 
 .module-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(16px, 2.5vw, 28px);
 }
 
@@ -139,7 +139,7 @@ h2 {
 
 .module-title {
   max-width: 18ch;
-  font-size: clamp(1.65rem, 3.4vw, 3rem);
+  font-size: clamp(1.5rem, 2.7vw, 2.65rem);
   font-weight: 900;
   letter-spacing: -0.035em;
   line-height: 1.04;
@@ -189,6 +189,12 @@ noscript {
 
   .module-card {
     min-height: 210px;
+  }
+}
+
+@media (min-width: 721px) and (max-width: 1040px) {
+  .module-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
