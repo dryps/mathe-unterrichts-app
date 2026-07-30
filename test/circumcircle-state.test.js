@@ -94,7 +94,7 @@ test("Eckpunktbewegung im Endzustand aktualisiert Mittelpunkte, M und Kreis dyna
   let state = createCircumcircleState();
   state = advanceCircumcircle(advanceCircumcircle(advanceCircumcircle(state)));
   const before = circumcircleViewModel(state).geometry;
-  state = moveCircumcircleVertex(state, "C", { x: 650, y: 210 });
+  state = moveCircumcircleVertex(state, "C", { x: 650, y: 130 });
   const after = circumcircleViewModel(state).geometry;
   assert.notDeepEqual(after.vertices.C, before.vertices.C);
   assert.notDeepEqual(after.center, before.center);

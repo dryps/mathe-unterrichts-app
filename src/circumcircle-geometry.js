@@ -5,12 +5,12 @@ export const CIRCUMCIRCLE_BOARD = Object.freeze({
 });
 
 export const INITIAL_VERTICES = Object.freeze({
-  A: Object.freeze({ x: 300, y: 540 }),
-  B: Object.freeze({ x: 900, y: 540 }),
-  C: Object.freeze({ x: 540, y: 180 }),
+  A: Object.freeze({ x: 300, y: 460 }),
+  B: Object.freeze({ x: 900, y: 460 }),
+  C: Object.freeze({ x: 540, y: 100 }),
 });
 
-export const INITIAL_TEST_TARGET = Object.freeze({ x: 600, y: 300 });
+export const INITIAL_TEST_TARGET = Object.freeze({ x: 600, y: 220 });
 
 export const VERTEX_LIMITS = Object.freeze({
   minX: 120,
@@ -23,7 +23,7 @@ export const PROTECTION_LIMITS = Object.freeze({
   minimumSide: 170,
   minimumDoubledArea: 64000,
   maximumRadius: 480,
-  maximumCircleOverflow: 90,
+  minimumCircleInset: 26,
   centerMinX: 48,
   centerMaxX: 1152,
   centerMinY: 48,
@@ -260,12 +260,12 @@ export function validateTriangle(vertices) {
   const { center, radius } = circle;
   if (
     radius > PROTECTION_LIMITS.maximumRadius ||
-    center.x - radius < -PROTECTION_LIMITS.maximumCircleOverflow ||
+    center.x - radius < PROTECTION_LIMITS.minimumCircleInset ||
     center.x + radius >
-      CIRCUMCIRCLE_BOARD.width + PROTECTION_LIMITS.maximumCircleOverflow ||
-    center.y - radius < -PROTECTION_LIMITS.maximumCircleOverflow ||
+      CIRCUMCIRCLE_BOARD.width - PROTECTION_LIMITS.minimumCircleInset ||
+    center.y - radius < PROTECTION_LIMITS.minimumCircleInset ||
     center.y + radius >
-      CIRCUMCIRCLE_BOARD.height + PROTECTION_LIMITS.maximumCircleOverflow ||
+      CIRCUMCIRCLE_BOARD.height - PROTECTION_LIMITS.minimumCircleInset ||
     center.x < PROTECTION_LIMITS.centerMinX ||
     center.x > PROTECTION_LIMITS.centerMaxX ||
     center.y < PROTECTION_LIMITS.centerMinY ||

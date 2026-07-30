@@ -19,14 +19,14 @@ import {
 const TRIANGLES = {
   acute: INITIAL_VERTICES,
   right: {
-    A: { x: 250, y: 540 },
-    B: { x: 850, y: 540 },
-    C: { x: 250, y: 180 },
+    A: { x: 350, y: 500 },
+    B: { x: 800, y: 500 },
+    C: { x: 350, y: 200 },
   },
   obtuse: {
-    A: { x: 300, y: 370 },
-    B: { x: 900, y: 370 },
-    C: { x: 450, y: 190 },
+    A: { x: 300, y: 290 },
+    B: { x: 900, y: 290 },
+    C: { x: 450, y: 110 },
   },
 };
 
@@ -43,6 +43,15 @@ function pointLocation(point, vertices, tolerance = 1e-7) {
   if (signs.some((value) => Math.abs(value) <= tolerance)) return "boundary";
   const sameSign = signs.every((value) => value > 0) || signs.every((value) => value < 0);
   return sameSign ? "inside" : "outside";
+}
+
+function circleMargins(geometry) {
+  return {
+    left: geometry.center.x - geometry.radius,
+    right: geometry.board.width - geometry.center.x - geometry.radius,
+    top: geometry.center.y - geometry.radius,
+    bottom: geometry.board.height - geometry.center.y - geometry.radius,
+  };
 }
 
 test("alle Seitenmittelpunkte werden exakt berechnet", () => {
@@ -123,6 +132,49 @@ test("der Umkreis verläuft exakt durch A, B und C", () => {
   }
 });
 
+test("der initiale Umkreis besitzt vollständig einen sichtbaren Innenrand", () => {
+  const geometry = buildCircumcircleGeometry();
+  const margins = circleMargins(geometry);
+  for (const [side, margin] of Object.entries(margins)) {
+    assert.ok(
+      margin >= PROTECTION_LIMITS.minimumCircleInset,
+      `${side} unterschreitet den sicheren Innenrand`,
+    );
+  }
+  assert.ok(Math.min(...Object.values(margins)) <= 60);
+});
+
+test("jede akzeptierte repräsentative Eckpunktlage hält den ganzen Kreis sichtbar", () => {
+  for (const vertices of [
+    TRIANGLES.acute,
+    TRIANGLES.right,
+    TRIANGLES.obtuse,
+    {
+      A: { x: 340, y: 500 },
+      B: { x: 860, y: 470 },
+      C: { x: 580, y: 150 },
+    },
+  ]) {
+    const validation = validateTriangle(vertices);
+    assert.equal(validation.valid, true);
+    const geometry = buildCircumcircleGeometry(vertices);
+    for (const margin of Object.values(circleMargins(geometry))) {
+      assert.ok(margin >= PROTECTION_LIMITS.minimumCircleInset);
+    }
+  }
+});
+
+test("eine sonst gültige Bewegung mit abgeschnittenem Umkreis wird abgelehnt", () => {
+  const clipped = {
+    A: { x: 300, y: 540 },
+    B: { x: 900, y: 540 },
+    C: { x: 540, y: 180 },
+  };
+  assert.ok(doubledTriangleArea(clipped) >= PROTECTION_LIMITS.minimumDoubledArea);
+  assert.equal(validateTriangle(clipped).valid, false);
+  assert.match(validateTriangle(clipped).reason, /Umkreis/);
+});
+
 test("M liegt beim spitzen Testfall innen", () => {
   const geometry = buildCircumcircleGeometry(TRIANGLES.acute);
   assert.equal(pointLocation(geometry.center, TRIANGLES.acute), "inside");
@@ -183,7 +235,7 @@ test("ungültiges Ziehen bewahrt den letzten gültigen Zustand", () => {
 });
 
 test("gültiges Ziehen erzeugt sofort eine neue exakte Umkreisgeometrie", () => {
-  const result = attemptVertexMove(INITIAL_VERTICES, "C", { x: 650, y: 210 });
+  const result = attemptVertexMove(INITIAL_VERTICES, "C", { x: 650, y: 130 });
   assert.equal(result.accepted, true);
   const geometry = buildCircumcircleGeometry(result.vertices);
   assert.ok(nearlyEqual(geometry.radii.A, geometry.radii.B));

@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 
 import {
   INITIAL_VERTICES,
+  PROTECTION_LIMITS,
   buildCircumcircleGeometry,
   pointsAttribute,
 } from "../src/circumcircle-geometry.js";
@@ -14,13 +15,13 @@ const cases = [
   ["circle-acute", INITIAL_VERTICES, { x: 600, y: 300 }, "circle"],
   [
     "circle-right",
-    { A: { x: 250, y: 540 }, B: { x: 850, y: 540 }, C: { x: 250, y: 180 } },
-    { x: 550, y: 250 },
+    { A: { x: 350, y: 500 }, B: { x: 800, y: 500 }, C: { x: 350, y: 200 } },
+    { x: 575, y: 250 },
     "circle",
   ],
   [
     "circle-obtuse",
-    { A: { x: 300, y: 370 }, B: { x: 900, y: 370 }, C: { x: 450, y: 190 } },
+    { A: { x: 300, y: 290 }, B: { x: 900, y: 290 }, C: { x: 450, y: 110 } },
     { x: 600, y: 250 },
     "circle",
   ],
@@ -65,6 +66,18 @@ for (const [name, vertices, target, state] of cases) {
   assert.equal(svg.includes('id="P"'), state === "first");
   assert.equal(svg.includes('id="M"'), state === "intersection" || state === "circle");
   assert.equal(svg.includes('id="circle"'), state === "circle");
+  if (state === "circle") {
+    assert.ok(geometry.center.x - geometry.radius >= PROTECTION_LIMITS.minimumCircleInset);
+    assert.ok(
+      geometry.board.width - geometry.center.x - geometry.radius >=
+        PROTECTION_LIMITS.minimumCircleInset,
+    );
+    assert.ok(geometry.center.y - geometry.radius >= PROTECTION_LIMITS.minimumCircleInset);
+    assert.ok(
+      geometry.board.height - geometry.center.y - geometry.radius >=
+        PROTECTION_LIMITS.minimumCircleInset,
+    );
+  }
   rendered += 1;
 }
 

@@ -52,14 +52,22 @@ Im SVG-Koordinatensystem `1200 × 760` gelten:
 - Mindestseitenlänge: 170
 - minimale doppelte Dreiecksfläche: 64.000
 - maximaler Umkreisradius: 480
-- der Kreis darf die Zeichenfläche höchstens um 90 Einheiten überschreiten
+- der vollständige Umkreis muss mit mindestens 26 Einheiten Innenrand innerhalb
+  der Zeichenfläche liegen
 - M muss im sichtbaren Bereich `48 ≤ x ≤ 1152`, `48 ≤ y ≤ 712` liegen
 - Mittelsenkrechten werden innerhalb eines Randes von 58 geschnitten
 
 Damit bleiben nahezu kollineare Dreiecke, extrem kleine Seiten und unlesbar
-große Kreise ausgeschlossen. M darf bei stumpfwinkligen Dreiecken außerhalb
-liegen. Ein unzulässiger Zug verändert die letzte gültige Geometrie nicht und
-zeigt eine kurze Rückmeldung.
+große oder angeschnittene Kreise ausgeschlossen. M darf bei stumpfwinkligen
+Dreiecken außerhalb liegen. Ein unzulässiger Zug verändert die letzte gültige
+Geometrie nicht und zeigt eine kurze Rückmeldung.
+
+Die unveränderte Ausgangsform wurde als Ganzes um 80 SVG-Einheiten nach oben
+verschoben: `A = (300, 460)`, `B = (900, 460)`, `C = (540, 100)` und das
+Ausgangsziel von P liegt bei `(600, 220)`. Dadurch beträgt der kleinste Abstand
+des initialen Umkreises zum Rand gut 54 SVG-Einheiten. Für zulässige
+Eckpunktbewegungen gilt weiterhin der feste Schutzrand von 26 Einheiten, ohne
+Skalierungs-, ViewBox- oder Zustandswechsel.
 
 ## Architektur
 

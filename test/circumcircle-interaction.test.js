@@ -190,15 +190,15 @@ test("vollständige Pointer- und Zustandsinteraktion entfernt alte SVG-Zustände
     assert.equal(ids.get("#circumcircle-next").hidden, true);
 
     const beforeCenter = ids.get("#center-control").getAttribute("transform");
-    harness.drag(harness.vertexControls.C, { x: 540, y: 180 }, { x: 650, y: 210 }, 2);
+    harness.drag(harness.vertexControls.C, { x: 540, y: 100 }, { x: 650, y: 130 }, 2);
     assert.equal(
       ids.get("#vertex-C-control").getAttribute("transform"),
-      "translate(650 210)",
+      "translate(650 130)",
     );
     assert.notEqual(ids.get("#center-control").getAttribute("transform"), beforeCenter);
 
     const validTransform = ids.get("#vertex-C-control").getAttribute("transform");
-    harness.drag(harness.vertexControls.C, { x: 650, y: 210 }, { x: 600, y: 539 }, 3);
+    harness.drag(harness.vertexControls.C, { x: 650, y: 130 }, { x: 600, y: 539 }, 3);
     assert.equal(ids.get("#vertex-C-control").getAttribute("transform"), validTransform);
     assert.equal(ids.get("#circumcircle-feedback").hidden, false);
     assert.ok(ids.get("#circumcircle-feedback").textContent);
