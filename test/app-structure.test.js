@@ -22,6 +22,22 @@ const files = {
   manifest: await readFile(new URL("../manifest.webmanifest", import.meta.url), "utf8"),
 };
 
+function mediaBlock(source, marker) {
+  const start = source.indexOf(marker);
+  assert.notEqual(start, -1, `Media Query fehlt: ${marker}`);
+  const end = source.indexOf("\n@media", start + marker.length);
+  return source.slice(start, end === -1 ? source.length : end);
+}
+
+const portraitTabletCss = mediaBlock(
+  files.homeCss,
+  "@media (min-width: 721px) and (max-width: 1040px)",
+);
+const landscapeTabletCss = mediaBlock(
+  files.homeCss,
+  "@media (orientation: landscape) and (min-width: 900px) and (max-width: 1500px)",
+);
+
 test("Startseite zeigt die verbindliche Hierarchie für Klasse 7 und Kapitel 2", () => {
   assert.match(files.home, /<h1>Mathe im Unterricht<\/h1>/);
   assert.match(files.home, /Interaktive Aha-Momente/);
@@ -80,10 +96,67 @@ test("Startseite ist für iPad, Querformat und Klassenraumbildschirm ausgelegt",
   assert.match(files.homeCss, /@media \(orientation: landscape\)/);
   assert.match(files.homeCss, /width: min\(100%, 1280px\)/);
   assert.match(files.homeCss, /min-height: clamp\(220px, 28vw, 330px\)/);
+  assert.match(
+    portraitTabletCss,
+    /grid-template-columns: repeat\(2, minmax\(0, 1fr\)\)/,
+  );
   assert.match(files.homeCss, /\.grade-label/);
   assert.match(files.navigationCss, /min-height: 46px/);
   assert.equal(JSON.parse(files.manifest).display, "standalone");
   assert.equal(JSON.parse(files.manifest).start_url, "./");
+});
+
+test("iPad-Querformat ordnet fünf Karten in einem zentrierten Sechsspaltenraster an", () => {
+  assert.match(
+    landscapeTabletCss,
+    /grid-template-columns: repeat\(6, minmax\(0, 1fr\)\)/,
+  );
+  assert.match(landscapeTabletCss, /grid-auto-rows: 1fr/);
+  assert.match(landscapeTabletCss, /\.module-card\s*\{[\s\S]*grid-column: span 2/);
+  assert.match(
+    landscapeTabletCss,
+    /\.module-card:nth-child\(4\)\s*\{\s*grid-column: 2 \/ span 2/,
+  );
+  assert.match(
+    landscapeTabletCss,
+    /\.module-card:nth-child\(5\)\s*\{\s*grid-column: 4 \/ span 2/,
+  );
+});
+
+test("iPad-Querformat verdichtet Karten und Kopf ohne Texte abzuschneiden", () => {
+  assert.match(
+    landscapeTabletCss,
+    /padding-top: max\(24px, env\(safe-area-inset-top\)\)/,
+  );
+  assert.match(landscapeTabletCss, /\.home-header\s*\{[\s\S]*margin-bottom: 20px/);
+  assert.match(
+    landscapeTabletCss,
+    /h1\s*\{\s*font-size: clamp\(2\.1rem, 4vw, 3\.4rem\)/,
+  );
+  assert.match(
+    landscapeTabletCss,
+    /min-height: clamp\(218px, 22vh, 232px\)/,
+  );
+  assert.match(
+    landscapeTabletCss,
+    /padding: clamp\(16px, 1\.7vw, 24px\)/,
+  );
+  assert.match(
+    landscapeTabletCss,
+    /\.module-status\s*\{[\s\S]*margin-bottom: clamp\(11px, 1\.4vw, 16px\)/,
+  );
+  assert.match(
+    landscapeTabletCss,
+    /\.module-title\s*\{[\s\S]*max-width: none[\s\S]*font-size: clamp\(1\.2rem, 1\.9vw, 1\.7rem\)/,
+  );
+  assert.match(
+    landscapeTabletCss,
+    /\.module-subtitle\s*\{[\s\S]*font-size: clamp\(0\.94rem, 1\.35vw, 1\.12rem\)/,
+  );
+  assert.doesNotMatch(
+    landscapeTabletCss,
+    /text-overflow|line-clamp|white-space:\s*nowrap|overflow:\s*hidden/,
+  );
 });
 
 test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und alle fünf Module", () => {
