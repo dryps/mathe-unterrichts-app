@@ -8,31 +8,33 @@ Prüfdatum: 30. Juli 2026
 - Untertitel „Interaktive Aha-Momente“
 - Klassenstufe „Klasse 7“
 - Buchkapitel „2. Dreiecke“
-- zwei große Modulkarten:
+- drei große Modulkarten:
   - „Warum bleiben es immer 180°?“ – „Winkelsumme“
   - „Wann kann überhaupt ein Dreieck entstehen?“ – „Dreiecksungleichung“
-- Status „fertig“ auf beiden Karten
+  - „Warum wird bei der Dreiecksfläche durch 2 geteilt?“ – „Flächeninhalt“
+- Status „fertig“ auf allen drei Karten
 - ein einziger Rückweg „← Dreiecke“ in jedem Modul
-- gemeinsamer Offline-Cache für Übersicht, Navigation und beide Module
+- gemeinsamer Offline-Cache für Übersicht, Navigation und alle drei Module
 
 Das bisher unter `index.html` liegende Winkelsummen-Modul wurde inhaltlich
 unverändert nach `winkelsumme.html` übernommen. Die mathematischen JavaScript-
-und Geometriedateien beider Module wurden nicht verändert.
+und Geometriedateien beider bestehenden Module wurden beim Ergänzen des dritten
+Moduls nicht verändert.
 
 ## Automatische Prüfungen
 
-- 55 von 55 Node-Tests bestanden
-- davon 49 vollständige Regressionstests der beiden bestehenden Module
-- 15 von 15 lokale Laufzeitressourcen erreichbar
+- 87 von 87 Node-Tests bestanden
+- die vollständige bisherige Suite mit 55 Tests bleibt grün
+- 21 von 21 lokale Laufzeitressourcen erreichbar
 - 3 von 3 Dreiecksungleichungszustände als SVG gerendert
 - JavaScript-Syntaxprüfungen bestanden
-- genau ein Kapitel und genau zwei Modulkarten bestätigt
+- genau ein Kapitel und genau drei Modulkarten bestätigt
 - keine Klassenauswahl, keine leeren Klassenstufen und kein Kapitelplatzhalter
-- beide Karten und beide Rückwege bestätigt
+- alle drei Karten und Rückwege bestätigt
 - keine Suche, Einstellungen, Konten, Favoriten oder Statistiken
 - Hochformat-, Querformat- und Großbildschirmregeln statisch bestätigt
 - Home-Bildschirm-Konfiguration über Manifest bestätigt
-- gemeinsamer Service-Worker-Cache auf Version 5 bestätigt
+- gemeinsamer Service-Worker-Cache auf Version 6 bestätigt
 - keine Speicherung, Analyse oder externen Laufzeitaufrufe
 
 ## Browser- und Betriebsgrenzen
@@ -40,6 +42,11 @@ und Geometriedateien beider Module wurden nicht verändert.
 Die Cloud-Browserinstanz darf die lokale Adresse der Work-Umgebung nicht
 öffnen. Eine Hostingvorschau wurde nicht erzeugt, weil diese Phase ausdrücklich
 keine Veröffentlichung vorsieht.
+
+Für das dritte Modul wurde zusätzlich eine lokale DOM- und
+Interaktionssimulation durchgeführt. Geprüft wurden Touch- und Maus-Pointer,
+Mehrfachtipps, Eingabesperre, Animation, deterministischer Endzustand,
+Spitzenbewegung nach der Ergänzung, Zurücksetzen und erneute Ergänzung.
 
 Deshalb bleiben als reale Betriebsprüfungen offen:
 

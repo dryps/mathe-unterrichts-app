@@ -9,6 +9,7 @@ const files = {
   shell: await readFile(new URL("../src/shell.js", import.meta.url), "utf8"),
   angles: await readFile(new URL("../winkelsumme.html", import.meta.url), "utf8"),
   inequality: await readFile(new URL("../dreiecksungleichung.html", import.meta.url), "utf8"),
+  area: await readFile(new URL("../dreiecksflaeche.html", import.meta.url), "utf8"),
   worker: await readFile(new URL("../sw.js", import.meta.url), "utf8"),
   manifest: await readFile(new URL("../manifest.webmanifest", import.meta.url), "utf8"),
 };
@@ -24,20 +25,23 @@ test("Startseite zeigt die verbindliche Hierarchie für Klasse 7 und Kapitel 2",
   assert.doesNotMatch(files.home, /<ul|<ol/);
 });
 
-test("Startseite enthält genau die zwei angenommenen großen Modulkarten", () => {
-  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 2);
+test("Startseite enthält genau die drei angenommenen großen Modulkarten", () => {
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 3);
   assert.match(files.home, /href="\.\/winkelsumme\.html"/);
   assert.match(files.home, /Warum bleiben es immer 180°\?/);
   assert.match(files.home, /<span class="module-subtitle">Winkelsumme<\/span>/);
   assert.match(files.home, /href="\.\/dreiecksungleichung\.html"/);
   assert.match(files.home, /Wann kann überhaupt ein Dreieck entstehen\?/);
   assert.match(files.home, /<span class="module-subtitle">Dreiecksungleichung<\/span>/);
-  assert.equal((files.home.match(/class="module-status"/g) ?? []).length, 2);
-  assert.equal((files.home.match(/fertig/g) ?? []).length, 2);
+  assert.match(files.home, /href="\.\/dreiecksflaeche\.html"/);
+  assert.match(files.home, /Warum wird bei der Dreiecksfläche durch 2 geteilt\?/);
+  assert.match(files.home, /<span class="module-subtitle">Flächeninhalt<\/span>/);
+  assert.equal((files.home.match(/class="module-status"/g) ?? []).length, 3);
+  assert.equal((files.home.match(/fertig/g) ?? []).length, 3);
 });
 
-test("Beide Module führen ausschließlich zur Übersicht Dreiecke zurück", () => {
-  for (const module of [files.angles, files.inequality]) {
+test("Alle Module führen ausschließlich zur Übersicht Dreiecke zurück", () => {
+  for (const module of [files.angles, files.inequality, files.area]) {
     assert.equal((module.match(/class="module-navigation"/g) ?? []).length, 1);
     assert.match(module, /class="module-back-link" href="\.\/#dreiecke">← Dreiecke<\/a>/);
     assert.doesNotMatch(module, /Suche|Einstellungen|Favoriten|Statistik|Anmelden/);
@@ -45,7 +49,7 @@ test("Beide Module führen ausschließlich zur Übersicht Dreiecke zurück", () 
 });
 
 test("Startseite ist für iPad, Querformat und Klassenraumbildschirm ausgelegt", () => {
-  assert.match(files.homeCss, /grid-template-columns: repeat\(2, minmax\(0, 1fr\)\)/);
+  assert.match(files.homeCss, /grid-template-columns: repeat\(3, minmax\(0, 1fr\)\)/);
   assert.match(files.homeCss, /@media \(max-width: 720px\)/);
   assert.match(files.homeCss, /@media \(orientation: landscape\)/);
   assert.match(files.homeCss, /width: min\(100%, 1280px\)/);
@@ -56,7 +60,7 @@ test("Startseite ist für iPad, Querformat und Klassenraumbildschirm ausgelegt",
   assert.equal(JSON.parse(files.manifest).start_url, "./");
 });
 
-test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und beide Module", () => {
+test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und alle drei Module", () => {
   for (const file of [
     "index.html",
     "home.css",
@@ -70,13 +74,19 @@ test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und beide Module
     "triangle-inequality.css",
     "src/triangle-inequality-app.js",
     "src/triangle-inequality-geometry.js",
+    "dreiecksflaeche.html",
+    "triangle-area.css",
+    "src/triangle-area-app.js",
+    "src/triangle-area-animation.js",
+    "src/triangle-area-geometry.js",
+    "src/triangle-area-state.js",
     "manifest.webmanifest",
     "icon.svg",
   ]) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
   assert.match(files.shell, /serviceWorker\.register/);
-  assert.match(files.worker, /mathe-unterrichts-app-v5/);
+  assert.match(files.worker, /mathe-unterrichts-app-v6/);
 });
 
 test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", () => {
@@ -87,6 +97,7 @@ test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", 
     files.shell,
     files.angles,
     files.inequality,
+    files.area,
     files.worker,
   ].join("\n");
   assert.doesNotMatch(runtime, /localStorage|sessionStorage|indexedDB|document\.cookie/);
@@ -96,4 +107,3 @@ test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", 
     /(?:src|href)=["']https?:\/\/|fetch\(\s*["'`]https?:\/\//,
   );
 });
-

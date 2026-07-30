@@ -29,6 +29,25 @@ automatisch als Grundseite verwendet. Zwei Zirkelbögen zeigen unmittelbar, ob s
 sich in zwei Punkten schneiden, genau berühren oder nicht erreichen. Parallel
 erscheint die konkrete Beziehung der beiden kürzeren Seiten zur längsten Seite.
 
+## Drittes Aha-Modul
+
+**Warum wird bei der Dreiecksfläche durch 2 geteilt?**
+
+*Flächeninhalt*
+
+Unter `dreiecksflaeche.html` bleibt die Grundseite `g` fest und horizontal,
+während die obere Spitze per Touch, Maus oder Tastatur bewegt werden kann. Die
+senkrechte Höhe `h`, ihr Fußpunkt und der rechte Winkel bleiben sichtbar. Über
+„Zweites Dreieck ergänzen“ dreht sich eine halbtransparente kongruente Kopie in
+1,7 Sekunden ruhig in ihre Zielposition. Danach bilden beide unterscheidbaren
+Dreieckshälften exakt ein Parallelogramm und die Beziehungen
+`A_Parallelogramm = g · h` sowie `A_Dreieck = (g · h) / 2` erscheinen.
+
+Die mathematische Zielgeometrie wird unabhängig von der Animation berechnet.
+Die Spitze bleibt innerhalb eines lesbaren Bereichs oberhalb der Grundseite,
+sodass der Höhenfuß immer innerhalb von `g` liegt. Nach der Ergänzung passt sich
+das vollständige Parallelogramm unmittelbar an weitere Spitzenbewegungen an.
+
 ## Mathematische Regeln
 
 - Die Innenwinkel werden aus den tatsächlichen Punktkoordinaten mit Skalarprodukt
@@ -50,6 +69,7 @@ erscheint die konkrete Beziehung der beiden kürzeren Seiten zur längsten Seite
 - Offline-Cache über einen Service Worker
 - keine Anmeldung, Speicherung, Cookies, Analyse oder externe API
 - keine Schülerdaten und keine externen Netzwerkaufrufe
+- keine Zahlenaufgaben, Eingabefelder oder gespeicherten Modulzustände
 
 ## Lokal starten und prüfen
 
@@ -68,4 +88,3 @@ Danach ist die App unter `http://127.0.0.1:4173` erreichbar.
 Die optionale Animation „Winkel zusammenlegen“ ist nicht Teil von V1. Sie bleibt
 als mögliche V2-Erweiterung offen, damit das erste Modul im Unterricht fokussiert
 und technisch klein bleibt.
-
