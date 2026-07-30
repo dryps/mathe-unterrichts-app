@@ -10,6 +10,10 @@ const files = {
   angles: await readFile(new URL("../winkelsumme.html", import.meta.url), "utf8"),
   inequality: await readFile(new URL("../dreiecksungleichung.html", import.meta.url), "utf8"),
   area: await readFile(new URL("../dreiecksflaeche.html", import.meta.url), "utf8"),
+  circumcircle: await readFile(
+    new URL("../mittelsenkrechten.html", import.meta.url),
+    "utf8",
+  ),
   worker: await readFile(new URL("../sw.js", import.meta.url), "utf8"),
   manifest: await readFile(new URL("../manifest.webmanifest", import.meta.url), "utf8"),
 };
@@ -25,8 +29,8 @@ test("Startseite zeigt die verbindliche Hierarchie für Klasse 7 und Kapitel 2",
   assert.doesNotMatch(files.home, /<ul|<ol/);
 });
 
-test("Startseite enthält genau die drei angenommenen großen Modulkarten", () => {
-  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 3);
+test("Startseite enthält genau die vier angenommenen großen Modulkarten", () => {
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 4);
   assert.match(files.home, /href="\.\/winkelsumme\.html"/);
   assert.match(files.home, /Warum bleiben es immer 180°\?/);
   assert.match(files.home, /<span class="module-subtitle">Winkelsumme<\/span>/);
@@ -36,12 +40,23 @@ test("Startseite enthält genau die drei angenommenen großen Modulkarten", () =
   assert.match(files.home, /href="\.\/dreiecksflaeche\.html"/);
   assert.match(files.home, /Warum wird bei der Dreiecksfläche durch 2 geteilt\?/);
   assert.match(files.home, /<span class="module-subtitle">Flächeninhalt<\/span>/);
-  assert.equal((files.home.match(/class="module-status"/g) ?? []).length, 3);
-  assert.equal((files.home.match(/fertig/g) ?? []).length, 3);
+  assert.match(files.home, /href="\.\/mittelsenkrechten\.html"/);
+  assert.match(files.home, /Warum treffen sich die Mittelsenkrechten genau dort\?/);
+  assert.match(
+    files.home,
+    /<span class="module-subtitle">Mittelsenkrechten und Umkreis<\/span>/,
+  );
+  assert.equal((files.home.match(/class="module-status"/g) ?? []).length, 4);
+  assert.equal((files.home.match(/fertig/g) ?? []).length, 4);
 });
 
 test("Alle Module führen ausschließlich zur Übersicht Dreiecke zurück", () => {
-  for (const module of [files.angles, files.inequality, files.area]) {
+  for (const module of [
+    files.angles,
+    files.inequality,
+    files.area,
+    files.circumcircle,
+  ]) {
     assert.equal((module.match(/class="module-navigation"/g) ?? []).length, 1);
     assert.match(module, /class="module-back-link" href="\.\/#dreiecke">← Dreiecke<\/a>/);
     assert.doesNotMatch(module, /Suche|Einstellungen|Favoriten|Statistik|Anmelden/);
@@ -60,7 +75,7 @@ test("Startseite ist für iPad, Querformat und Klassenraumbildschirm ausgelegt",
   assert.equal(JSON.parse(files.manifest).start_url, "./");
 });
 
-test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und alle drei Module", () => {
+test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und alle vier Module", () => {
   for (const file of [
     "index.html",
     "home.css",
@@ -80,13 +95,18 @@ test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und alle drei Mo
     "src/triangle-area-animation.js",
     "src/triangle-area-geometry.js",
     "src/triangle-area-state.js",
+    "mittelsenkrechten.html",
+    "circumcircle.css",
+    "src/circumcircle-app.js",
+    "src/circumcircle-geometry.js",
+    "src/circumcircle-state.js",
     "manifest.webmanifest",
     "icon.svg",
   ]) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
   assert.match(files.shell, /serviceWorker\.register/);
-  assert.match(files.worker, /mathe-unterrichts-app-v6/);
+  assert.match(files.worker, /mathe-unterrichts-app-v7/);
 });
 
 test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", () => {
@@ -98,6 +118,7 @@ test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", 
     files.angles,
     files.inequality,
     files.area,
+    files.circumcircle,
     files.worker,
   ].join("\n");
   assert.doesNotMatch(runtime, /localStorage|sessionStorage|indexedDB|document\.cookie/);

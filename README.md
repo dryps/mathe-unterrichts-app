@@ -5,7 +5,7 @@ Die App ergänzt GoodNotes nur dort, wo Bewegung und dynamische Veränderung ein
 sichtbaren fachlichen Mehrwert bieten.
 
 Die Startseite „Mathe im Unterricht“ ist direkt dem Bereich „Klasse 7“
-zugeordnet und führt über große Karten zum Buchkapitel „2. Dreiecke“. Beide
+zugeordnet und führt über große Karten zum Buchkapitel „2. Dreiecke“. Alle vier
 Module besitzen einen einzigen Rückweg zur Kapitelübersicht.
 
 ## Erstes Aha-Modul
@@ -48,6 +48,18 @@ Die Spitze bleibt innerhalb eines lesbaren Bereichs oberhalb der Grundseite,
 sodass der Höhenfuß immer innerhalb von `g` liegt. Nach der Ergänzung passt sich
 das vollständige Parallelogramm unmittelbar an weitere Spitzenbewegungen an.
 
+## Viertes Aha-Modul
+
+**Warum treffen sich die Mittelsenkrechten genau dort?**
+
+*Mittelsenkrechten und Umkreis*
+
+Unter `mittelsenkrechten.html` bewegt sich P ausschließlich auf der ersten
+Mittelsenkrechten, sodass `PA = PB` sichtbar bleibt. Danach erscheinen zweite und
+dritte Mittelsenkrechte, ihr gemeinsamer Schnittpunkt M mit `MA = MB = MC` und
+schließlich der Umkreis. Im Endzustand lassen sich A, B und C bewegen; sämtliche
+Mittelpunkte, Mittelsenkrechten, Radiusstrecken und der Kreis folgen unmittelbar.
+
 ## Mathematische Regeln
 
 - Die Innenwinkel werden aus den tatsächlichen Punktkoordinaten mit Skalarprodukt
@@ -78,6 +90,7 @@ Voraussetzung: Node.js 20 oder neuer.
 ```bash
 npm test
 npm run test:smoke
+npm run test:circumcircle-visual
 npm start
 ```
 

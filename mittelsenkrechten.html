@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f4f7fb" />
+    <meta
+      name="description"
+      content="Interaktiver Aha-Moment zu Mittelsenkrechten und Umkreis."
+    />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./circumcircle.css" />
+    <link rel="stylesheet" href="./navigation.css" />
+    <title>Warum treffen sich die Mittelsenkrechten genau dort?</title>
+  </head>
+  <body>
+    <main class="circumcircle-shell">
+      <nav class="module-navigation" aria-label="Modulnavigation">
+        <a class="module-back-link" href="./#dreiecke">← Dreiecke</a>
+      </nav>
+
+      <header class="circumcircle-header">
+        <div>
+          <p class="eyebrow">Dreiecke · 7. Klasse</p>
+          <h1>Warum treffen sich die Mittelsenkrechten genau dort?</h1>
+          <p class="subtitle">Mittelsenkrechten und Umkreis</p>
+        </div>
+        <p class="local-note" aria-label="Datenschutzstatus">
+          <span aria-hidden="true">●</span>
+          lokal · ohne Speicherung
+        </p>
+      </header>
+
+      <section class="circumcircle-visualizer" aria-labelledby="circumcircle-board-title">
+        <h2 id="circumcircle-board-title" class="visually-hidden">
+          Dreieck mit Mittelsenkrechten, Umkreismittelpunkt und Umkreis
+        </h2>
+
+        <svg
+          id="circumcircle-board"
+          class="circumcircle-board"
+          viewBox="0 0 1200 760"
+          preserveAspectRatio="xMidYMid meet"
+          role="img"
+          aria-labelledby="circumcircle-svg-title circumcircle-svg-description"
+          data-state="first"
+        >
+          <title id="circumcircle-svg-title">Von der Mittelsenkrechten zum Umkreis</title>
+          <desc id="circumcircle-svg-description">
+            Bewege P auf der ersten Mittelsenkrechten. Ergänze die übrigen
+            Mittelsenkrechten und zeige danach den Umkreis.
+          </desc>
+          <rect class="board-background" x="2" y="2" width="1196" height="756" rx="32" />
+
+          <circle id="circumcircle" class="circumcircle" visibility="hidden" aria-hidden="true" />
+          <polygon id="circumcircle-triangle" class="triangle-fill" points="" />
+          <line id="side-ab" class="triangle-side side-ab" />
+          <line id="side-bc" class="triangle-side" />
+          <line id="side-ca" class="triangle-side" />
+
+          <g id="bisector-1">
+            <line id="bisector-line-1" class="bisector-line bisector-one" />
+            <polyline id="bisector-angle-1" class="bisector-angle" points="" />
+            <circle id="midpoint-1" class="midpoint-dot" r="9" />
+          </g>
+          <g id="bisector-2" visibility="hidden" aria-hidden="true">
+            <line id="bisector-line-2" class="bisector-line bisector-two" />
+            <polyline id="bisector-angle-2" class="bisector-angle" points="" />
+            <circle id="midpoint-2" class="midpoint-dot" r="9" />
+          </g>
+          <g id="bisector-3" visibility="hidden" aria-hidden="true">
+            <line id="bisector-line-3" class="bisector-line bisector-three" />
+            <polyline id="bisector-angle-3" class="bisector-angle" points="" />
+            <circle id="midpoint-3" class="midpoint-dot" r="9" />
+          </g>
+
+          <g id="test-point-group">
+            <line id="distance-pa" class="test-distance" />
+            <line id="distance-pb" class="test-distance" />
+            <g id="test-point-control" data-drag-kind="test">
+              <circle
+                id="test-point-handle"
+                class="point-hit test-hit"
+                data-drag-kind="test"
+                r="64"
+                tabindex="0"
+                role="button"
+                aria-label="Testpunkt P auf der Mittelsenkrechten bewegen"
+              />
+              <circle class="test-point-dot" r="18" aria-hidden="true" />
+              <text class="point-label test-label" x="29" y="-24">P</text>
+            </g>
+            <text id="test-equality" class="equality-label" x="1030" y="94">PA = PB</text>
+          </g>
+
+          <g id="center-group" visibility="hidden" aria-hidden="true">
+            <line id="radius-ma" class="radius-line" />
+            <line id="radius-mb" class="radius-line" />
+            <line id="radius-mc" class="radius-line" />
+            <g id="center-control">
+              <circle class="center-dot" r="18" />
+              <text class="point-label center-label" x="28" y="-23">M</text>
+            </g>
+            <text id="radius-equality" class="equality-label center-equality" x="990" y="94">
+              MA = MB = MC
+            </text>
+          </g>
+
+          <g id="vertex-A-control" class="vertex-control" data-drag-kind="vertex" data-key="A">
+            <circle class="point-hit vertex-hit" data-drag-kind="vertex" data-key="A" r="58" />
+            <circle class="vertex-dot" r="15" aria-hidden="true" />
+            <text class="point-label vertex-label" x="-33" y="39">A</text>
+          </g>
+          <g id="vertex-B-control" class="vertex-control" data-drag-kind="vertex" data-key="B">
+            <circle class="point-hit vertex-hit" data-drag-kind="vertex" data-key="B" r="58" />
+            <circle class="vertex-dot" r="15" aria-hidden="true" />
+            <text class="point-label vertex-label" x="30" y="39">B</text>
+          </g>
+          <g id="vertex-C-control" class="vertex-control" data-drag-kind="vertex" data-key="C">
+            <circle class="point-hit vertex-hit" data-drag-kind="vertex" data-key="C" r="58" />
+            <circle class="vertex-dot" r="15" aria-hidden="true" />
+            <text class="point-label vertex-label" x="0" y="-29">C</text>
+          </g>
+        </svg>
+      </section>
+
+      <section class="circumcircle-insight" aria-live="polite" aria-atomic="true">
+        <div>
+          <p id="circumcircle-insight" class="insight-text">
+            Jeder Punkt auf der Mittelsenkrechten ist von beiden Endpunkten gleich weit entfernt.
+          </p>
+          <p id="circumcircle-feedback" class="feedback-text" hidden></p>
+        </div>
+        <div class="circumcircle-controls">
+          <button id="circumcircle-next" class="primary-button" type="button">
+            Nächste Mittelsenkrechte
+          </button>
+          <button id="circumcircle-reset" class="reset-button" type="button">
+            Zurücksetzen
+          </button>
+        </div>
+      </section>
+
+      <noscript>Für die interaktive Darstellung muss JavaScript aktiviert sein.</noscript>
+    </main>
+
+    <script type="module" src="./src/circumcircle-app.js"></script>
+  </body>
+</html>
