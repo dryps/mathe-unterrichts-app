@@ -13,7 +13,8 @@
     "test:circumcircle-visual": "node scripts/render-circumcircle-states.mjs",
     "test:incircle-visual": "node scripts/render-incircle-states.mjs",
     "test:unique-visual": "node scripts/render-unique-triangle-states.mjs",
-    "test:number-line-visual": "node scripts/render-number-line-states.mjs"
+    "test:number-line-visual": "node scripts/render-number-line-states.mjs",
+    "test:order-visual": "node scripts/render-order-number-line-states.mjs"
   },
   "engines": {
     "node": ">=20"
