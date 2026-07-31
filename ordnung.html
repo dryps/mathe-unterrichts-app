@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f4f7fb" />
+    <meta
+      name="description"
+      content="Interaktiver Aha-Moment zur Ordnung negativer Zahlen."
+    />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./order-number-line.css" />
+    <link rel="stylesheet" href="./navigation.css" />
+    <title>Warum ist −8 kleiner als −3?</title>
+  </head>
+  <body>
+    <main class="order-shell">
+      <nav class="module-navigation" aria-label="Modulnavigation">
+        <a class="module-back-link" href="./#rationale-zahlen">← Rationale Zahlen</a>
+      </nav>
+
+      <header class="order-header">
+        <div>
+          <p class="eyebrow">Rationale Zahlen · 7. Klasse</p>
+          <h1>Warum ist −8 kleiner als −3?</h1>
+          <p class="subtitle">Ordnung</p>
+        </div>
+        <p class="local-note" aria-label="Datenschutzstatus">
+          <span aria-hidden="true">●</span>
+          lokal · ohne Speicherung
+        </p>
+      </header>
+
+      <section class="order-visualizer" aria-labelledby="order-board-title">
+        <h2 id="order-board-title" class="visually-hidden">
+          Vergleich von minus acht und minus drei auf der Zahlengeraden
+        </h2>
+
+        <div class="order-stage">
+          <div id="order-prompt" class="order-prompt">
+            <p>Welche Zahl ist größer?</p>
+            <div class="prompt-values" aria-label="minus acht oder minus drei">
+              <strong>−8</strong>
+              <span>oder</span>
+              <strong>−3</strong>
+            </div>
+          </div>
+
+          <svg
+            id="order-board"
+            class="order-board"
+            viewBox="0 0 1400 520"
+            preserveAspectRatio="xMidYMid meet"
+            role="img"
+            aria-labelledby="order-svg-title order-svg-description"
+            data-state="prompt"
+          >
+            <title id="order-svg-title">Zahlengerade von minus zehn bis plus drei</title>
+            <desc id="order-svg-description">
+              Minus acht liegt links von minus drei. Ein beweglicher Punkt
+              rastet später auf ganzen Zahlen ein.
+            </desc>
+            <defs>
+              <marker
+                id="comparison-arrow"
+                markerWidth="13"
+                markerHeight="13"
+                refX="11"
+                refY="6.5"
+                orient="auto"
+                markerUnits="strokeWidth"
+              >
+                <path d="M 1 1 L 12 6.5 L 1 12 z" />
+              </marker>
+            </defs>
+            <rect class="board-background" x="2" y="2" width="1396" height="516" rx="32" />
+
+            <g id="order-axis-layer" class="order-axis-layer" visibility="hidden" aria-hidden="true">
+              <path
+                id="order-axis-left-arrow"
+                class="order-axis-arrow"
+                d="M 73 270 L 115 228 L 115 312 Z"
+              />
+              <path
+                id="order-axis-right-arrow"
+                class="order-axis-arrow"
+                d="M 1327 270 L 1285 228 L 1285 312 Z"
+              />
+              <line
+                id="order-axis"
+                class="order-axis"
+                x1="115"
+                y1="270"
+                x2="1285"
+                y2="270"
+              />
+
+              <g id="order-ticks" aria-label="Ganzzahlige Markierungen">
+                <g class="order-tick negative-tick labeled-tick" data-order-value="-10">
+                  <line x1="115" y1="238" x2="115" y2="302" />
+                  <text x="115" y="368">−10</text>
+                </g>
+                <g class="order-tick negative-tick" data-order-value="-9">
+                  <line x1="205" y1="246" x2="205" y2="294" />
+                </g>
+                <g class="order-tick negative-tick reference-tick labeled-tick" data-order-value="-8">
+                  <line x1="295" y1="238" x2="295" y2="302" />
+                  <text x="295" y="368">−8</text>
+                </g>
+                <g class="order-tick negative-tick" data-order-value="-7">
+                  <line x1="385" y1="246" x2="385" y2="294" />
+                </g>
+                <g class="order-tick negative-tick" data-order-value="-6">
+                  <line x1="475" y1="246" x2="475" y2="294" />
+                </g>
+                <g class="order-tick negative-tick" data-order-value="-5">
+                  <line x1="565" y1="246" x2="565" y2="294" />
+                </g>
+                <g class="order-tick negative-tick" data-order-value="-4">
+                  <line x1="655" y1="246" x2="655" y2="294" />
+                </g>
+                <g class="order-tick negative-tick reference-tick labeled-tick" data-order-value="-3">
+                  <line x1="745" y1="238" x2="745" y2="302" />
+                  <text x="745" y="368">−3</text>
+                </g>
+                <g class="order-tick negative-tick" data-order-value="-2">
+                  <line x1="835" y1="246" x2="835" y2="294" />
+                </g>
+                <g class="order-tick negative-tick" data-order-value="-1">
+                  <line x1="925" y1="246" x2="925" y2="294" />
+                </g>
+                <g class="order-tick zero-tick labeled-tick" data-order-value="0">
+                  <line x1="1015" y1="238" x2="1015" y2="302" />
+                  <text x="1015" y="368">0</text>
+                </g>
+                <g class="order-tick positive-tick" data-order-value="1">
+                  <line x1="1105" y1="246" x2="1105" y2="294" />
+                </g>
+                <g class="order-tick positive-tick" data-order-value="2">
+                  <line x1="1195" y1="246" x2="1195" y2="294" />
+                </g>
+                <g class="order-tick positive-tick labeled-tick" data-order-value="3">
+                  <line x1="1285" y1="238" x2="1285" y2="302" />
+                  <text x="1285" y="368">+3</text>
+                </g>
+              </g>
+
+              <g id="order-marker-eight" class="reference-marker marker-eight" transform="translate(295 270)">
+                <circle class="marker-halo" r="35" />
+                <circle class="marker-dot" r="21" />
+              </g>
+              <g id="order-marker-three" class="reference-marker marker-three" transform="translate(745 270)">
+                <circle class="marker-halo" r="35" />
+                <circle class="marker-dot" r="21" />
+              </g>
+
+              <g id="order-comparison" class="order-comparison" visibility="hidden" aria-hidden="true">
+                <rect x="510" y="58" width="380" height="92" rx="28" />
+                <text x="700" y="120">−8 &lt; −3</text>
+                <line
+                  id="order-direction"
+                  x1="315"
+                  y1="192"
+                  x2="725"
+                  y2="192"
+                  marker-end="url(#comparison-arrow)"
+                />
+              </g>
+
+              <g
+                id="order-point-control"
+                class="order-point-control"
+                transform="translate(1015 270)"
+                visibility="hidden"
+                aria-hidden="true"
+              >
+                <circle class="point-halo" r="44" />
+                <circle id="order-point" class="order-point" r="26" />
+                <circle
+                  id="order-point-handle"
+                  class="order-point-handle"
+                  r="60"
+                  tabindex="0"
+                  role="slider"
+                  aria-label="Punkt auf der Zahlengeraden"
+                  aria-valuemin="-10"
+                  aria-valuemax="3"
+                  aria-valuenow="0"
+                  aria-valuetext="0"
+                />
+                <g id="order-current-value" class="current-value">
+                  <rect x="-53" y="-116" width="106" height="66" rx="21" />
+                  <path d="M -12 -51 L 0 -37 L 12 -51 z" />
+                  <text id="order-current-value-text" x="0" y="-72">0</text>
+                </g>
+              </g>
+            </g>
+          </svg>
+        </div>
+        <p id="order-live-value" class="visually-hidden" aria-live="polite">0</p>
+      </section>
+
+      <section class="order-insight" aria-live="polite" aria-atomic="true">
+        <p id="order-insight" class="insight-text">Schau nicht nur auf 8 und 3.</p>
+        <div class="order-controls">
+          <button id="order-next" class="primary-button" type="button">Weiter</button>
+          <button id="order-reset" class="reset-button" type="button">Zurücksetzen</button>
+        </div>
+      </section>
+
+      <noscript>Für die interaktive Darstellung muss JavaScript aktiviert sein.</noscript>
+    </main>
+
+    <script type="module" src="./src/order-number-line-app.js"></script>
+  </body>
+</html>

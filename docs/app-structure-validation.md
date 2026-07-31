@@ -7,10 +7,10 @@ Prüfdatum: 31. Juli 2026
 - Startseite „Mathe im Unterricht“
 - Untertitel „Interaktive Aha-Momente“
 - Klassenstufe „Klasse 7“
-- Buchkapitel „1. Rationale Zahlen“ mit genau einer Modulkarte:
+- Buchkapitel „1. Rationale Zahlen“ mit genau zwei Modulkarten:
   - „Warum liegen negative Zahlen links von der Null?“ – „Zahlengerade“
-- unverändertes Buchkapitel „2. Dreiecke“
-- sechs große Modulkarten:
+  - „Warum ist −8 kleiner als −3?“ – „Ordnung“
+- unverändertes Buchkapitel „2. Dreiecke“ mit sechs Modulkarten:
   - „Warum bleiben es immer 180°?“ – „Winkelsumme“
   - „Wann kann überhaupt ein Dreieck entstehen?“ – „Dreiecksungleichung“
   - „Warum wird bei der Dreiecksfläche durch 2 geteilt?“ – „Flächeninhalt“
@@ -20,75 +20,61 @@ Prüfdatum: 31. Juli 2026
     „Winkelhalbierende und Inkreis“
   - „Warum reichen manche Angaben aus – und andere nicht?“ –
     „Eindeutige Dreiecke“
-- Status „fertig“ auf allen sieben Karten
-- Rückweg „← Rationale Zahlen“ im neuen Modul
+- Status „fertig“ auf allen acht Karten
+- Rückweg „← Rationale Zahlen“ in beiden Modulen aus Kapitel 1
 - unveränderter Rückweg „← Dreiecke“ in jedem Dreiecksmodul
-- gemeinsamer Offline-Cache für Übersicht, Navigation und alle sieben Module
+- gemeinsamer Offline-Cache für Übersicht, Navigation und alle acht Module
 
-Im iPad-Hochformat stehen die Karten in drei Reihen mit je zwei Karten. Im
-iPad-Querformat belegen sie zwei vollständige Reihen mit je drei Karten. Die
-sechs bestehenden Dreiecksmodule und ihre Laufzeitdateien wurden beim Ergänzen
-von Kapitel 1 nicht verändert.
+Im iPad-Hochformat besitzt jedes Kapitel ein Zweispaltenraster. Im
+iPad-Querformat stehen die beiden Karten aus Kapitel 1 als zentrierte Gruppe;
+Kapitel 2 behält zwei vollständige Reihen mit je drei Karten.
 
 ## Automatische Prüfungen
 
-- 251 von 251 Node-Tests bestanden
-- die vollständige bisherige Suite mit 217 Tests bleibt grün
-- 43 von 43 lokale Laufzeitressourcen erreichbar
-- 3 von 3 Dreiecksungleichungszustände als SVG gerendert
-- 6 von 6 Dreiecksflächenzustände als SVG gerendert
-- 7 von 7 Mittelsenkrechtenzustände als SVG gerendert
-- 7 von 7 Winkelhalbierendenzustände als SVG gerendert
-- 5 von 5 Zustände des sechsten Moduls als SVG gerendert
-- 6 von 6 Zahlengeraden-Zustände als SVG gerendert
+- 294 von 294 Node-Tests bestanden
+- vollständige bisherige Suite mit 251 Tests grün
+- 49 von 49 lokale Laufzeitressourcen erreichbar
+- 3 von 3 Dreiecksungleichungszustände
+- 6 von 6 Dreiecksflächenzustände
+- 7 von 7 Mittelsenkrechtenzustände
+- 7 von 7 Winkelhalbierendenzustände
+- 5 von 5 Zustände „Eindeutige Dreiecke“
+- 6 von 6 Zustände des ersten Zahlengeradenmoduls
+- 7 von 7 Zustände des Ordnungsmoduls
 - JavaScript-Syntaxprüfungen bestanden
-- genau zwei Kapitel und genau sieben Modulkarten bestätigt
-- keine Klassenauswahl, keine leeren Klassenstufen und kein Kapitelplatzhalter
-- alle sieben Karten und Rückwege strukturell sowie über ihre lokalen
-  Laufzeitressourcen bestätigt
-- Hochformat mit 2 + 2 + 2 Karten und Querformat mit 3 + 3 Karten bestätigt
-- keine Suche, Einstellungen, Konten, Favoriten oder Statistiken
-- Home-Bildschirm-Konfiguration über Manifest bestätigt
-- gemeinsamer Service-Worker-Cache auf Version 10 bestätigt
+- genau zwei Kapitel und genau acht Modulkarten bestätigt
+- alle acht Karten und Rückwege strukturell geprüft
+- keine Klassenauswahl, leeren Klassenstufen oder Platzhalter
+- Hochformat-, Querformat-, Kleinbreiten- und Großbildregeln bestätigt
+- gemeinsamer Service-Worker-Cache auf Version 11
 - automatisierter Offline-Neustart ohne Netzwerk bestanden
 - keine Speicherung, Analyse oder externen Laufzeitaufrufe
 
+## Regression
+
+Die sechs Module aus Kapitel 2 und ihre 30 produktiven Laufzeitdateien blieben
+bytegenau unverändert. Beim ersten Zahlengeradenmodul blieben HTML, CSS,
+Zustand, Animation und App-Darstellung bytegenau unverändert. In seiner
+Geometriedatei wurde ausschließlich eine additive allgemeine Ganzzahlskalierung
+ergänzt; alle bisherigen Exporte und das Verhalten von −3 bis +3 bleiben
+unverändert und vollständig getestet.
+
 ## Browser- und Betriebsgrenzen
 
-Die automatisierte Interaktions-, Struktur- und Darstellungsprüfung bestätigte:
-
-- Kapitel 1 und das unveränderte Raster mit sechs Dreieckskarten ohne
-  horizontalen Überlauf
-- alle sieben Karten verweisen auf das richtige Modul
-- alle sieben Rücklinks führen zur jeweiligen Kapitelübersicht
-- vollständiger Zahlengeraden-Aufbau von 0 nach rechts, zurück und über 0 hinaus
-- freie Punktbewegung mit Einrasten auf −3 bis +3
-- vollständiger SSS-Aufbau, gesperrter Spiegelvergleich und deckungsgleicher Endzustand
-- Mehrdeutigkeitsfall mit zwei getrennten Schnittpunkten
-- Abschlussvergleich, Zurücksetzen und erneuter vollständiger Aufbau
-- vollständige Sichtbarkeit aller neuen SVG-Elemente in den geprüften Zielbreiten
-- keine app-eigenen JavaScript-Fehler
-
-Die getrennte Cloud-Browserumgebung blockiert lokale `127.0.0.1`-Adressen. Ein
-neuer visueller Klickdurchlauf der tatsächlichen lokalen Seite konnte deshalb
-nicht ausgeführt werden. JavaScript-Syntax, DOM-Zustandswechsel, Pointer-
-Interaktion, Navigation, Responsive-Regeln und sämtliche Ressourcen wurden
-stattdessen direkt gegen die Arbeitskopie automatisiert geprüft. Die sechs
-unveränderten Dreiecksmodule behalten zusätzlich ihren bereits bestätigten
-Browserstand.
+Die getrennte Cloud-Browserumgebung darf lokale Vorschauadressen nicht öffnen.
+Ein visueller Klickdurchlauf der lokalen Seite war deshalb nicht möglich.
+JavaScript-Syntax, DOM-Zustandswechsel, Pointer-Interaktion, Navigation,
+Responsive-Regeln, SVG-Zustände, Ressourcen und Offline-Neustart wurden direkt
+gegen die Arbeitskopie automatisiert geprüft.
 
 Als reale Betriebsprüfungen bleiben offen:
 
-- Safari auf einem physischen iPad im Hochformat
-- Safari auf einem physischen iPad im Querformat
-- didaktische Wirkung der Spiegelbewegung und des Mehrdeutigkeitsfalls
-- didaktische Wirkung der Richtungsbewegung auf der Zahlengeraden
-- Start vom iPad-Home-Bildschirm
-- vollständiger Offline-Neustart im Flugmodus
-- reale Klassenraumübertragung
-
-Die vorhandenen Responsive-, Ressourcen-, Manifest-, Browser- und Cachetests
-ersetzen diese physischen Prüfungen nicht.
+- Safari auf einem physischen iPad im Hoch- und Querformat
+- didaktische Wirkung von Irritation, Auflösung und Vergleich
+- Fingergefühl des Einrastens
+- Lesbarkeit im Klassenraum
+- Home-Bildschirm-Start und Flugmodus-Neustart
+- Klassenraumübertragung
 
 ## Datenschutz und Veröffentlichung
 

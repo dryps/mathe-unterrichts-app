@@ -8,6 +8,8 @@
   --muted: #64748b;
   --blue: #2563eb;
   --violet: #7654c4;
+  --violet-deep: #5f3fac;
+  --violet-light: #9b83d7;
   --green: #087154;
 }
 
@@ -24,7 +26,7 @@ body {
   margin: 0;
   color: var(--ink);
   background:
-    radial-gradient(circle at 9% 5%, rgb(37 99 235 / 7%), transparent 28rem),
+    radial-gradient(circle at 9% 5%, rgb(118 84 196 / 8%), transparent 28rem),
     #f6f7fb;
   overscroll-behavior: none;
 }
@@ -34,8 +36,8 @@ svg {
   -webkit-tap-highlight-color: transparent;
 }
 
-.number-shell {
-  width: min(100%, 1380px);
+.order-shell {
+  width: min(100%, 1480px);
   margin: 0 auto;
   padding:
     max(18px, env(safe-area-inset-top))
@@ -44,7 +46,7 @@ svg {
     max(18px, env(safe-area-inset-left));
 }
 
-.number-header {
+.order-header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -94,20 +96,25 @@ h1 {
   font-size: 0.7em;
 }
 
-.number-visualizer,
-.number-insight {
+.order-visualizer,
+.order-insight {
   border: 1px solid rgb(203 213 225 / 82%);
   border-radius: 26px;
   background: rgb(255 255 255 / 94%);
   box-shadow: 0 20px 60px rgb(30 41 59 / 9%);
 }
 
-.number-visualizer {
+.order-visualizer {
   min-width: 0;
   padding: clamp(8px, 1.4vw, 16px);
 }
 
-.number-board {
+.order-stage {
+  position: relative;
+  min-height: 0;
+}
+
+.order-board {
   display: block;
   width: 100%;
   max-height: min(57dvh, 610px);
@@ -116,115 +123,224 @@ h1 {
   user-select: none;
 }
 
+.order-prompt {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  gap: 28px;
+  padding: 30px;
+  text-align: center;
+}
+
+.order-prompt[hidden] {
+  display: none;
+}
+
+.order-prompt p {
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(1.25rem, 2.8vw, 2rem);
+  font-weight: 760;
+}
+
+.prompt-values {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(20px, 5vw, 64px);
+  color: var(--ink);
+}
+
+.prompt-values strong {
+  min-width: 2.5ch;
+  font-size: clamp(3.5rem, 10vw, 7.3rem);
+  font-weight: 900;
+  letter-spacing: -0.06em;
+  line-height: 0.9;
+}
+
+.prompt-values span {
+  color: var(--muted);
+  font-size: clamp(1rem, 2vw, 1.45rem);
+  font-weight: 740;
+}
+
 .board-background {
   fill: #f8fafc;
   stroke: #dbe4ef;
   stroke-width: 4;
 }
 
-.number-axis-arrow {
+.order-axis-arrow {
   fill: #64748b;
 }
 
-.number-axis {
+#comparison-arrow path {
+  fill: var(--violet-deep);
+}
+
+.order-axis {
   stroke: #64748b;
   stroke-linecap: butt;
   stroke-width: 7;
 }
 
-.number-tick line {
+.order-tick line {
   stroke-linecap: round;
-  stroke-width: 7;
+  stroke-width: 5;
 }
 
-.number-tick text {
+.order-tick text {
   paint-order: stroke;
   stroke: #f8fafc;
   stroke-linejoin: round;
   stroke-width: 11px;
-  font-size: 42px;
-  font-weight: 900;
+  font-size: 38px;
+  font-weight: 850;
   text-anchor: middle;
 }
 
-.zero-tick line {
-  stroke: #334155;
-}
-
-.zero-tick text {
-  fill: #334155;
-}
-
-.positive-tick line {
-  stroke: rgb(37 99 235 / 72%);
-}
-
-.positive-tick text {
-  fill: var(--blue);
-}
-
 .negative-tick line {
-  stroke: rgb(118 84 196 / 76%);
+  stroke: rgb(118 84 196 / 52%);
 }
 
 .negative-tick text {
   fill: var(--violet);
 }
 
-.number-point-control {
+.positive-tick line {
+  stroke: rgb(37 99 235 / 58%);
+}
+
+.positive-tick text {
+  fill: var(--blue);
+}
+
+.zero-tick line {
+  stroke: #334155;
+  stroke-width: 7;
+}
+
+.zero-tick text {
+  fill: #334155;
+}
+
+.reference-tick line {
+  stroke-width: 8;
+}
+
+.reference-marker {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.marker-halo {
+  fill: rgb(118 84 196 / 14%);
+  stroke-width: 4;
+}
+
+.marker-dot {
+  stroke: white;
+  stroke-width: 7;
+}
+
+.marker-eight .marker-halo {
+  stroke: rgb(95 63 172 / 28%);
+}
+
+.marker-eight .marker-dot {
+  fill: var(--violet-deep);
+  filter: drop-shadow(0 7px 10px rgb(95 63 172 / 26%));
+}
+
+.marker-three .marker-halo {
+  stroke: rgb(155 131 215 / 34%);
+}
+
+.marker-three .marker-dot {
+  fill: var(--violet-light);
+  filter: drop-shadow(0 7px 10px rgb(118 84 196 / 23%));
+}
+
+.order-board[data-reference-mode="muted"] .reference-marker {
+  opacity: 0.34;
+}
+
+.order-board[data-reference-mode="muted"] .reference-marker .marker-halo {
+  display: none;
+}
+
+.order-comparison rect {
+  fill: #fff;
+  stroke: rgb(118 84 196 / 27%);
+  stroke-width: 4;
+}
+
+.order-comparison text {
+  fill: var(--violet-deep);
+  font-size: 53px;
+  font-weight: 900;
+  text-anchor: middle;
+}
+
+.order-comparison line {
+  stroke: var(--violet-deep);
+  stroke-linecap: round;
+  stroke-width: 7;
+}
+
+.order-point-control {
   transform-box: fill-box;
   transform-origin: center;
 }
 
 .point-halo {
-  fill: rgb(37 99 235 / 12%);
-  stroke: rgb(37 99 235 / 22%);
+  fill: rgb(51 65 85 / 11%);
+  stroke: rgb(51 65 85 / 20%);
   stroke-width: 4;
 }
 
-.number-point {
-  fill: var(--blue);
+.order-point {
+  fill: #334155;
   stroke: white;
   stroke-width: 8;
-  filter: drop-shadow(0 7px 10px rgb(37 99 235 / 28%));
+  filter: drop-shadow(0 7px 10px rgb(51 65 85 / 24%));
 }
 
-.number-board[data-value-sign="negative"] .point-halo {
+.order-board[data-value-sign="negative"] .point-halo {
   fill: rgb(118 84 196 / 13%);
   stroke: rgb(118 84 196 / 24%);
 }
 
-.number-board[data-value-sign="negative"] .number-point {
+.order-board[data-value-sign="negative"] .order-point {
   fill: var(--violet);
   filter: drop-shadow(0 7px 10px rgb(118 84 196 / 28%));
 }
 
-.number-board[data-value-sign="zero"] .point-halo {
-  fill: rgb(51 65 85 / 11%);
-  stroke: rgb(51 65 85 / 20%);
+.order-board[data-value-sign="positive"] .point-halo {
+  fill: rgb(37 99 235 / 12%);
+  stroke: rgb(37 99 235 / 22%);
 }
 
-.number-board[data-value-sign="zero"] .number-point {
-  fill: #334155;
-  filter: drop-shadow(0 7px 10px rgb(51 65 85 / 24%));
+.order-board[data-value-sign="positive"] .order-point {
+  fill: var(--blue);
+  filter: drop-shadow(0 7px 10px rgb(37 99 235 / 28%));
 }
 
-.number-point-handle {
+.order-point-handle {
   fill: transparent;
   stroke: transparent;
-  cursor: default;
+  cursor: grab;
   touch-action: none;
 }
 
-.number-board[data-state="free"] .number-point-handle {
-  cursor: grab;
-}
-
-.number-board[data-state="free"] .number-point-handle:active {
+.order-point-handle:active {
   cursor: grabbing;
 }
 
-.number-point-handle:focus-visible {
+.order-point-handle:focus-visible {
   fill: rgb(37 99 235 / 7%);
   stroke: rgb(37 99 235 / 40%);
   stroke-width: 6;
@@ -242,7 +358,7 @@ h1 {
   text-anchor: middle;
 }
 
-.number-insight {
+.order-insight {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 14px 24px;
@@ -258,7 +374,7 @@ h1 {
   line-height: 1.35;
 }
 
-.number-controls {
+.order-controls {
   display: flex;
   gap: 10px;
   justify-content: flex-end;
@@ -320,11 +436,11 @@ noscript {
 }
 
 @media (max-width: 760px) {
-  .number-shell {
+  .order-shell {
     padding-inline: 12px;
   }
 
-  .number-header {
+  .order-header {
     display: block;
   }
 
@@ -333,11 +449,11 @@ noscript {
     margin-top: 12px;
   }
 
-  .number-insight {
+  .order-insight {
     grid-template-columns: 1fr;
   }
 
-  .number-controls {
+  .order-controls {
     justify-content: stretch;
   }
 
@@ -348,7 +464,11 @@ noscript {
 }
 
 @media (max-width: 520px) {
-  .number-controls {
+  .prompt-values {
+    gap: 15px;
+  }
+
+  .order-controls {
     flex-direction: column;
   }
 
@@ -359,11 +479,11 @@ noscript {
 }
 
 @media (orientation: landscape) and (max-height: 820px) {
-  .number-shell {
+  .order-shell {
     padding-block: 10px;
   }
 
-  .number-header {
+  .order-header {
     margin-bottom: 9px;
   }
 
@@ -375,29 +495,29 @@ noscript {
     margin-top: 3px;
   }
 
-  .number-board {
+  .order-board {
     max-height: 52dvh;
   }
 
-  .number-insight {
+  .order-insight {
     margin-top: 9px;
     padding-block: 12px;
   }
 }
 
 @media (min-width: 1500px) {
-  .number-shell {
-    width: min(94vw, 1600px);
+  .order-shell {
+    width: min(94vw, 1660px);
   }
 
-  .number-board {
+  .order-board {
     max-height: 640px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .number-point,
-  .point-halo {
+  .order-point,
+  .marker-dot {
     filter: none;
   }
 }

@@ -51,21 +51,18 @@
             Ein Punkt bewegt sich zuerst nach rechts, dann zurück und schließlich
             über die Null hinaus nach links.
           </desc>
-          <defs>
-            <marker
-              id="line-arrow"
-              markerWidth="14"
-              markerHeight="14"
-              refX="7"
-              refY="7"
-              orient="auto-start-reverse"
-              markerUnits="strokeWidth"
-            >
-              <path d="M 1 1 L 13 7 L 1 13 z" />
-            </marker>
-          </defs>
           <rect class="board-background" x="2" y="2" width="1196" height="516" rx="32" />
 
+          <path
+            id="number-axis-left-arrow"
+            class="number-axis-arrow"
+            d="M 42 270 L 84 228 L 84 312 Z"
+          />
+          <path
+            id="number-axis-right-arrow"
+            class="number-axis-arrow"
+            d="M 1158 270 L 1116 228 L 1116 312 Z"
+          />
           <line
             id="number-axis"
             class="number-axis"
@@ -73,8 +70,6 @@
             y1="270"
             x2="1116"
             y2="270"
-            marker-start="url(#line-arrow)"
-            marker-end="url(#line-arrow)"
           />
 
           <g id="nonnegative-ticks" aria-label="Null und positive Zahlen">

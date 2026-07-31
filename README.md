@@ -9,7 +9,7 @@ zugeordnet. Sie führt über große Karten zu den Buchkapiteln „1. Rationale
 Zahlen“ und „2. Dreiecke“. Jedes Modul besitzt einen einzigen Rückweg zu seiner
 Kapitelübersicht.
 
-## Kapitel 1: Erstes Aha-Modul
+## Kapitel 1: Aha-Module
 
 **Warum liegen negative Zahlen links von der Null?**
 
@@ -20,6 +20,16 @@ dann zurück zur Null und schließlich weiter bis −3. Erst danach wird der Pun
 für Touch, Maus und Tastatur freigegeben. Er bleibt exakt auf der horizontalen
 Zahlengeraden, rastet auf ganze Zahlen von −3 bis +3 ein und macht so die beiden
 entgegengesetzten Richtungen sichtbar.
+
+**Warum ist −8 kleiner als −3?**
+
+*Ordnung*
+
+Unter ordnung.html stehen zunächst nur −8 und −3 als neutraler Denkimpuls
+gegenüber. Danach erscheinen die Zahlengerade und die beiden Positionen ruhig
+nacheinander. Der sichtbare Vergleich −8 < −3 folgt aus der Lage: −3 liegt
+weiter rechts und ist deshalb größer. Im Endzustand rastet ein großer Punkt per
+Touch, Maus oder Tastatur auf ganzen Zahlen von −10 bis +3 ein.
 
 ## Kapitel 2: Erstes Aha-Modul
 
@@ -134,6 +144,7 @@ npm run test:circumcircle-visual
 npm run test:incircle-visual
 npm run test:unique-visual
 npm run test:number-line-visual
+npm run test:order-visual
 npm start
 ```
 

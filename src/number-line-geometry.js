@@ -13,6 +13,92 @@ export const NUMBER_LINE_LIMITS = Object.freeze({
   boardHeight: 520,
 });
 
+export function createIntegerNumberLineScale({
+  min,
+  max,
+  lineStart,
+  lineEnd,
+  y,
+}) {
+  if (
+    !Number.isInteger(min) ||
+    !Number.isInteger(max) ||
+    min >= max ||
+    !Number.isFinite(lineStart) ||
+    !Number.isFinite(lineEnd) ||
+    lineStart >= lineEnd ||
+    !Number.isFinite(y)
+  ) {
+    throw new RangeError("Die Ganzzahlskala benötigt gültige Grenzen und Koordinaten.");
+  }
+
+  const step = (lineEnd - lineStart) / (max - min);
+  const limits = Object.freeze({
+    min,
+    max,
+    lineStart,
+    lineEnd,
+    y,
+    step,
+    zeroX: min <= 0 && max >= 0 ? lineStart + (0 - min) * step : null,
+  });
+
+  function clamp(value) {
+    if (!Number.isFinite(value)) {
+      throw new RangeError("Der Wert auf der Zahlengeraden muss endlich sein.");
+    }
+    return Math.max(min, Math.min(max, value));
+  }
+
+  function snap(value) {
+    const rounded = Math.round(clamp(value));
+    return Object.is(rounded, -0) ? 0 : rounded;
+  }
+
+  function valueToX(value) {
+    return lineStart + (clamp(value) - min) * step;
+  }
+
+  function xToValue(x) {
+    if (!Number.isFinite(x)) {
+      throw new RangeError("Die Punktposition muss endlich sein.");
+    }
+    return snap(min + (x - lineStart) / step);
+  }
+
+  function valueToPoint(value) {
+    return { x: valueToX(value), y };
+  }
+
+  function ticks() {
+    return Array.from({ length: max - min + 1 }, (_, index) => {
+      const value = min + index;
+      return { value, x: valueToX(value), y };
+    });
+  }
+
+  function pointIsOnLine(point, tolerance = 1e-9) {
+    return (
+      Number.isFinite(point?.x) &&
+      Number.isFinite(point?.y) &&
+      Math.abs(point.y - y) <= tolerance &&
+      point.x >= lineStart - tolerance &&
+      point.x <= lineEnd + tolerance
+    );
+  }
+
+  return Object.freeze({
+    limits,
+    clamp,
+    snap,
+    valueToX,
+    xToValue,
+    valueToPoint,
+    ticks,
+    pointIsOnLine,
+  });
+}
+
 export function clampNumberLineValue(value) {
   if (!Number.isFinite(value)) {
     throw new RangeError("Der Wert auf der Zahlengeraden muss endlich sein.");
