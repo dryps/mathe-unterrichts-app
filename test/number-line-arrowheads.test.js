@@ -19,6 +19,14 @@ const modules = [
     leftId: "order-axis-left-arrow",
     rightId: "order-axis-right-arrow",
   },
+  {
+    name: "Betrag",
+    html: await readFile(new URL("../betrag.html", import.meta.url), "utf8"),
+    css: await readFile(new URL("../absolute-value.css", import.meta.url), "utf8"),
+    axisId: "absolute-axis",
+    leftId: "absolute-axis-left-arrow",
+    rightId: "absolute-axis-right-arrow",
+  },
 ];
 
 function elementById(html, id) {
@@ -45,7 +53,7 @@ function pathPoints(element) {
   ];
 }
 
-test("beide Zahlengeraden verwenden eigenständige geschlossene Pfeilflächen", () => {
+test("alle Zahlengeraden verwenden eigenständige geschlossene Pfeilflächen", () => {
   for (const module of modules) {
     assert.doesNotMatch(module.html, /marker-(?:start|end)="url\(#(?:order-)?line-arrow\)"/);
     assert.doesNotMatch(module.html, /id="(?:order-)?line-arrow"/);

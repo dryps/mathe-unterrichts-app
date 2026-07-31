@@ -31,6 +31,17 @@ nacheinander. Der sichtbare Vergleich −8 < −3 folgt aus der Lage: −3 liegt
 weiter rechts und ist deshalb größer. Im Endzustand rastet ein großer Punkt per
 Touch, Maus oder Tastatur auf ganzen Zahlen von −10 bis +3 ein.
 
+**Warum wird beim Betrag das Vorzeichen unwichtig?**
+
+*Abstand zur Null*
+
+Unter `betrag.html` wird `|−4|` schrittweise als Abstand von −4 zur Null
+sichtbar. Zuerst zeigt das Vorzeichen nur die Richtung, danach gliedern vier
+gleich große Einheiten den Abstand. Der Vergleich mit +4 macht sichtbar, dass
+entgegengesetzte Richtungen denselben Abstand besitzen können. Im Endzustand
+rastet ein großer Punkt per Touch, Maus oder Tastatur auf ganzen Zahlen von −6
+bis +6 ein; Zahl, Abstand und Betragsschreibweise aktualisieren sich gemeinsam.
+
 ## Kapitel 2: Erstes Aha-Modul
 
 **Warum bleiben es immer 180°?**  
@@ -145,6 +156,7 @@ npm run test:incircle-visual
 npm run test:unique-visual
 npm run test:number-line-visual
 npm run test:order-visual
+npm run test:absolute-visual
 npm start
 ```
 

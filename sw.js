@@ -1,4 +1,4 @@
-const CACHE_NAME = "mathe-unterrichts-app-v11";
+const CACHE_NAME = "mathe-unterrichts-app-v12";
 const APP_FILES = [
   "./",
   "./index.html",
@@ -47,6 +47,12 @@ const APP_FILES = [
   "./src/order-number-line-animation.js",
   "./src/order-number-line-geometry.js",
   "./src/order-number-line-state.js",
+  "./betrag.html",
+  "./absolute-value.css",
+  "./src/absolute-value-app.js",
+  "./src/absolute-value-animation.js",
+  "./src/absolute-value-geometry.js",
+  "./src/absolute-value-state.js",
   "./manifest.webmanifest",
   "./icon.svg",
 ];

@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f4f7fb" />
+    <meta
+      name="description"
+      content="Interaktiver Aha-Moment zum Betrag als Abstand von der Null."
+    />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./absolute-value.css" />
+    <link rel="stylesheet" href="./navigation.css" />
+    <title>Warum wird beim Betrag das Vorzeichen unwichtig?</title>
+  </head>
+  <body>
+    <main class="absolute-shell">
+      <nav class="module-navigation" aria-label="Modulnavigation">
+        <a class="module-back-link" href="./#rationale-zahlen">← Rationale Zahlen</a>
+      </nav>
+
+      <header class="absolute-header">
+        <div>
+          <p class="eyebrow">Rationale Zahlen · 7. Klasse</p>
+          <h1>Warum wird beim Betrag das Vorzeichen unwichtig?</h1>
+          <p class="subtitle">Abstand zur Null</p>
+        </div>
+        <p class="local-note" aria-label="Datenschutzstatus">
+          <span aria-hidden="true">●</span>
+          lokal · ohne Speicherung
+        </p>
+      </header>
+
+      <section class="absolute-visualizer" aria-labelledby="absolute-board-title">
+        <h2 id="absolute-board-title" class="visually-hidden">
+          Betrag als Abstand einer Zahl von der Null
+        </h2>
+
+        <div class="absolute-stage">
+          <div id="absolute-prompt" class="absolute-prompt">
+            <p class="prompt-formula">|−4| = ?</p>
+            <p>Was misst der Betrag eigentlich?</p>
+          </div>
+
+          <svg
+            id="absolute-board"
+            class="absolute-board"
+            viewBox="0 0 1400 520"
+            preserveAspectRatio="xMidYMid meet"
+            role="img"
+            aria-labelledby="absolute-svg-title absolute-svg-description"
+            data-state="prompt"
+          >
+            <title id="absolute-svg-title">Zahlengerade von minus sechs bis plus sechs</title>
+            <desc id="absolute-svg-description">
+              Der Betrag wird als ganzzahliger Abstand einer Zahl von der Null gezeigt.
+            </desc>
+            <defs>
+              <marker
+                id="absolute-direction-arrow"
+                markerWidth="13"
+                markerHeight="13"
+                refX="11"
+                refY="6.5"
+                orient="auto"
+                markerUnits="strokeWidth"
+              >
+                <path d="M 1 1 L 12 6.5 L 1 12 z" />
+              </marker>
+            </defs>
+            <rect class="board-background" x="2" y="2" width="1396" height="516" rx="32" />
+
+            <g id="absolute-axis-layer" visibility="hidden" aria-hidden="true">
+              <path
+                id="absolute-axis-left-arrow"
+                class="absolute-axis-arrow"
+                d="M 73 270 L 115 228 L 115 312 Z"
+              />
+              <path
+                id="absolute-axis-right-arrow"
+                class="absolute-axis-arrow"
+                d="M 1327 270 L 1285 228 L 1285 312 Z"
+              />
+              <line
+                id="absolute-axis"
+                class="absolute-axis"
+                x1="115"
+                y1="270"
+                x2="1285"
+                y2="270"
+              />
+
+              <g id="absolute-ticks" aria-label="Ganzzahlige Markierungen">
+                <g class="absolute-tick negative-tick labeled-tick" data-absolute-value="-6"><line x1="115" y1="238" x2="115" y2="302" /><text x="115" y="368">−6</text></g>
+                <g class="absolute-tick negative-tick" data-absolute-value="-5"><line x1="212.5" y1="246" x2="212.5" y2="294" /></g>
+                <g class="absolute-tick negative-tick reference-tick labeled-tick" data-absolute-value="-4"><line x1="310" y1="238" x2="310" y2="302" /><text x="310" y="368">−4</text></g>
+                <g class="absolute-tick negative-tick" data-absolute-value="-3"><line x1="407.5" y1="246" x2="407.5" y2="294" /></g>
+                <g class="absolute-tick negative-tick" data-absolute-value="-2"><line x1="505" y1="246" x2="505" y2="294" /></g>
+                <g class="absolute-tick negative-tick" data-absolute-value="-1"><line x1="602.5" y1="246" x2="602.5" y2="294" /></g>
+                <g class="absolute-tick zero-tick labeled-tick" data-absolute-value="0"><line x1="700" y1="238" x2="700" y2="302" /><text x="700" y="368">0</text></g>
+                <g class="absolute-tick positive-tick" data-absolute-value="1"><line x1="797.5" y1="246" x2="797.5" y2="294" /></g>
+                <g class="absolute-tick positive-tick" data-absolute-value="2"><line x1="895" y1="246" x2="895" y2="294" /></g>
+                <g class="absolute-tick positive-tick" data-absolute-value="3"><line x1="992.5" y1="246" x2="992.5" y2="294" /></g>
+                <g class="absolute-tick positive-tick reference-tick labeled-tick" data-absolute-value="4"><line x1="1090" y1="238" x2="1090" y2="302" /><text x="1090" y="368">4</text></g>
+                <g class="absolute-tick positive-tick" data-absolute-value="5"><line x1="1187.5" y1="246" x2="1187.5" y2="294" /></g>
+                <g class="absolute-tick positive-tick labeled-tick" data-absolute-value="6"><line x1="1285" y1="238" x2="1285" y2="302" /><text x="1285" y="368">+6</text></g>
+              </g>
+
+              <g id="absolute-negative-marker" class="reference-marker negative-marker" transform="translate(310 270)">
+                <circle class="marker-halo" r="35" />
+                <circle class="marker-dot" r="21" />
+              </g>
+              <g id="absolute-positive-marker" class="reference-marker positive-marker" transform="translate(1090 270)" visibility="hidden" aria-hidden="true">
+                <circle class="marker-halo" r="35" />
+                <circle class="marker-dot" r="21" />
+              </g>
+
+              <g id="absolute-direction" class="absolute-direction" visibility="hidden" aria-hidden="true">
+                <line id="absolute-direction-line" x1="680" y1="180" x2="330" y2="180" marker-end="url(#absolute-direction-arrow)" />
+                <text x="505" y="142">Richtung</text>
+              </g>
+
+              <g id="absolute-negative-distance" class="distance-group negative-distance" visibility="hidden" aria-hidden="true">
+                <line class="distance-line" x1="310" y1="180" x2="700" y2="180" />
+                <g class="distance-boundaries" data-distance-boundaries="negative"></g>
+              </g>
+              <g id="absolute-positive-distance" class="distance-group positive-distance" visibility="hidden" aria-hidden="true">
+                <line class="distance-line" x1="700" y1="180" x2="1090" y2="180" />
+                <g class="distance-boundaries" data-distance-boundaries="positive"></g>
+              </g>
+
+              <g id="absolute-negative-formula" class="absolute-formula compact-formula" visibility="hidden" aria-hidden="true">
+                <rect x="380" y="54" width="250" height="82" rx="25" />
+                <text x="505" y="109">|−4| = 4</text>
+              </g>
+              <g id="absolute-equality-formula" class="absolute-formula equality-formula" visibility="hidden" aria-hidden="true">
+                <rect x="462" y="48" width="476" height="88" rx="27" />
+                <text x="700" y="108">|−4| = |4| = 4</text>
+              </g>
+
+              <g id="absolute-point-control" class="absolute-point-control" transform="translate(310 270)" visibility="hidden" aria-hidden="true">
+                <circle class="point-halo" r="44" />
+                <circle id="absolute-point" class="absolute-point" r="26" />
+                <circle
+                  id="absolute-point-handle"
+                  class="absolute-point-handle"
+                  r="60"
+                  tabindex="0"
+                  role="slider"
+                  aria-label="Punkt auf der Zahlengeraden"
+                  aria-valuemin="-6"
+                  aria-valuemax="6"
+                  aria-valuenow="-4"
+                  aria-valuetext="−4"
+                />
+                <g id="absolute-current-value" class="current-value">
+                  <rect x="-53" y="-116" width="106" height="66" rx="21" />
+                  <path d="M -12 -51 L 0 -37 L 12 -51 z" />
+                  <text id="absolute-current-value-text" x="0" y="-72">−4</text>
+                </g>
+              </g>
+
+              <g id="absolute-dynamic-formula" class="absolute-formula dynamic-formula" visibility="hidden" aria-hidden="true">
+                <rect x="520" y="48" width="360" height="88" rx="27" />
+                <text id="absolute-dynamic-formula-text" x="700" y="108">|−4| = 4</text>
+              </g>
+            </g>
+          </svg>
+        </div>
+        <p id="absolute-live-value" class="visually-hidden" aria-live="polite">|−4| = 4</p>
+      </section>
+
+      <section class="absolute-insight" aria-live="polite" aria-atomic="true">
+        <p id="absolute-insight" class="insight-text">Was misst der Betrag eigentlich?</p>
+        <div class="absolute-controls">
+          <button id="absolute-next" class="primary-button" type="button">Weiter</button>
+          <button id="absolute-reset" class="reset-button" type="button">Zurücksetzen</button>
+        </div>
+      </section>
+
+      <noscript>Für die interaktive Darstellung muss JavaScript aktiviert sein.</noscript>
+    </main>
+
+    <script type="module" src="./src/absolute-value-app.js"></script>
+  </body>
+</html>
