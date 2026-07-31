@@ -5,7 +5,7 @@ Die App ergänzt GoodNotes nur dort, wo Bewegung und dynamische Veränderung ein
 sichtbaren fachlichen Mehrwert bieten.
 
 Die Startseite „Mathe im Unterricht“ ist direkt dem Bereich „Klasse 7“
-zugeordnet und führt über große Karten zum Buchkapitel „2. Dreiecke“. Alle fünf
+zugeordnet und führt über große Karten zum Buchkapitel „2. Dreiecke“. Alle sechs
 Module besitzen einen einzigen Rückweg zur Kapitelübersicht.
 
 ## Erstes Aha-Modul
@@ -13,8 +13,8 @@ Module besitzen einen einzigen Rückweg zur Kapitelübersicht.
 **Warum bleiben es immer 180°?**  
 *Winkelsumme im Dreieck*
 
-Unter `winkelsumme.html` lassen sich die drei Eckpunkte eines großen Dreiecks lassen sich mit Touch, Maus oder Tastatur
-verschieben. Innenwinkel, Winkelbögen und die Rechnung
+Unter `winkelsumme.html` lassen sich die drei Eckpunkte eines großen Dreiecks mit
+Touch, Maus oder Tastatur verschieben. Innenwinkel, Winkelbögen und die Rechnung
 `α + β + γ = 180°` aktualisieren sich unmittelbar.
 
 ## Zweites Aha-Modul
@@ -74,6 +74,19 @@ der Inkreis, dass diese gemeinsame Entfernung sein Radius ist. Erst dann lassen
 sich A, B und C bewegen; Winkelhalbierende, I, Lotfüße, Berührpunkte und Inkreis
 folgen unmittelbar.
 
+## Sechstes Aha-Modul
+
+**Warum reichen manche Angaben aus – und andere nicht?**
+
+*Eindeutige Dreiecke*
+
+Unter `eindeutige-dreiecke.html` erzeugen zwei Kreisbögen zunächst zwei
+spiegelbildliche Lagen mit exakt denselben drei Seiten. Eine starre, ruhige
+Bewegung legt die untere Lage deckungsgleich auf die obere. Danach zeigen ein
+fester Winkelstrahl und ein Kreis zwei verschiedene Schnittpunkte: Beide
+Dreiecke erfüllen dieselbe sichtbare Grundseiten-, Seiten- und Winkelvorgabe,
+sind aber nicht kongruent.
+
 ## Mathematische Regeln
 
 - Die Innenwinkel werden aus den tatsächlichen Punktkoordinaten mit Skalarprodukt
@@ -91,7 +104,7 @@ folgen unmittelbar.
 ## Technik und Datenschutz
 
 - statische Web-App ohne Framework und ohne Laufzeitabhängigkeiten
-- Geometriemodul getrennt von DOM- und SVG-Darstellung
+- Geometriemodule getrennt von DOM- und SVG-Darstellung
 - Offline-Cache über einen Service Worker
 - keine Anmeldung, Speicherung, Cookies, Analyse oder externe API
 - keine Schülerdaten und keine externen Netzwerkaufrufe
@@ -106,6 +119,7 @@ npm test
 npm run test:smoke
 npm run test:circumcircle-visual
 npm run test:incircle-visual
+npm run test:unique-visual
 npm start
 ```
 

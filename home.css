@@ -244,11 +244,15 @@ noscript {
   }
 
   .module-card:nth-child(4) {
-    grid-column: 2 / span 2;
+    grid-column: 1 / span 2;
   }
 
   .module-card:nth-child(5) {
-    grid-column: 4 / span 2;
+    grid-column: 3 / span 2;
+  }
+
+  .module-card:nth-child(6) {
+    grid-column: 5 / span 2;
   }
 
   .module-status {

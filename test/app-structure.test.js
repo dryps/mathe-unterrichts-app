@@ -18,6 +18,10 @@ const files = {
     new URL("../winkelhalbierende.html", import.meta.url),
     "utf8",
   ),
+  unique: await readFile(
+    new URL("../eindeutige-dreiecke.html", import.meta.url),
+    "utf8",
+  ),
   worker: await readFile(new URL("../sw.js", import.meta.url), "utf8"),
   manifest: await readFile(new URL("../manifest.webmanifest", import.meta.url), "utf8"),
 };
@@ -49,8 +53,8 @@ test("Startseite zeigt die verbindliche Hierarchie für Klasse 7 und Kapitel 2",
   assert.doesNotMatch(files.home, /<ul|<ol/);
 });
 
-test("Startseite enthält genau die fünf angenommenen großen Modulkarten", () => {
-  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 5);
+test("Startseite enthält genau die sechs angenommenen großen Modulkarten", () => {
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 6);
   assert.match(files.home, /href="\.\/winkelsumme\.html"/);
   assert.match(files.home, /Warum bleiben es immer 180°\?/);
   assert.match(files.home, /<span class="module-subtitle">Winkelsumme<\/span>/);
@@ -72,8 +76,14 @@ test("Startseite enthält genau die fünf angenommenen großen Modulkarten", () 
     files.home,
     /<span class="module-subtitle">Winkelhalbierende und Inkreis<\/span>/,
   );
-  assert.equal((files.home.match(/class="module-status"/g) ?? []).length, 5);
-  assert.equal((files.home.match(/fertig/g) ?? []).length, 5);
+  assert.match(files.home, /href="\.\/eindeutige-dreiecke\.html"/);
+  assert.match(files.home, /Warum reichen manche Angaben aus – und andere nicht\?/);
+  assert.match(
+    files.home,
+    /<span class="module-subtitle">Eindeutige Dreiecke<\/span>/,
+  );
+  assert.equal((files.home.match(/class="module-status"/g) ?? []).length, 6);
+  assert.equal((files.home.match(/fertig/g) ?? []).length, 6);
 });
 
 test("Alle Module führen ausschließlich zur Übersicht Dreiecke zurück", () => {
@@ -83,6 +93,7 @@ test("Alle Module führen ausschließlich zur Übersicht Dreiecke zurück", () =
     files.area,
     files.circumcircle,
     files.incircle,
+    files.unique,
   ]) {
     assert.equal((module.match(/class="module-navigation"/g) ?? []).length, 1);
     assert.match(module, /class="module-back-link" href="\.\/#dreiecke">← Dreiecke<\/a>/);
@@ -106,7 +117,7 @@ test("Startseite ist für iPad, Querformat und Klassenraumbildschirm ausgelegt",
   assert.equal(JSON.parse(files.manifest).start_url, "./");
 });
 
-test("iPad-Querformat ordnet fünf Karten in einem zentrierten Sechsspaltenraster an", () => {
+test("iPad-Querformat ordnet sechs Karten symmetrisch in zwei Dreierreihen an", () => {
   assert.match(
     landscapeTabletCss,
     /grid-template-columns: repeat\(6, minmax\(0, 1fr\)\)/,
@@ -115,11 +126,15 @@ test("iPad-Querformat ordnet fünf Karten in einem zentrierten Sechsspaltenraste
   assert.match(landscapeTabletCss, /\.module-card\s*\{[\s\S]*grid-column: span 2/);
   assert.match(
     landscapeTabletCss,
-    /\.module-card:nth-child\(4\)\s*\{\s*grid-column: 2 \/ span 2/,
+    /\.module-card:nth-child\(4\)\s*\{\s*grid-column: 1 \/ span 2/,
   );
   assert.match(
     landscapeTabletCss,
-    /\.module-card:nth-child\(5\)\s*\{\s*grid-column: 4 \/ span 2/,
+    /\.module-card:nth-child\(5\)\s*\{\s*grid-column: 3 \/ span 2/,
+  );
+  assert.match(
+    landscapeTabletCss,
+    /\.module-card:nth-child\(6\)\s*\{\s*grid-column: 5 \/ span 2/,
   );
 });
 
@@ -159,7 +174,7 @@ test("iPad-Querformat verdichtet Karten und Kopf ohne Texte abzuschneiden", () =
   );
 });
 
-test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und alle fünf Module", () => {
+test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und alle sechs Module", () => {
   for (const file of [
     "index.html",
     "home.css",
@@ -189,13 +204,19 @@ test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und alle fünf M
     "src/incircle-app.js",
     "src/incircle-geometry.js",
     "src/incircle-state.js",
+    "eindeutige-dreiecke.html",
+    "unique-triangles.css",
+    "src/unique-triangles-app.js",
+    "src/unique-triangles-animation.js",
+    "src/unique-triangles-geometry.js",
+    "src/unique-triangles-state.js",
     "manifest.webmanifest",
     "icon.svg",
   ]) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
   assert.match(files.shell, /serviceWorker\.register/);
-  assert.match(files.worker, /mathe-unterrichts-app-v8/);
+  assert.match(files.worker, /mathe-unterrichts-app-v9/);
 });
 
 test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", () => {
@@ -209,6 +230,7 @@ test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", 
     files.area,
     files.circumcircle,
     files.incircle,
+    files.unique,
     files.worker,
   ].join("\n");
   assert.doesNotMatch(runtime, /localStorage|sessionStorage|indexedDB|document\.cookie/);

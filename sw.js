@@ -1,4 +1,4 @@
-const CACHE_NAME = "mathe-unterrichts-app-v8";
+const CACHE_NAME = "mathe-unterrichts-app-v9";
 const APP_FILES = [
   "./",
   "./index.html",
@@ -29,6 +29,12 @@ const APP_FILES = [
   "./src/incircle-app.js",
   "./src/incircle-geometry.js",
   "./src/incircle-state.js",
+  "./eindeutige-dreiecke.html",
+  "./unique-triangles.css",
+  "./src/unique-triangles-app.js",
+  "./src/unique-triangles-animation.js",
+  "./src/unique-triangles-geometry.js",
+  "./src/unique-triangles-state.js",
   "./manifest.webmanifest",
   "./icon.svg",
 ];
