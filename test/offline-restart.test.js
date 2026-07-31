@@ -9,7 +9,7 @@ const origin = "https://mathe-app.test";
 function createWorkerHarness() {
   const listeners = new Map();
   const stores = new Map([
-    ["mathe-unterrichts-app-v10", new Map([["old", new Response("alt")]])],
+    ["mathe-unterrichts-app-v11", new Map([["old", new Response("alt")]])],
   ]);
   let claimed = false;
   let skipped = false;
@@ -112,15 +112,15 @@ function createWorkerHarness() {
   };
 }
 
-test("Installation füllt Version 11 vollständig und Aktivierung entfernt alte Caches", async () => {
+test("Installation füllt Version 12 vollständig und Aktivierung entfernt alte Caches", async () => {
   const harness = createWorkerHarness();
   await harness.dispatchLifecycle("install");
   await harness.dispatchLifecycle("activate");
 
   assert.equal(harness.skipped, true);
   assert.equal(harness.claimed, true);
-  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v11"]);
-  const current = harness.stores.get("mathe-unterrichts-app-v11");
+  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v12"]);
+  const current = harness.stores.get("mathe-unterrichts-app-v12");
   for (const path of [
     "./",
     "./index.html",
@@ -147,6 +147,12 @@ test("Installation füllt Version 11 vollständig und Aktivierung entfernt alte 
     "./src/order-number-line-animation.js",
     "./src/order-number-line-geometry.js",
     "./src/order-number-line-state.js",
+    "./betrag.html",
+    "./absolute-value.css",
+    "./src/absolute-value-app.js",
+    "./src/absolute-value-animation.js",
+    "./src/absolute-value-geometry.js",
+    "./src/absolute-value-state.js",
   ]) {
     assert.equal(current.has(new URL(path, `${origin}/`).href), true);
   }
@@ -183,6 +189,12 @@ test("Offline-Neustart liefert Startseite und alle Kapitel ohne Netzwerk aus", a
     "/src/order-number-line-animation.js",
     "/src/order-number-line-geometry.js",
     "/src/order-number-line-state.js",
+    "/betrag.html",
+    "/absolute-value.css",
+    "/src/absolute-value-app.js",
+    "/src/absolute-value-animation.js",
+    "/src/absolute-value-geometry.js",
+    "/src/absolute-value-state.js",
   ]) {
     const response = await harness.dispatchFetch(path);
     assert.equal(response.status, 200);

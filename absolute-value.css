@@ -1,0 +1,229 @@
+:root {
+  color-scheme: light;
+  font-family:
+    ui-rounded, "SF Pro Rounded", "Avenir Next", system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-synthesis: none;
+  --ink: #172033;
+  --muted: #64748b;
+  --blue: #2563eb;
+  --violet: #7654c4;
+  --violet-deep: #5f3fac;
+  --distance: #d97706;
+  --distance-light: #fbbf24;
+  --green: #087154;
+}
+
+* { box-sizing: border-box; }
+html, body { min-height: 100%; }
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 9% 5%, rgb(118 84 196 / 8%), transparent 28rem),
+    #f6f7fb;
+  overscroll-behavior: none;
+}
+
+button, svg { -webkit-tap-highlight-color: transparent; }
+
+.absolute-shell {
+  width: min(100%, 1480px);
+  margin: 0 auto;
+  padding:
+    max(18px, env(safe-area-inset-top))
+    max(18px, env(safe-area-inset-right))
+    max(18px, env(safe-area-inset-bottom))
+    max(18px, env(safe-area-inset-left));
+}
+
+.absolute-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 22px;
+  margin-bottom: 16px;
+}
+
+.eyebrow {
+  margin: 0 0 4px;
+  color: var(--blue);
+  font-size: clamp(0.82rem, 1.5vw, 1rem);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+h1 {
+  max-width: 1100px;
+  margin: 0;
+  font-size: clamp(1.7rem, 3.8vw, 3.35rem);
+  line-height: 1.03;
+  letter-spacing: -0.035em;
+}
+
+.subtitle {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.8vw, 1.35rem);
+  font-weight: 650;
+}
+
+.local-note {
+  flex: 0 0 auto;
+  margin: 4px 0 0;
+  padding: 9px 14px;
+  border: 1px solid #b9e5d5;
+  border-radius: 999px;
+  color: var(--green);
+  background: #ecfdf5;
+  font-size: clamp(0.74rem, 1.2vw, 0.9rem);
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.local-note span { margin-right: 5px; font-size: 0.7em; }
+
+.absolute-visualizer,
+.absolute-insight {
+  border: 1px solid rgb(203 213 225 / 82%);
+  border-radius: 26px;
+  background: rgb(255 255 255 / 94%);
+  box-shadow: 0 20px 60px rgb(30 41 59 / 9%);
+}
+
+.absolute-visualizer { min-width: 0; padding: clamp(8px, 1.4vw, 16px); }
+.absolute-stage { position: relative; min-height: 0; }
+
+.absolute-board {
+  display: block;
+  width: 100%;
+  max-height: min(57dvh, 610px);
+  border-radius: 20px;
+  touch-action: none;
+  user-select: none;
+}
+
+.absolute-prompt {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  gap: 20px;
+  padding: 30px;
+  text-align: center;
+}
+
+.absolute-prompt[hidden] { display: none; }
+.absolute-prompt p { margin: 0; color: var(--muted); font-size: clamp(1.2rem, 2.5vw, 1.8rem); font-weight: 760; }
+.absolute-prompt .prompt-formula { color: var(--ink); font-size: clamp(3.6rem, 10vw, 7.2rem); font-weight: 900; letter-spacing: -0.05em; line-height: 1; }
+
+.board-background { fill: #f8fafc; stroke: #dbe4ef; stroke-width: 4; }
+.absolute-axis-arrow { fill: #64748b; }
+.absolute-axis { stroke: #64748b; stroke-linecap: butt; stroke-width: 7; }
+
+.absolute-tick line { stroke-linecap: round; stroke-width: 5; }
+.absolute-tick text {
+  paint-order: stroke;
+  stroke: #f8fafc;
+  stroke-linejoin: round;
+  stroke-width: 11px;
+  font-size: 38px;
+  font-weight: 850;
+  text-anchor: middle;
+}
+
+.negative-tick line { stroke: rgb(118 84 196 / 52%); }
+.negative-tick text { fill: var(--violet); }
+.positive-tick line { stroke: rgb(37 99 235 / 58%); }
+.positive-tick text { fill: var(--blue); }
+.zero-tick line { stroke: #334155; stroke-width: 7; }
+.zero-tick text { fill: #334155; }
+.reference-tick line { stroke-width: 8; }
+
+.marker-halo { stroke-width: 4; }
+.marker-dot { stroke: white; stroke-width: 7; }
+.negative-marker .marker-halo { fill: rgb(118 84 196 / 14%); stroke: rgb(95 63 172 / 28%); }
+.negative-marker .marker-dot { fill: var(--violet-deep); filter: drop-shadow(0 7px 10px rgb(95 63 172 / 26%)); }
+.positive-marker .marker-halo { fill: rgb(37 99 235 / 12%); stroke: rgb(37 99 235 / 24%); }
+.positive-marker .marker-dot { fill: var(--blue); filter: drop-shadow(0 7px 10px rgb(37 99 235 / 25%)); }
+
+#absolute-direction-arrow path { fill: var(--violet-deep); }
+.absolute-direction line { stroke: var(--violet-deep); stroke-linecap: round; stroke-width: 7; }
+.absolute-direction text { fill: var(--violet-deep); font-size: 29px; font-weight: 820; text-anchor: middle; }
+
+.distance-line { stroke: var(--distance-light); stroke-linecap: butt; stroke-width: 18; }
+.distance-boundaries line { stroke: var(--distance); stroke-linecap: round; stroke-width: 5; }
+.positive-distance .distance-line { stroke: rgb(251 191 36 / 74%); }
+
+.absolute-formula rect { fill: #fff; stroke: rgb(217 119 6 / 32%); stroke-width: 4; }
+.absolute-formula text { fill: #9a5208; font-size: 46px; font-weight: 900; text-anchor: middle; }
+.equality-formula text { font-size: 43px; }
+
+.absolute-point-control { transform-box: fill-box; transform-origin: center; }
+.point-halo { fill: rgb(51 65 85 / 11%); stroke: rgb(51 65 85 / 20%); stroke-width: 4; }
+.absolute-point { fill: #334155; stroke: white; stroke-width: 8; filter: drop-shadow(0 7px 10px rgb(51 65 85 / 24%)); }
+.absolute-board[data-value-sign="negative"] .point-halo { fill: rgb(118 84 196 / 13%); stroke: rgb(118 84 196 / 24%); }
+.absolute-board[data-value-sign="negative"] .absolute-point { fill: var(--violet); }
+.absolute-board[data-value-sign="positive"] .point-halo { fill: rgb(37 99 235 / 12%); stroke: rgb(37 99 235 / 22%); }
+.absolute-board[data-value-sign="positive"] .absolute-point { fill: var(--blue); }
+
+.absolute-point-handle { fill: transparent; stroke: transparent; cursor: grab; touch-action: none; }
+.absolute-point-handle:active { cursor: grabbing; }
+.absolute-point-handle:focus-visible { fill: rgb(37 99 235 / 7%); stroke: rgb(37 99 235 / 40%); stroke-width: 6; }
+.current-value rect, .current-value path { fill: #172033; }
+.current-value text { fill: white; font-size: 39px; font-weight: 900; text-anchor: middle; }
+
+.absolute-insight {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px 24px;
+  margin-top: 14px;
+  padding: clamp(16px, 2vw, 24px);
+  align-items: center;
+}
+
+.insight-text { margin: 0; font-size: clamp(1.05rem, 2vw, 1.45rem); font-weight: 780; line-height: 1.35; }
+.absolute-controls { display: flex; gap: 10px; justify-content: flex-end; }
+.primary-button, .reset-button { min-height: 56px; padding: 0 20px; border-radius: 16px; font: inherit; font-size: clamp(0.95rem, 1.5vw, 1.08rem); font-weight: 850; touch-action: manipulation; }
+.primary-button { border: 2px solid var(--blue); color: white; background: var(--blue); box-shadow: 0 10px 24px rgb(37 99 235 / 20%); }
+.reset-button { border: 2px solid #cbd5e1; color: var(--ink); background: white; }
+.primary-button:disabled, .reset-button:disabled { cursor: wait; opacity: 0.58; }
+.primary-button:focus-visible, .reset-button:focus-visible { outline: 5px solid rgb(37 99 235 / 26%); outline-offset: 3px; }
+
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+noscript { display: block; margin-top: 14px; color: #a6384d; font-weight: 700; }
+
+@media (max-width: 760px) {
+  .absolute-shell { padding-inline: 12px; }
+  .absolute-header { display: block; }
+  .local-note { display: inline-block; margin-top: 12px; }
+  .absolute-insight { grid-template-columns: 1fr; }
+  .absolute-controls { justify-content: stretch; }
+  .primary-button, .reset-button { flex: 1 1 0; }
+}
+
+@media (max-width: 520px) {
+  .absolute-controls { flex-direction: column; }
+  .primary-button, .reset-button { width: 100%; }
+}
+
+@media (orientation: landscape) and (max-height: 820px) {
+  .absolute-shell { padding-block: 10px; }
+  .absolute-header { margin-bottom: 9px; }
+  h1 { font-size: clamp(1.5rem, 3.2vw, 2.65rem); }
+  .subtitle { margin-top: 3px; }
+  .absolute-board { max-height: 52dvh; }
+  .absolute-insight { margin-top: 9px; padding-block: 12px; }
+}
+
+@media (min-width: 1500px) {
+  .absolute-shell { width: min(94vw, 1660px); }
+  .absolute-board { max-height: 640px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .absolute-point, .marker-dot { filter: none; }
+}

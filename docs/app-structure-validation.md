@@ -7,9 +7,10 @@ Prüfdatum: 31. Juli 2026
 - Startseite „Mathe im Unterricht“
 - Untertitel „Interaktive Aha-Momente“
 - Klassenstufe „Klasse 7“
-- Buchkapitel „1. Rationale Zahlen“ mit genau zwei Modulkarten:
+- Buchkapitel „1. Rationale Zahlen“ mit genau drei Modulkarten:
   - „Warum liegen negative Zahlen links von der Null?“ – „Zahlengerade“
   - „Warum ist −8 kleiner als −3?“ – „Ordnung“
+  - „Warum wird beim Betrag das Vorzeichen unwichtig?“ – „Abstand zur Null“
 - unverändertes Buchkapitel „2. Dreiecke“ mit sechs Modulkarten:
   - „Warum bleiben es immer 180°?“ – „Winkelsumme“
   - „Wann kann überhaupt ein Dreieck entstehen?“ – „Dreiecksungleichung“
@@ -20,20 +21,20 @@ Prüfdatum: 31. Juli 2026
     „Winkelhalbierende und Inkreis“
   - „Warum reichen manche Angaben aus – und andere nicht?“ –
     „Eindeutige Dreiecke“
-- Status „fertig“ auf allen acht Karten
-- Rückweg „← Rationale Zahlen“ in beiden Modulen aus Kapitel 1
+- Status „fertig“ auf allen neun Karten
+- Rückweg „← Rationale Zahlen“ in allen drei Modulen aus Kapitel 1
 - unveränderter Rückweg „← Dreiecke“ in jedem Dreiecksmodul
-- gemeinsamer Offline-Cache für Übersicht, Navigation und alle acht Module
+- gemeinsamer Offline-Cache für Übersicht, Navigation und alle neun Module
 
 Im iPad-Hochformat besitzt jedes Kapitel ein Zweispaltenraster. Im
-iPad-Querformat stehen die beiden Karten aus Kapitel 1 als zentrierte Gruppe;
+iPad-Querformat stehen die drei Karten aus Kapitel 1 in einer symmetrischen Reihe;
 Kapitel 2 behält zwei vollständige Reihen mit je drei Karten.
 
 ## Automatische Prüfungen
 
-- 294 von 294 Node-Tests bestanden
-- vollständige bisherige Suite mit 251 Tests grün
-- 49 von 49 lokale Laufzeitressourcen erreichbar
+- 332 von 332 Node-Tests bestanden
+- vollständige bisherige Suite mit 294 Tests grün
+- 55 von 55 lokale Laufzeitressourcen erreichbar
 - 3 von 3 Dreiecksungleichungszustände
 - 6 von 6 Dreiecksflächenzustände
 - 7 von 7 Mittelsenkrechtenzustände
@@ -41,23 +42,23 @@ Kapitel 2 behält zwei vollständige Reihen mit je drei Karten.
 - 5 von 5 Zustände „Eindeutige Dreiecke“
 - 6 von 6 Zustände des ersten Zahlengeradenmoduls
 - 7 von 7 Zustände des Ordnungsmoduls
+- 8 von 8 Zustände des Betragsmoduls
 - JavaScript-Syntaxprüfungen bestanden
-- genau zwei Kapitel und genau acht Modulkarten bestätigt
-- alle acht Karten und Rückwege strukturell geprüft
+- genau zwei Kapitel und genau neun Modulkarten bestätigt
+- alle neun Karten und Rückwege strukturell geprüft
 - keine Klassenauswahl, leeren Klassenstufen oder Platzhalter
 - Hochformat-, Querformat-, Kleinbreiten- und Großbildregeln bestätigt
-- gemeinsamer Service-Worker-Cache auf Version 11
+- gemeinsamer Service-Worker-Cache auf Version 12
 - automatisierter Offline-Neustart ohne Netzwerk bestanden
 - keine Speicherung, Analyse oder externen Laufzeitaufrufe
 
 ## Regression
 
 Die sechs Module aus Kapitel 2 und ihre 30 produktiven Laufzeitdateien blieben
-bytegenau unverändert. Beim ersten Zahlengeradenmodul blieben HTML, CSS,
-Zustand, Animation und App-Darstellung bytegenau unverändert. In seiner
-Geometriedatei wurde ausschließlich eine additive allgemeine Ganzzahlskalierung
-ergänzt; alle bisherigen Exporte und das Verhalten von −3 bis +3 bleiben
-unverändert und vollständig getestet.
+bytegenau unverändert. Auch die zwölf Laufzeitdateien der beiden bestehenden
+Zahlengeradenmodule blieben bytegenau unverändert. Das Betragsmodul importiert
+die bereits vorhandene allgemeine Ganzzahlskalierung ausschließlich in seiner
+neuen, unabhängigen Geometriedatei.
 
 ## Browser- und Betriebsgrenzen
 

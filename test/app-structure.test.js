@@ -27,6 +27,7 @@ const files = {
     "utf8",
   ),
   order: await readFile(new URL("../ordnung.html", import.meta.url), "utf8"),
+  absolute: await readFile(new URL("../betrag.html", import.meta.url), "utf8"),
   worker: await readFile(new URL("../sw.js", import.meta.url), "utf8"),
   manifest: await readFile(new URL("../manifest.webmanifest", import.meta.url), "utf8"),
 };
@@ -60,14 +61,17 @@ test("Startseite zeigt Klasse 7 mit Kapitel 1 und dem unveränderten Kapitel 2",
   assert.doesNotMatch(files.home, /<ul|<ol/);
 });
 
-test("Kapitel 1 enthält zwei und Kapitel 2 sechs unveränderte Modulkarten", () => {
-  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 8);
+test("Kapitel 1 enthält drei und Kapitel 2 sechs unveränderte Modulkarten", () => {
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 9);
   assert.match(files.home, /href="\.\/zahlengerade\.html"/);
   assert.match(files.home, /Warum liegen negative Zahlen links von der Null\?/);
   assert.match(files.home, /<span class="module-subtitle">Zahlengerade<\/span>/);
   assert.match(files.home, /href="\.\/ordnung\.html"/);
   assert.match(files.home, /Warum ist −8 kleiner als −3\?/);
   assert.match(files.home, /<span class="module-subtitle">Ordnung<\/span>/);
+  assert.match(files.home, /href="\.\/betrag\.html"/);
+  assert.match(files.home, /Warum wird beim Betrag das Vorzeichen unwichtig\?/);
+  assert.match(files.home, /<span class="module-subtitle">Abstand zur Null<\/span>/);
   assert.match(files.home, /href="\.\/winkelsumme\.html"/);
   assert.match(files.home, /Warum bleiben es immer 180°\?/);
   assert.match(files.home, /<span class="module-subtitle">Winkelsumme<\/span>/);
@@ -95,8 +99,8 @@ test("Kapitel 1 enthält zwei und Kapitel 2 sechs unveränderte Modulkarten", ()
     files.home,
     /<span class="module-subtitle">Eindeutige Dreiecke<\/span>/,
   );
-  assert.equal((files.home.match(/class="module-status"/g) ?? []).length, 8);
-  assert.equal((files.home.match(/fertig/g) ?? []).length, 8);
+  assert.equal((files.home.match(/class="module-status"/g) ?? []).length, 9);
+  assert.equal((files.home.match(/fertig/g) ?? []).length, 9);
 });
 
 test("Alle Dreiecksmodule behalten ausschließlich ihren bisherigen Rückweg", () => {
@@ -114,8 +118,8 @@ test("Alle Dreiecksmodule behalten ausschließlich ihren bisherigen Rückweg", (
   }
 });
 
-test("Beide Module aus Kapitel 1 führen ausschließlich zu Rationale Zahlen zurück", () => {
-  for (const module of [files.numberLine, files.order]) {
+test("Alle Module aus Kapitel 1 führen ausschließlich zu Rationale Zahlen zurück", () => {
+  for (const module of [files.numberLine, files.order, files.absolute]) {
     assert.equal((module.match(/class="module-navigation"/g) ?? []).length, 1);
     assert.match(
       module,
@@ -165,14 +169,18 @@ test("iPad-Querformat ordnet sechs Karten symmetrisch in zwei Dreierreihen an", 
   );
 });
 
-test("iPad-Querformat zentriert die zwei Karten aus Kapitel 1 als Gruppe", () => {
+test("iPad-Querformat ordnet die drei Karten aus Kapitel 1 symmetrisch an", () => {
   assert.match(
     landscapeTabletCss,
-    /\.chapter-rationale \.module-card:nth-child\(1\)\s*\{\s*grid-column: 2 \/ span 2/,
+    /\.chapter-rationale \.module-card:nth-child\(1\)\s*\{\s*grid-column: 1 \/ span 2/,
   );
   assert.match(
     landscapeTabletCss,
-    /\.chapter-rationale \.module-card:nth-child\(2\)\s*\{\s*grid-column: 4 \/ span 2/,
+    /\.chapter-rationale \.module-card:nth-child\(2\)\s*\{\s*grid-column: 3 \/ span 2/,
+  );
+  assert.match(
+    landscapeTabletCss,
+    /\.chapter-rationale \.module-card:nth-child\(3\)\s*\{\s*grid-column: 5 \/ span 2/,
   );
 });
 
@@ -260,13 +268,19 @@ test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und beide Kapite
     "src/order-number-line-animation.js",
     "src/order-number-line-geometry.js",
     "src/order-number-line-state.js",
+    "betrag.html",
+    "absolute-value.css",
+    "src/absolute-value-app.js",
+    "src/absolute-value-animation.js",
+    "src/absolute-value-geometry.js",
+    "src/absolute-value-state.js",
     "manifest.webmanifest",
     "icon.svg",
   ]) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
   assert.match(files.shell, /serviceWorker\.register/);
-  assert.match(files.worker, /mathe-unterrichts-app-v11/);
+  assert.match(files.worker, /mathe-unterrichts-app-v12/);
 });
 
 test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", () => {
@@ -283,6 +297,7 @@ test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", 
     files.unique,
     files.numberLine,
     files.order,
+    files.absolute,
     files.worker,
   ].join("\n");
   assert.doesNotMatch(runtime, /localStorage|sessionStorage|indexedDB|document\.cookie/);
