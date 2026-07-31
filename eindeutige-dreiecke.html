@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f4f7fb" />
+    <meta
+      name="description"
+      content="Interaktiver Aha-Moment zu eindeutigen und mehrdeutigen Dreiecksangaben."
+    />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./unique-triangles.css" />
+    <link rel="stylesheet" href="./navigation.css" />
+    <title>Warum reichen manche Angaben aus – und andere nicht?</title>
+  </head>
+  <body>
+    <main class="unique-shell">
+      <nav class="module-navigation" aria-label="Modulnavigation">
+        <a class="module-back-link" href="./#dreiecke">← Dreiecke</a>
+      </nav>
+
+      <header class="unique-header">
+        <div>
+          <p class="eyebrow">Dreiecke · 7. Klasse</p>
+          <h1>Warum reichen manche Angaben aus – und andere nicht?</h1>
+          <p class="subtitle">Eindeutige Dreiecke</p>
+        </div>
+        <p class="local-note" aria-label="Datenschutzstatus">
+          <span aria-hidden="true">●</span>
+          lokal · ohne Speicherung
+        </p>
+      </header>
+
+      <section class="unique-visualizer" aria-labelledby="unique-board-title">
+        <h2 id="unique-board-title" class="visually-hidden">
+          Vergleich eindeutiger und mehrdeutiger Dreiecksangaben
+        </h2>
+
+        <svg
+          id="unique-board"
+          class="unique-board is-building"
+          viewBox="0 0 1200 760"
+          preserveAspectRatio="xMidYMid meet"
+          role="img"
+          aria-labelledby="unique-svg-title unique-svg-description"
+          data-state="sss"
+        >
+          <title id="unique-svg-title">Wann Angaben ein Dreieck eindeutig bestimmen</title>
+          <desc id="unique-svg-description">
+            Vergleiche zwei SSS-Lagen und anschließend zwei verschiedene Dreiecke
+            mit gleich angeordneten sichtbaren Vorgaben.
+          </desc>
+          <rect class="board-background" x="2" y="2" width="1196" height="756" rx="32" />
+
+          <g id="sss-case">
+            <path id="sss-arc-a" class="construction-arc arc-a" />
+            <path id="sss-arc-b" class="construction-arc arc-b" />
+            <line id="sss-base" class="base-line" />
+
+            <polygon id="sss-upper-triangle" class="sss-triangle upper-triangle" points="" />
+            <polygon id="sss-lower-triangle" class="sss-triangle lower-triangle" points="" />
+
+            <g class="side-marks" aria-hidden="true">
+              <line id="sss-base-mark-1" class="side-mark base-mark" />
+              <line id="sss-base-mark-2" class="side-mark base-mark" />
+              <line id="sss-upper-ac-mark" class="side-mark slanted-mark" />
+              <line id="sss-upper-bc-mark" class="side-mark slanted-mark" />
+              <line id="sss-lower-ac-mark" class="side-mark slanted-mark" />
+              <line id="sss-lower-bc-mark" class="side-mark slanted-mark" />
+            </g>
+
+            <circle id="sss-upper-point" class="intersection-dot upper-dot" r="13" />
+            <circle id="sss-lower-point" class="intersection-dot lower-dot" r="13" />
+            <circle id="sss-a-point" class="vertex-dot" r="14" />
+            <circle id="sss-b-point" class="vertex-dot" r="14" />
+            <text id="sss-a-label" class="point-label">A</text>
+            <text id="sss-b-label" class="point-label">B</text>
+            <text id="sss-upper-label" class="point-label intersection-label">C</text>
+            <text id="sss-lower-label" class="point-label intersection-label">C′</text>
+            <text id="sss-label" class="case-label">SSS</text>
+          </g>
+
+          <g id="ambiguity-case" visibility="hidden" aria-hidden="true">
+            <circle id="ambiguity-circle" class="given-circle" />
+            <line id="ambiguity-ray" class="angle-ray" />
+            <polyline id="ambiguity-angle-arc" class="angle-arc" points="" />
+            <line id="ambiguity-base" class="base-line" />
+
+            <polygon
+              id="ambiguity-near-triangle"
+              class="ambiguity-triangle near-triangle"
+              points=""
+            />
+            <polygon
+              id="ambiguity-far-triangle"
+              class="ambiguity-triangle far-triangle"
+              points=""
+            />
+
+            <g class="side-marks" aria-hidden="true">
+              <line id="ambiguity-base-mark-1" class="side-mark base-mark" />
+              <line id="ambiguity-base-mark-2" class="side-mark base-mark" />
+              <line id="ambiguity-near-mark" class="side-mark ambiguity-mark" />
+              <line id="ambiguity-far-mark" class="side-mark ambiguity-mark" />
+            </g>
+
+            <circle id="ambiguity-near-point" class="intersection-dot near-dot" r="13" />
+            <circle id="ambiguity-far-point" class="intersection-dot far-dot" r="13" />
+            <circle id="ambiguity-a-point" class="vertex-dot" r="14" />
+            <circle id="ambiguity-b-point" class="vertex-dot" r="14" />
+            <text id="ambiguity-a-label" class="point-label">A</text>
+            <text id="ambiguity-b-label" class="point-label">B</text>
+            <text id="ambiguity-near-label" class="point-label intersection-label">C</text>
+            <text id="ambiguity-far-label" class="point-label intersection-label">C′</text>
+
+            <g id="summary-group" class="summary-group">
+              <rect class="summary-card" x="42" y="68" width="400" height="188" rx="24" />
+              <text class="summary-heading" x="72" y="111">Drei Seiten</text>
+              <text class="summary-result" x="72" y="145">eine Dreiecksform</text>
+              <line class="summary-divider" x1="72" y1="169" x2="412" y2="169" />
+              <text class="summary-heading" x="72" y="204">Andere Anordnung</text>
+              <text class="summary-result summary-result-two" x="72" y="238">
+                zwei mögliche Dreiecksformen
+              </text>
+            </g>
+          </g>
+        </svg>
+      </section>
+
+      <section class="unique-insight" aria-live="polite" aria-atomic="true">
+        <p id="unique-insight" class="insight-text">
+          Drei Seitenlängen bestimmen die Dreiecksform eindeutig.
+        </p>
+        <div class="unique-controls">
+          <button id="unique-next" class="primary-button" type="button">
+            Dreiecke vergleichen
+          </button>
+          <button id="unique-reset" class="reset-button" type="button">
+            Zurücksetzen
+          </button>
+        </div>
+      </section>
+
+      <noscript>Für die interaktive Darstellung muss JavaScript aktiviert sein.</noscript>
+    </main>
+
+    <script type="module" src="./src/unique-triangles-app.js"></script>
+  </body>
+</html>
