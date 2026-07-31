@@ -9,7 +9,7 @@ const origin = "https://mathe-app.test";
 function createWorkerHarness() {
   const listeners = new Map();
   const stores = new Map([
-    ["mathe-unterrichts-app-v8", new Map([["old", new Response("alt")]])],
+    ["mathe-unterrichts-app-v9", new Map([["old", new Response("alt")]])],
   ]);
   let claimed = false;
   let skipped = false;
@@ -112,15 +112,15 @@ function createWorkerHarness() {
   };
 }
 
-test("Installation füllt Version 9 vollständig und Aktivierung entfernt alte Caches", async () => {
+test("Installation füllt Version 10 vollständig und Aktivierung entfernt alte Caches", async () => {
   const harness = createWorkerHarness();
   await harness.dispatchLifecycle("install");
   await harness.dispatchLifecycle("activate");
 
   assert.equal(harness.skipped, true);
   assert.equal(harness.claimed, true);
-  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v9"]);
-  const current = harness.stores.get("mathe-unterrichts-app-v9");
+  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v10"]);
+  const current = harness.stores.get("mathe-unterrichts-app-v10");
   for (const path of [
     "./",
     "./index.html",
@@ -135,12 +135,18 @@ test("Installation füllt Version 9 vollständig und Aktivierung entfernt alte C
     "./src/unique-triangles-animation.js",
     "./src/unique-triangles-geometry.js",
     "./src/unique-triangles-state.js",
+    "./zahlengerade.html",
+    "./number-line.css",
+    "./src/number-line-app.js",
+    "./src/number-line-animation.js",
+    "./src/number-line-geometry.js",
+    "./src/number-line-state.js",
   ]) {
     assert.equal(current.has(new URL(path, `${origin}/`).href), true);
   }
 });
 
-test("Offline-Neustart liefert Startseite und sechstes Modul ohne Netzwerk aus", async () => {
+test("Offline-Neustart liefert Startseite und alle Kapitel ohne Netzwerk aus", async () => {
   const harness = createWorkerHarness();
   await harness.dispatchLifecycle("install");
   await harness.dispatchLifecycle("activate");
@@ -159,6 +165,12 @@ test("Offline-Neustart liefert Startseite und sechstes Modul ohne Netzwerk aus",
     "/src/unique-triangles-animation.js",
     "/src/unique-triangles-geometry.js",
     "/src/unique-triangles-state.js",
+    "/zahlengerade.html",
+    "/number-line.css",
+    "/src/number-line-app.js",
+    "/src/number-line-animation.js",
+    "/src/number-line-geometry.js",
+    "/src/number-line-state.js",
   ]) {
     const response = await harness.dispatchFetch(path);
     assert.equal(response.status, 200);

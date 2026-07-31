@@ -12,7 +12,8 @@
     "test:area-visual": "node scripts/render-area-states.mjs",
     "test:circumcircle-visual": "node scripts/render-circumcircle-states.mjs",
     "test:incircle-visual": "node scripts/render-incircle-states.mjs",
-    "test:unique-visual": "node scripts/render-unique-triangle-states.mjs"
+    "test:unique-visual": "node scripts/render-unique-triangle-states.mjs",
+    "test:number-line-visual": "node scripts/render-number-line-states.mjs"
   },
   "engines": {
     "node": ">=20"
