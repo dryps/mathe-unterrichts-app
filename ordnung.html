@@ -63,17 +63,6 @@
             </desc>
             <defs>
               <marker
-                id="order-line-arrow"
-                markerWidth="14"
-                markerHeight="14"
-                refX="7"
-                refY="7"
-                orient="auto-start-reverse"
-                markerUnits="strokeWidth"
-              >
-                <path d="M 1 1 L 13 7 L 1 13 z" />
-              </marker>
-              <marker
                 id="comparison-arrow"
                 markerWidth="13"
                 markerHeight="13"
@@ -88,6 +77,16 @@
             <rect class="board-background" x="2" y="2" width="1396" height="516" rx="32" />
 
             <g id="order-axis-layer" class="order-axis-layer" visibility="hidden" aria-hidden="true">
+              <path
+                id="order-axis-left-arrow"
+                class="order-axis-arrow"
+                d="M 73 270 L 115 228 L 115 312 Z"
+              />
+              <path
+                id="order-axis-right-arrow"
+                class="order-axis-arrow"
+                d="M 1327 270 L 1285 228 L 1285 312 Z"
+              />
               <line
                 id="order-axis"
                 class="order-axis"
@@ -95,8 +94,6 @@
                 y1="270"
                 x2="1285"
                 y2="270"
-                marker-start="url(#order-line-arrow)"
-                marker-end="url(#order-line-arrow)"
               />
 
               <g id="order-ticks" aria-label="Ganzzahlige Markierungen">

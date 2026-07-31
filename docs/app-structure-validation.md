@@ -31,7 +31,7 @@ Kapitel 2 behält zwei vollständige Reihen mit je drei Karten.
 
 ## Automatische Prüfungen
 
-- 289 von 289 Node-Tests bestanden
+- 294 von 294 Node-Tests bestanden
 - vollständige bisherige Suite mit 251 Tests grün
 - 49 von 49 lokale Laufzeitressourcen erreichbar
 - 3 von 3 Dreiecksungleichungszustände

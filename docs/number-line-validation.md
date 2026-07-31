@@ -74,6 +74,10 @@ Bei reduzierter Browserbewegung wird derselbe Endzustand ohne Animation gesetzt.
 
 Weder DOM noch SVG noch Animation sind mathematische Berechnungsgrundlage.
 
+Die Pfeilspitzen der Achse sind als eigenständige geschlossene SVG-Flächen
+gezeichnet. Der horizontale Strich endet exakt an ihren inneren Ansätzen und
+kann dadurch auch bei Antialiasing nicht innerhalb der Pfeilflächen erscheinen.
+
 ## Automatische Prüfungen
 
 - Mittelpunkt, Linearität und gleiche Abstände

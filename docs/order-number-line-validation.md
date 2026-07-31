@@ -75,6 +75,19 @@ bleiben während der Übergänge wirkungslos.
 Modul 1 behält Markup, Gestaltung, Zustandsfolge, Animation und Interaktion
 unverändert. Seine bestehenden Tests bleiben vollständig grün.
 
+## Korrektur der Pfeilspitzen
+
+Die frühere SVG-Markerdefinition setzte ihren Referenzpunkt in die Mitte der
+gefüllten Dreiecksfläche. Dadurch lief der horizontale Achsenstrich bis in beide
+Marker hinein. Da Modul 1 dieselbe Markerkonstruktion nutzte, waren beide
+Zahlengeraden betroffen.
+
+Beide Achsen besitzen nun eigenständige geschlossene Pfeilpfade außerhalb des
+jeweiligen Liniensegments. Die Hauptlinie endet mit geradem Abschluss exakt an
+den inneren Pfeilansätzen. Position, Höhe, Farbe und äußere Pfeilspitzen bleiben
+unverändert; Mathematik, Wertabbildung, Zustände und Animationen ändern sich
+nicht.
+
 ## Schutzgrenzen
 
 - Minimalwert −10 und Maximalwert +3
@@ -91,7 +104,7 @@ unverändert. Seine bestehenden Tests bleiben vollständig grün.
 
 ## Automatische Prüfungen
 
-- 289 von 289 Node-Tests bestanden
+- 294 von 294 Node-Tests bestanden
 - vollständige bisherige Suite mit 251 Tests grün
 - 49 von 49 lokale Laufzeitressourcen erreichbar
 - 7 von 7 Ordnungszustände als SVG gerendert

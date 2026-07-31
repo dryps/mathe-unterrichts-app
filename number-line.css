@@ -122,13 +122,13 @@ h1 {
   stroke-width: 4;
 }
 
-#line-arrow path {
+.number-axis-arrow {
   fill: #64748b;
 }
 
 .number-axis {
   stroke: #64748b;
-  stroke-linecap: round;
+  stroke-linecap: butt;
   stroke-width: 7;
 }
 
