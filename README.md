@@ -5,10 +5,23 @@ Die App ergänzt GoodNotes nur dort, wo Bewegung und dynamische Veränderung ein
 sichtbaren fachlichen Mehrwert bieten.
 
 Die Startseite „Mathe im Unterricht“ ist direkt dem Bereich „Klasse 7“
-zugeordnet und führt über große Karten zum Buchkapitel „2. Dreiecke“. Alle sechs
-Module besitzen einen einzigen Rückweg zur Kapitelübersicht.
+zugeordnet. Sie führt über große Karten zu den Buchkapiteln „1. Rationale
+Zahlen“ und „2. Dreiecke“. Jedes Modul besitzt einen einzigen Rückweg zu seiner
+Kapitelübersicht.
 
-## Erstes Aha-Modul
+## Kapitel 1: Erstes Aha-Modul
+
+**Warum liegen negative Zahlen links von der Null?**
+
+*Zahlengerade*
+
+Unter `zahlengerade.html` bewegt sich ein Punkt zuerst von 0 nach rechts bis 3,
+dann zurück zur Null und schließlich weiter bis −3. Erst danach wird der Punkt
+für Touch, Maus und Tastatur freigegeben. Er bleibt exakt auf der horizontalen
+Zahlengeraden, rastet auf ganze Zahlen von −3 bis +3 ein und macht so die beiden
+entgegengesetzten Richtungen sichtbar.
+
+## Kapitel 2: Erstes Aha-Modul
 
 **Warum bleiben es immer 180°?**  
 *Winkelsumme im Dreieck*
@@ -120,6 +133,7 @@ npm run test:smoke
 npm run test:circumcircle-visual
 npm run test:incircle-visual
 npm run test:unique-visual
+npm run test:number-line-visual
 npm start
 ```
 

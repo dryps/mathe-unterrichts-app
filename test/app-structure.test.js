@@ -22,6 +22,10 @@ const files = {
     new URL("../eindeutige-dreiecke.html", import.meta.url),
     "utf8",
   ),
+  numberLine: await readFile(
+    new URL("../zahlengerade.html", import.meta.url),
+    "utf8",
+  ),
   worker: await readFile(new URL("../sw.js", import.meta.url), "utf8"),
   manifest: await readFile(new URL("../manifest.webmanifest", import.meta.url), "utf8"),
 };
@@ -42,19 +46,24 @@ const landscapeTabletCss = mediaBlock(
   "@media (orientation: landscape) and (min-width: 900px) and (max-width: 1500px)",
 );
 
-test("Startseite zeigt die verbindliche Hierarchie für Klasse 7 und Kapitel 2", () => {
+test("Startseite zeigt Klasse 7 mit Kapitel 1 und dem unveränderten Kapitel 2", () => {
   assert.match(files.home, /<h1>Mathe im Unterricht<\/h1>/);
   assert.match(files.home, /Interaktive Aha-Momente/);
   assert.match(files.home, /<p class="grade-label">Klasse 7<\/p>/);
-  assert.equal((files.home.match(/class="chapter"/g) ?? []).length, 1);
+  assert.equal((files.home.match(/class="chapter(?:\s|")/g) ?? []).length, 2);
+  assert.match(files.home, /id="rationale-zahlen"/);
+  assert.match(files.home, /<h2 id="rationale-title">1\. Rationale Zahlen<\/h2>/);
   assert.match(files.home, /<h2 id="chapter-title">2\. Dreiecke<\/h2>/);
   assert.doesNotMatch(files.home, /Private Unterrichts-App|>Kapitel</);
-  assert.doesNotMatch(files.home, /Rationale Zahlen|Klasse 8|Klasse 9|Klassenauswahl/);
+  assert.doesNotMatch(files.home, /Klasse 8|Klasse 9|Klassenauswahl/);
   assert.doesNotMatch(files.home, /<ul|<ol/);
 });
 
-test("Startseite enthält genau die sechs angenommenen großen Modulkarten", () => {
-  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 6);
+test("Kapitel 1 enthält eine neue und Kapitel 2 sechs unveränderte Modulkarten", () => {
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 7);
+  assert.match(files.home, /href="\.\/zahlengerade\.html"/);
+  assert.match(files.home, /Warum liegen negative Zahlen links von der Null\?/);
+  assert.match(files.home, /<span class="module-subtitle">Zahlengerade<\/span>/);
   assert.match(files.home, /href="\.\/winkelsumme\.html"/);
   assert.match(files.home, /Warum bleiben es immer 180°\?/);
   assert.match(files.home, /<span class="module-subtitle">Winkelsumme<\/span>/);
@@ -82,11 +91,11 @@ test("Startseite enthält genau die sechs angenommenen großen Modulkarten", () 
     files.home,
     /<span class="module-subtitle">Eindeutige Dreiecke<\/span>/,
   );
-  assert.equal((files.home.match(/class="module-status"/g) ?? []).length, 6);
-  assert.equal((files.home.match(/fertig/g) ?? []).length, 6);
+  assert.equal((files.home.match(/class="module-status"/g) ?? []).length, 7);
+  assert.equal((files.home.match(/fertig/g) ?? []).length, 7);
 });
 
-test("Alle Module führen ausschließlich zur Übersicht Dreiecke zurück", () => {
+test("Alle Dreiecksmodule behalten ausschließlich ihren bisherigen Rückweg", () => {
   for (const module of [
     files.angles,
     files.inequality,
@@ -99,6 +108,21 @@ test("Alle Module führen ausschließlich zur Übersicht Dreiecke zurück", () =
     assert.match(module, /class="module-back-link" href="\.\/#dreiecke">← Dreiecke<\/a>/);
     assert.doesNotMatch(module, /Suche|Einstellungen|Favoriten|Statistik|Anmelden/);
   }
+});
+
+test("Das Zahlengeradenmodul führt ausschließlich zu Rationale Zahlen zurück", () => {
+  assert.equal(
+    (files.numberLine.match(/class="module-navigation"/g) ?? []).length,
+    1,
+  );
+  assert.match(
+    files.numberLine,
+    /class="module-back-link" href="\.\/#rationale-zahlen">← Rationale Zahlen<\/a>/,
+  );
+  assert.doesNotMatch(
+    files.numberLine,
+    /Suche|Einstellungen|Favoriten|Statistik|Anmelden/,
+  );
 });
 
 test("Startseite ist für iPad, Querformat und Klassenraumbildschirm ausgelegt", () => {
@@ -174,7 +198,7 @@ test("iPad-Querformat verdichtet Karten und Kopf ohne Texte abzuschneiden", () =
   );
 });
 
-test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und alle sechs Module", () => {
+test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und beide Kapitel", () => {
   for (const file of [
     "index.html",
     "home.css",
@@ -210,13 +234,19 @@ test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und alle sechs M
     "src/unique-triangles-animation.js",
     "src/unique-triangles-geometry.js",
     "src/unique-triangles-state.js",
+    "zahlengerade.html",
+    "number-line.css",
+    "src/number-line-app.js",
+    "src/number-line-animation.js",
+    "src/number-line-geometry.js",
+    "src/number-line-state.js",
     "manifest.webmanifest",
     "icon.svg",
   ]) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
   assert.match(files.shell, /serviceWorker\.register/);
-  assert.match(files.worker, /mathe-unterrichts-app-v9/);
+  assert.match(files.worker, /mathe-unterrichts-app-v10/);
 });
 
 test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", () => {
@@ -231,6 +261,7 @@ test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", 
     files.circumcircle,
     files.incircle,
     files.unique,
+    files.numberLine,
     files.worker,
   ].join("\n");
   assert.doesNotMatch(runtime, /localStorage|sessionStorage|indexedDB|document\.cookie/);

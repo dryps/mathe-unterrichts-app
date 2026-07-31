@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f4f7fb" />
+    <meta
+      name="description"
+      content="Interaktiver Aha-Moment zu negativen Zahlen auf der Zahlengeraden."
+    />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./number-line.css" />
+    <link rel="stylesheet" href="./navigation.css" />
+    <title>Warum liegen negative Zahlen links von der Null?</title>
+  </head>
+  <body>
+    <main class="number-shell">
+      <nav class="module-navigation" aria-label="Modulnavigation">
+        <a class="module-back-link" href="./#rationale-zahlen">← Rationale Zahlen</a>
+      </nav>
+
+      <header class="number-header">
+        <div>
+          <p class="eyebrow">Rationale Zahlen · 7. Klasse</p>
+          <h1>Warum liegen negative Zahlen links von der Null?</h1>
+          <p class="subtitle">Zahlengerade</p>
+        </div>
+        <p class="local-note" aria-label="Datenschutzstatus">
+          <span aria-hidden="true">●</span>
+          lokal · ohne Speicherung
+        </p>
+      </header>
+
+      <section class="number-visualizer" aria-labelledby="number-board-title">
+        <h2 id="number-board-title" class="visually-hidden">
+          Positive und negative Richtungen auf der Zahlengeraden
+        </h2>
+
+        <svg
+          id="number-board"
+          class="number-board"
+          viewBox="0 0 1200 520"
+          preserveAspectRatio="xMidYMid meet"
+          role="img"
+          aria-labelledby="number-svg-title number-svg-description"
+          data-state="initial"
+        >
+          <title id="number-svg-title">Zahlengerade von minus drei bis plus drei</title>
+          <desc id="number-svg-description">
+            Ein Punkt bewegt sich zuerst nach rechts, dann zurück und schließlich
+            über die Null hinaus nach links.
+          </desc>
+          <defs>
+            <marker
+              id="line-arrow"
+              markerWidth="14"
+              markerHeight="14"
+              refX="7"
+              refY="7"
+              orient="auto-start-reverse"
+              markerUnits="strokeWidth"
+            >
+              <path d="M 1 1 L 13 7 L 1 13 z" />
+            </marker>
+          </defs>
+          <rect class="board-background" x="2" y="2" width="1196" height="516" rx="32" />
+
+          <line
+            id="number-axis"
+            class="number-axis"
+            x1="84"
+            y1="270"
+            x2="1116"
+            y2="270"
+            marker-start="url(#line-arrow)"
+            marker-end="url(#line-arrow)"
+          />
+
+          <g id="nonnegative-ticks" aria-label="Null und positive Zahlen">
+            <g class="number-tick zero-tick" data-value="0">
+              <line x1="600" y1="236" x2="600" y2="304" />
+              <text x="600" y="370">0</text>
+            </g>
+            <g class="number-tick positive-tick" data-value="1">
+              <line x1="750" y1="236" x2="750" y2="304" />
+              <text x="750" y="370">1</text>
+            </g>
+            <g class="number-tick positive-tick" data-value="2">
+              <line x1="900" y1="236" x2="900" y2="304" />
+              <text x="900" y="370">2</text>
+            </g>
+            <g class="number-tick positive-tick" data-value="3">
+              <line x1="1050" y1="236" x2="1050" y2="304" />
+              <text x="1050" y="370">3</text>
+            </g>
+          </g>
+
+          <g id="negative-ticks" visibility="hidden" aria-hidden="true">
+            <g id="negative-tick-1" class="number-tick negative-tick" data-value="-1">
+              <line x1="450" y1="236" x2="450" y2="304" />
+              <text x="450" y="370">−1</text>
+            </g>
+            <g id="negative-tick-2" class="number-tick negative-tick" data-value="-2">
+              <line x1="300" y1="236" x2="300" y2="304" />
+              <text x="300" y="370">−2</text>
+            </g>
+            <g id="negative-tick-3" class="number-tick negative-tick" data-value="-3">
+              <line x1="150" y1="236" x2="150" y2="304" />
+              <text x="150" y="370">−3</text>
+            </g>
+          </g>
+
+          <g id="number-point-control" class="number-point-control" transform="translate(600 270)">
+            <circle class="point-halo" r="43" />
+            <circle id="number-point" class="number-point" r="25" />
+            <circle
+              id="number-point-handle"
+              class="number-point-handle"
+              r="58"
+              tabindex="0"
+              role="slider"
+              aria-label="Punkt auf der Zahlengeraden"
+              aria-valuemin="-3"
+              aria-valuemax="3"
+              aria-valuenow="0"
+              aria-valuetext="0"
+            />
+            <g id="current-value" class="current-value" visibility="hidden" aria-hidden="true">
+              <rect x="-49" y="-116" width="98" height="66" rx="21" />
+              <path d="M -12 -51 L 0 -37 L 12 -51 z" />
+              <text id="current-value-text" x="0" y="-72">0</text>
+            </g>
+          </g>
+        </svg>
+        <p id="number-live-value" class="visually-hidden" aria-live="polite">0</p>
+      </section>
+
+      <section class="number-insight" aria-live="polite" aria-atomic="true">
+        <p id="number-insight" class="insight-text">Beginne bei der Null.</p>
+        <div class="number-controls">
+          <button id="number-next" class="primary-button" type="button">Weiter</button>
+          <button id="number-reset" class="reset-button" type="button">Zurücksetzen</button>
+        </div>
+      </section>
+
+      <noscript>Für die interaktive Darstellung muss JavaScript aktiviert sein.</noscript>
+    </main>
+
+    <script type="module" src="./src/number-line-app.js"></script>
+  </body>
+</html>

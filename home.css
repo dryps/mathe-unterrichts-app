@@ -101,6 +101,10 @@ h1 {
   margin-bottom: 18px;
 }
 
+.chapter + .chapter {
+  margin-top: clamp(42px, 6vw, 74px);
+}
+
 h2 {
   font-size: clamp(2rem, 4.5vw, 3.4rem);
   line-height: 1;

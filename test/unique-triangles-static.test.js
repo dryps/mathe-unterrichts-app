@@ -132,7 +132,7 @@ test("Darstellung besitzt Regeln für Hochformat, Querformat, kleine Breite und 
   assert.doesNotMatch(files.css, /overflow:\s*visible/);
 });
 
-test("Offline-Cache enthält das sechste Modul vollständig auf Version 9", () => {
+test("Offline-Cache enthält das sechste Modul vollständig auf Version 10", () => {
   for (const file of [
     "eindeutige-dreiecke.html",
     "unique-triangles.css",
@@ -143,7 +143,7 @@ test("Offline-Cache enthält das sechste Modul vollständig auf Version 9", () =
   ]) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
-  assert.match(files.worker, /mathe-unterrichts-app-v9/);
+  assert.match(files.worker, /mathe-unterrichts-app-v10/);
   assert.match(files.app, /serviceWorker\.register/);
 });
 
