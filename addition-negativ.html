@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f4f7fb" />
+    <meta name="description" content="Interaktiver Aha-Moment zur Addition negativer Zahlen." />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./addition-negative.css" />
+    <link rel="stylesheet" href="./navigation.css" />
+    <title>Warum ist 3 + (−5) nicht 8?</title>
+  </head>
+  <body>
+    <main class="addition-shell">
+      <nav class="module-navigation" aria-label="Modulnavigation">
+        <a class="module-back-link" href="./#rationale-zahlen">← Rationale Zahlen</a>
+      </nav>
+      <header class="addition-header">
+        <div>
+          <p class="eyebrow">Rationale Zahlen · 7. Klasse</p>
+          <h1>Warum ist 3 + (−5) nicht 8?</h1>
+          <p class="subtitle">Addition negativer Zahlen</p>
+        </div>
+        <p class="local-note" aria-label="Datenschutzstatus"><span aria-hidden="true">●</span> lokal · ohne Speicherung</p>
+      </header>
+
+      <section class="addition-visualizer" aria-labelledby="addition-board-title">
+        <h2 id="addition-board-title" class="visually-hidden">Addition einer negativen Zahl auf der Zahlengeraden</h2>
+        <div class="addition-stage">
+          <div id="addition-prompt" class="addition-prompt">
+            <p class="prompt-formula">3 + (−5) = ?</p>
+            <p>Bedeutet das Plus, dass wir nach rechts gehen?</p>
+          </div>
+          <svg id="addition-board" class="addition-board" viewBox="0 0 1400 520" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="addition-svg-title addition-svg-description" data-state="prompt">
+            <title id="addition-svg-title">Zahlengerade von minus drei bis plus vier</title>
+            <desc id="addition-svg-description">Start bei drei und Bewegung um einen negativen Summanden nach links.</desc>
+            <rect class="board-background" x="2" y="2" width="1396" height="516" rx="32" />
+            <g id="addition-axis-layer" visibility="hidden" aria-hidden="true">
+              <path id="addition-axis-left-arrow" class="axis-arrow addition-axis-arrow" d="M 92 290 L 132 250 L 132 330 Z" />
+              <path id="addition-axis-right-arrow" class="axis-arrow addition-axis-arrow" d="M 1308 290 L 1268 250 L 1268 330 Z" />
+              <line id="addition-axis" class="axis addition-axis" x1="132" y1="290" x2="1268" y2="290" />
+              <g id="addition-ticks">
+                <g class="tick negative-tick" data-addition-value="-3"><line y1="256" y2="324"/><text y="382">−3</text></g>
+                <g class="tick negative-tick" data-addition-value="-2"><line y1="264" y2="316"/><text y="382">−2</text></g>
+                <g class="tick negative-tick" data-addition-value="-1"><line y1="264" y2="316"/><text y="382">−1</text></g>
+                <g class="tick zero-tick" data-addition-value="0"><line y1="256" y2="324"/><text y="382">0</text></g>
+                <g class="tick positive-tick" data-addition-value="1"><line y1="264" y2="316"/><text y="382">1</text></g>
+                <g class="tick positive-tick" data-addition-value="2"><line y1="264" y2="316"/><text y="382">2</text></g>
+                <g class="tick positive-tick start-tick" data-addition-value="3"><line y1="252" y2="328"/><text y="382">3</text></g>
+                <g class="tick positive-tick" data-addition-value="4"><line y1="264" y2="316"/><text y="382">4</text></g>
+              </g>
+              <g id="addition-start-point" class="start-point" visibility="hidden"><circle class="point-halo" r="36"/><circle class="point-dot" r="22"/></g>
+              <g id="addition-motion" class="motion" visibility="hidden" aria-hidden="true">
+                <line id="addition-motion-line" class="motion-line" y1="186" y2="186" />
+                <g id="addition-step-boundaries" class="step-boundaries"></g>
+                <path id="addition-motion-arrowhead" class="motion-arrowhead" d="M 0 186 L 34 162 L 34 210 Z" />
+              </g>
+              <g id="addition-moving-point" class="moving-point" visibility="hidden"><circle class="moving-halo" r="36"/><circle class="moving-dot" r="22"/></g>
+              <g id="addition-end-handle" class="end-handle" visibility="hidden" role="slider" tabindex="0" aria-label="Negativen Summanden verändern" aria-valuemin="-6" aria-valuemax="-1" aria-valuenow="-5"><circle class="handle-halo" r="43"/><circle class="handle-dot" r="25"/></g>
+              <g id="addition-formula" class="formula" visibility="hidden"><rect x="458" y="35" width="484" height="88" rx="27"/><text id="addition-formula-text" x="700" y="94"><tspan id="addition-start-term">3</tspan><tspan id="addition-operator"> + </tspan><tspan id="addition-summand-term">(−5)</tspan><tspan id="addition-result-term"> = −2</tspan></text></g>
+            </g>
+          </svg>
+        </div>
+      </section>
+
+      <section class="addition-insight" aria-live="polite">
+        <p id="addition-insight" class="insight-text">Bedeutet das Plus, dass wir nach rechts gehen?</p>
+        <div class="addition-controls">
+          <button id="addition-next" class="primary-button" type="button">Weiter</button>
+          <button id="addition-reset" class="reset-button" type="button">Zurücksetzen</button>
+        </div>
+        <p id="addition-live-value" class="visually-hidden" aria-live="polite"></p>
+      </section>
+      <noscript>Für diesen interaktiven Aha-Moment muss JavaScript aktiviert sein.</noscript>
+    </main>
+    <script type="module" src="./src/addition-negative-app.js"></script>
+  </body>
+</html>

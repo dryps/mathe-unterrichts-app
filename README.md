@@ -42,6 +42,15 @@ entgegengesetzte Richtungen denselben Abstand besitzen können. Im Endzustand
 rastet ein großer Punkt per Touch, Maus oder Tastatur auf ganzen Zahlen von −6
 bis +6 ein; Zahl, Abstand und Betragsschreibweise aktualisieren sich gemeinsam.
 
+**Warum ist 3 + (−5) nicht 8?**
+
+*Addition negativer Zahlen*
+
+Unter `addition-negativ.html` wird das äußere Rechenzeichen vom Vorzeichen des
+zweiten Summanden getrennt gelesen. Die Zahlengerade zeigt fünf gleiche Schritte
+von 3 nach links bis −2. Im Endzustand lässt sich ausschließlich der negative
+Summand von −1 bis −6 durch Ziehen des Pfeilendes verändern.
+
 ## Kapitel 2: Erstes Aha-Modul
 
 **Warum bleiben es immer 180°?**  
@@ -157,6 +166,7 @@ npm run test:unique-visual
 npm run test:number-line-visual
 npm run test:order-visual
 npm run test:absolute-visual
+npm run test:addition-visual
 npm start
 ```
 

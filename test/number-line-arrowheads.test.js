@@ -27,6 +27,14 @@ const modules = [
     leftId: "absolute-axis-left-arrow",
     rightId: "absolute-axis-right-arrow",
   },
+  {
+    name: "Addition negativer Zahlen",
+    html: await readFile(new URL("../addition-negativ.html", import.meta.url), "utf8"),
+    css: await readFile(new URL("../addition-negative.css", import.meta.url), "utf8"),
+    axisId: "addition-axis",
+    leftId: "addition-axis-left-arrow",
+    rightId: "addition-axis-right-arrow",
+  },
 ];
 
 function elementById(html, id) {

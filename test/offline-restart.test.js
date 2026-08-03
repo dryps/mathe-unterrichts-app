@@ -9,7 +9,7 @@ const origin = "https://mathe-app.test";
 function createWorkerHarness() {
   const listeners = new Map();
   const stores = new Map([
-    ["mathe-unterrichts-app-v11", new Map([["old", new Response("alt")]])],
+    ["mathe-unterrichts-app-v12", new Map([["old", new Response("alt")]])],
   ]);
   let claimed = false;
   let skipped = false;
@@ -112,15 +112,15 @@ function createWorkerHarness() {
   };
 }
 
-test("Installation füllt Version 12 vollständig und Aktivierung entfernt alte Caches", async () => {
+test("Installation füllt Version 13 vollständig und Aktivierung entfernt alte Caches", async () => {
   const harness = createWorkerHarness();
   await harness.dispatchLifecycle("install");
   await harness.dispatchLifecycle("activate");
 
   assert.equal(harness.skipped, true);
   assert.equal(harness.claimed, true);
-  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v12"]);
-  const current = harness.stores.get("mathe-unterrichts-app-v12");
+  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v13"]);
+  const current = harness.stores.get("mathe-unterrichts-app-v13");
   for (const path of [
     "./",
     "./index.html",
@@ -153,6 +153,12 @@ test("Installation füllt Version 12 vollständig und Aktivierung entfernt alte 
     "./src/absolute-value-animation.js",
     "./src/absolute-value-geometry.js",
     "./src/absolute-value-state.js",
+    "./addition-negativ.html",
+    "./addition-negative.css",
+    "./src/addition-negative-app.js",
+    "./src/addition-negative-animation.js",
+    "./src/addition-negative-geometry.js",
+    "./src/addition-negative-state.js",
   ]) {
     assert.equal(current.has(new URL(path, `${origin}/`).href), true);
   }
@@ -195,6 +201,12 @@ test("Offline-Neustart liefert Startseite und alle Kapitel ohne Netzwerk aus", a
     "/src/absolute-value-animation.js",
     "/src/absolute-value-geometry.js",
     "/src/absolute-value-state.js",
+    "/addition-negativ.html",
+    "/addition-negative.css",
+    "/src/addition-negative-app.js",
+    "/src/addition-negative-animation.js",
+    "/src/addition-negative-geometry.js",
+    "/src/addition-negative-state.js",
   ]) {
     const response = await harness.dispatchFetch(path);
     assert.equal(response.status, 200);

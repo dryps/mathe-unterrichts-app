@@ -15,7 +15,8 @@
     "test:unique-visual": "node scripts/render-unique-triangle-states.mjs",
     "test:number-line-visual": "node scripts/render-number-line-states.mjs",
     "test:order-visual": "node scripts/render-order-number-line-states.mjs",
-    "test:absolute-visual": "node scripts/render-absolute-value-states.mjs"
+    "test:absolute-visual": "node scripts/render-absolute-value-states.mjs",
+    "test:addition-visual": "node scripts/render-addition-negative-states.mjs"
   },
   "engines": {
     "node": ">=20"

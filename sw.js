@@ -1,4 +1,4 @@
-const CACHE_NAME = "mathe-unterrichts-app-v12";
+const CACHE_NAME = "mathe-unterrichts-app-v13";
 const APP_FILES = [
   "./",
   "./index.html",
@@ -53,6 +53,12 @@ const APP_FILES = [
   "./src/absolute-value-animation.js",
   "./src/absolute-value-geometry.js",
   "./src/absolute-value-state.js",
+  "./addition-negativ.html",
+  "./addition-negative.css",
+  "./src/addition-negative-app.js",
+  "./src/addition-negative-animation.js",
+  "./src/addition-negative-geometry.js",
+  "./src/addition-negative-state.js",
   "./manifest.webmanifest",
   "./icon.svg",
 ];
