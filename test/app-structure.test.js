@@ -28,6 +28,7 @@ const files = {
   ),
   order: await readFile(new URL("../ordnung.html", import.meta.url), "utf8"),
   absolute: await readFile(new URL("../betrag.html", import.meta.url), "utf8"),
+  addition: await readFile(new URL("../addition-negativ.html", import.meta.url), "utf8"),
   worker: await readFile(new URL("../sw.js", import.meta.url), "utf8"),
   manifest: await readFile(new URL("../manifest.webmanifest", import.meta.url), "utf8"),
 };
@@ -61,8 +62,8 @@ test("Startseite zeigt Klasse 7 mit Kapitel 1 und dem unveränderten Kapitel 2",
   assert.doesNotMatch(files.home, /<ul|<ol/);
 });
 
-test("Kapitel 1 enthält drei und Kapitel 2 sechs unveränderte Modulkarten", () => {
-  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 9);
+test("Kapitel 1 enthält vier und Kapitel 2 sechs unveränderte Modulkarten", () => {
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 10);
   assert.match(files.home, /href="\.\/zahlengerade\.html"/);
   assert.match(files.home, /Warum liegen negative Zahlen links von der Null\?/);
   assert.match(files.home, /<span class="module-subtitle">Zahlengerade<\/span>/);
@@ -72,6 +73,9 @@ test("Kapitel 1 enthält drei und Kapitel 2 sechs unveränderte Modulkarten", ()
   assert.match(files.home, /href="\.\/betrag\.html"/);
   assert.match(files.home, /Warum wird beim Betrag das Vorzeichen unwichtig\?/);
   assert.match(files.home, /<span class="module-subtitle">Abstand zur Null<\/span>/);
+  assert.match(files.home, /href="\.\/addition-negativ\.html"/);
+  assert.match(files.home, /Warum ist 3 \+ \(−5\) nicht 8\?/);
+  assert.match(files.home, /<span class="module-subtitle">Addition negativer Zahlen<\/span>/);
   assert.match(files.home, /href="\.\/winkelsumme\.html"/);
   assert.match(files.home, /Warum bleiben es immer 180°\?/);
   assert.match(files.home, /<span class="module-subtitle">Winkelsumme<\/span>/);
@@ -99,8 +103,8 @@ test("Kapitel 1 enthält drei und Kapitel 2 sechs unveränderte Modulkarten", ()
     files.home,
     /<span class="module-subtitle">Eindeutige Dreiecke<\/span>/,
   );
-  assert.equal((files.home.match(/class="module-status"/g) ?? []).length, 9);
-  assert.equal((files.home.match(/fertig/g) ?? []).length, 9);
+  assert.equal((files.home.match(/class="module-status"/g) ?? []).length, 10);
+  assert.equal((files.home.match(/fertig/g) ?? []).length, 10);
 });
 
 test("Alle Dreiecksmodule behalten ausschließlich ihren bisherigen Rückweg", () => {
@@ -119,7 +123,7 @@ test("Alle Dreiecksmodule behalten ausschließlich ihren bisherigen Rückweg", (
 });
 
 test("Alle Module aus Kapitel 1 führen ausschließlich zu Rationale Zahlen zurück", () => {
-  for (const module of [files.numberLine, files.order, files.absolute]) {
+  for (const module of [files.numberLine, files.order, files.absolute, files.addition]) {
     assert.equal((module.match(/class="module-navigation"/g) ?? []).length, 1);
     assert.match(
       module,
@@ -169,19 +173,20 @@ test("iPad-Querformat ordnet sechs Karten symmetrisch in zwei Dreierreihen an", 
   );
 });
 
-test("iPad-Querformat ordnet die drei Karten aus Kapitel 1 symmetrisch an", () => {
+test("iPad-Querformat ordnet die vier Karten aus Kapitel 1 symmetrisch an", () => {
   assert.match(
     landscapeTabletCss,
-    /\.chapter-rationale \.module-card:nth-child\(1\)\s*\{\s*grid-column: 1 \/ span 2/,
+    /\.chapter-rationale \.module-card:nth-child\(1\),[\s\S]*\.chapter-rationale \.module-card:nth-child\(3\)\s*\{\s*grid-column: 1 \/ span 3/,
   );
   assert.match(
     landscapeTabletCss,
-    /\.chapter-rationale \.module-card:nth-child\(2\)\s*\{\s*grid-column: 3 \/ span 2/,
+    /\.chapter-rationale \.module-card:nth-child\(2\),[\s\S]*\.chapter-rationale \.module-card:nth-child\(4\)\s*\{\s*grid-column: 4 \/ span 3/,
   );
   assert.match(
     landscapeTabletCss,
-    /\.chapter-rationale \.module-card:nth-child\(3\)\s*\{\s*grid-column: 5 \/ span 2/,
+    /\.chapter-rationale \.module-card:nth-child\(3\)\s*\{\s*grid-column: 1 \/ span 3/,
   );
+  assert.match(landscapeTabletCss,/\.chapter-rationale \.module-card:nth-child\(4\)\s*\{\s*grid-column: 4 \/ span 3/);
 });
 
 test("iPad-Querformat verdichtet Karten und Kopf ohne Texte abzuschneiden", () => {
@@ -274,13 +279,19 @@ test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und beide Kapite
     "src/absolute-value-animation.js",
     "src/absolute-value-geometry.js",
     "src/absolute-value-state.js",
+    "addition-negativ.html",
+    "addition-negative.css",
+    "src/addition-negative-app.js",
+    "src/addition-negative-animation.js",
+    "src/addition-negative-geometry.js",
+    "src/addition-negative-state.js",
     "manifest.webmanifest",
     "icon.svg",
   ]) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
   assert.match(files.shell, /serviceWorker\.register/);
-  assert.match(files.worker, /mathe-unterrichts-app-v12/);
+  assert.match(files.worker, /mathe-unterrichts-app-v13/);
 });
 
 test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", () => {
@@ -298,6 +309,7 @@ test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", 
     files.numberLine,
     files.order,
     files.absolute,
+    files.addition,
     files.worker,
   ].join("\n");
   assert.doesNotMatch(runtime, /localStorage|sessionStorage|indexedDB|document\.cookie/);
