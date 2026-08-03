@@ -172,6 +172,13 @@ npm start
 
 Danach ist die App unter `http://127.0.0.1:4173` erreichbar.
 
+## Dauerhafte iPad-Bereitstellung
+
+Der Workflow `.github/workflows/pages.yml` prüft `main`, erzeugt über
+`npm run build:pages` ein explizit freigegebenes statisches Artefakt und
+veröffentlicht es über GitHub Pages. Details zu Dateiumfang, Öffentlichkeit,
+Suchmaschinensperre und Datenschutz stehen unter `docs/github-pages.md`.
+
 ## Bewusste Grenze des Piloten
 
 Die optionale Animation „Winkel zusammenlegen“ ist nicht Teil von V1. Sie bleibt

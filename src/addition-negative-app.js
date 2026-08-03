@@ -45,5 +45,10 @@ function drag(event){if(activePointer!==event.pointerId||![ADDITION_VIEWS.free,A
 function endDrag(event){if(activePointer!==event.pointerId)return;if(endHandle.hasPointerCapture(event.pointerId))endHandle.releasePointerCapture(event.pointerId);activePointer=null;}
 function keyboard(event){if(![ADDITION_VIEWS.free,ADDITION_VIEWS.conclusion].includes(state.view))return;const delta={ArrowLeft:-1,ArrowRight:1}[event.key];if(delta===undefined)return;event.preventDefault();state=moveAdditionSummand(state,state.summand+delta);render();}
 board.addEventListener("pointerdown",startDrag);board.addEventListener("pointermove",drag);board.addEventListener("pointerup",endDrag);board.addEventListener("pointercancel",endDrag);endHandle.addEventListener("keydown",keyboard);nextButton.addEventListener("click",runNext);resetButton.addEventListener("click",()=>{if(state.locked)return;clearAnimation();activePointer=null;state=resetAdditionState();render();});
-if("serviceWorker" in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js", { scope: "./", updateViaCache: "none" })
+      .catch(() => {});
+  });
+}
 staticGeometry();render();

@@ -1,4 +1,5 @@
-const CACHE_NAME = "mathe-unterrichts-app-v13";
+const CACHE_NAME = "mathe-unterrichts-app-v14";
+const NAVIGATION_FALLBACK = "./index.html";
 const APP_FILES = [
   "./",
   "./index.html",
@@ -61,13 +62,34 @@ const APP_FILES = [
   "./src/addition-negative-state.js",
   "./manifest.webmanifest",
   "./icon.svg",
+  "./icon-180.png",
+  "./icon-192.png",
+  "./icon-512.png",
+  "./robots.txt",
+  "./404.html",
 ];
+
+function scopedRequest(path) {
+  return new Request(new URL(path, self.registration.scope), {
+    cache: "reload",
+    credentials: "same-origin",
+    redirect: "error",
+  });
+}
+
+function isSafeRuntimeResponse(response) {
+  if (!response.ok || response.redirected) return false;
+  if (response.type !== "basic" && response.type !== "default") return false;
+  if (!response.url) return true;
+  const url = new URL(response.url);
+  return url.origin === self.location.origin && url.href.startsWith(self.registration.scope);
+}
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches
       .open(CACHE_NAME)
-      .then((cache) => cache.addAll(APP_FILES))
+      .then((cache) => cache.addAll(APP_FILES.map(scopedRequest)))
       .then(() => self.skipWaiting()),
   );
 });
@@ -90,17 +112,37 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  event.respondWith(
-    caches.match(event.request).then(
-      (cachedResponse) =>
-        cachedResponse ??
-        fetch(event.request).then((networkResponse) => {
-          if (networkResponse.ok) {
-            const copy = networkResponse.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
+  if (event.request.mode === "navigate") {
+    event.respondWith(
+      fetch(event.request)
+        .then(async (networkResponse) => {
+          if (isSafeRuntimeResponse(networkResponse)) {
+            const cache = await caches.open(CACHE_NAME);
+            await cache.put(event.request, networkResponse.clone());
           }
           return networkResponse;
+        })
+        .catch(async () => {
+          const cache = await caches.open(CACHE_NAME);
+          return (
+            (await cache.match(event.request)) ??
+            (await cache.match(new URL(NAVIGATION_FALLBACK, self.registration.scope).href)) ??
+            Response.error()
+          );
         }),
-    ),
+    );
+    return;
+  }
+
+  event.respondWith(
+    caches.match(event.request).then(async (cachedResponse) => {
+      if (cachedResponse) return cachedResponse;
+      const networkResponse = await fetch(event.request);
+      if (isSafeRuntimeResponse(networkResponse)) {
+        const cache = await caches.open(CACHE_NAME);
+        await cache.put(event.request, networkResponse.clone());
+      }
+      return networkResponse;
+    }),
   );
 });

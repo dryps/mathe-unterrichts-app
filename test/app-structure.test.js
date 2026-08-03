@@ -290,7 +290,7 @@ test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und beide Kapite
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
   assert.match(files.shell, /serviceWorker\.register/);
-  assert.match(files.worker, /mathe-unterrichts-app-v13/);
+  assert.match(files.worker, /mathe-unterrichts-app-v14/);
 });
 
 test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", () => {

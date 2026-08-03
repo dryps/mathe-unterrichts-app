@@ -9,7 +9,7 @@ const origin = "https://mathe-app.test";
 function createWorkerHarness() {
   const listeners = new Map();
   const stores = new Map([
-    ["mathe-unterrichts-app-v12", new Map([["old", new Response("alt")]])],
+    ["mathe-unterrichts-app-v13", new Map([["old", new Response("alt")]])],
   ]);
   let claimed = false;
   let skipped = false;
@@ -27,11 +27,16 @@ function createWorkerHarness() {
       return {
         async addAll(paths) {
           for (const path of paths) {
-            store.set(normalize(path), new Response(`offline:${path}`, { status: 200 }));
+            const key = normalize(path);
+            store.set(key, new Response(`offline:${new URL(key).pathname}`, { status: 200 }));
           }
         },
         async put(request, response) {
           store.set(normalize(request), response);
+        },
+        async match(request) {
+          const response = store.get(normalize(request));
+          return response?.clone();
         },
       };
     },
@@ -51,6 +56,7 @@ function createWorkerHarness() {
   };
 
   const context = vm.createContext({
+    Request,
     URL,
     Response,
     caches,
@@ -60,6 +66,7 @@ function createWorkerHarness() {
     },
     self: {
       location: { origin },
+      registration: { scope: `${origin}/` },
       clients: {
         async claim() {
           claimed = true;
@@ -85,10 +92,14 @@ function createWorkerHarness() {
     await pending;
   }
 
-  async function dispatchFetch(path) {
+  async function dispatchFetch(path, mode = "same-origin") {
     let responsePromise;
     listeners.get("fetch")({
-      request: new Request(new URL(path, `${origin}/`), { method: "GET" }),
+      request: {
+        method: "GET",
+        mode,
+        url: new URL(path, `${origin}/`).href,
+      },
       respondWith(promise) {
         responsePromise = promise;
       },
@@ -112,15 +123,15 @@ function createWorkerHarness() {
   };
 }
 
-test("Installation füllt Version 13 vollständig und Aktivierung entfernt alte Caches", async () => {
+test("Installation füllt Version 14 vollständig und Aktivierung entfernt alte Caches", async () => {
   const harness = createWorkerHarness();
   await harness.dispatchLifecycle("install");
   await harness.dispatchLifecycle("activate");
 
   assert.equal(harness.skipped, true);
   assert.equal(harness.claimed, true);
-  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v13"]);
-  const current = harness.stores.get("mathe-unterrichts-app-v13");
+  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v14"]);
+  const current = harness.stores.get("mathe-unterrichts-app-v14");
   for (const path of [
     "./",
     "./index.html",
@@ -213,4 +224,15 @@ test("Offline-Neustart liefert Startseite und alle Kapitel ohne Netzwerk aus", a
     assert.match(await response.text(), /^offline:/);
   }
   assert.equal(harness.networkCalls, 0);
+});
+
+test("Offline-Navigation auf einen unbekannten Pfad fällt kontrolliert auf die Startseite zurück", async () => {
+  const harness = createWorkerHarness();
+  await harness.dispatchLifecycle("install");
+  await harness.dispatchLifecycle("activate");
+
+  const response = await harness.dispatchFetch("/nicht-vorhanden", "navigate");
+  assert.equal(response.status, 200);
+  assert.equal(await response.text(), "offline:/index.html");
+  assert.equal(harness.networkCalls, 1);
 });
