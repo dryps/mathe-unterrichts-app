@@ -176,17 +176,16 @@ test("iPad-Querformat ordnet sechs Karten symmetrisch in zwei Dreierreihen an", 
 test("iPad-Querformat ordnet die vier Karten aus Kapitel 1 symmetrisch an", () => {
   assert.match(
     landscapeTabletCss,
-    /\.chapter-rationale \.module-card:nth-child\(1\),[\s\S]*\.chapter-rationale \.module-card:nth-child\(3\)\s*\{\s*grid-column: 1 \/ span 3/,
+    /\.chapter-rationale \.module-grid\s*\{[\s\S]*grid-template-columns: repeat\(2, minmax\(0, 1fr\)\)[\s\S]*grid-auto-rows: 1fr/,
   );
   assert.match(
     landscapeTabletCss,
-    /\.chapter-rationale \.module-card:nth-child\(2\),[\s\S]*\.chapter-rationale \.module-card:nth-child\(4\)\s*\{\s*grid-column: 4 \/ span 3/,
+    /\.chapter-rationale \.module-card\s*\{\s*grid-column: auto/,
   );
-  assert.match(
+  assert.doesNotMatch(
     landscapeTabletCss,
-    /\.chapter-rationale \.module-card:nth-child\(3\)\s*\{\s*grid-column: 1 \/ span 3/,
+    /\.chapter-rationale \.module-card:nth-child|\.chapter-rationale[\s\S]*span 3/,
   );
-  assert.match(landscapeTabletCss,/\.chapter-rationale \.module-card:nth-child\(4\)\s*\{\s*grid-column: 4 \/ span 3/);
 });
 
 test("iPad-Querformat verdichtet Karten und Kopf ohne Texte abzuschneiden", () => {
