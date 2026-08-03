@@ -340,7 +340,8 @@ resetButton.addEventListener("click", () => {
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register("./sw.js").catch(() => {
+    navigator.serviceWorker.register("./sw.js", { scope: "./", updateViaCache: "none" })
+      .catch(() => {
       // Das Modul bleibt nutzbar; nur der Offline-Cache fehlt in diesem Fall.
     });
   });

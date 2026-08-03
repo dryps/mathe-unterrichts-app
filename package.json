@@ -6,7 +6,9 @@
   "description": "Kurze interaktive Aha-Momente für den Mathematikunterricht",
   "scripts": {
     "start": "node scripts/serve.mjs",
+    "build:pages": "node scripts/build-pages.mjs",
     "test": "node --test",
+    "test:pages": "node scripts/verify-pages.mjs",
     "test:smoke": "node scripts/smoke.mjs",
     "test:visual": "node scripts/render-inequality-states.mjs",
     "test:area-visual": "node scripts/render-area-states.mjs",

@@ -1,0 +1,65 @@
+name: GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v6
+
+      - name: Node.js einrichten
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+
+      - name: Bestehende Tests ausführen
+        run: npm test
+
+      - name: Laufzeitressourcen und Zustände prüfen
+        run: |
+          npm run test:smoke
+          npm run test:visual
+          npm run test:area-visual
+          npm run test:circumcircle-visual
+          npm run test:incircle-visual
+          npm run test:unique-visual
+          npm run test:number-line-visual
+          npm run test:order-visual
+          npm run test:absolute-visual
+          npm run test:addition-visual
+
+      - name: Kontrolliertes Pages-Artefakt bauen
+        run: npm run build:pages
+
+      - name: Pages-Artefakt verifizieren
+        run: npm run test:pages
+
+      - name: GitHub Pages konfigurieren
+        uses: actions/configure-pages@v5
+
+      - name: Pages-Artefakt hochladen
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+
+      - name: GitHub Pages bereitstellen
+        id: deployment
+        uses: actions/deploy-pages@v4
