@@ -9,7 +9,14 @@ const files = {
   math: await readFile(new URL("../src/like-terms-math.js", import.meta.url), "utf8"),
   state: await readFile(new URL("../src/like-terms-state.js", import.meta.url), "utf8"),
   animation: await readFile(new URL("../src/like-terms-animation.js", import.meta.url), "utf8"),
+  worker: await readFile(new URL("../sw.js", import.meta.url), "utf8"),
+  pagesRuntime: await readFile(new URL("../scripts/pages-runtime-files.mjs", import.meta.url), "utf8"),
+  smoke: await readFile(new URL("../scripts/smoke.mjs", import.meta.url), "utf8"),
+  workflow: await readFile(new URL("../.github/workflows/pages.yml", import.meta.url), "utf8"),
 };
+const packageJson = JSON.parse(
+  await readFile(new URL("../package.json", import.meta.url), "utf8"),
+);
 
 test("Irritation zeigt beide Terme und ausschließlich eine offene Frage", () => {
   assert.match(files.html, /3x \+ 2x/);
@@ -73,7 +80,10 @@ test("Mathematik, Zustand und Animation bleiben frei von DOM und Speicherung", (
   for (const source of [files.math, files.state, files.animation]) {
     assert.doesNotMatch(source, /document|querySelector|localStorage|sessionStorage|indexedDB/);
   }
-  assert.doesNotMatch(Object.values(files).join("\n"), /document\.cookie|analytics|telemetry|fetch\(/i);
+  assert.doesNotMatch(
+    [files.html, files.css, files.app, files.math, files.state, files.animation].join("\n"),
+    /document\.cookie|analytics|telemetry|fetch\(/i,
+  );
 });
 
 test("Responsive Regeln schützen kleine Breite, Hochformat, Querformat und Klassenraum", () => {
@@ -115,11 +125,37 @@ test("iPad-Hochformat stapelt die beiden Vierergruppen vor dem Überlauf", () =>
 });
 
 test("Modul bleibt lokal und behandelt weder Termwert noch spätere Algebra", () => {
-  const runtime = Object.values(files).join("\n");
+  const runtime = [files.html, files.css, files.app, files.math, files.state, files.animation].join("\n");
   assert.doesNotMatch(runtime, /(?:src|href)=["'`]https?:\/\//);
   assert.doesNotMatch(
     runtime,
     /x²|x\^2|xy|negativen Koeffizienten|setze x|(?:^|[^0-9A-Za-z])x\s*=\s*\d/i,
   );
-  assert.doesNotMatch(files.html, /serviceWorker|sw\.js|manifest\.webmanifest/);
+  assert.match(files.html, /rel="manifest" href="\.\/manifest\.webmanifest"/);
+  assert.match(files.html, /apple-mobile-web-app-capable" content="yes"/);
+  assert.match(files.html, /apple-touch-icon" sizes="180x180" href="\.\/icon-180\.png"/);
+  assert.match(files.app, /register\("\.\/sw\.js", \{ scope: "\.\/", updateViaCache: "none" \}\)/);
+});
+
+test("Produktionsgates enthalten ausschließlich die sechs Laufzeitdateien und den Renderer", () => {
+  for (const file of [
+    "gleichartige-terme.html",
+    "like-terms.css",
+    "src/like-terms-app.js",
+    "src/like-terms-math.js",
+    "src/like-terms-state.js",
+    "src/like-terms-animation.js",
+  ]) {
+    assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
+    assert.match(files.pagesRuntime, new RegExp(file.replaceAll(".", "\\.")));
+    assert.match(files.smoke, new RegExp(file.replaceAll(".", "\\.")));
+  }
+  assert.match(files.worker, /mathe-unterrichts-app-v18/);
+  assert.equal(
+    packageJson.scripts["test:like-terms-visual"],
+    "node scripts/render-like-terms-states.mjs",
+  );
+  assert.match(files.workflow, /npm run test:like-terms-visual/);
+  assert.doesNotMatch(files.worker, /like-terms-(?:design|static\.test)|render-like-terms-states/);
+  assert.doesNotMatch(files.pagesRuntime, /like-terms-(?:design|static\.test)|render-like-terms-states/);
 });

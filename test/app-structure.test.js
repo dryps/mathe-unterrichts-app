@@ -33,6 +33,8 @@ const files = {
   multiplication: await readFile(new URL("../multiplikation-negativ.html", import.meta.url), "utf8"),
   terms: await readFile(new URL("../terme-variablen.html", import.meta.url), "utf8"),
   termsApp: await readFile(new URL("../src/terms-variables-app.js", import.meta.url), "utf8"),
+  likeTerms: await readFile(new URL("../gleichartige-terme.html", import.meta.url), "utf8"),
+  likeTermsApp: await readFile(new URL("../src/like-terms-app.js", import.meta.url), "utf8"),
   worker: await readFile(new URL("../sw.js", import.meta.url), "utf8"),
   manifest: await readFile(new URL("../manifest.webmanifest", import.meta.url), "utf8"),
 };
@@ -68,8 +70,8 @@ test("Startseite zeigt Klasse 7 mit den drei produktiven Kapiteln", () => {
   assert.doesNotMatch(files.home, /<ul|<ol/);
 });
 
-test("Kapitel 1 und 2 enthalten je sechs Karten, Kapitel 3 genau Modul 1", () => {
-  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 13);
+test("Kapitel 1 und 2 enthalten je sechs Karten, Kapitel 3 genau zwei Module", () => {
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 14);
   assert.match(files.home, /href="\.\/zahlengerade\.html"/);
   assert.match(files.home, /Warum liegen negative Zahlen links von der Null\?/);
   assert.match(files.home, /<span class="module-subtitle">Zahlengerade<\/span>/);
@@ -118,9 +120,11 @@ test("Kapitel 1 und 2 enthalten je sechs Karten, Kapitel 3 genau Modul 1", () =>
   assert.match(files.home, /href="\.\/terme-variablen\.html"/);
   assert.match(files.home, /Wie kann sich x ändern, obwohl der Term derselbe bleibt\?/);
   assert.match(files.home, /<span class="module-subtitle">Variablen und Terme<\/span>/);
-  assert.doesNotMatch(files.home, /gleichartige-terme|Welche Terme kann man zusammenfassen/i);
-  assert.equal((files.home.match(/class="module-status"/g) ?? []).length, 13);
-  assert.equal((files.home.match(/fertig/g) ?? []).length, 13);
+  assert.match(files.home, /href="\.\/gleichartige-terme\.html"/);
+  assert.match(files.home, /Warum darf ich 3x \+ 2x zu 5x machen – aber 3x \+ 2 nicht\?/);
+  assert.match(files.home, /<span class="module-subtitle">Gleichartige Terme<\/span>/);
+  assert.equal((files.home.match(/class="module-status"/g) ?? []).length, 14);
+  assert.equal((files.home.match(/fertig/g) ?? []).length, 14);
 });
 
 test("Alle Dreiecksmodule behalten ausschließlich ihren bisherigen Rückweg", () => {
@@ -152,13 +156,15 @@ test("Alle Module aus Kapitel 1 führen ausschließlich zu Rationale Zahlen zur�
   }
 });
 
-test("Kapitel-3-Modul 1 führt ausschließlich zu Rechnen mit Termen zurück", () => {
-  assert.equal((files.terms.match(/class="module-navigation"/g) ?? []).length, 1);
-  assert.match(
-    files.terms,
-    /class="module-back-link" href="\.\/#rechnen-mit-termen">← Rechnen mit Termen<\/a>/,
-  );
-  assert.doesNotMatch(files.terms, /Suche|Einstellungen|Favoriten|Statistik|Anmelden/);
+test("Beide Kapitel-3-Module führen ausschließlich zu Rechnen mit Termen zurück", () => {
+  for (const module of [files.terms, files.likeTerms]) {
+    assert.equal((module.match(/class="module-navigation"/g) ?? []).length, 1);
+    assert.match(
+      module,
+      /class="module-back-link" href="\.\/#rechnen-mit-termen">← Rechnen mit Termen<\/a>/,
+    );
+    assert.doesNotMatch(module, /Suche|Einstellungen|Favoriten|Statistik|Anmelden/);
+  }
 });
 
 test("Startseite ist für iPad, Querformat und Klassenraumbildschirm ausgelegt", () => {
@@ -173,6 +179,9 @@ test("Startseite ist für iPad, Querformat und Klassenraumbildschirm ausgelegt",
   );
   assert.match(files.homeCss, /\.grade-label/);
   assert.match(files.navigationCss, /min-height: 46px/);
+  assert.match(files.homeCss, /\.chapter-terms \.module-grid\s*\{\s*grid-template-columns: repeat\(2, minmax\(0, 1fr\)\)/);
+  assert.match(landscapeTabletCss, /\.chapter-terms \.module-grid\s*\{\s*grid-template-columns: repeat\(6, minmax\(0, 1fr\)\)/);
+  assert.match(landscapeTabletCss, /\.chapter-terms \.module-card\s*\{\s*grid-column: span 3/);
   assert.equal(JSON.parse(files.manifest).display, "standalone");
   assert.equal(JSON.parse(files.manifest).start_url, "./");
 });
@@ -323,13 +332,19 @@ test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und beide Kapite
     "src/terms-variables-app.js",
     "src/terms-variables-math.js",
     "src/terms-variables-state.js",
+    "gleichartige-terme.html",
+    "like-terms.css",
+    "src/like-terms-app.js",
+    "src/like-terms-math.js",
+    "src/like-terms-state.js",
+    "src/like-terms-animation.js",
     "manifest.webmanifest",
     "icon.svg",
   ]) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
   assert.match(files.shell, /serviceWorker\.register/);
-  assert.match(files.worker, /mathe-unterrichts-app-v17/);
+  assert.match(files.worker, /mathe-unterrichts-app-v18/);
 });
 
 test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", () => {
@@ -352,6 +367,8 @@ test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", 
     files.multiplication,
     files.terms,
     files.termsApp,
+    files.likeTerms,
+    files.likeTermsApp,
     files.worker,
   ].join("\n");
   assert.doesNotMatch(runtime, /localStorage|sessionStorage|indexedDB|document\.cookie/);

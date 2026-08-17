@@ -124,8 +124,8 @@ h2 {
   grid-column: span 2;
 }
 
-.chapter-terms .module-card:only-child {
-  grid-column: 2;
+.chapter-terms .module-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .module-card {
@@ -211,8 +211,8 @@ noscript {
     grid-column: auto;
   }
 
-  .chapter-terms .module-card:only-child {
-    grid-column: auto;
+  .chapter-terms .module-grid {
+    grid-template-columns: 1fr;
   }
 
   .module-card {
@@ -233,10 +233,8 @@ noscript {
     grid-column: span 2;
   }
 
-  .chapter-terms .module-card:only-child {
-    grid-column: 1 / -1;
-    justify-self: center;
-    width: min(100%, 460px);
+  .chapter-terms .module-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
 }
@@ -284,6 +282,10 @@ noscript {
     grid-auto-rows: 1fr;
   }
 
+  .chapter-terms .module-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
   .module-card {
     grid-column: span 2;
     min-height: clamp(218px, 22vh, 232px);
@@ -307,8 +309,8 @@ noscript {
     grid-column: span 2;
   }
 
-  .chapter-terms .module-card:only-child {
-    grid-column: 3 / span 2;
+  .chapter-terms .module-card {
+    grid-column: span 3;
   }
 
   .module-status {

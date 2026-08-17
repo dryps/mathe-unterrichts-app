@@ -101,7 +101,7 @@ test("produktiver Einstieg und Offline-Cache enthalten ausschließlich die fünf
   ]) {
     assert.match(worker, new RegExp(file.replaceAll(".", "\\.")));
   }
-  assert.match(worker, /mathe-unterrichts-app-v17/);
+  assert.match(worker, /mathe-unterrichts-app-v18/);
   assert.doesNotMatch(worker, /render-terms-variables-states|terme-variablen-design/);
 });
 

@@ -21,7 +21,8 @@
     "test:addition-visual": "node scripts/render-addition-negative-states.mjs",
     "test:subtraction-visual": "node scripts/render-subtraction-negative-states.mjs",
     "test:multiplication-visual": "node scripts/render-multiplication-negative-states.mjs",
-    "test:terms-visual": "node scripts/render-terms-variables-states.mjs"
+    "test:terms-visual": "node scripts/render-terms-variables-states.mjs",
+    "test:like-terms-visual": "node scripts/render-like-terms-states.mjs"
   },
   "engines": {
     "node": ">=20"
