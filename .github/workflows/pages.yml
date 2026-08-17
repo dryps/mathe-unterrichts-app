@@ -46,6 +46,7 @@ jobs:
           npm run test:absolute-visual
           npm run test:addition-visual
           npm run test:subtraction-visual
+          npm run test:multiplication-visual
 
       - name: Kontrolliertes Pages-Artefakt bauen
         run: npm run build:pages
