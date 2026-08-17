@@ -44,5 +44,5 @@ function animateCopy(){
 next.addEventListener("click",()=>{if(current.locked)return;current=nextDistributionState(current);render();if(current.view===DISTRIBUTION_VIEWS.copying)animateCopy();});
 reset.addEventListener("click",()=>{clearAnimation();current=resetDistributionState();render();});
 factorControl.addEventListener("input",event=>{current=setDistributionFactor(current,event.currentTarget.value);render();});
-if("serviceWorker" in navigator)window.addEventListener("load",()=>{navigator.serviceWorker.register("./sw.js",{scope:"./",updateViaCache:"none"}).catch(()=>{});});
+if("serviceWorker" in navigator)window.addEventListener("load",()=>{navigator.serviceWorker.register("./sw.js", { scope: "./", updateViaCache: "none" }).catch(()=>{});});
 render();

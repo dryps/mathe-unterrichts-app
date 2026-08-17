@@ -123,15 +123,15 @@ function createWorkerHarness() {
   };
 }
 
-test("Installation füllt Version 22 vollständig und Aktivierung entfernt Version 21", async () => {
+test("Installation füllt Version 23 vollständig und Aktivierung entfernt Version 22", async () => {
   const harness = createWorkerHarness();
   await harness.dispatchLifecycle("install");
   await harness.dispatchLifecycle("activate");
 
   assert.equal(harness.skipped, true);
   assert.equal(harness.claimed, true);
-  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v22"]);
-  const current = harness.stores.get("mathe-unterrichts-app-v22");
+  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v23"]);
+  const current = harness.stores.get("mathe-unterrichts-app-v23");
   for (const path of [
     "./",
     "./index.html",
@@ -211,6 +211,12 @@ test("Installation füllt Version 22 vollständig und Aktivierung entfernt Versi
     "./src/bracket-sign-math.js",
     "./src/bracket-sign-state.js",
     "./src/bracket-sign-animation.js",
+    "./ausmultiplizieren.html",
+    "./distribution.css",
+    "./src/distribution-app.js",
+    "./src/distribution-math.js",
+    "./src/distribution-state.js",
+    "./src/distribution-animation.js",
   ]) {
     assert.equal(current.has(new URL(path, `${origin}/`).href), true);
   }
@@ -300,6 +306,12 @@ test("Offline-Neustart liefert Startseite und alle Kapitel ohne Netzwerk aus", a
     "/src/bracket-sign-math.js",
     "/src/bracket-sign-state.js",
     "/src/bracket-sign-animation.js",
+    "/ausmultiplizieren.html",
+    "/distribution.css",
+    "/src/distribution-app.js",
+    "/src/distribution-math.js",
+    "/src/distribution-state.js",
+    "/src/distribution-animation.js",
   ]) {
     const response = await harness.dispatchFetch(path);
     assert.equal(response.status, 200);

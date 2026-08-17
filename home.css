@@ -132,14 +132,6 @@ h2 {
   grid-column: span 2;
 }
 
-.chapter-terms .module-card:nth-child(4) {
-  grid-column: 2 / span 2;
-}
-
-.chapter-terms .module-card:nth-child(5) {
-  grid-column: 4 / span 2;
-}
-
 .module-card {
   display: flex;
   min-height: clamp(220px, 28vw, 330px);
@@ -227,9 +219,7 @@ noscript {
     grid-template-columns: 1fr;
   }
 
-  .chapter-terms .module-card,
-  .chapter-terms .module-card:nth-child(4),
-  .chapter-terms .module-card:nth-child(5) {
+  .chapter-terms .module-card {
     grid-column: auto;
   }
 
@@ -255,9 +245,7 @@ noscript {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .chapter-terms .module-card,
-  .chapter-terms .module-card:nth-child(4),
-  .chapter-terms .module-card:nth-child(5) {
+  .chapter-terms .module-card {
     grid-column: auto;
   }
 
@@ -335,14 +323,6 @@ noscript {
 
   .chapter-terms .module-card {
     grid-column: span 2;
-  }
-
-  .chapter-terms .module-card:nth-child(4) {
-    grid-column: 2 / span 2;
-  }
-
-  .chapter-terms .module-card:nth-child(5) {
-    grid-column: 4 / span 2;
   }
 
   .module-status {

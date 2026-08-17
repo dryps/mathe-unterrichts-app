@@ -25,7 +25,8 @@
     "test:like-terms-visual": "node scripts/render-like-terms-states.mjs",
     "test:term-multiplication-visual": "node scripts/render-term-multiplication-states.mjs",
     "test:term-division-visual": "node scripts/render-term-division-states.mjs",
-    "test:bracket-sign-visual": "node scripts/render-bracket-sign-states.mjs"
+    "test:bracket-sign-visual": "node scripts/render-bracket-sign-states.mjs",
+    "test:distribution-visual": "node scripts/render-distribution-states.mjs"
   },
   "engines": {
     "node": ">=20"

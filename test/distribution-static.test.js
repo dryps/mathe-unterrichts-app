@@ -54,10 +54,10 @@ test("Responsive Regeln schützen kleine Breite, Telefon, iPad und Klassenraum",
   assert.match(files.css, /overflow-x:\s*hidden/);
 });
 
-test("Standalone-Stufe verändert weder Startseite noch Produktcache", () => {
-  assert.doesNotMatch(files.home, /ausmultiplizieren\.html/);
-  assert.doesNotMatch(files.worker, /ausmultiplizieren\.html|distribution-/);
-  assert.match(files.worker, /mathe-unterrichts-app-v22/);
+test("Produktintegration enthält Startseitenkarte und vollständige Offline-Ressourcen", () => {
+  assert.match(files.home, /ausmultiplizieren\.html/);
+  for (const file of ["ausmultiplizieren.html", "distribution.css", "src/distribution-app.js", "src/distribution-math.js", "src/distribution-state.js", "src/distribution-animation.js"]) assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
+  assert.match(files.worker, /mathe-unterrichts-app-v23/);
 });
 
 test("Modul enthält keine Speicherung, Fremdaufrufe oder ausgeschlossenen Produktfunktionen", () => {
