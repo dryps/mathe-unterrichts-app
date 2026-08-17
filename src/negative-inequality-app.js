@@ -7,8 +7,11 @@ const board=$("#negative-board"),sourceEquation=$("#negative-source-equation"),o
 let current=createNegativeInequalityState(),frameId=null,timerId=null,animationToken=0;
 
 function pointText(value,multiplier){if(multiplier===0)return "0";return multiplier<0?`−${value}`:`${value}`;}
-function setPoints(multiplier,model){
-  pointSmall.style.setProperty("--point-position",`${numberLinePercent(model.base*multiplier)}%`);pointLarge.style.setProperty("--point-position",`${numberLinePercent(model.greater*multiplier)}%`);
+function pointPosition(value){return Math.round(numberLinePercent(value)*1000)/1000;}
+function setPoints(multiplier,model,moving=false){
+  pointSmall.style.setProperty("--point-position",`${pointPosition(model.base*multiplier)}%`);pointLarge.style.setProperty("--point-position",`${pointPosition(model.greater*multiplier)}%`);
+  pointSmallLabel.hidden=moving;pointLargeLabel.hidden=moving;
+  if(moving){pointSmall.setAttribute("aria-label","Erster Punkt wird an der Null gespiegelt");pointLarge.setAttribute("aria-label","Zweiter Punkt wird an der Null gespiegelt");return;}
   pointSmallLabel.textContent=pointText(model.base,multiplier);pointLargeLabel.textContent=pointText(model.greater,multiplier);
   pointSmall.setAttribute("aria-label",`Erster Punkt bei ${pointSmallLabel.textContent}`);pointLarge.setAttribute("aria-label",`Zweiter Punkt bei ${pointLargeLabel.textContent}`);
 }
@@ -20,10 +23,10 @@ function render(){
 }
 function finishAnimation(token){if(token!==animationToken||current.view!==NEGATIVE_INEQUALITY_VIEWS.reflecting)return;clearAnimation();current=finishReflection(current);render();}
 function animateReflection(){
-  clearAnimation();const token=animationToken,model=negativeInequalityViewModel(current);next.disabled=true;
+  clearAnimation();const token=animationToken,model=negativeInequalityViewModel(current);next.disabled=true;setPoints(1,model,true);
   if(window.matchMedia("(prefers-reduced-motion: reduce)").matches){setPoints(-1,model);finishAnimation(token);return;}
   let started=null;timerId=setTimeout(()=>finishAnimation(token),REFLECTION_DURATION+120);
-  function animate(time){if(token!==animationToken||current.view!==NEGATIVE_INEQUALITY_VIEWS.reflecting)return;if(started===null)started=time;const frame=reflectionFrame(time-started);setPoints(frame.multiplier,model);if(frame.complete)finishAnimation(token);else frameId=requestAnimationFrame(animate);}
+  function animate(time){if(token!==animationToken||current.view!==NEGATIVE_INEQUALITY_VIEWS.reflecting)return;if(started===null)started=time;const frame=reflectionFrame(time-started);setPoints(frame.multiplier,model,true);if(frame.complete)finishAnimation(token);else frameId=requestAnimationFrame(animate);}
   frameId=requestAnimationFrame(animate);
 }
 next.addEventListener("click",()=>{if(current.locked)return;current=nextNegativeInequalityState(current);render();if(current.view===NEGATIVE_INEQUALITY_VIEWS.reflecting)animateReflection();});

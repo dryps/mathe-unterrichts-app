@@ -47,8 +47,20 @@ test("Mehrfachtipps überholen die laufende Spiegelung nicht", async () => {
   const setup = await harness({ reducedMotion: false }); const next = setup.ids.get("#negative-next");
   next.dispatch("click"); next.dispatch("click"); next.dispatch("click");
   assert.equal(setup.ids.get("#negative-board").dataset.state, "reflecting"); assert.equal(next.disabled, true);
-  setup.frames[0](0); setup.frames.at(-1)(1000);
+  assert.equal(setup.ids.get("#negative-point-small-label").hidden, true);
+  assert.equal(setup.ids.get("#negative-point-large-label").hidden, true);
+  assert.equal(setup.ids.get("#negative-point-small").getAttribute("aria-label"), "Erster Punkt wird an der Null gespiegelt");
+  assert.equal(setup.ids.get("#negative-point-large").getAttribute("aria-label"), "Zweiter Punkt wird an der Null gespiegelt");
+  setup.frames[0](0); setup.frames.at(-1)(250);
+  assert.equal(setup.ids.get("#negative-point-small").style.getPropertyValue("--point-position"), "58.6%");
+  assert.equal(setup.ids.get("#negative-point-large").style.getPropertyValue("--point-position"), "71.5%");
+  assert.equal(setup.ids.get("#negative-point-small-label").hidden, true);
+  setup.frames.at(-1)(1000);
   assert.equal(setup.ids.get("#negative-board").dataset.state, "reflected");
+  assert.equal(setup.ids.get("#negative-point-small-label").hidden, false);
+  assert.equal(setup.ids.get("#negative-point-large-label").hidden, false);
+  assert.equal(setup.ids.get("#negative-point-small-label").textContent, "−2");
+  assert.equal(setup.ids.get("#negative-point-large-label").textContent, "−5");
 });
 
 test("Reset neutralisiert verspätete Animations- und Timeout-Rückrufe", async () => {
