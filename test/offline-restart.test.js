@@ -9,7 +9,7 @@ const origin = "https://mathe-app.test";
 function createWorkerHarness() {
   const listeners = new Map();
   const stores = new Map([
-    ["mathe-unterrichts-app-v20", new Map([["old", new Response("alt")]])],
+    ["mathe-unterrichts-app-v23", new Map([["old", new Response("alt")]])],
   ]);
   let claimed = false;
   let skipped = false;
@@ -123,15 +123,15 @@ function createWorkerHarness() {
   };
 }
 
-test("Installation füllt Version 23 vollständig und Aktivierung entfernt Version 22", async () => {
+test("Installation füllt Version 24 vollständig und Aktivierung entfernt Version 23", async () => {
   const harness = createWorkerHarness();
   await harness.dispatchLifecycle("install");
   await harness.dispatchLifecycle("activate");
 
   assert.equal(harness.skipped, true);
   assert.equal(harness.claimed, true);
-  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v23"]);
-  const current = harness.stores.get("mathe-unterrichts-app-v23");
+  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v24"]);
+  const current = harness.stores.get("mathe-unterrichts-app-v24");
   for (const path of [
     "./",
     "./index.html",
@@ -217,6 +217,12 @@ test("Installation füllt Version 23 vollständig und Aktivierung entfernt Versi
     "./src/distribution-math.js",
     "./src/distribution-state.js",
     "./src/distribution-animation.js",
+    "./aequivalenzumformungen.html",
+    "./equivalence.css",
+    "./src/equivalence-app.js",
+    "./src/equivalence-math.js",
+    "./src/equivalence-state.js",
+    "./src/equivalence-animation.js",
   ]) {
     assert.equal(current.has(new URL(path, `${origin}/`).href), true);
   }
@@ -312,6 +318,12 @@ test("Offline-Neustart liefert Startseite und alle Kapitel ohne Netzwerk aus", a
     "/src/distribution-math.js",
     "/src/distribution-state.js",
     "/src/distribution-animation.js",
+    "/aequivalenzumformungen.html",
+    "/equivalence.css",
+    "/src/equivalence-app.js",
+    "/src/equivalence-math.js",
+    "/src/equivalence-state.js",
+    "/src/equivalence-animation.js",
   ]) {
     const response = await harness.dispatchFetch(path);
     assert.equal(response.status, 200);

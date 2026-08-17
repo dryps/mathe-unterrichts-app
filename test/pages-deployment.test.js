@@ -19,6 +19,7 @@ const htmlFiles = [
   "terme-dividieren.html",
   "plus-minus-klammern.html",
   "ausmultiplizieren.html",
+  "aequivalenzumformungen.html",
   "winkelsumme.html",
   "dreiecksungleichung.html",
   "dreiecksflaeche.html",
@@ -39,11 +40,11 @@ test("Pages-Artefakt ist eine explizite Freigabeliste ohne interne Dateien", () 
   for (const file of htmlFiles) assert.equal(PAGES_RUNTIME_FILES.includes(file), true, file);
 });
 
-test("alle achtzehn direkten Modulpfade und ihre Rücklinks bleiben projektpfadrelativ", async () => {
-  assert.equal(moduleFiles.length, 18);
+test("alle neunzehn direkten Modulpfade und ihre Rücklinks bleiben projektpfadrelativ", async () => {
+  assert.equal(moduleFiles.length, 19);
   for (const file of moduleFiles) {
     const html = await read(file);
-    assert.match(html, /class="module-back-link" href="\.\/#(?:rationale-zahlen|dreiecke|rechnen-mit-termen)"/);
+    assert.match(html, /class="module-back-link" href="\.\/#(?:rationale-zahlen|dreiecke|rechnen-mit-termen|gleichungen-ungleichungen)"/);
     assert.doesNotMatch(html, /(?:src|href)="\/(?!\/)/);
   }
 });
@@ -91,6 +92,7 @@ test("jeder Einstieg registriert den Worker explizit im Projekt-Scope ohne HTTP-
     "src/term-division-app.js",
     "src/bracket-sign-app.js",
     "src/distribution-app.js",
+    "src/equivalence-app.js",
     "src/app.js",
     "src/triangle-inequality-app.js",
     "src/triangle-area-app.js",
@@ -106,7 +108,7 @@ test("jeder Einstieg registriert den Worker explizit im Projekt-Scope ohne HTTP-
 
 test("Service Worker schützt Update, Redirects, Fehlerseiten und Navigation", async () => {
   const worker = await read("sw.js");
-  assert.match(worker, /mathe-unterrichts-app-v23/);
+  assert.match(worker, /mathe-unterrichts-app-v24/);
   assert.match(worker, /cache: "reload"/);
   assert.match(worker, /redirect: "error"/);
   assert.match(worker, /!response\.ok \|\| response\.redirected/);
@@ -134,4 +136,5 @@ test("Workflow reagiert nur auf main oder manuell und besitzt minimale Rechte", 
   assert.match(workflow, /npm run test:terms-visual/);
   assert.match(workflow, /npm run test:like-terms-visual/);
   assert.match(workflow, /npm run test:term-multiplication-visual/);
+  assert.match(workflow, /npm run test:equivalence-visual/);
 });
