@@ -2,10 +2,11 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 function element(id = "") {
-  const listeners = new Map(); const styles = new Map(); const classes = new Set();
+  const listeners = new Map(); const styles = new Map(); const classes = new Set(); const attributes = new Map();
   return { id, dataset: {}, hidden: false, disabled: false, textContent: "", value: "",
     style: { setProperty(name, value) { styles.set(name, String(value)); }, getPropertyValue(name) { return styles.get(name) ?? ""; } },
     classList: { toggle(name, on) { if (on) classes.add(name); else classes.delete(name); }, contains(name) { return classes.has(name); } },
+    setAttribute(name, value) { attributes.set(name, String(value)); }, getAttribute(name) { return attributes.get(name) ?? null; },
     addEventListener(type, listener) { listeners.set(type, listener); }, dispatch(type, event = {}) { return listeners.get(type)?.({ currentTarget: this, target: this, ...event }); },
   };
 }
@@ -27,9 +28,16 @@ async function harness({ reducedMotion = true } = {}) {
 test("Weiter markiert dieselbe Gruppe, entfernt sie synchron und zeigt 3x + 3 = 18", async () => {
   const setup = await harness(); const next = setup.ids.get("#both-sides-next"); const board = setup.ids.get("#both-sides-board");
   assert.equal(board.dataset.state, "irritation");
+  assert.equal(setup.ids.get("#both-sides-left-shared-label").hidden, true);
+  assert.equal(setup.ids.get("#both-sides-right-shared-label").hidden, true);
+  assert.doesNotMatch(setup.ids.get("#both-sides-left-shared").getAttribute("aria-label") ?? "", /gemeinsame|2 x/i);
   next.dispatch("click"); assert.equal(board.dataset.state, "decompose");
   assert.equal(setup.ids.get("#both-sides-left-shared").hidden, false);
   assert.equal(setup.ids.get("#both-sides-right-shared").hidden, false);
+  assert.equal(setup.ids.get("#both-sides-left-shared-label").hidden, false);
+  assert.equal(setup.ids.get("#both-sides-right-shared-label").hidden, false);
+  assert.equal(setup.ids.get("#both-sides-left-shared").getAttribute("aria-label"), "Gemeinsame Gruppe links: 2 x-Bausteine");
+  assert.equal(setup.ids.get("#both-sides-right-shared").getAttribute("aria-label"), "Gemeinsame Gruppe rechts: 2 x-Bausteine");
   next.dispatch("click"); assert.equal(board.dataset.state, "reduced");
   assert.equal(setup.ids.get("#both-sides-reduced-equation").textContent, "3x + 3 = 18");
   next.dispatch("click"); assert.equal(board.dataset.state, "explore"); assert.equal(next.hidden, true);
@@ -42,6 +50,8 @@ test("Regler synchronisiert Ausgangsgleichung, beide Gruppen und Schluss", async
   assert.equal(setup.ids.get("#both-sides-source-equation").textContent, "7x + 3 = 4x + 18");
   assert.equal(setup.ids.get("#both-sides-left-shared-4").hidden, false);
   assert.equal(setup.ids.get("#both-sides-right-shared-4").hidden, false);
+  assert.equal(setup.ids.get("#both-sides-left-shared").getAttribute("aria-label"), "Gemeinsame Gruppe links: 4 x-Bausteine");
+  assert.equal(setup.ids.get("#both-sides-right-shared").getAttribute("aria-label"), "Gemeinsame Gruppe rechts: 4 x-Bausteine");
   assert.equal(setup.ids.get("#both-sides-reduced-equation").textContent, "3x + 3 = 18");
   assert.match(setup.ids.get("#both-sides-conclusion-text").textContent, /verkürzte Schreibweise/);
   assert.match(setup.ids.get("#both-sides-live").textContent, /beiden Seiten/);
