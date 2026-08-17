@@ -51,6 +51,16 @@ zweiten Summanden getrennt gelesen. Die Zahlengerade zeigt fünf gleiche Schritt
 von 3 nach links bis −2. Im Endzustand lässt sich ausschließlich der negative
 Summand von −1 bis −6 durch Ziehen des Pfeilendes verändern.
 
+**Warum ist 4 − (−2) dasselbe wie 4 + 2?**
+
+*Subtraktion negativer Zahlen*
+
+Unter `subtraktion-negativ.html` zeigt der zweite Term zunächst zwei Einheiten
+nach links. Das äußere Subtraktionszeichen kehrt diesen gleich langen Vektor
+ruhig um; danach bewegt sich der Punkt von 4 über 5 nach 6. Im Endzustand lässt
+sich ausschließlich der negative Subtrahend von −1 bis −4 durch Ziehen des
+violetten Pfeilendes verändern.
+
 ## Kapitel 2: Erstes Aha-Modul
 
 **Warum bleiben es immer 180°?**  
@@ -167,6 +177,7 @@ npm run test:number-line-visual
 npm run test:order-visual
 npm run test:absolute-visual
 npm run test:addition-visual
+npm run test:subtraction-visual
 npm start
 ```
 

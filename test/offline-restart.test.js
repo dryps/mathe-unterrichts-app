@@ -9,7 +9,7 @@ const origin = "https://mathe-app.test";
 function createWorkerHarness() {
   const listeners = new Map();
   const stores = new Map([
-    ["mathe-unterrichts-app-v13", new Map([["old", new Response("alt")]])],
+    ["mathe-unterrichts-app-v14", new Map([["old", new Response("alt")]])],
   ]);
   let claimed = false;
   let skipped = false;
@@ -123,15 +123,15 @@ function createWorkerHarness() {
   };
 }
 
-test("Installation füllt Version 14 vollständig und Aktivierung entfernt alte Caches", async () => {
+test("Installation füllt Version 15 vollständig und Aktivierung entfernt alte Caches", async () => {
   const harness = createWorkerHarness();
   await harness.dispatchLifecycle("install");
   await harness.dispatchLifecycle("activate");
 
   assert.equal(harness.skipped, true);
   assert.equal(harness.claimed, true);
-  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v14"]);
-  const current = harness.stores.get("mathe-unterrichts-app-v14");
+  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v15"]);
+  const current = harness.stores.get("mathe-unterrichts-app-v15");
   for (const path of [
     "./",
     "./index.html",
@@ -170,6 +170,12 @@ test("Installation füllt Version 14 vollständig und Aktivierung entfernt alte 
     "./src/addition-negative-animation.js",
     "./src/addition-negative-geometry.js",
     "./src/addition-negative-state.js",
+    "./subtraktion-negativ.html",
+    "./subtraction-negative.css",
+    "./src/subtraction-negative-app.js",
+    "./src/subtraction-negative-animation.js",
+    "./src/subtraction-negative-geometry.js",
+    "./src/subtraction-negative-state.js",
   ]) {
     assert.equal(current.has(new URL(path, `${origin}/`).href), true);
   }
@@ -218,6 +224,12 @@ test("Offline-Neustart liefert Startseite und alle Kapitel ohne Netzwerk aus", a
     "/src/addition-negative-animation.js",
     "/src/addition-negative-geometry.js",
     "/src/addition-negative-state.js",
+    "/subtraktion-negativ.html",
+    "/subtraction-negative.css",
+    "/src/subtraction-negative-app.js",
+    "/src/subtraction-negative-animation.js",
+    "/src/subtraction-negative-geometry.js",
+    "/src/subtraction-negative-state.js",
   ]) {
     const response = await harness.dispatchFetch(path);
     assert.equal(response.status, 200);

@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f4f7fb" />
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Mathe im Unterricht" />
+    <meta name="description" content="Interaktiver Aha-Moment zur Subtraktion negativer Zahlen." />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./icon-180.png" />
+    <link rel="stylesheet" href="./subtraction-negative.css" />
+    <link rel="stylesheet" href="./navigation.css" />
+    <title>Warum ist 4 − (−2) dasselbe wie 4 + 2?</title>
+  </head>
+  <body>
+    <main class="subtraction-shell">
+      <nav class="module-navigation" aria-label="Modulnavigation">
+        <a class="module-back-link" href="./#rationale-zahlen">← Rationale Zahlen</a>
+      </nav>
+
+      <header class="subtraction-header">
+        <div>
+          <p class="eyebrow">Rationale Zahlen · 7. Klasse</p>
+          <h1>Warum ist 4 − (−2) dasselbe wie 4 + 2?</h1>
+          <p class="subtitle">Subtraktion negativer Zahlen</p>
+        </div>
+        <p class="local-note" aria-label="Datenschutzstatus">
+          <span aria-hidden="true">●</span> lokal · ohne Speicherung
+        </p>
+      </header>
+
+      <section class="subtraction-visualizer" aria-labelledby="subtraction-board-title">
+        <h2 id="subtraction-board-title" class="visually-hidden">
+          Subtraktion einer negativen Zahl auf der Zahlengeraden
+        </h2>
+        <div class="subtraction-stage">
+          <div id="subtraction-prompt" class="subtraction-prompt">
+            <p class="prompt-formula">4 − (−2) = ?</p>
+            <p>Warum führen zwei Minuszeichen hier nach rechts?</p>
+          </div>
+
+          <svg
+            id="subtraction-board"
+            class="subtraction-board"
+            viewBox="0 0 1400 560"
+            preserveAspectRatio="xMidYMid meet"
+            role="img"
+            aria-labelledby="subtraction-svg-title subtraction-svg-description"
+            data-state="prompt"
+          >
+            <title id="subtraction-svg-title">Zahlengerade von null bis acht</title>
+            <desc id="subtraction-svg-description">
+              Start bei vier, ursprüngliche negative Richtung nach links und durch Subtraktion umgekehrte Bewegung nach rechts.
+            </desc>
+            <rect class="board-background" x="2" y="2" width="1396" height="556" rx="32" />
+
+            <g id="subtraction-axis-layer" visibility="hidden" aria-hidden="true">
+              <path class="axis-arrow" d="M 92 310 L 132 270 L 132 350 Z" />
+              <path class="axis-arrow" d="M 1308 310 L 1268 270 L 1268 350 Z" />
+              <line id="subtraction-axis" class="axis" x1="132" y1="310" x2="1268" y2="310" />
+              <g id="subtraction-ticks">
+                <g class="tick zero-tick" data-subtraction-value="0"><line y1="274" y2="346"/><text y="405">0</text></g>
+                <g class="tick positive-tick" data-subtraction-value="1"><line y1="282" y2="338"/><text y="405">1</text></g>
+                <g class="tick positive-tick" data-subtraction-value="2"><line y1="282" y2="338"/><text y="405">2</text></g>
+                <g class="tick positive-tick" data-subtraction-value="3"><line y1="282" y2="338"/><text y="405">3</text></g>
+                <g class="tick positive-tick start-tick" data-subtraction-value="4"><line y1="272" y2="348"/><text y="405">4</text></g>
+                <g class="tick positive-tick" data-subtraction-value="5"><line y1="282" y2="338"/><text y="405">5</text></g>
+                <g class="tick positive-tick" data-subtraction-value="6"><line y1="282" y2="338"/><text y="405">6</text></g>
+                <g class="tick positive-tick" data-subtraction-value="7"><line y1="282" y2="338"/><text y="405">7</text></g>
+                <g class="tick positive-tick" data-subtraction-value="8"><line y1="282" y2="338"/><text y="405">8</text></g>
+              </g>
+
+              <g id="subtraction-start-point" class="start-point" visibility="hidden">
+                <circle class="point-halo" r="36"/><circle class="point-dot" r="22"/>
+              </g>
+
+              <g id="subtraction-original-vector" class="vector original-vector" visibility="hidden" aria-hidden="true">
+                <line id="subtraction-original-line" class="vector-line" />
+                <g id="subtraction-original-boundaries" class="step-boundaries"></g>
+                <path id="subtraction-original-arrowhead" class="vector-arrowhead original-arrowhead" d="M 0 172 L 36 148 L 36 196 Z" />
+                <text id="subtraction-original-label" class="vector-label original-label" y="152">−2: zwei Einheiten nach links</text>
+              </g>
+
+              <g id="subtraction-reversal-vector" class="vector reversal-vector" visibility="hidden" aria-hidden="true">
+                <line id="subtraction-reversal-line" class="vector-line" />
+                <g id="subtraction-reversal-boundaries" class="step-boundaries"></g>
+                <path id="subtraction-reversal-arrowhead" class="vector-arrowhead reversal-arrowhead" d="M 0 172 L 36 148 L 36 196 Z" />
+              </g>
+
+              <g id="subtraction-effective-vector" class="vector effective-vector" visibility="hidden" aria-hidden="true">
+                <line id="subtraction-effective-line" class="vector-line" />
+                <g id="subtraction-effective-boundaries" class="step-boundaries"></g>
+                <path id="subtraction-effective-arrowhead" class="vector-arrowhead effective-arrowhead" d="M 0 230 L -36 206 L -36 254 Z" />
+                <text id="subtraction-effective-label" class="vector-label effective-label" y="276">subtrahiert: zwei Einheiten nach rechts</text>
+              </g>
+
+              <g id="subtraction-moving-point" class="moving-point" visibility="hidden">
+                <circle class="moving-halo" r="36"/><circle class="moving-dot" r="22"/>
+              </g>
+              <g id="subtraction-result-point" class="result-point" visibility="hidden">
+                <circle class="result-halo" r="36"/><circle class="result-dot" r="22"/>
+              </g>
+              <g
+                id="subtraction-end-handle"
+                class="end-handle"
+                visibility="hidden"
+                role="slider"
+                tabindex="0"
+                aria-label="Negativen Subtrahenden verändern"
+                aria-valuemin="-4" aria-valuemax="-1" aria-valuenow="-2"
+              >
+                <circle class="handle-halo" r="43"/><circle class="handle-dot" r="25"/>
+              </g>
+
+              <g id="subtraction-formula" class="formula" visibility="hidden">
+                <rect x="402" y="28" width="596" height="88" rx="27"/>
+                <text x="700" y="88">
+                  <tspan id="subtraction-start-term">4</tspan>
+                  <tspan id="subtraction-operator"> − </tspan>
+                  <tspan>(</tspan><tspan id="subtraction-sign">−</tspan><tspan id="subtraction-magnitude">2</tspan><tspan>)</tspan>
+                  <tspan id="subtraction-result-term"></tspan>
+                </text>
+              </g>
+
+              <g id="subtraction-equations" class="equations" visibility="hidden">
+                <rect x="350" y="426" width="700" height="116" rx="25"/>
+                <text id="subtraction-equation-one" x="700" y="462">4 − (−2) = 6</text>
+                <text id="subtraction-equation-two" x="700" y="497">4 + 2 = 6</text>
+                <text id="subtraction-equation-three" x="700" y="532">4 − (−2) = 4 + 2</text>
+              </g>
+            </g>
+          </svg>
+        </div>
+      </section>
+
+      <section
+        class="subtraction-insight"
+        aria-live="polite"
+        data-conclusion="Subtrahieren kehrt die Richtung um."
+      >
+        <div>
+          <p id="subtraction-insight" class="insight-text">Warum führen zwei Minuszeichen hier nach rechts?</p>
+          <p id="subtraction-conclusion-detail" class="conclusion-detail" hidden>
+            Darum wird aus „minus negativ“ eine Bewegung nach rechts.
+          </p>
+        </div>
+        <div class="subtraction-controls">
+          <button id="subtraction-next" class="primary-button" type="button">Weiter</button>
+          <button id="subtraction-reset" class="reset-button" type="button">Zurücksetzen</button>
+        </div>
+        <p id="subtraction-live-value" class="visually-hidden" aria-live="polite"></p>
+      </section>
+
+      <noscript>Für diesen interaktiven Aha-Moment muss JavaScript aktiviert sein.</noscript>
+    </main>
+    <script type="module" src="./src/subtraction-negative-app.js"></script>
+  </body>
+</html>
