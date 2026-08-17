@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f5f7fb" />
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Mathe im Unterricht" />
+    <meta name="description" content="Interaktiver Aha-Moment zu Lösungsmengen von Ungleichungen." />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./icon-180.png" />
+    <link rel="stylesheet" href="./navigation.css" />
+    <link rel="stylesheet" href="./solution-set.css" />
+    <link rel="stylesheet" href="./solution-set-steps.css" />
+    <title>Warum beschreibt eine Ungleichung einen ganzen Bereich statt nur einen Wert?</title>
+  </head>
+  <body>
+    <main class="solution-shell">
+      <nav class="module-navigation" aria-label="Modulnavigation"><a class="module-back-link" href="./#gleichungen-ungleichungen">← Gleichungen · Ungleichungen</a></nav>
+      <header class="solution-header">
+        <div><p class="eyebrow">Gleichungen · Ungleichungen · Kapitel 4</p><h1>Warum beschreibt eine Ungleichung einen ganzen Bereich statt nur einen Wert?</h1><p class="subtitle">Lösungsmengen</p></div>
+        <p class="local-note" aria-label="Datenschutzstatus"><span aria-hidden="true">●</span> lokal · ohne Speicherung</p>
+      </header>
+
+      <section id="solution-board" class="solution-board" data-state="irritation" aria-labelledby="solution-board-title">
+        <h2 id="solution-board-title" class="visually-hidden">Vom einzelnen Testwert zur Lösungsmenge</h2>
+        <p id="solution-source-equation" class="source-equation">2x &lt; 6</p>
+
+        <section id="solution-test-panel" class="test-panel" hidden>
+          <div class="test-control-row"><label for="solution-test-control">Testwert <strong id="solution-test-value">x = 4</strong></label><div class="range-with-steps"><button id="solution-test-decrease" class="step-button" type="button" aria-label="Testwert verkleinern">−</button><input id="solution-test-control" type="range" min="-2" max="6" step="1" value="4" /><button id="solution-test-increase" class="step-button" type="button" aria-label="Testwert vergrößern">+</button></div></div>
+          <div class="test-result" aria-label="Einsetzen und prüfen"><span id="solution-substitution">2 · 4 = 8</span><span id="solution-comparison">8 &lt; 6</span><strong id="solution-truth" data-truth="false">falsch</strong></div>
+        </section>
+
+        <section id="solution-boundary" class="boundary-card" hidden><span>beide Seiten : 2</span><strong id="solution-boundary-equation">x &lt; 3</strong><small>3 ist der offene Rand.</small></section>
+
+        <section id="solution-line-stage" class="line-stage" hidden>
+          <div class="solution-line" aria-hidden="true">
+            <span class="line-axis"></span><span id="solution-range" class="solution-range"></span>
+            <span class="tick tick-start">−2</span><span class="tick tick-quarter">0</span><span class="tick tick-boundary">3</span><span class="tick tick-end">6</span>
+            <span class="boundary-point"><span class="visually-hidden">offener Rand bei 3</span></span>
+            <span id="solution-point" class="test-point" hidden><strong id="solution-point-label">4</strong></span>
+          </div>
+          <p class="range-caption"><span aria-hidden="true">←</span> alle Zahlen kleiner als 3</p>
+        </section>
+
+        <p id="solution-explore" class="explore-note" hidden>Teste weitere Werte: Liegt der Punkt im markierten Bereich?</p>
+        <section id="solution-conclusion" class="conclusion-card" hidden><h2>Aha</h2><p id="solution-conclusion-text">Ungleichungen beschreiben häufig Mengen von Lösungen.</p></section>
+      </section>
+
+      <section class="solution-insight" aria-live="polite">
+        <p id="solution-insight" class="insight-text">Die Ungleichung fragt nicht nur nach einem einzigen x. Welche Werte könnten passen?</p>
+        <div class="solution-controls"><button id="solution-next" class="primary-button" type="button">Weiter</button><button id="solution-reset" class="reset-button" type="button">Zurücksetzen</button></div>
+        <p id="solution-live" class="visually-hidden" aria-live="polite"></p>
+      </section>
+      <noscript>Für diesen interaktiven Aha-Moment muss JavaScript aktiviert sein.</noscript>
+    </main>
+    <script type="module" src="./src/solution-set-app.js"></script>
+  </body>
+</html>
