@@ -31,5 +31,5 @@ testControl.addEventListener("input",event=>{current=setSolutionTestValue(curren
 testDecrease.addEventListener("click",()=>{current=setSolutionTestValue(current,current.x-1);render();});
 testIncrease.addEventListener("click",()=>{current=setSolutionTestValue(current,current.x+1);render();});
 reset.addEventListener("click",()=>{clearAnimation();current=resetSolutionSetState();render();});
-if("serviceWorker" in navigator)window.addEventListener("load",()=>{navigator.serviceWorker.register("./sw.js",{scope:"./",updateViaCache:"none"}).catch(()=>{});});
+if("serviceWorker" in navigator)window.addEventListener("load",()=>{navigator.serviceWorker.register("./sw.js", { scope: "./", updateViaCache: "none" }).catch(()=>{});});
 render();

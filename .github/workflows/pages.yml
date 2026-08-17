@@ -56,6 +56,7 @@ jobs:
           npm run test:equivalence-visual
           npm run test:both-sides-visual
           npm run test:negative-inequality-visual
+          npm run test:solution-set-visual
 
       - name: Kontrolliertes Pages-Artefakt bauen
         run: npm run build:pages

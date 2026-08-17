@@ -49,6 +49,8 @@ const files = {
   bothSidesApp: await readFile(new URL("../src/both-sides-app.js", import.meta.url), "utf8"),
   negativeInequality: await readFile(new URL("../ungleichungen-negativ.html", import.meta.url), "utf8"),
   negativeInequalityApp: await readFile(new URL("../src/negative-inequality-app.js", import.meta.url), "utf8"),
+  solutionSet: await readFile(new URL("../loesungsmengen.html", import.meta.url), "utf8"),
+  solutionSetApp: await readFile(new URL("../src/solution-set-app.js", import.meta.url), "utf8"),
   worker: await readFile(new URL("../sw.js", import.meta.url), "utf8"),
   manifest: await readFile(new URL("../manifest.webmanifest", import.meta.url), "utf8"),
 };
@@ -86,8 +88,8 @@ test("Startseite zeigt Klasse 7 mit den vier produktiven Kapiteln", () => {
   assert.doesNotMatch(files.home, /<ul|<ol/);
 });
 
-test("Kapitel 1 bis 3 enthalten je sechs Module und Kapitel 4 enthält K4.1 bis K4.3", () => {
-  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 21);
+test("Kapitel 1 bis 3 enthalten je sechs Module und Kapitel 4 enthält K4.1 bis K4.4", () => {
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 22);
   assert.match(files.home, /href="\.\/zahlengerade\.html"/);
   assert.match(files.home, /Warum liegen negative Zahlen links von der Null\?/);
   assert.match(files.home, /<span class="module-subtitle">Zahlengerade<\/span>/);
@@ -152,8 +154,11 @@ test("Kapitel 1 bis 3 enthalten je sechs Module und Kapitel 4 enthält K4.1 bis 
   assert.match(files.home, /Warum bleibt eine Gleichung wahr, wenn ich auf beiden Seiten dasselbe tue\?/);
   assert.match(files.home, /Warum ist „rüberbringen“ eigentlich keine neue Rechenregel\?/);
   assert.match(files.home, /Warum dreht sich bei einer negativen Zahl das Ungleichheitszeichen um\?/);
-  assert.equal((files.home.match(/class="module-status"/g) ?? []).length, 21);
-  assert.equal((files.home.match(/fertig/g) ?? []).length, 21);
+  assert.match(files.home, /href="\.\/loesungsmengen\.html"/);
+  assert.match(files.home, /Warum beschreibt eine Ungleichung einen ganzen Bereich statt nur einen Wert\?/);
+  assert.match(files.home, /<span class="module-subtitle">Lösungsmengen<\/span>/);
+  assert.equal((files.home.match(/class="module-status"/g) ?? []).length, 22);
+  assert.equal((files.home.match(/fertig/g) ?? []).length, 22);
 });
 
 test("Alle Dreiecksmodule behalten ausschließlich ihren bisherigen Rückweg", () => {
@@ -197,7 +202,7 @@ test("Alle sechs Kapitel-3-Module führen ausschließlich zu Rechnen mit Termen 
 });
 
 test("Kapitel-4-Module führen ausschließlich zu Gleichungen · Ungleichungen zurück", () => {
-  for (const module of [files.equivalence, files.bothSides, files.negativeInequality]) {
+  for (const module of [files.equivalence, files.bothSides, files.negativeInequality, files.solutionSet]) {
     assert.equal((module.match(/class="module-navigation"/g) ?? []).length, 1);
     assert.match(module, /class="module-back-link" href="\.\/#gleichungen-ungleichungen">← Gleichungen · Ungleichungen<\/a>/);
     assert.doesNotMatch(module, /Suche|Einstellungen|Favoriten|Statistik|Anmelden/);
@@ -417,13 +422,20 @@ test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und beide Kapite
     "src/negative-inequality-math.js",
     "src/negative-inequality-state.js",
     "src/negative-inequality-animation.js",
+    "loesungsmengen.html",
+    "solution-set.css",
+    "solution-set-steps.css",
+    "src/solution-set-app.js",
+    "src/solution-set-math.js",
+    "src/solution-set-state.js",
+    "src/solution-set-animation.js",
     "manifest.webmanifest",
     "icon.svg",
   ]) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
   assert.match(files.shell, /serviceWorker\.register/);
-  assert.match(files.worker, /mathe-unterrichts-app-v26/);
+  assert.match(files.worker, /mathe-unterrichts-app-v27/);
 });
 
 test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", () => {
@@ -458,6 +470,8 @@ test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", 
     files.bothSidesApp,
     files.negativeInequality,
     files.negativeInequalityApp,
+    files.solutionSet,
+    files.solutionSetApp,
     files.worker,
   ].join("\n");
   assert.doesNotMatch(runtime, /localStorage|sessionStorage|indexedDB|document\.cookie/);

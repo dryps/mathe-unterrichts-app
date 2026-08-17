@@ -133,7 +133,7 @@ h2 {
 }
 
 .chapter-equations .module-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .module-card {
@@ -309,6 +309,18 @@ noscript {
 
   .chapter-terms .module-grid {
     grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .chapter-equations .module-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .chapter-equations .module-card {
+    grid-column: span 2;
+  }
+
+  .chapter-equations .module-card:nth-child(4) {
+    grid-column: span 2;
   }
 
   .module-card {

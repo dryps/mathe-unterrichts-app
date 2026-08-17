@@ -73,7 +73,7 @@ assert.doesNotMatch(runtimeText, /localStorage|sessionStorage|indexedDB|document
 assert.doesNotMatch(runtimeText, /analytics|telemetry|tracking|google-analytics/i);
 
 const worker = await readFile(join(dist, "sw.js"), "utf8");
-assert.match(worker, /mathe-unterrichts-app-v26/);
+assert.match(worker, /mathe-unterrichts-app-v27/);
 assert.match(worker, /redirect: "error"/);
 assert.match(worker, /response\.redirected/);
 assert.match(worker, /event\.request\.mode === "navigate"/);
