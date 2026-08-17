@@ -114,7 +114,7 @@ test("Modul enthält keine Speicherung, Schülerdaten, Analyse oder externen Lau
   assert.doesNotMatch(runtime, /(?:src|href)=["'`]https?:\/\/|fetch\(\s*["'`]https?:\/\//);
 });
 
-test("Offline-Cache und Pages-Gate enthalten das vollständige Modul auf Version 20", () => {
+test("Offline-Cache und Pages-Gate enthalten das vollständige Modul auf Version 21", () => {
   for (const file of [
     "multiplikation-negativ.html",
     "multiplication-negative.css",
@@ -125,7 +125,7 @@ test("Offline-Cache und Pages-Gate enthalten das vollständige Modul auf Version
   ]) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
-  assert.match(files.worker, /mathe-unterrichts-app-v20/);
+  assert.match(files.worker, /mathe-unterrichts-app-v21/);
   assert.equal(
     files.package.scripts["test:multiplication-visual"],
     "node scripts/render-multiplication-negative-states.mjs",

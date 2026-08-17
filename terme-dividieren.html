@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f4f7fb" />
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Mathe im Unterricht" />
+    <meta name="description" content="Interaktiver Aha-Moment zum Dividieren von Termen." />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./icon-180.png" />
+    <link rel="stylesheet" href="./navigation.css" />
+    <link rel="stylesheet" href="./term-division.css" />
+    <title>Warum bleibt beim Teilen eines Terms genau das übrig, was nicht weggeteilt wurde?</title>
+  </head>
+  <body>
+    <main class="term-division-shell">
+      <nav class="module-navigation" aria-label="Modulnavigation">
+        <a class="module-back-link" href="./#rechnen-mit-termen">← Rechnen mit Termen</a>
+      </nav>
+
+      <header class="term-division-header">
+        <div>
+          <p class="eyebrow">Rechnen mit Termen · Kapitel 3</p>
+          <h1>Warum bleibt beim Teilen eines Terms genau das übrig, was nicht weggeteilt wurde?</h1>
+          <p class="subtitle">Terme dividieren</p>
+        </div>
+        <p class="local-note" aria-label="Datenschutzstatus">
+          <span aria-hidden="true">●</span> lokal · ohne Speicherung
+        </p>
+      </header>
+
+      <section
+        id="term-division-board"
+        class="term-division-board"
+        data-state="irritation"
+        aria-labelledby="term-division-board-title"
+      >
+        <h2 id="term-division-board-title" class="visually-hidden">
+          Division als Rückgängigmachen eines vorhandenen Faktors
+        </h2>
+
+        <section id="term-division-irritation" class="state-panel irritation-panel">
+          <p class="hero-expression">(3 · 4 · x) : 3</p>
+          <p class="state-question">Was bewirkt das Teilen durch 3 mit dem ganzen Produkt?</p>
+        </section>
+
+        <section id="term-division-factors" class="state-panel factor-panel" hidden>
+          <p class="small-expression">3 · 4 · x</p>
+          <div class="factor-chain" aria-label="Faktor 3 mal Paket 4x">
+            <span class="factor-token">3</span>
+            <span class="operator" aria-hidden="true">·</span>
+            <span class="package-token">4x</span>
+          </div>
+          <p id="factor-formula" class="state-formula">3 · (4x)</p>
+          <p class="structure-label">Der Faktor 3 sagt: Das Paket 4x ist dreimal vorhanden.</p>
+        </section>
+
+        <section id="term-division-packages" class="state-panel package-panel" hidden>
+          <p id="package-equation" class="state-formula">3 · (4x)</p>
+          <p id="group-caption" class="structure-label">3 gleiche Gruppen mit je 4x</p>
+
+          <div class="package-grid" role="list" aria-label="Gleich große Gruppen">
+            <div id="division-package-1" class="division-package" role="listitem" aria-label="Gruppe 1 von 3 mit vier x-Bausteinen">
+              <span class="package-number" aria-hidden="true">1</span>
+              <span class="x-unit">x</span><span class="x-unit">x</span><span class="x-unit">x</span><span class="x-unit">x</span>
+            </div>
+            <div id="division-package-2" class="division-package" role="listitem" aria-label="Gruppe 2 von 3 mit vier x-Bausteinen">
+              <span class="package-number" aria-hidden="true">2</span>
+              <span class="x-unit">x</span><span class="x-unit">x</span><span class="x-unit">x</span><span class="x-unit">x</span>
+            </div>
+            <div id="division-package-3" class="division-package" role="listitem" aria-label="Gruppe 3 von 3 mit vier x-Bausteinen">
+              <span class="package-number" aria-hidden="true">3</span>
+              <span class="x-unit">x</span><span class="x-unit">x</span><span class="x-unit">x</span><span class="x-unit">x</span>
+            </div>
+            <div id="division-package-4" class="division-package" role="listitem" aria-label="Gruppe 4 von 4 mit vier x-Bausteinen" hidden>
+              <span class="package-number" aria-hidden="true">4</span>
+              <span class="x-unit">x</span><span class="x-unit">x</span><span class="x-unit">x</span><span class="x-unit">x</span>
+            </div>
+            <div id="division-package-5" class="division-package" role="listitem" aria-label="Gruppe 5 von 5 mit vier x-Bausteinen" hidden>
+              <span class="package-number" aria-hidden="true">5</span>
+              <span class="x-unit">x</span><span class="x-unit">x</span><span class="x-unit">x</span><span class="x-unit">x</span>
+            </div>
+          </div>
+
+          <section id="term-division-division" class="division-callout" hidden>
+            <p id="division-formula" class="callout-formula">(3 · 4 · x) : 3</p>
+            <p id="division-question">Durch 3 teilen heißt: den Inhalt einer von drei gleichen Gruppen bestimmen.</p>
+          </section>
+
+          <section id="term-division-result" class="result-card" hidden>
+            <p>Inhalt einer Gruppe</p>
+            <p id="result-equation" class="result-equation">(3 · 4 · x) : 3 = 4x</p>
+          </section>
+
+          <section id="term-division-explore" class="explore-panel" hidden>
+            <label class="range-control" for="group-control">
+              <span>Verändere die Zahl gleicher Gruppen</span>
+              <strong id="group-value">3 gleiche Gruppen</strong>
+              <input id="group-control" type="range" min="2" max="5" step="1" value="3" />
+              <span class="range-scale" aria-hidden="true"><span>2</span><span>5</span></span>
+            </label>
+          </section>
+
+          <section id="term-division-conclusion" class="conclusion-card" hidden>
+            <h2>Division macht einen vorhandenen Faktor rückgängig.</h2>
+            <p>Der Divisor bestimmt hier die Zahl gleicher Gruppen. Übrig bleibt ihr Inhalt: 4x.</p>
+          </section>
+        </section>
+      </section>
+
+      <section class="term-division-insight" aria-live="polite">
+        <p id="term-division-insight" class="insight-text">
+          Welche Wirkung hat der Divisor 3 auf das ganze Produkt?
+        </p>
+        <div class="term-division-controls">
+          <button id="term-division-next" class="primary-button" type="button">Weiter</button>
+          <button id="term-division-reset" class="reset-button" type="button">Zurücksetzen</button>
+        </div>
+        <p id="term-division-live" class="visually-hidden" aria-live="polite"></p>
+      </section>
+
+      <noscript>Für diesen interaktiven Aha-Moment muss JavaScript aktiviert sein.</noscript>
+    </main>
+    <script type="module" src="./src/term-division-app.js"></script>
+  </body>
+</html>

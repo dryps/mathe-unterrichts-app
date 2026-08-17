@@ -21,20 +21,20 @@ const runtimeFiles = [
   "src/term-multiplication-animation.js",
 ];
 
-test("Startseite integriert K3.3 genau einmal als dritte K3-Karte", () => {
+test("Startseite behält K3.3 genau einmal als dritte K3-Karte", () => {
   const chapter = files.home.match(
     /<section\s+id="rechnen-mit-termen"[\s\S]*?<\/section>/,
   )?.[0];
   assert.ok(chapter);
-  assert.equal((chapter.match(/class="module-card"/g) ?? []).length, 3);
+  assert.equal((chapter.match(/class="module-card"/g) ?? []).length, 4);
   assert.equal((files.home.match(/href="\.\/terme-multiplizieren\.html"/g) ?? []).length, 1);
   assert.match(files.home, /Warum ist x · x = x² – und nicht 2x\?/);
   assert.match(files.home, /<span class="module-subtitle">Terme multiplizieren<\/span>/);
-  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 15);
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 16);
 });
 
-test("Cache v20 enthält ausschließlich die sechs neuen Laufzeitdateien", () => {
-  assert.match(files.worker, /mathe-unterrichts-app-v20/);
+test("Cache v21 enthält weiterhin alle sechs K3.3-Laufzeitdateien", () => {
+  assert.match(files.worker, /mathe-unterrichts-app-v21/);
   assert.doesNotMatch(files.worker, /mathe-unterrichts-app-v18/);
   for (const file of runtimeFiles) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
