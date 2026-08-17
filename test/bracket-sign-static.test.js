@@ -71,7 +71,7 @@ test("Produktintegration enthält Startseitenkarte und vollständige Offline-Res
   for (const file of ["plus-minus-klammern.html", "bracket-sign.css", "src/bracket-sign-app.js", "src/bracket-sign-math.js", "src/bracket-sign-state.js", "src/bracket-sign-animation.js"]) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
-  assert.match(files.worker, /mathe-unterrichts-app-v26/);
+  assert.match(files.worker, /mathe-unterrichts-app-v27/);
 });
 
 test("Modul enthält keine Speicherung, Fremdaufrufe oder ausgeschlossenen Produktfunktionen", () => {

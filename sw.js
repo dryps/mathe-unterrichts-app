@@ -1,4 +1,4 @@
-const CACHE_NAME = "mathe-unterrichts-app-v26";
+const CACHE_NAME = "mathe-unterrichts-app-v27";
 const NAVIGATION_FALLBACK = "./index.html";
 const APP_FILES = [
   "./",
@@ -125,6 +125,13 @@ const APP_FILES = [
   "./src/negative-inequality-math.js",
   "./src/negative-inequality-state.js",
   "./src/negative-inequality-animation.js",
+  "./loesungsmengen.html",
+  "./solution-set.css",
+  "./solution-set-steps.css",
+  "./src/solution-set-app.js",
+  "./src/solution-set-math.js",
+  "./src/solution-set-state.js",
+  "./src/solution-set-animation.js",
   "./manifest.webmanifest",
   "./icon.svg",
   "./icon-180.png",
