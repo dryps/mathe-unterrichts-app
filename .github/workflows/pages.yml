@@ -54,6 +54,7 @@ jobs:
           npm run test:bracket-sign-visual
           npm run test:distribution-visual
           npm run test:equivalence-visual
+          npm run test:both-sides-visual
 
       - name: Kontrolliertes Pages-Artefakt bauen
         run: npm run build:pages

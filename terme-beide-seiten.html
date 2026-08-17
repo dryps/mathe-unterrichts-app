@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f4f7fb" />
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Mathe im Unterricht" />
+    <meta name="description" content="Interaktiver Aha-Moment zu Termen auf beiden Seiten." />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./icon-180.png" />
+    <link rel="stylesheet" href="./navigation.css" />
+    <link rel="stylesheet" href="./both-sides.css" />
+    <title>Warum ist „rüberbringen“ eigentlich keine neue Rechenregel?</title>
+  </head>
+  <body>
+    <main class="both-sides-shell">
+      <nav class="module-navigation" aria-label="Modulnavigation"><a class="module-back-link" href="./#gleichungen-ungleichungen">← Gleichungen · Ungleichungen</a></nav>
+      <header class="both-sides-header">
+        <div><p class="eyebrow">Gleichungen · Ungleichungen · Kapitel 4</p><h1>Warum ist „rüberbringen“ eigentlich keine neue Rechenregel?</h1><p class="subtitle">Terme auf beiden Seiten</p></div>
+        <p class="local-note" aria-label="Datenschutzstatus"><span aria-hidden="true">●</span> lokal · ohne Speicherung</p>
+      </header>
+
+      <section id="both-sides-board" class="both-sides-board" data-state="irritation" aria-labelledby="both-sides-board-title">
+        <h2 id="both-sides-board-title" class="visually-hidden">Dieselben x-Terme werden auf beiden Seiten entfernt</h2>
+        <p class="hero-equation">5x + 3 = 2x + 18</p>
+
+        <section id="both-sides-source" class="source-stage" aria-label="Ausgangsgleichung als algebraische Bausteine">
+          <p id="both-sides-source-equation" class="source-equation">5x + 3 = 2x + 18</p>
+          <div class="equation-trays">
+            <div class="equation-tray">
+              <span class="tray-label">linke Seite</span>
+              <div id="both-sides-left-shared" class="shared-x-group" aria-label="x-Bausteine auf der linken Seite">
+                <span id="both-sides-left-shared-1" class="shared-x-tile">x</span><span id="both-sides-left-shared-2" class="shared-x-tile">x</span><span id="both-sides-left-shared-3" class="shared-x-tile" hidden>x</span><span id="both-sides-left-shared-4" class="shared-x-tile" hidden>x</span>
+              </div>
+              <span class="plus" aria-hidden="true">+</span>
+              <div class="remaining-x-group" aria-label="Drei verbleibende x-Bausteine"><span class="remaining-x-tile">x</span><span class="remaining-x-tile">x</span><span class="remaining-x-tile">x</span></div>
+              <span class="constant-tile">3</span>
+              <strong id="both-sides-left-shared-label" class="shared-label" hidden>− 2x</strong>
+            </div>
+            <div class="equals" aria-hidden="true">=</div>
+            <div class="equation-tray">
+              <span class="tray-label">rechte Seite</span>
+              <div id="both-sides-right-shared" class="shared-x-group" aria-label="x-Bausteine auf der rechten Seite">
+                <span id="both-sides-right-shared-1" class="shared-x-tile">x</span><span id="both-sides-right-shared-2" class="shared-x-tile">x</span><span id="both-sides-right-shared-3" class="shared-x-tile" hidden>x</span><span id="both-sides-right-shared-4" class="shared-x-tile" hidden>x</span>
+              </div>
+              <span class="plus" aria-hidden="true">+</span><span class="constant-tile constant-wide">18</span>
+              <strong id="both-sides-right-shared-label" class="shared-label" hidden>− 2x</strong>
+            </div>
+          </div>
+        </section>
+
+        <section id="both-sides-reduced" class="reduced-card" hidden><span>Nach derselben Subtraktion auf beiden Seiten:</span><strong id="both-sides-reduced-equation">3x + 3 = 18</strong></section>
+        <section id="both-sides-explore" class="explore-card" hidden>
+          <label for="both-sides-shared-control">Gemeinsame x-Gruppe <strong id="both-sides-shared-value">2x</strong></label>
+          <input id="both-sides-shared-control" type="range" min="1" max="4" step="1" value="2" />
+          <span class="range-scale" aria-hidden="true"><span>1x</span><span>4x</span></span>
+        </section>
+        <section id="both-sides-conclusion" class="conclusion-card" hidden><h2>Aha</h2><p id="both-sides-conclusion-text">„Rüberbringen“ ist verkürzte Schreibweise einer Äquivalenzumformung.</p></section>
+      </section>
+
+      <section class="both-sides-insight" aria-live="polite">
+        <p id="both-sides-insight" class="insight-text">Auf beiden Seiten liegen x-Terme. Was bedeutet es wirklich, 2x „rüberzubringen“?</p>
+        <div class="both-sides-controls"><button id="both-sides-next" class="primary-button" type="button">Weiter</button><button id="both-sides-reset" class="reset-button" type="button">Zurücksetzen</button></div>
+        <p id="both-sides-live" class="visually-hidden" aria-live="polite"></p>
+      </section>
+      <noscript>Für diesen interaktiven Aha-Moment muss JavaScript aktiviert sein.</noscript>
+    </main>
+    <script type="module" src="./src/both-sides-app.js"></script>
+  </body>
+</html>

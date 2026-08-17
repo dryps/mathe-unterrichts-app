@@ -27,7 +27,8 @@
     "test:term-division-visual": "node scripts/render-term-division-states.mjs",
     "test:bracket-sign-visual": "node scripts/render-bracket-sign-states.mjs",
     "test:distribution-visual": "node scripts/render-distribution-states.mjs",
-    "test:equivalence-visual": "node scripts/render-equivalence-states.mjs"
+    "test:equivalence-visual": "node scripts/render-equivalence-states.mjs",
+    "test:both-sides-visual": "node scripts/render-both-sides-states.mjs"
   },
   "engines": {
     "node": ">=20"

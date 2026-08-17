@@ -1,4 +1,4 @@
-const CACHE_NAME = "mathe-unterrichts-app-v24";
+const CACHE_NAME = "mathe-unterrichts-app-v25";
 const NAVIGATION_FALLBACK = "./index.html";
 const APP_FILES = [
   "./",
@@ -113,6 +113,12 @@ const APP_FILES = [
   "./src/equivalence-math.js",
   "./src/equivalence-state.js",
   "./src/equivalence-animation.js",
+  "./terme-beide-seiten.html",
+  "./both-sides.css",
+  "./src/both-sides-app.js",
+  "./src/both-sides-math.js",
+  "./src/both-sides-state.js",
+  "./src/both-sides-animation.js",
   "./manifest.webmanifest",
   "./icon.svg",
   "./icon-180.png",
