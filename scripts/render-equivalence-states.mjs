@@ -26,8 +26,8 @@ for (const delta of [-8, -5, 0, 4, 8]) {
   rendered += 1;
 }
 for (const elapsed of [0, EQUIVALENCE_TILT_DURATION / 2, EQUIVALENCE_TILT_DURATION]) {
-  const frame = equivalenceTiltFrame(elapsed, 0, -6);
-  assert.ok(frame.tilt <= 0 && frame.tilt >= -6);
+  const frame = equivalenceTiltFrame(elapsed, 0, 6);
+  assert.ok(frame.tilt >= 0 && frame.tilt <= 6);
   rendered += 1;
 }
 assert.equal(rendered, 15);

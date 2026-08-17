@@ -7,10 +7,10 @@ import {
   equivalenceTiltFrame,
 } from "../src/equivalence-animation.js";
 
-test("gleiche Werte halten die Waage waagerecht, ungleiche kippen begrenzt", () => {
+test("gleiche Werte halten die Waage waagerecht und die schwerere Schale liegt tiefer", () => {
   assert.equal(balanceTilt(20, 20), 0);
-  assert.equal(balanceTilt(15, 20), -6);
-  assert.equal(balanceTilt(30, 20), 6);
+  assert.equal(balanceTilt(15, 20), 6);
+  assert.equal(balanceTilt(30, 20), -6);
 });
 
 test("Tilt-Animation beginnt exakt am Ausgangswert und endet exakt am Ziel", () => {

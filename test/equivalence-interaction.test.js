@@ -31,7 +31,7 @@ test("Weiter zeigt den vollständigen Lernweg und kippt nur beim einseitigen Ent
   assert.equal(setup.ids.get("#equivalence-warning").hidden, false);
   assert.equal(setup.ids.get("#equivalence-left-value").textContent, "15");
   assert.equal(setup.ids.get("#equivalence-right-value").textContent, "20");
-  assert.equal(setup.ids.get("#equivalence-beam").style.getPropertyValue("--balance-tilt"), "-6deg");
+  assert.equal(setup.ids.get("#equivalence-beam").style.getPropertyValue("--balance-tilt"), "6deg");
   next.dispatch("click"); assert.equal(board.dataset.state, "restore");
   next.dispatch("click"); assert.equal(board.dataset.state, "subtractBoth");
   assert.equal(setup.ids.get("#equivalence-left-equation").textContent, "3x");

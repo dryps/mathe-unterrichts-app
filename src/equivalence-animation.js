@@ -1,7 +1,7 @@
 export const EQUIVALENCE_TILT_DURATION = 420;
 
 export function balanceTilt(leftValue, rightValue) {
-  const difference = Number(leftValue) - Number(rightValue);
+  const difference = Number(rightValue) - Number(leftValue);
   if (!Number.isFinite(difference)) return 0;
   return Math.max(-6, Math.min(6, Math.round(difference * 1.2 * 1000) / 1000));
 }
