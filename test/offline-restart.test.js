@@ -9,7 +9,7 @@ const origin = "https://mathe-app.test";
 function createWorkerHarness() {
   const listeners = new Map();
   const stores = new Map([
-    ["mathe-unterrichts-app-v24", new Map([["old", new Response("alt")]])],
+    ["mathe-unterrichts-app-v25", new Map([["old", new Response("alt")]])],
   ]);
   let claimed = false;
   let skipped = false;
@@ -123,15 +123,15 @@ function createWorkerHarness() {
   };
 }
 
-test("Installation füllt Version 25 vollständig und Aktivierung entfernt Version 24", async () => {
+test("Installation füllt Version 26 vollständig und Aktivierung entfernt Version 25", async () => {
   const harness = createWorkerHarness();
   await harness.dispatchLifecycle("install");
   await harness.dispatchLifecycle("activate");
 
   assert.equal(harness.skipped, true);
   assert.equal(harness.claimed, true);
-  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v25"]);
-  const current = harness.stores.get("mathe-unterrichts-app-v25");
+  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v26"]);
+  const current = harness.stores.get("mathe-unterrichts-app-v26");
   for (const path of [
     "./",
     "./index.html",
@@ -229,6 +229,12 @@ test("Installation füllt Version 25 vollständig und Aktivierung entfernt Versi
     "./src/both-sides-math.js",
     "./src/both-sides-state.js",
     "./src/both-sides-animation.js",
+    "./ungleichungen-negativ.html",
+    "./negative-inequality.css",
+    "./src/negative-inequality-app.js",
+    "./src/negative-inequality-math.js",
+    "./src/negative-inequality-state.js",
+    "./src/negative-inequality-animation.js",
   ]) {
     assert.equal(current.has(new URL(path, `${origin}/`).href), true);
   }
@@ -336,6 +342,12 @@ test("Offline-Neustart liefert Startseite und alle Kapitel ohne Netzwerk aus", a
     "/src/both-sides-math.js",
     "/src/both-sides-state.js",
     "/src/both-sides-animation.js",
+    "/ungleichungen-negativ.html",
+    "/negative-inequality.css",
+    "/src/negative-inequality-app.js",
+    "/src/negative-inequality-math.js",
+    "/src/negative-inequality-state.js",
+    "/src/negative-inequality-animation.js",
   ]) {
     const response = await harness.dispatchFetch(path);
     assert.equal(response.status, 200);
