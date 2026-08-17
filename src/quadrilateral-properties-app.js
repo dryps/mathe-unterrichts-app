@@ -14,7 +14,7 @@ function drawGeometry(config,showMarkers){
   for(let index=0;index<4;index+=1)setLine(sideLines[index],points[index],points[(index+1)%4]);
   const ticks=[[markerAB,0,1,.5],[markerCD,2,3,.5],[markerBC1,1,2,.45],[markerBC2,1,2,.55],[markerDA1,3,0,.45],[markerDA2,3,0,.55]];
   for(const [line,start,end,fraction] of ticks){const [from,to]=tickAt(points[start],points[end],fraction);setLine(line,from,to);}
-  markers.hidden=!showMarkers;stage.setAttribute("aria-label",showMarkers?`Parallelogramm: Drehung ${model.config.rotation} Grad, Verschiebung ${model.config.shiftX}, Formwert ${model.config.slant}; gegenüberliegende Seiten bleiben parallel und gleich lang.`:"Unmarkiertes Parallelogramm in typischer Lage.");
+  markers.toggleAttribute("hidden",!showMarkers);stage.setAttribute("aria-label",showMarkers?`Parallelogramm: Drehung ${model.config.rotation} Grad, Verschiebung ${model.config.shiftX}, Formwert ${model.config.slant}; gegenüberliegende Seiten bleiben parallel und gleich lang.`:"Unmarkiertes Parallelogramm in typischer Lage.");
 }
 function clearAnimation(){animationToken+=1;if(frameId!==null)cancelAnimationFrame(frameId);if(timerId!==null)clearTimeout(timerId);frameId=null;timerId=null;next.disabled=false;}
 function render(){

@@ -31,7 +31,7 @@ test("Kapitel-4-Raster ordnet vier Karten responsiv ohne Überlauf", () => {
   assert.match(files.homeCss, /@media \(min-width: 721px\) and \(max-width: 1040px\)[\s\S]*\.chapter-equations \.module-grid\s*{[^}]*repeat\(2,\s*minmax\(0,\s*1fr\)\)/s);
 });
 
-test("Cache v27 und Pages-Artefakt enthalten ausschließlich die sieben Laufzeitdateien", () => {
+test("Cache v28 und Pages-Artefakt enthalten ausschließlich die sieben Laufzeitdateien", () => {
   assert.match(files.worker, /mathe-unterrichts-app-v28/);
   assert.doesNotMatch(files.worker, /mathe-unterrichts-app-v26/);
   for (const file of runtimeFiles) {

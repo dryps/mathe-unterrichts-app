@@ -123,7 +123,7 @@ function createWorkerHarness() {
   };
 }
 
-test("Installation füllt Version 27 vollständig und Aktivierung entfernt Version 25", async () => {
+test("Installation füllt Version 28 vollständig und Aktivierung entfernt ältere Versionen", async () => {
   const harness = createWorkerHarness();
   await harness.dispatchLifecycle("install");
   await harness.dispatchLifecycle("activate");

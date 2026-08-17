@@ -22,3 +22,10 @@ test("Eigenschaftsmarker, Steuerung und Aha sind anfangs semantisch verborgen", 
   assert.match(html, /id="properties-shift-control"[^>]*min="-90"[^>]*max="90"/);
   assert.match(html, /id="properties-slant-control"[^>]*min="-70"[^>]*max="70"/);
 });
+
+test("Ausgangsfigur ist neutral und Seitenpaarfarben beginnen erst nach dem Reveal", async () => {
+  const css = await readFile(new URL("quadrilateral-properties.css", root), "utf8");
+  assert.match(css, /\.properties-board\[data-state="irritation"\] \.property-side\{stroke:#708198\}/);
+  assert.match(css, /\.pair-one\{stroke:#286eb1\}/);
+  assert.match(css, /\.pair-two\{stroke:#159067\}/);
+});

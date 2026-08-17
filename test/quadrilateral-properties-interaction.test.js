@@ -5,6 +5,7 @@ function element(id = "") {
   const listeners = new Map(); const attrs = new Map();
   return { id, dataset: {}, hidden: false, disabled: false, textContent: "", value: "",
     setAttribute(name, value) { attrs.set(name, String(value)); }, getAttribute(name) { return attrs.get(name) ?? null; },
+    toggleAttribute(name, force) { if (force) attrs.set(name, ""); else attrs.delete(name); },
     addEventListener(type, listener) { listeners.set(type, listener); }, dispatch(type, event = {}) { return listeners.get(type)?.({ currentTarget: this, target: this, ...event }); },
   };
 }
@@ -25,10 +26,10 @@ async function harness({ reducedMotion = true } = {}) {
 
 test("Weiter zeigt erst Marker und danach die vollständige Veränderung", async () => {
   const setup = await harness(); const next = setup.elements.get("#properties-next");
-  assert.equal(setup.elements.get("#properties-markers").hidden, true);
+  assert.equal(setup.elements.get("#properties-markers").getAttribute("hidden"), "");
   next.dispatch("click");
   assert.equal(setup.elements.get("#properties-board").dataset.state, "properties");
-  assert.equal(setup.elements.get("#properties-markers").hidden, false);
+  assert.equal(setup.elements.get("#properties-markers").getAttribute("hidden"), null);
   next.dispatch("click");
   assert.equal(setup.elements.get("#properties-board").dataset.state, "transformed");
   assert.match(setup.elements.get("#properties-stage").getAttribute("aria-label"), /28 Grad/);
@@ -40,12 +41,12 @@ test("freie Veränderung synchronisiert Figur, Werte und Aha", async () => {
   assert.equal(setup.elements.get("#properties-board").dataset.state, "conclusion");
   assert.equal(setup.elements.get("#properties-rotation-value").textContent, "33°");
   assert.equal(setup.elements.get("#properties-conclusion-text").textContent, "Viereckstypen werden über Eigenschaften definiert, nicht über typische Bilder.");
-  assert.equal(setup.elements.get("#properties-markers").hidden, false);
+  assert.equal(setup.elements.get("#properties-markers").getAttribute("hidden"), null);
 });
 
 test("Reset neutralisiert verspätete Animationsrückrufe", async () => {
   const setup = await harness({ reducedMotion: false }); const next = setup.elements.get("#properties-next"); next.dispatch("click"); next.dispatch("click");
   const staleFrame = setup.frames[0]; const staleTimer = setup.timers[0]; setup.elements.get("#properties-reset").dispatch("click"); staleFrame(1100); staleTimer();
   assert.equal(setup.elements.get("#properties-board").dataset.state, "irritation");
-  assert.equal(setup.elements.get("#properties-markers").hidden, true);
+  assert.equal(setup.elements.get("#properties-markers").getAttribute("hidden"), "");
 });
