@@ -29,5 +29,5 @@ function animateReflection(){
 next.addEventListener("click",()=>{if(current.locked)return;current=nextNegativeInequalityState(current);render();if(current.view===NEGATIVE_INEQUALITY_VIEWS.reflecting)animateReflection();});
 reset.addEventListener("click",()=>{clearAnimation();current=resetNegativeInequalityState();render();});
 baseControl.addEventListener("input",event=>{current=setReflectionBase(current,event.currentTarget.value);render();});
-if("serviceWorker" in navigator)window.addEventListener("load",()=>{navigator.serviceWorker.register("./sw.js",{scope:"./",updateViaCache:"none"}).catch(()=>{});});
+if("serviceWorker" in navigator)window.addEventListener("load",()=>{navigator.serviceWorker.register("./sw.js", { scope: "./", updateViaCache: "none" }).catch(()=>{});});
 render();

@@ -28,7 +28,8 @@
     "test:bracket-sign-visual": "node scripts/render-bracket-sign-states.mjs",
     "test:distribution-visual": "node scripts/render-distribution-states.mjs",
     "test:equivalence-visual": "node scripts/render-equivalence-states.mjs",
-    "test:both-sides-visual": "node scripts/render-both-sides-states.mjs"
+    "test:both-sides-visual": "node scripts/render-both-sides-states.mjs",
+    "test:negative-inequality-visual": "node scripts/render-negative-inequality-states.mjs"
   },
   "engines": {
     "node": ">=20"
