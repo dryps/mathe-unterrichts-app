@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f4f7fb" />
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Mathe im Unterricht" />
+    <meta name="description" content="Interaktiver Aha-Moment zur Multiplikation negativer Zahlen." />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./icon-180.png" />
+    <link rel="stylesheet" href="./multiplication-negative.css" />
+    <link rel="stylesheet" href="./navigation.css" />
+    <title>Warum wird aus Minus mal Minus Plus?</title>
+  </head>
+  <body>
+    <main class="multiplication-shell">
+      <nav class="module-navigation" aria-label="Modulnavigation">
+        <a class="module-back-link" href="./#rationale-zahlen">← Rationale Zahlen</a>
+      </nav>
+
+      <header class="multiplication-header">
+        <div>
+          <p class="eyebrow">Rationale Zahlen · 7. Klasse</p>
+          <h1>Warum wird aus Minus mal Minus Plus?</h1>
+          <p class="subtitle">Multiplikation negativer Zahlen</p>
+        </div>
+        <p class="local-note" aria-label="Datenschutzstatus">
+          <span aria-hidden="true">●</span> lokal · ohne Speicherung
+        </p>
+      </header>
+
+      <section class="multiplication-visualizer" aria-labelledby="multiplication-visual-title">
+        <h2 id="multiplication-visual-title" class="visually-hidden">
+          Fortsetzung eines Multiplikationsmusters über die Null
+        </h2>
+        <div id="multiplication-stage" class="multiplication-stage" data-state="prompt">
+          <div id="multiplication-prompt" class="multiplication-prompt">
+            <p class="prompt-formula">(−1) · (−2) = ?</p>
+            <p>Warum sollte das Ergebnis positiv werden?</p>
+          </div>
+
+          <div class="multiplication-content">
+            <div id="multiplication-pattern" class="multiplication-pattern" hidden>
+              <p class="pattern-observation">Der erste Faktor wird jedes Mal um 1 kleiner.</p>
+              <div class="pattern-list" aria-label="Bekannte Produkte mit dem festen Faktor minus zwei">
+                <p class="pattern-row"><span>3 · (−2)</span><strong>= −6</strong></p>
+                <p class="pattern-row"><span>2 · (−2)</span><strong>= −4</strong></p>
+                <p class="pattern-row"><span>1 · (−2)</span><strong>= −2</strong></p>
+                <p class="pattern-row"><span>0 · (−2)</span><strong>= 0</strong></p>
+              </div>
+              <div id="multiplication-pattern-steps" class="pattern-steps" hidden>
+                <span class="pattern-step"><span>+2</span></span>
+                <span class="pattern-step"><span>+2</span></span>
+                <span class="pattern-step"><span>+2</span></span>
+                <p>Das Ergebnis wird jedes Mal um 2 größer.</p>
+              </div>
+              <div id="multiplication-crossing" class="crossing-card" hidden>
+                <span class="crossing-sequence">0 → 2</span>
+                <span class="crossing-step">+2</span>
+                <strong>(−1) · (−2) = 2</strong>
+                <p>Das Muster geht über die Null hinweg weiter.</p>
+              </div>
+              <div id="multiplication-confirmation" class="confirmation-card" hidden>
+                <strong>(−2) · (−2) = 4</strong>
+                <strong>(−3) · (−2) = 6</strong>
+                <p>Damit das Muster erhalten bleibt, werden die Produkte positiv.</p>
+              </div>
+              <p id="multiplication-secondary-rule" class="secondary-rule" hidden>
+                negativ · negativ → positiv
+              </p>
+            </div>
+
+            <svg
+              id="multiplication-board"
+              class="multiplication-board"
+              viewBox="0 0 1400 640"
+              preserveAspectRatio="xMidYMid meet"
+              role="img"
+              aria-labelledby="multiplication-svg-title multiplication-svg-description"
+              hidden
+            >
+              <title id="multiplication-svg-title">Produktmuster und erster Faktor</title>
+              <desc id="multiplication-svg-description">
+                Der zweite Faktor bleibt minus zwei. Der erste Faktor kann später von minus vier bis plus vier verändert werden.
+              </desc>
+              <rect class="board-background" x="2" y="2" width="1396" height="636" rx="32" />
+              <text class="axis-label" x="176" y="98">Produkte bei festem Faktor −2</text>
+              <line id="multiplication-product-axis" class="axis product-axis" x1="176" y1="306" x2="1224" y2="306" />
+              <g id="multiplication-product-ticks">
+                <g class="tick" data-multiplication-product="-8"><line y1="280" y2="332"/><text y="370">−8</text></g>
+                <g class="tick minor" data-multiplication-product="-7"><line y1="292" y2="320"/><text></text></g>
+                <g class="tick" data-multiplication-product="-6"><line y1="284" y2="328"/><text y="370">−6</text></g>
+                <g class="tick minor" data-multiplication-product="-5"><line y1="292" y2="320"/><text></text></g>
+                <g class="tick" data-multiplication-product="-4"><line y1="284" y2="328"/><text y="370">−4</text></g>
+                <g class="tick minor" data-multiplication-product="-3"><line y1="292" y2="320"/><text></text></g>
+                <g class="tick" data-multiplication-product="-2"><line y1="284" y2="328"/><text y="370">−2</text></g>
+                <g class="tick minor" data-multiplication-product="-1"><line y1="292" y2="320"/><text></text></g>
+                <g class="tick zero-tick" data-multiplication-product="0"><line y1="276" y2="336"/><text y="370">0</text></g>
+                <g class="tick minor" data-multiplication-product="1"><line y1="292" y2="320"/><text></text></g>
+                <g class="tick" data-multiplication-product="2"><line y1="284" y2="328"/><text y="370">2</text></g>
+                <g class="tick minor" data-multiplication-product="3"><line y1="292" y2="320"/><text></text></g>
+                <g class="tick" data-multiplication-product="4"><line y1="284" y2="328"/><text y="370">4</text></g>
+                <g class="tick minor" data-multiplication-product="5"><line y1="292" y2="320"/><text></text></g>
+                <g class="tick" data-multiplication-product="6"><line y1="284" y2="328"/><text y="370">6</text></g>
+                <g class="tick minor" data-multiplication-product="7"><line y1="292" y2="320"/><text></text></g>
+                <g class="tick" data-multiplication-product="8"><line y1="280" y2="332"/><text y="370">8</text></g>
+              </g>
+              <g class="pattern-product-point" data-pattern-product="-6" data-pattern-group="known" visibility="hidden"><circle r="18"/></g>
+              <g class="pattern-product-point" data-pattern-product="-4" data-pattern-group="known" visibility="hidden"><circle r="18"/></g>
+              <g class="pattern-product-point" data-pattern-product="-2" data-pattern-group="known" visibility="hidden"><circle r="18"/></g>
+              <g class="pattern-product-point" data-pattern-product="0" data-pattern-group="known" visibility="hidden"><circle r="18"/></g>
+              <g class="pattern-product-point crossing-point" data-pattern-product="2" data-pattern-group="crossing" visibility="hidden"><circle r="22"/></g>
+              <g class="pattern-product-point confirmation-point" data-pattern-product="4" data-pattern-group="confirmation" visibility="hidden"><circle r="18"/></g>
+              <g class="pattern-product-point confirmation-point" data-pattern-product="6" data-pattern-group="confirmation" visibility="hidden"><circle r="18"/></g>
+
+              <g id="multiplication-factor-layer" visibility="hidden" aria-hidden="true">
+                <text class="factor-label" x="176" y="424">Erster Faktor: veränderbar −4 bis +4</text>
+                <text class="fixed-factor-label" x="1224" y="424">Zweiter Faktor: fest −2</text>
+                <line id="multiplication-factor-axis" class="axis factor-axis" x1="176" y1="472" x2="1224" y2="472" />
+                <g id="multiplication-factor-ticks">
+                  <g class="factor-tick" data-multiplication-factor="-4"><line y1="452" y2="492"/><text y="540">−4</text></g>
+                  <g class="factor-tick" data-multiplication-factor="-3"><line y1="458" y2="486"/><text y="540">−3</text></g>
+                  <g class="factor-tick" data-multiplication-factor="-2"><line y1="458" y2="486"/><text y="540">−2</text></g>
+                  <g class="factor-tick" data-multiplication-factor="-1"><line y1="458" y2="486"/><text y="540">−1</text></g>
+                  <g class="factor-tick zero-tick" data-multiplication-factor="0"><line y1="450" y2="494"/><text y="540">0</text></g>
+                  <g class="factor-tick" data-multiplication-factor="1"><line y1="458" y2="486"/><text y="540">1</text></g>
+                  <g class="factor-tick" data-multiplication-factor="2"><line y1="458" y2="486"/><text y="540">2</text></g>
+                  <g class="factor-tick" data-multiplication-factor="3"><line y1="458" y2="486"/><text y="540">3</text></g>
+                  <g class="factor-tick" data-multiplication-factor="4"><line y1="452" y2="492"/><text y="540">4</text></g>
+                </g>
+                <g id="multiplication-product-point" class="active-product-point"><circle class="product-halo" r="36"/><circle class="product-dot" r="22"/></g>
+                <g
+                  id="multiplication-first-factor-handle"
+                  class="factor-handle"
+                  role="slider"
+                  tabindex="0"
+                  aria-label="Ersten Faktor verändern"
+                  aria-valuemin="-4" aria-valuemax="4" aria-valuenow="-1"
+                ><circle class="handle-halo" r="42"/><circle class="handle-dot" r="24"/></g>
+                <text id="multiplication-explorer-formula" class="explorer-formula" x="700" y="180">(−1) · (−2) = 2</text>
+                <text id="multiplication-explorer-first-factor" class="visually-hidden">−1</text>
+                <text id="multiplication-explorer-product" class="visually-hidden">2</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <section class="multiplication-insight" aria-live="polite">
+        <div>
+          <p id="multiplication-insight" class="insight-text">Warum sollte das Ergebnis positiv werden?</p>
+          <p id="multiplication-conclusion" class="conclusion-text" hidden>
+            <strong>Das Muster läuft über die Null weiter.</strong>
+            <span>Deshalb wird negativ · negativ positiv.</span>
+          </p>
+        </div>
+        <div class="multiplication-controls">
+          <button id="multiplication-next" class="primary-button" type="button">Weiter</button>
+          <button id="multiplication-reset" class="reset-button" type="button">Zurücksetzen</button>
+        </div>
+        <p id="multiplication-live-value" class="visually-hidden" aria-live="polite"></p>
+      </section>
+      <noscript>Für diesen interaktiven Aha-Moment muss JavaScript aktiviert sein.</noscript>
+    </main>
+    <script type="module" src="./src/multiplication-negative-app.js"></script>
+  </body>
+</html>

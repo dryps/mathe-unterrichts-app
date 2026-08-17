@@ -61,6 +61,18 @@ ruhig um; danach bewegt sich der Punkt von 4 über 5 nach 6. Im Endzustand läss
 sich ausschließlich der negative Subtrahend von −1 bis −4 durch Ziehen des
 violetten Pfeilendes verändern.
 
+**Warum wird aus Minus mal Minus Plus?**
+
+*Multiplikation negativer Zahlen*
+
+Unter `multiplikation-negativ.html` wird das Produktmuster mit dem festen zweiten
+Faktor `−2` fortgesetzt. Während der erste Faktor von 3 bis 0 jeweils um 1
+kleiner wird, wächst das Produkt von −6 bis 0 jeweils um 2. Dieselbe Fortsetzung
+über die Null erklärt `(−1) · (−2) = 2`, `(−2) · (−2) = 4` und
+`(−3) · (−2) = 6`. Erst danach erscheint die verkürzte Vorzeichenregel. Im
+Endzustand lässt sich ausschließlich der erste Faktor ganzzahlig von −4 bis +4
+verändern; der zweite Faktor bleibt fest `−2`.
+
 ## Kapitel 2: Erstes Aha-Modul
 
 **Warum bleiben es immer 180°?**  
@@ -178,6 +190,7 @@ npm run test:order-visual
 npm run test:absolute-visual
 npm run test:addition-visual
 npm run test:subtraction-visual
+npm run test:multiplication-visual
 npm start
 ```
 

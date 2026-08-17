@@ -1,4 +1,4 @@
-const CACHE_NAME = "mathe-unterrichts-app-v15";
+const CACHE_NAME = "mathe-unterrichts-app-v16";
 const NAVIGATION_FALLBACK = "./index.html";
 const APP_FILES = [
   "./",
@@ -66,6 +66,12 @@ const APP_FILES = [
   "./src/subtraction-negative-animation.js",
   "./src/subtraction-negative-geometry.js",
   "./src/subtraction-negative-state.js",
+  "./multiplikation-negativ.html",
+  "./multiplication-negative.css",
+  "./src/multiplication-negative-app.js",
+  "./src/multiplication-negative-animation.js",
+  "./src/multiplication-negative-geometry.js",
+  "./src/multiplication-negative-state.js",
   "./manifest.webmanifest",
   "./icon.svg",
   "./icon-180.png",
