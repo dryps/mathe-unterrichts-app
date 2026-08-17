@@ -75,13 +75,13 @@ test("breiter Klassenraumbildschirm ordnet Kapitel 1 als drei plus drei", () => 
   assert.doesNotMatch(classroomLandscapeCss, /#dreiecke|\.chapter:not\(\.chapter-rationale\)/);
 });
 
-test("Kapitel 3 enthält genau fünf gleichwertige, responsive Modulkarten", () => {
+test("Kapitel 3 enthält genau sechs gleichwertige, responsive Modulkarten", () => {
   const chapter = html.match(
     /<section[^>]*id="rechnen-mit-termen"[^>]*class="chapter chapter-terms"[\s\S]*?<\/section>/,
   )?.[0];
   assert.ok(chapter);
-  assert.equal((chapter.match(/class="module-card"/g) ?? []).length, 5);
-  assert.equal((chapter.match(/class="module-status"/g) ?? []).length, 5);
+  assert.equal((chapter.match(/class="module-card"/g) ?? []).length, 6);
+  assert.equal((chapter.match(/class="module-status"/g) ?? []).length, 6);
   assert.match(css, /\.chapter-terms \.module-grid\s*\{\s*grid-template-columns: repeat\(6, minmax\(0, 1fr\)\)/);
   assert.match(mobileCss, /\.chapter-terms \.module-grid\s*\{\s*grid-template-columns: 1fr/);
   assert.match(portraitCss, /\.chapter-terms \.module-grid\s*\{[\s\S]*repeat\(2, minmax\(0, 1fr\)\)/);

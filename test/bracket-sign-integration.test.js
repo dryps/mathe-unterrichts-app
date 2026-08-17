@@ -17,22 +17,21 @@ const runtimeFiles = [
 test("Startseite integriert K3.5 genau einmal als fünfte K3-Karte", () => {
   const chapter = files.home.match(/<section\s+id="rechnen-mit-termen"[\s\S]*?<\/section>/)?.[0];
   assert.ok(chapter);
-  assert.equal((chapter.match(/class="module-card"/g) ?? []).length, 5);
+  assert.equal((chapter.match(/class="module-card"/g) ?? []).length, 6);
   assert.equal((files.home.match(/href="\.\/plus-minus-klammern\.html"/g) ?? []).length, 1);
   assert.match(files.home, /Warum ändern sich bei einer Minusklammer alle Vorzeichen\?/);
   assert.match(files.home, /<span class="module-subtitle">Plus- und Minusklammern<\/span>/);
-  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 17);
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 18);
 });
 
-test("K3-Raster ordnet fünf Karten auf großen Breiten als drei plus zwei ausgewogen an", () => {
+test("K3-Raster bleibt nach der sechsten Karte als drei plus drei ausgewogen", () => {
   assert.match(files.homeCss, /\.chapter-terms \.module-grid\s*{[^}]*grid-template-columns:\s*repeat\(6,/s);
   assert.match(files.homeCss, /\.chapter-terms \.module-card\s*{[^}]*grid-column:\s*span 2/s);
-  assert.match(files.homeCss, /\.chapter-terms \.module-card:nth-child\(4\)[^}]*grid-column:\s*2 \/ span 2/s);
-  assert.match(files.homeCss, /\.chapter-terms \.module-card:nth-child\(5\)[^}]*grid-column:\s*4 \/ span 2/s);
+  assert.doesNotMatch(files.homeCss, /\.chapter-terms \.module-card:nth-child/);
 });
 
 test("Cache v22 enthält ausschließlich die sechs neuen Laufzeitdateien", () => {
-  assert.match(files.worker, /mathe-unterrichts-app-v22/);
+  assert.match(files.worker, /mathe-unterrichts-app-v23/);
   assert.doesNotMatch(files.worker, /mathe-unterrichts-app-v21/);
   for (const file of runtimeFiles) assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   assert.doesNotMatch(files.worker, /render-bracket-sign-states|bracket-sign-(?:design|static\.test)/);

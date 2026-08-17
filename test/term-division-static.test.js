@@ -81,7 +81,7 @@ test("Produktintegration enthält Startseitenkarte und vollständige Offline-Res
   ]) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
-  assert.match(files.worker, /mathe-unterrichts-app-v22/);
+  assert.match(files.worker, /mathe-unterrichts-app-v23/);
 });
 
 test("Modul enthält keine Speicherung, Fremdaufrufe oder ausgeschlossenen Produktfunktionen", () => {

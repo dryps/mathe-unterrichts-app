@@ -52,6 +52,7 @@ jobs:
           npm run test:term-multiplication-visual
           npm run test:term-division-visual
           npm run test:bracket-sign-visual
+          npm run test:distribution-visual
 
       - name: Kontrolliertes Pages-Artefakt bauen
         run: npm run build:pages

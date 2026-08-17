@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f4f7fb" />
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Mathe im Unterricht" />
+    <meta name="description" content="Interaktiver Aha-Moment zum Ausmultiplizieren." />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./icon-180.png" />
+    <link rel="stylesheet" href="./navigation.css" />
+    <link rel="stylesheet" href="./distribution.css" />
+    <title>Warum muss beim Ausmultiplizieren jeder Term in der Klammer getroffen werden?</title>
+  </head>
+  <body>
+    <main class="distribution-shell">
+      <nav class="module-navigation" aria-label="Modulnavigation"><a class="module-back-link" href="./#rechnen-mit-termen">← Rechnen mit Termen</a></nav>
+      <header class="distribution-header">
+        <div><p class="eyebrow">Rechnen mit Termen · Kapitel 3</p><h1>Warum muss beim Ausmultiplizieren jeder Term in der Klammer getroffen werden?</h1><p class="subtitle">Ausmultiplizieren</p></div>
+        <p class="local-note" aria-label="Datenschutzstatus"><span aria-hidden="true">●</span> lokal · ohne Speicherung</p>
+      </header>
+
+      <section id="distribution-board" class="distribution-board" data-state="irritation" aria-labelledby="board-title">
+        <h2 id="board-title" class="visually-hidden">Ein äußerer Faktor vervielfacht ein vollständiges Klammerpaket</h2>
+        <section id="distribution-irritation" class="state-panel irritation-panel">
+          <p class="hero-expression">3(x + 2)</p><p>Was vervielfacht die 3?</p>
+        </section>
+
+        <section id="distribution-package" class="state-panel package-focus" hidden>
+          <p id="factor-expression" class="factor-expression">3 · (x + 2)</p>
+          <div class="bracket-package" aria-label="Ein vollständiges Paket aus einem x-Baustein und zwei Einern">
+            <span class="package-x-demo">x</span><span class="package-one-demo">1</span><span class="package-one-demo">1</span>
+          </div>
+          <section id="distribution-factor" class="factor-callout" hidden><strong>3 vollständige Kopien</strong><span>Die 3 steht vor dem ganzen Paket.</span></section>
+        </section>
+
+        <section id="distribution-copies" class="state-panel copies-panel" hidden>
+          <p id="copies-expression" class="copies-expression">(x + 2) + (x + 2) + (x + 2)</p>
+          <div class="package-grid" role="list" aria-label="Vollständige Paketkopien">
+            <div id="distribution-package-1" class="distribution-package" role="listitem"><span class="package-x">x</span><span class="package-one">1</span><span class="package-one">1</span></div>
+            <div id="distribution-package-2" class="distribution-package" role="listitem"><span class="package-x">x</span><span class="package-one">1</span><span class="package-one">1</span></div>
+            <div id="distribution-package-3" class="distribution-package" role="listitem"><span class="package-x">x</span><span class="package-one">1</span><span class="package-one">1</span></div>
+            <div id="distribution-package-4" class="distribution-package" role="listitem" hidden><span class="package-x">x</span><span class="package-one">1</span><span class="package-one">1</span></div>
+            <div id="distribution-package-5" class="distribution-package" role="listitem" hidden><span class="package-x">x</span><span class="package-one">1</span><span class="package-one">1</span></div>
+          </div>
+          <section id="distribution-regroup" class="regroup-panel" hidden>
+            <div class="bundle x-bundle"><strong id="x-bundle-label">3 x-Bausteine = 3x</strong></div>
+            <div class="bundle ones-bundle"><strong id="ones-bundle-label">6 Einer = 6</strong></div>
+          </section>
+          <section id="distribution-result" class="result-card" hidden><p id="result-equation">3(x + 2) = 3x + 6</p></section>
+          <section id="distribution-explore" class="explore-panel" hidden>
+            <label for="factor-control">Paketfaktor <strong id="factor-value">3 vollständige Pakete</strong></label>
+            <input id="factor-control" type="range" min="2" max="5" step="1" value="3" />
+            <span class="range-scale" aria-hidden="true"><span>2</span><span>5</span></span>
+          </section>
+          <section id="distribution-conclusion" class="conclusion-card" hidden><h2 id="distribution-conclusion-title">Der Faktor 3 vervielfacht das gesamte Paket.</h2><p id="distribution-conclusion-detail">Darum entstehen aus drei Paketen 3 x-Bausteine und 6 Einer.</p></section>
+        </section>
+      </section>
+
+      <section class="distribution-insight" aria-live="polite">
+        <p id="distribution-insight" class="insight-text">Was vervielfacht die 3: nur x oder das ganze Klammerpaket?</p>
+        <div class="distribution-controls"><button id="distribution-next" class="primary-button" type="button">Weiter</button><button id="distribution-reset" class="reset-button" type="button">Zurücksetzen</button></div>
+        <p id="distribution-live" class="visually-hidden" aria-live="polite"></p>
+      </section>
+      <noscript>Für diesen interaktiven Aha-Moment muss JavaScript aktiviert sein.</noscript>
+    </main>
+    <script type="module" src="./src/distribution-app.js"></script>
+  </body>
+</html>

@@ -41,6 +41,8 @@ const files = {
   termDivisionApp: await readFile(new URL("../src/term-division-app.js", import.meta.url), "utf8"),
   bracketSign: await readFile(new URL("../plus-minus-klammern.html", import.meta.url), "utf8"),
   bracketSignApp: await readFile(new URL("../src/bracket-sign-app.js", import.meta.url), "utf8"),
+  distribution: await readFile(new URL("../ausmultiplizieren.html", import.meta.url), "utf8"),
+  distributionApp: await readFile(new URL("../src/distribution-app.js", import.meta.url), "utf8"),
   worker: await readFile(new URL("../sw.js", import.meta.url), "utf8"),
   manifest: await readFile(new URL("../manifest.webmanifest", import.meta.url), "utf8"),
 };
@@ -76,8 +78,8 @@ test("Startseite zeigt Klasse 7 mit den drei produktiven Kapiteln", () => {
   assert.doesNotMatch(files.home, /<ul|<ol/);
 });
 
-test("Kapitel 1 und 2 enthalten je sechs Karten, Kapitel 3 genau fünf Module", () => {
-  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 17);
+test("Kapitel 1, 2 und 3 enthalten je sechs Module", () => {
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 18);
   assert.match(files.home, /href="\.\/zahlengerade\.html"/);
   assert.match(files.home, /Warum liegen negative Zahlen links von der Null\?/);
   assert.match(files.home, /<span class="module-subtitle">Zahlengerade<\/span>/);
@@ -137,8 +139,9 @@ test("Kapitel 1 und 2 enthalten je sechs Karten, Kapitel 3 genau fünf Module", 
   assert.match(files.home, /<span class="module-subtitle">Terme dividieren<\/span>/);
   assert.match(files.home, /href="\.\/plus-minus-klammern\.html"/);
   assert.match(files.home, /Warum ändern sich bei einer Minusklammer alle Vorzeichen\?/);
-  assert.equal((files.home.match(/class="module-status"/g) ?? []).length, 17);
-  assert.equal((files.home.match(/fertig/g) ?? []).length, 17);
+  assert.match(files.home, /href="\.\/ausmultiplizieren\.html"/);
+  assert.equal((files.home.match(/class="module-status"/g) ?? []).length, 18);
+  assert.equal((files.home.match(/fertig/g) ?? []).length, 18);
 });
 
 test("Alle Dreiecksmodule behalten ausschließlich ihren bisherigen Rückweg", () => {
@@ -170,8 +173,8 @@ test("Alle Module aus Kapitel 1 führen ausschließlich zu Rationale Zahlen zur�
   }
 });
 
-test("Alle fünf Kapitel-3-Module führen ausschließlich zu Rechnen mit Termen zurück", () => {
-  for (const module of [files.terms, files.likeTerms, files.termMultiplication, files.termDivision, files.bracketSign]) {
+test("Alle sechs Kapitel-3-Module führen ausschließlich zu Rechnen mit Termen zurück", () => {
+  for (const module of [files.terms, files.likeTerms, files.termMultiplication, files.termDivision, files.bracketSign, files.distribution]) {
     assert.equal((module.match(/class="module-navigation"/g) ?? []).length, 1);
     assert.match(
       module,
@@ -370,13 +373,19 @@ test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und beide Kapite
     "src/bracket-sign-math.js",
     "src/bracket-sign-state.js",
     "src/bracket-sign-animation.js",
+    "ausmultiplizieren.html",
+    "distribution.css",
+    "src/distribution-app.js",
+    "src/distribution-math.js",
+    "src/distribution-state.js",
+    "src/distribution-animation.js",
     "manifest.webmanifest",
     "icon.svg",
   ]) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
   assert.match(files.shell, /serviceWorker\.register/);
-  assert.match(files.worker, /mathe-unterrichts-app-v22/);
+  assert.match(files.worker, /mathe-unterrichts-app-v23/);
 });
 
 test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", () => {
