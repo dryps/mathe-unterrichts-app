@@ -2,7 +2,7 @@ import { DISTRIBUTION_COPY_DURATION, distributionCopyFrame } from "./distributio
 import { DISTRIBUTION_VIEWS, createDistributionState, distributionViewModel, finishDistributionCopy, nextDistributionState, resetDistributionState, setDistributionFactor } from "./distribution-state.js";
 
 const $ = (selector) => document.querySelector(selector);
-const board=$("#distribution-board"), irritation=$("#distribution-irritation"), packagePanel=$("#distribution-package"), factorPanel=$("#distribution-factor"), copiesPanel=$("#distribution-copies"), regroup=$("#distribution-regroup"), result=$("#distribution-result"), explore=$("#distribution-explore"), conclusion=$("#distribution-conclusion"), factorExpression=$("#factor-expression"), copiesExpression=$("#copies-expression"), xBundle=$("#x-bundle-label"), onesBundle=$("#ones-bundle-label"), resultEquation=$("#result-equation"), factorControl=$("#factor-control"), factorValue=$("#factor-value"), insight=$("#distribution-insight"), live=$("#distribution-live"), next=$("#distribution-next"), reset=$("#distribution-reset");
+const board=$("#distribution-board"), irritation=$("#distribution-irritation"), packagePanel=$("#distribution-package"), factorPanel=$("#distribution-factor"), copiesPanel=$("#distribution-copies"), regroup=$("#distribution-regroup"), result=$("#distribution-result"), explore=$("#distribution-explore"), conclusion=$("#distribution-conclusion"), conclusionTitle=$("#distribution-conclusion-title"), conclusionDetail=$("#distribution-conclusion-detail"), factorExpression=$("#factor-expression"), copiesExpression=$("#copies-expression"), xBundle=$("#x-bundle-label"), onesBundle=$("#ones-bundle-label"), resultEquation=$("#result-equation"), factorControl=$("#factor-control"), factorValue=$("#factor-value"), insight=$("#distribution-insight"), live=$("#distribution-live"), next=$("#distribution-next"), reset=$("#distribution-reset");
 const packages=Array.from({length:5},(_,index)=>$(`#distribution-package-${index+1}`));
 let current=createDistributionState(), frameId=null, timerId=null;
 
@@ -24,6 +24,8 @@ function render(){
   xBundle.textContent=`${model.totalX} x-Bausteine = ${model.factor}x`;
   onesBundle.textContent=`${model.totalOnes} Einer = ${model.totalOnes}`;
   resultEquation.textContent=model.equation;
+  conclusionTitle.textContent=model.conclusion;
+  conclusionDetail.textContent=model.conclusionDetail;
   factorControl.value=String(model.factor);factorControl.disabled=!model.interactive;
   factorValue.textContent=`${model.factor} vollständige Pakete`;
   insight.textContent=model.insight;

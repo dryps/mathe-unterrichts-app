@@ -73,6 +73,10 @@ test("Kernerkenntnis bleibt auf die Vervielfachung des gesamten Pakets begrenzt"
   }
   assert.equal(
     distributionViewModel({ view: "conclusion", factor: 5, locked: false }).conclusion,
-    "Der Faktor 3 vervielfacht das gesamte Paket.",
+    "Der Faktor 5 vervielfacht das gesamte Paket.",
+  );
+  assert.equal(
+    distributionViewModel({ view: "conclusion", factor: 5, locked: false }).conclusionDetail,
+    "Darum entstehen aus fünf Paketen 5 x-Bausteine und 10 Einer.",
   );
 });

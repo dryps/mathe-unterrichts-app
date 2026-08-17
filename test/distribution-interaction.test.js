@@ -11,7 +11,7 @@ function element(id = "") {
 }
 
 async function harness({ reducedMotion = true } = {}) {
-  const names = ["distribution-board","distribution-irritation","distribution-package","distribution-factor","distribution-copies","distribution-regroup","distribution-result","distribution-explore","distribution-conclusion","factor-expression","copies-expression","x-bundle-label","ones-bundle-label","result-equation","factor-control","factor-value","distribution-insight","distribution-live","distribution-next","distribution-reset",...Array.from({length:5},(_,i)=>`distribution-package-${i+1}`)];
+  const names = ["distribution-board","distribution-irritation","distribution-package","distribution-factor","distribution-copies","distribution-regroup","distribution-result","distribution-explore","distribution-conclusion","distribution-conclusion-title","distribution-conclusion-detail","factor-expression","copies-expression","x-bundle-label","ones-bundle-label","result-equation","factor-control","factor-value","distribution-insight","distribution-live","distribution-next","distribution-reset",...Array.from({length:5},(_,i)=>`distribution-package-${i+1}`)];
   const ids=new Map(names.map(id=>[`#${id}`,element(id)])); const animationFrames=[]; const timerCallbacks=[];
   Object.defineProperty(globalThis,"document",{configurable:true,value:{querySelector:s=>ids.get(s)??null}});
   Object.defineProperty(globalThis,"window",{configurable:true,value:{matchMedia:()=>({matches:reducedMotion}),addEventListener(){}}});
@@ -62,5 +62,7 @@ test("Regler synchronisiert Kopien, beide Bündel und Ergebnis", async () => {
   assert.equal(setup.ids.get("#x-bundle-label").textContent,"5 x-Bausteine = 5x");
   assert.equal(setup.ids.get("#ones-bundle-label").textContent,"10 Einer = 10");
   assert.equal(setup.ids.get("#result-equation").textContent,"5(x + 2) = 5x + 10");
+  assert.equal(setup.ids.get("#distribution-conclusion-title").textContent,"Der Faktor 5 vervielfacht das gesamte Paket.");
+  assert.equal(setup.ids.get("#distribution-conclusion-detail").textContent,"Darum entstehen aus fünf Paketen 5 x-Bausteine und 10 Einer.");
   assert.match(setup.ids.get("#distribution-live").textContent,/beide Bestandteile/);
 });

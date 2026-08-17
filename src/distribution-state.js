@@ -46,6 +46,7 @@ export function resetDistributionState() { return createDistributionState(); }
 
 export function distributionViewModel(current) {
   const math = createDistributionModel(current.factor);
+  const factorWord = ["", "", "zwei", "drei", "vier", "fünf"][current.factor];
   const showCopies = ["copying", "copies", "regroup", "result", "explore", "conclusion"].includes(current.view);
   const showExplore = ["explore", "conclusion"].includes(current.view);
   return Object.freeze({
@@ -63,6 +64,7 @@ export function distributionViewModel(current) {
     interactive: showExplore && !current.locked,
     controlsLocked: current.locked,
     insight: INSIGHTS[current.view],
-    conclusion: "Der Faktor 3 vervielfacht das gesamte Paket.",
+    conclusion: `Der Faktor ${current.factor} vervielfacht das gesamte Paket.`,
+    conclusionDetail: `Darum entstehen aus ${factorWord} Paketen ${math.totalX} x-Bausteine und ${math.totalOnes} Einer.`,
   });
 }
