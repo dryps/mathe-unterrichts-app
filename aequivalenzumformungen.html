@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f4f7fb" />
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Mathe im Unterricht" />
+    <meta name="description" content="Interaktiver Aha-Moment zu Äquivalenzumformungen." />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./icon-180.png" />
+    <link rel="stylesheet" href="./navigation.css" />
+    <link rel="stylesheet" href="./equivalence.css" />
+    <title>Warum bleibt eine Gleichung wahr, wenn ich auf beiden Seiten dasselbe tue?</title>
+  </head>
+  <body>
+    <main class="equivalence-shell">
+      <nav class="module-navigation" aria-label="Modulnavigation"><a class="module-back-link" href="./#gleichungen-ungleichungen">← Gleichungen · Ungleichungen</a></nav>
+      <header class="equivalence-header">
+        <div>
+          <p class="eyebrow">Gleichungen · Ungleichungen · Kapitel 4</p>
+          <h1>Warum bleibt eine Gleichung wahr, wenn ich auf beiden Seiten dasselbe tue?</h1>
+          <p class="subtitle">Äquivalenzumformungen</p>
+        </div>
+        <p class="local-note" aria-label="Datenschutzstatus"><span aria-hidden="true">●</span> lokal · ohne Speicherung</p>
+      </header>
+
+      <section id="equivalence-board" class="equivalence-board" data-state="irritation" aria-labelledby="equivalence-board-title">
+        <h2 id="equivalence-board-title" class="visually-hidden">Digitale Gleichungswaage für 3x + 5 = 20</h2>
+        <p class="hero-equation"><span id="equivalence-left-equation">3x + 5</span><span aria-hidden="true">=</span><span id="equivalence-right-equation">20</span></p>
+
+        <div class="scale-stage" role="img" aria-label="Gleichungswaage mit einer linken und einer rechten Waagschale">
+          <div id="equivalence-beam" class="scale-beam" style="--balance-tilt: 0deg">
+            <div class="scale-pan scale-pan-left">
+              <span class="equation-side">linke Seite</span>
+              <strong id="equivalence-left-value">20</strong>
+            </div>
+            <div class="scale-pivot" aria-hidden="true"></div>
+            <div class="scale-pan scale-pan-right">
+              <span class="equation-side">rechte Seite</span>
+              <strong id="equivalence-right-value">20</strong>
+            </div>
+          </div>
+          <div class="scale-base" aria-hidden="true"></div>
+        </div>
+
+        <section id="equivalence-warning" class="operation-card warning-card" hidden>
+          <strong>Nur links: − 5</strong><span>Die Lösungsmenge ändert sich – die Waage kippt.</span>
+        </section>
+        <section id="equivalence-restore" class="operation-card restore-card" hidden>
+          <strong>Zurück zu 3x + 5 = 20</strong><span>Beide Seiten sind wieder gleich schwer.</span>
+        </section>
+        <section id="equivalence-subtract-both" class="operation-card equal-card" hidden>
+          <strong>Beidseitig: − 5</strong><span>3x + 5 − 5 = 20 − 5</span>
+        </section>
+        <section id="equivalence-divide-both" class="operation-card equal-card" hidden>
+          <strong>Beidseitig: ÷ 3</strong><span>3x ÷ 3 = 15 ÷ 3</span>
+        </section>
+        <section id="equivalence-groups" class="group-card" hidden aria-label="Beide Seiten werden in drei gleich große Gruppen geteilt">
+          <span>x</span><span>x</span><span>x</span><b aria-hidden="true">↔</b><span>5</span><span>5</span><span>5</span>
+        </section>
+        <section id="equivalence-explore" class="explore-card" hidden>
+          <label for="equivalence-delta">Gleiche Änderung auf beiden Seiten <strong id="equivalence-delta-value">− 5</strong></label>
+          <input id="equivalence-delta" type="range" min="-8" max="8" step="1" value="-5" />
+          <span class="range-scale" aria-hidden="true"><span>−8</span><span>0</span><span>+8</span></span>
+        </section>
+        <section id="equivalence-conclusion" class="conclusion-card" hidden>
+          <h2>Aha</h2>
+          <p id="equivalence-conclusion-text">Zulässige gleiche Operationen auf beiden Seiten erhalten die Lösungsmenge.</p>
+        </section>
+      </section>
+
+      <section class="equivalence-insight" aria-live="polite">
+        <p id="equivalence-insight" class="insight-text">Die Waage ist im Gleichgewicht: Für x = 5 haben beide Seiten den Wert 20.</p>
+        <div class="equivalence-controls"><button id="equivalence-next" class="primary-button" type="button">Weiter</button><button id="equivalence-reset" class="reset-button" type="button">Zurücksetzen</button></div>
+        <p id="equivalence-live" class="visually-hidden" aria-live="polite"></p>
+      </section>
+      <noscript>Für diesen interaktiven Aha-Moment muss JavaScript aktiviert sein.</noscript>
+    </main>
+    <script type="module" src="./src/equivalence-app.js"></script>
+  </body>
+</html>
