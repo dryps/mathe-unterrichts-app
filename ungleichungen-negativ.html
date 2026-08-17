@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f5f7fb" />
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Mathe im Unterricht" />
+    <meta name="description" content="Interaktiver Aha-Moment zur Ordnungsumkehr bei negativer Skalierung." />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./icon-180.png" />
+    <link rel="stylesheet" href="./navigation.css" />
+    <link rel="stylesheet" href="./negative-inequality.css" />
+    <title>Warum dreht sich bei einer negativen Zahl das Ungleichheitszeichen um?</title>
+  </head>
+  <body>
+    <main class="negative-shell">
+      <nav class="module-navigation" aria-label="Modulnavigation"><a class="module-back-link" href="./#gleichungen-ungleichungen">← Gleichungen · Ungleichungen</a></nav>
+      <header class="negative-header">
+        <div><p class="eyebrow">Gleichungen · Ungleichungen · Kapitel 4</p><h1>Warum dreht sich bei einer negativen Zahl das Ungleichheitszeichen um?</h1><p class="subtitle">Ungleichungen mit negativen Zahlen</p></div>
+        <p class="local-note" aria-label="Datenschutzstatus"><span aria-hidden="true">●</span> lokal · ohne Speicherung</p>
+      </header>
+
+      <section id="negative-board" class="negative-board" data-state="irritation" aria-labelledby="negative-board-title">
+        <h2 id="negative-board-title" class="visually-hidden">Spiegelung einer Ungleichung an der Null</h2>
+        <p id="negative-source-equation" class="source-equation">2 &lt; 5</p>
+        <p id="negative-operation" class="operation-pill" hidden>beide Zahlen · (−1)</p>
+
+        <section id="negative-line-stage" class="line-stage" aria-label="Spiegelung an der Null" hidden>
+          <div class="reflection-line" aria-label="Zahlengerade von minus acht bis acht">
+            <span class="line-axis" aria-hidden="true"></span>
+            <span id="negative-zero-axis" class="zero-axis" aria-hidden="true"></span>
+            <span class="tick tick-start">−8</span><span class="tick tick-quarter">−4</span><span class="tick tick-zero">0</span><span class="tick tick-three-quarter">4</span><span class="tick tick-end">8</span>
+            <span id="negative-point-small" class="number-point point-small" aria-label="Erster Punkt bei 2"><strong id="negative-point-small-label">2</strong></span>
+            <span id="negative-point-large" class="number-point point-large" aria-label="Zweiter Punkt bei 5"><strong id="negative-point-large-label">5</strong></span>
+          </div>
+          <p class="mirror-caption"><span aria-hidden="true">↔</span> Spiegelachse 0</p>
+        </section>
+
+        <section id="negative-result" class="result-card" hidden><span>Nach der Multiplikation mit −1:</span><strong id="negative-result-equation">−2 &gt; −5</strong></section>
+        <section id="negative-explore" class="explore-card" hidden>
+          <label for="negative-base-control">Zahlenpaar <strong id="negative-base-value">2 &lt; 5</strong></label>
+          <input id="negative-base-control" type="range" min="1" max="4" step="1" value="2" />
+          <span class="range-scale" aria-hidden="true"><span>1 &lt; 4</span><span>4 &lt; 7</span></span>
+        </section>
+        <section id="negative-conclusion" class="conclusion-card" hidden><h2>Aha</h2><p id="negative-conclusion-text">Negative Skalierung kehrt die Ordnung um.</p></section>
+      </section>
+
+      <section class="negative-insight" aria-live="polite">
+        <p id="negative-insight" class="insight-text">2 ist kleiner als 5. Was passiert mit dieser Ordnung bei der Multiplikation mit −1?</p>
+        <div class="negative-controls"><button id="negative-next" class="primary-button" type="button">Weiter</button><button id="negative-reset" class="reset-button" type="button">Zurücksetzen</button></div>
+        <p id="negative-live" class="visually-hidden" aria-live="polite"></p>
+      </section>
+      <noscript>Für diesen interaktiven Aha-Moment muss JavaScript aktiviert sein.</noscript>
+    </main>
+    <script type="module" src="./src/negative-inequality-app.js"></script>
+  </body>
+</html>
