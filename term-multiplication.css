@@ -1,0 +1,704 @@
+:root {
+  color-scheme: light;
+  font-family:
+    Inter, ui-rounded, "SF Pro Rounded", "Segoe UI", system-ui, -apple-system,
+    sans-serif;
+  color: #182338;
+  background: #f4f7fb;
+  font-synthesis: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-width: 0;
+  min-height: 100%;
+  margin: 0;
+  overflow-x: clip;
+}
+
+body {
+  background:
+    radial-gradient(circle at 9% 6%, rgb(88 137 235 / 14%), transparent 29rem),
+    radial-gradient(circle at 91% 26%, rgb(63 184 157 / 13%), transparent 27rem),
+    #f4f7fb;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.term-multiplication-shell {
+  width: min(100%, 1500px);
+  min-width: 0;
+  margin: 0 auto;
+  padding:
+    max(1rem, env(safe-area-inset-top))
+    max(1rem, env(safe-area-inset-right))
+    max(1.5rem, env(safe-area-inset-bottom))
+    max(1rem, env(safe-area-inset-left));
+}
+
+.term-multiplication-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  min-width: 0;
+  margin: 0.9rem 0 1.2rem;
+}
+
+.term-multiplication-header > div,
+.state-panel,
+.comparison-card,
+.explore-card {
+  min-width: 0;
+}
+
+.eyebrow,
+.subtitle,
+.local-note,
+.state-question,
+.state-formula,
+.structure-label,
+.measure-caption,
+.comparison-kind,
+.comparison-formula,
+.comparison-summary,
+.explore-formula,
+.numeric-note,
+.insight-text {
+  margin: 0;
+}
+
+.eyebrow {
+  color: #3d5c92;
+  font-size: clamp(0.78rem, 1.4vw, 0.98rem);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+h1 {
+  max-width: 25ch;
+  margin: 0.35rem 0 0.32rem;
+  font-size: clamp(1.75rem, 3.5vw, 3.45rem);
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+  overflow-wrap: anywhere;
+}
+
+.subtitle {
+  color: #3d5c92;
+  font-size: clamp(1rem, 1.8vw, 1.3rem);
+  font-weight: 750;
+}
+
+.local-note {
+  flex: 0 0 auto;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid #c9d8ed;
+  border-radius: 999px;
+  color: #47607e;
+  background: rgb(255 255 255 / 72%);
+  font-size: 0.86rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.local-note span {
+  color: #2c9c79;
+}
+
+.term-multiplication-board {
+  --fill-scale: 0;
+  --fill-opacity: 0.18;
+  --segment-size: 5.46rem;
+  --square-size: 9.92rem;
+  display: grid;
+  min-width: 0;
+  min-height: clamp(27rem, 56vh, 43rem);
+  place-items: center;
+  padding: clamp(1rem, 3vw, 2.5rem);
+  overflow: hidden;
+  border: 1px solid #d8e2f0;
+  border-radius: clamp(1.25rem, 3vw, 2.2rem);
+  background:
+    linear-gradient(rgb(255 255 255 / 89%), rgb(255 255 255 / 89%)),
+    linear-gradient(135deg, #eaf1ff, #e8faf4);
+  box-shadow: 0 1.2rem 3rem rgb(55 79 116 / 11%);
+}
+
+.state-panel {
+  width: min(100%, 1220px);
+  text-align: center;
+}
+
+.irritation-panel,
+.addition-panel,
+.square-panel,
+.comparison-panel,
+.explore-panel {
+  display: grid;
+  place-items: center;
+}
+
+.irritation-panel {
+  gap: clamp(1.5rem, 4vw, 3rem);
+}
+
+.irritation-formulas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.8rem, 3vw, 2rem);
+  min-width: 0;
+}
+
+.irritation-formulas p,
+.state-formula {
+  color: #182338;
+  font-size: clamp(2rem, 6vw, 5.2rem);
+  font-weight: 830;
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+
+.irritation-formulas p {
+  margin: 0;
+  padding: clamp(0.8rem, 2vw, 1.4rem);
+  border: 2px solid #c9d8ed;
+  border-radius: 1.1rem;
+  background: #fff;
+}
+
+.irritation-formulas span {
+  color: #718097;
+  font-weight: 750;
+}
+
+.state-question,
+.structure-label {
+  max-width: 45ch;
+  color: #40536f;
+  font-size: clamp(1.04rem, 2.1vw, 1.48rem);
+  font-weight: 680;
+  line-height: 1.35;
+}
+
+.state-formula {
+  margin-bottom: clamp(0.8rem, 2vw, 1.35rem);
+  color: #245b94;
+}
+
+.addition-length {
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+  max-width: 100%;
+  margin-top: clamp(1.5rem, 4vw, 3rem);
+}
+
+.addition-segment {
+  display: grid;
+  inline-size: var(--segment-size);
+  max-inline-size: 36vw;
+  block-size: clamp(3.2rem, 7vw, 5rem);
+  place-items: center;
+  border: 3px solid #346db1;
+  color: #173f71;
+  background: linear-gradient(150deg, #dbeaff, #bcd6fb);
+  box-shadow: 0 0.4rem 0.9rem rgb(53 73 104 / 13%);
+  font-size: clamp(1.3rem, 3vw, 2rem);
+}
+
+.addition-segment:first-child {
+  border-radius: 0.9rem 0 0 0.9rem;
+}
+
+.addition-segment:last-child {
+  margin-left: -3px;
+  border-radius: 0 0.9rem 0.9rem 0;
+}
+
+.measure-caption {
+  margin-top: 1rem;
+  color: #3c5575;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-weight: 780;
+}
+
+.square-stage {
+  display: grid;
+  min-height: clamp(14rem, 30vw, 24rem);
+  margin-top: clamp(1.1rem, 3vw, 2rem);
+  place-items: center;
+}
+
+.square-shape {
+  position: relative;
+  inline-size: var(--square-size);
+  max-inline-size: min(56vw, 22rem);
+  aspect-ratio: 1;
+  border: 4px solid #2f6fad;
+  border-radius: 0.9rem;
+  background: #f8fbff;
+  box-shadow: 0 0.8rem 1.8rem rgb(47 111 173 / 13%);
+}
+
+.square-fill {
+  position: absolute;
+  inset: 0;
+  border-radius: 0.55rem;
+  background:
+    linear-gradient(rgb(255 255 255 / 24%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 24%) 1px, transparent 1px),
+    linear-gradient(145deg, #98d9c7, #68bba3);
+  background-size: 20% 20%, 20% 20%, auto;
+  opacity: var(--fill-opacity);
+  transform: scaleY(var(--fill-scale));
+  transform-origin: bottom;
+}
+
+.square-side {
+  position: absolute;
+  z-index: 1;
+  color: #244665;
+  font-size: clamp(0.75rem, 1.5vw, 0.98rem);
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.square-side-horizontal {
+  right: 0;
+  bottom: -2rem;
+  left: 0;
+}
+
+.square-side-vertical {
+  top: 50%;
+  left: -2.3rem;
+  transform: translate(-50%, -50%) rotate(-90deg);
+}
+
+.square-area-label {
+  position: absolute;
+  z-index: 2;
+  inset: 50% auto auto 50%;
+  color: #174f40;
+  font-size: clamp(1rem, 2.5vw, 1.65rem);
+  opacity: var(--fill-scale);
+  transform: translate(-50%, -50%);
+}
+
+.comparison-grid,
+.explore-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.9rem, 2.5vw, 1.7rem);
+  width: 100%;
+  min-width: 0;
+}
+
+.comparison-card,
+.explore-card {
+  display: grid;
+  min-height: 20rem;
+  align-content: center;
+  justify-items: center;
+  gap: 1rem;
+  padding: clamp(1rem, 2.5vw, 2rem);
+  border: 2px solid;
+  border-radius: 1.35rem;
+}
+
+.length-card {
+  border-color: #a9c9ee;
+  background: #f4f8ff;
+}
+
+.area-card {
+  border-color: #a9d9cb;
+  background: #f1fbf7;
+}
+
+.comparison-kind {
+  color: #5c6d84;
+  font-size: 0.84rem;
+  font-weight: 820;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.comparison-formula,
+.explore-formula {
+  color: #1f3857;
+  font-size: clamp(1.4rem, 3vw, 2.4rem);
+  font-weight: 830;
+  letter-spacing: -0.035em;
+}
+
+.comparison-card > p:last-child {
+  max-width: 28ch;
+  margin: 0;
+  color: #52647d;
+  font-weight: 680;
+}
+
+.mini-length {
+  display: flex;
+  width: min(80%, 17rem);
+  height: 3.2rem;
+}
+
+.mini-length span {
+  flex: 1;
+  border: 2px solid #346db1;
+  background: #c9ddfa;
+}
+
+.mini-length span:first-child {
+  border-radius: 0.7rem 0 0 0.7rem;
+}
+
+.mini-length span:last-child {
+  margin-left: -2px;
+  border-radius: 0 0.7rem 0.7rem 0;
+}
+
+.mini-square,
+.explore-square {
+  inline-size: clamp(5.5rem, 12vw, 9rem);
+  aspect-ratio: 1;
+  border: 3px solid #2c896f;
+  border-radius: 0.75rem;
+  background: linear-gradient(145deg, #c8eee3, #8ed2be);
+}
+
+.comparison-summary {
+  margin-top: 1rem;
+  color: #36506f;
+  font-size: clamp(1.05rem, 2.2vw, 1.45rem);
+  font-weight: 800;
+}
+
+.explore-grid {
+  margin-bottom: 1rem;
+}
+
+.explore-card {
+  min-height: 16rem;
+}
+
+.explore-length {
+  margin-top: 0.5rem;
+}
+
+.explore-square {
+  display: grid;
+  inline-size: min(var(--square-size), 10rem);
+  place-items: center;
+  color: #174f40;
+  font-size: clamp(1.15rem, 2.7vw, 1.8rem);
+}
+
+.range-control {
+  display: grid;
+  width: min(100%, 42rem);
+  min-width: 0;
+  gap: 0.45rem;
+  margin-top: 0.35rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid #cad8ea;
+  border-radius: 1rem;
+  color: #40536f;
+  background: rgb(255 255 255 / 88%);
+  font-size: 0.92rem;
+  font-weight: 720;
+  text-align: left;
+}
+
+.range-control strong {
+  color: #235992;
+  font-size: 1.15rem;
+}
+
+.range-control input[type="range"] {
+  width: 100%;
+  min-height: 2.75rem;
+  margin: 0;
+  accent-color: #2f6fad;
+  cursor: pointer;
+  touch-action: pan-y;
+}
+
+.range-control input[type="range"]:focus-visible,
+.primary-button:focus-visible,
+.reset-button:focus-visible {
+  outline: 4px solid rgb(57 116 181 / 28%);
+  outline-offset: 3px;
+}
+
+.range-scale {
+  display: flex;
+  justify-content: space-between;
+  color: #738198;
+  font-size: 0.78rem;
+}
+
+.numeric-note {
+  max-width: 48rem;
+  margin-top: 0.75rem;
+  color: #50647d;
+  font-size: clamp(0.92rem, 1.8vw, 1.12rem);
+  font-weight: 680;
+}
+
+.conclusion-card {
+  width: min(100%, 58rem);
+  margin-top: 0.85rem;
+  padding: clamp(0.9rem, 2.2vw, 1.5rem);
+  border: 2px solid #8eb7e5;
+  border-radius: 1.25rem;
+  background: linear-gradient(135deg, #edf5ff, #effbf7);
+}
+
+.conclusion-card h2 {
+  margin: 0;
+  color: #1e4d80;
+  font-size: clamp(1.18rem, 2.8vw, 2rem);
+  line-height: 1.15;
+}
+
+.conclusion-card p {
+  margin: 0.45rem 0 0;
+  color: #405a77;
+  font-size: clamp(0.92rem, 1.8vw, 1.12rem);
+  font-weight: 680;
+}
+
+.term-multiplication-insight {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-width: 0;
+  margin-top: 1rem;
+  padding: 1rem clamp(1rem, 2.3vw, 1.5rem);
+  border: 1px solid #d8e2ef;
+  border-radius: 1.25rem;
+  background: rgb(255 255 255 / 88%);
+  box-shadow: 0 0.7rem 1.8rem rgb(55 79 116 / 8%);
+}
+
+.insight-text {
+  min-width: 0;
+  color: #2d4565;
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  font-weight: 760;
+  line-height: 1.3;
+}
+
+.term-multiplication-controls {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 0.65rem;
+}
+
+.primary-button,
+.reset-button {
+  min-height: 3rem;
+  padding: 0.72rem 1.15rem;
+  border: 2px solid transparent;
+  border-radius: 0.9rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.primary-button {
+  color: #fff;
+  background: #2f6fad;
+  box-shadow: 0 0.45rem 1rem rgb(47 111 173 / 24%);
+}
+
+.reset-button {
+  border-color: #c3d1e3;
+  color: #40536f;
+  background: #f8fafc;
+}
+
+button:disabled,
+input:disabled {
+  cursor: wait;
+  opacity: 0.58;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 760px) {
+  .term-multiplication-header,
+  .term-multiplication-insight {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .local-note {
+    align-self: flex-start;
+  }
+
+  .term-multiplication-board {
+    min-height: 31rem;
+  }
+
+  .comparison-grid,
+  .explore-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .comparison-card,
+  .explore-card {
+    min-height: 12.5rem;
+  }
+
+  .term-multiplication-controls {
+    width: 100%;
+  }
+
+  .primary-button,
+  .reset-button {
+    flex: 1 1 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .term-multiplication-shell {
+    padding-right: max(0.65rem, env(safe-area-inset-right));
+    padding-left: max(0.65rem, env(safe-area-inset-left));
+  }
+
+  .term-multiplication-board {
+    min-height: 28rem;
+    padding: 0.75rem;
+    border-radius: 1.1rem;
+  }
+
+  .irritation-formulas {
+    gap: 0.45rem;
+  }
+
+  .irritation-formulas p {
+    padding: 0.65rem 0.55rem;
+  }
+
+  .addition-segment {
+    max-inline-size: 39vw;
+    block-size: 3rem;
+  }
+
+  .square-side-vertical {
+    left: -1.75rem;
+    font-size: 0.68rem;
+  }
+
+  .range-control {
+    padding: 0.68rem 0.8rem;
+  }
+}
+
+@media (max-width: 340px) {
+  h1 {
+    font-size: 1.43rem;
+  }
+
+  .term-multiplication-header {
+    gap: 0.7rem;
+  }
+
+  .local-note {
+    padding: 0.42rem 0.62rem;
+    font-size: 0.74rem;
+  }
+
+  .irritation-formulas span {
+    font-size: 0.75rem;
+  }
+
+  .square-shape {
+    border-width: 3px;
+  }
+
+  .term-multiplication-controls {
+    flex-direction: column;
+  }
+}
+
+@media (orientation: portrait) {
+  .term-multiplication-board {
+    min-height: min(58rem, 62vh);
+  }
+}
+
+@media (orientation: landscape) and (max-height: 820px) {
+  .term-multiplication-header {
+    margin-top: 0.4rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .term-multiplication-board {
+    min-height: 22rem;
+    padding-block: 0.85rem;
+  }
+
+  .comparison-card,
+  .explore-card {
+    min-height: 13rem;
+  }
+
+  .square-stage {
+    min-height: 14rem;
+    margin-top: 0.5rem;
+  }
+}
+
+@media (min-width: 1500px) {
+  .term-multiplication-shell {
+    width: min(94vw, 1720px);
+  }
+
+  .term-multiplication-board {
+    min-height: 44rem;
+  }
+
+  .state-question,
+  .structure-label,
+  .insight-text {
+    font-size: 1.45rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
