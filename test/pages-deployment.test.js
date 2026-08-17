@@ -86,6 +86,7 @@ test("jeder Einstieg registriert den Worker explizit im Projekt-Scope ohne HTTP-
     "src/terms-variables-app.js",
     "src/like-terms-app.js",
     "src/term-multiplication-app.js",
+    "src/term-division-app.js",
     "src/app.js",
     "src/triangle-inequality-app.js",
     "src/triangle-area-app.js",

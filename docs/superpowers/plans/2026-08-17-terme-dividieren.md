@@ -83,7 +83,7 @@
 
 ### Task 7: Review, PR, Merge und Produktion
 
-- [ ] Unabhängigen Read-only-Code-Review durchführen und alle Critical-/Important-Befunde vor dem PR beheben.
+- [x] Unabhängigen Read-only-Code-Review durchführen und alle Critical-/Important-Befunde vor dem PR beheben.
 - [ ] Genau einen PR als Draft erstellen, review-bereit setzen und nur bei grünen Gates per Squash mergen.
 - [ ] Push-getriggerten Pages-Lauf und Artefakt demselben neuen `main`-SHA zuordnen.
 - [ ] Live-Seite, direkte Modul-URL, Cache `v21`, Offlineverhalten und responsive Layouts prüfen.
