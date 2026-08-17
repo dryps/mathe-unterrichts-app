@@ -89,4 +89,3 @@ test("Kernerkenntnis bleibt auf die Wirkung auf das gesamte Paket begrenzt", () 
     "Das Minus wirkt auf das gesamte Paket.",
   );
 });
-

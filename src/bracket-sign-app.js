@@ -12,6 +12,7 @@ const comparison = $("#bracket-sign-comparison");
 const explore = $("#bracket-sign-explore");
 const conclusion = $("#bracket-sign-conclusion");
 const factorToken = $("#outer-factor-token");
+const bracketPackage = $("#bracket-package");
 const variable = $("#package-variable");
 const constant = $("#package-constant");
 const result = $("#package-result");
@@ -49,6 +50,12 @@ function render() {
   conclusion.hidden = !model.showConclusion;
   acting.hidden = !model.showActing;
   factorToken.textContent = model.outerFactor > 0 ? "+1" : "−1";
+  bracketPackage.setAttribute(
+    "aria-label",
+    model.showMinus || model.showExplore
+      ? `Ergebnis-Paket aus ${model.resultLabels[0] === "−x" ? "minus x" : "plus x"} und ${model.resultLabels[1] === "+3" ? "plus drei" : "minus drei"}`
+      : "Klammerpaket aus plus x und minus drei",
+  );
   variable.textContent = model.showMinus || model.showExplore ? model.resultLabels[0] : "+x";
   constant.textContent = model.showMinus || model.showExplore ? model.resultLabels[1] : "−3";
   result.textContent = model.resultExpression;

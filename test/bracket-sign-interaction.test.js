@@ -4,11 +4,14 @@ import test from "node:test";
 function element(id = "") {
   const listeners = new Map();
   const styles = new Map();
+  const attributes = new Map();
   return {
     id, dataset: {}, hidden: false, disabled: false, textContent: "", value: "",
     style: { setProperty(name, value) { styles.set(name, String(value)); }, getPropertyValue(name) { return styles.get(name) ?? ""; } },
     addEventListener(type, listener) { listeners.set(type, listener); },
     dispatch(type, event = {}) { return listeners.get(type)?.({ currentTarget: this, target: this, ...event }); },
+    setAttribute(name, value) { attributes.set(name, String(value)); },
+    getAttribute(name) { return attributes.get(name) ?? null; },
   };
 }
 
@@ -16,7 +19,7 @@ async function harness({ reducedMotion = true } = {}) {
   const names = [
     "bracket-sign-board", "bracket-sign-irritation", "bracket-sign-package",
     "bracket-sign-comparison", "bracket-sign-explore", "bracket-sign-conclusion",
-    "outer-factor-token", "package-variable", "package-constant", "package-result",
+    "outer-factor-token", "bracket-package", "package-variable", "package-constant", "package-result",
     "acting-overlay", "acting-arrow-variable", "acting-arrow-constant",
     "comparison-plus-result", "comparison-minus-result", "factor-control", "factor-value",
     "bracket-sign-insight", "bracket-sign-live", "bracket-sign-next", "bracket-sign-reset",
@@ -43,12 +46,14 @@ test("Weiter zeigt die Lernansichten in der vereinbarten Reihenfolge", async () 
   next.dispatch("click");
   assert.equal(board.dataset.state, "package");
   assert.equal(setup.ids.get("#package-result").hidden, true);
+  assert.equal(setup.ids.get("#bracket-package").getAttribute("aria-label"), "Klammerpaket aus plus x und minus drei");
   next.dispatch("click");
   assert.equal(board.dataset.state, "plus");
   assert.equal(setup.ids.get("#outer-factor-token").textContent, "+1");
   next.dispatch("click");
   assert.equal(board.dataset.state, "minus");
   assert.equal(setup.ids.get("#package-result").textContent, "−x + 3");
+  assert.equal(setup.ids.get("#bracket-package").getAttribute("aria-label"), "Ergebnis-Paket aus minus x und plus drei");
   next.dispatch("click");
   assert.equal(board.dataset.state, "comparison");
   next.dispatch("click");

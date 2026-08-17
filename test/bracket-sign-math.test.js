@@ -55,4 +55,3 @@ test("fehlende, nullte und nicht endliche Eingaben fallen sicher auf minus eins 
     assert.equal(normalizeBracketOuterFactor(value), -1);
   }
 });
-

@@ -46,4 +46,3 @@
 - Kein horizontaler Überlauf bei 320×700, 390×844, 768×1024, 1024×768 und 1920×1080.
 - Alle Modulressourcen werden explizit in Pages-, Smoke- und Offline-Listen aufgenommen.
 - Der Cache steigt bei Integration genau von der bestätigten Version `v21` auf `v22`.
-
