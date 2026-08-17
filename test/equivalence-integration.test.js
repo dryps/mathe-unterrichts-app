@@ -13,22 +13,21 @@ const runtimeFiles = ["aequivalenzumformungen.html", "equivalence.css", "src/equ
 test("Startseite integriert K4.1 genau einmal als erste Kapitel-4-Karte", () => {
   const chapter = files.home.match(/<section\s+id="gleichungen-ungleichungen"[\s\S]*?<\/section>/)?.[0];
   assert.ok(chapter);
-  assert.equal((chapter.match(/class="module-card"/g) ?? []).length, 1);
+  assert.equal((chapter.match(/class="module-card"/g) ?? []).length, 2);
   assert.equal((files.home.match(/href="\.\/aequivalenzumformungen\.html"/g) ?? []).length, 1);
   assert.match(chapter, /4\. Gleichungen · Ungleichungen/);
   assert.match(chapter, /Warum bleibt eine Gleichung wahr, wenn ich auf beiden Seiten dasselbe tue\?/);
   assert.match(chapter, /<span class="module-subtitle">Äquivalenzumformungen<\/span>/);
-  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 19);
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 20);
 });
 
-test("Kapitel-4-Raster bleibt bei einer Karte responsiv und gleichwertig", () => {
-  assert.match(files.homeCss, /\.chapter-equations \.module-grid\s*\{[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\)/s);
+test("Kapitel-4-Raster bleibt mit zwei Karten responsiv und gleichwertig", () => {
+  assert.match(files.homeCss, /\.chapter-equations \.module-grid\s*\{[^}]*repeat\(2,\s*minmax\(0,\s*1fr\)\)/s);
   assert.match(files.homeCss, /@media \(max-width: 720px\)[\s\S]*\.chapter-equations \.module-grid/);
 });
 
-test("Cache v24 enthält ausschließlich die sechs neuen Laufzeitdateien", () => {
-  assert.match(files.worker, /mathe-unterrichts-app-v24/);
-  assert.doesNotMatch(files.worker, /mathe-unterrichts-app-v23/);
+test("aktueller Cache enthält weiterhin die sechs K4.1-Laufzeitdateien", () => {
+  assert.match(files.worker, /mathe-unterrichts-app-v25/);
   for (const file of runtimeFiles) assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   assert.doesNotMatch(files.worker, /render-equivalence-states|aequivalenzumformungen-(?:design|static\.test)/);
 });

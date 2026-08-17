@@ -5,5 +5,5 @@
 - [x] Synchrone Entfernung beider Gruppen deterministisch testen.
 - [x] Standalone-Seite, algebraische Bausteine und responsive Darstellung implementieren.
 - [x] Interaktions-, Struktur- und Rendererprüfungen ergänzen.
-- [ ] Zweite Kapitel-4-Karte sowie Offline-, Pages-, Smoke- und Workflow-Integration ergänzen.
+- [x] Zweite Kapitel-4-Karte sowie Offline-, Pages-, Smoke- und Workflow-Integration ergänzen.
 - [ ] Vollständige Suite, Browserprüfung, unabhängigen Review, PR, Squash-Merge und Live-Gates durchführen.
