@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f4f7fb" />
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+    <meta name="description" content="Interaktiver Aha-Moment zu gleichartigen Termen." />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./navigation.css" />
+    <link rel="stylesheet" href="./like-terms.css" />
+    <title>Warum darf ich 3x + 2x zu 5x machen – aber 3x + 2 nicht?</title>
+  </head>
+  <body>
+    <main class="like-terms-shell">
+      <nav class="module-navigation" aria-label="Modulnavigation">
+        <a class="module-back-link" href="./#rechnen-mit-termen">← Rechnen mit Termen</a>
+      </nav>
+
+      <header class="like-terms-header">
+        <div>
+          <p class="eyebrow">Rechnen mit Termen · Kapitel 3</p>
+          <h1>Warum darf ich 3x + 2x zu 5x machen – aber 3x + 2 nicht?</h1>
+          <p class="subtitle">Gleichartige Terme</p>
+        </div>
+        <p class="local-note" aria-label="Datenschutzstatus">
+          <span aria-hidden="true">●</span> lokal · ohne Speicherung
+        </p>
+      </header>
+
+      <section
+        id="like-terms-board"
+        class="like-terms-board"
+        data-state="irritation"
+        aria-labelledby="like-terms-board-title"
+      >
+        <h2 id="like-terms-board-title" class="visually-hidden">
+          Algebraische Bausteine für gleichartige Terme
+        </h2>
+
+        <section id="like-terms-irritation" class="state-panel irritation-panel">
+          <div class="irritation-formulas" aria-label="Zwei Terme zum Vergleichen">
+            <p>3x + 2x</p>
+            <p>3x + 2</p>
+          </div>
+          <p class="state-question">Warum kann ich nur einen dieser Terme weiter zusammenfassen?</p>
+        </section>
+
+        <section id="like-terms-groups" class="state-panel groups-panel" hidden>
+          <p class="state-formula">3x + 2x</p>
+          <div class="group-equation" aria-label="Drei x-Bausteine plus zwei x-Bausteine">
+            <div class="term-group first-group">
+              <span class="group-label">3x</span>
+              <div id="like-group-first" class="block-row"></div>
+            </div>
+            <span class="math-symbol merge-plus" aria-hidden="true">+</span>
+            <div class="term-group second-group">
+              <span class="group-label">2x</span>
+              <div id="like-group-second" class="block-row"></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="like-terms-combined" class="state-panel combined-panel" hidden>
+          <p class="state-formula result-formula">3x + 2x = 5x</p>
+          <div
+            id="combined-blocks"
+            class="block-row combined-row"
+            aria-label="Fünf gleiche x-Bausteine"
+          ></div>
+          <p class="count-caption">5 x-Bausteine</p>
+        </section>
+
+        <section id="like-terms-counterexample" class="state-panel counterexample-panel" hidden>
+          <p class="state-formula">3x + 2</p>
+          <div class="group-equation different-groups" aria-label="Drei x-Bausteine und zwei Einer">
+            <div class="term-group">
+              <span class="group-label">3x</span>
+              <div id="counter-x-blocks" class="block-row"></div>
+            </div>
+            <span class="math-symbol" aria-hidden="true">+</span>
+            <div class="term-group unit-side">
+              <span class="group-label">2</span>
+              <div id="counter-one-blocks" class="block-row"></div>
+            </div>
+          </div>
+          <p class="separation-note">verschiedene Arten bleiben getrennt</p>
+        </section>
+
+        <section id="like-terms-comparison" class="state-panel comparison-panel" hidden>
+          <div class="comparison-grid">
+            <article class="comparison-card like-card">
+              <p class="comparison-label">gleichartig</p>
+              <p class="comparison-formula">3x + 2x = 5x</p>
+              <div
+                id="compare-like-blocks"
+                class="block-row"
+                aria-label="Fünf gleiche x-Bausteine"
+              ></div>
+            </article>
+            <article class="comparison-card unlike-card">
+              <p class="comparison-label">nicht gleichartig</p>
+              <p class="comparison-formula">3x + 2</p>
+              <div class="mixed-block-row" aria-label="Drei x-Bausteine und zwei Einer">
+                <div id="compare-x-blocks" class="block-row"></div>
+                <span class="kind-divider" aria-hidden="true"></span>
+                <div id="compare-one-blocks" class="block-row"></div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="like-terms-explore" class="state-panel explore-panel" hidden>
+          <p id="explore-formula" class="state-formula result-formula">3x + 2x = 5x</p>
+
+          <div class="explore-summands">
+            <div class="explore-group">
+              <span class="group-label">erste x-Gruppe</span>
+              <div id="explore-first-blocks" class="block-row"></div>
+            </div>
+            <span class="math-symbol" aria-hidden="true">+</span>
+            <div class="explore-group">
+              <span class="group-label">zweite x-Gruppe</span>
+              <div id="explore-second-blocks" class="block-row"></div>
+            </div>
+          </div>
+
+          <div class="explore-result" aria-label="Zusammengefasste x-Bausteine">
+            <span class="equals-symbol" aria-hidden="true">=</span>
+            <div id="explore-result-blocks" class="block-row result-block-row"></div>
+          </div>
+
+          <div class="range-grid">
+            <label class="range-control" for="first-coefficient">
+              <span>erste Gruppe</span>
+              <strong id="first-value">3x</strong>
+              <input id="first-coefficient" type="range" min="1" max="4" step="1" value="3" />
+              <span class="range-scale" aria-hidden="true"><span>1x</span><span>4x</span></span>
+            </label>
+            <label class="range-control" for="second-coefficient">
+              <span>zweite Gruppe</span>
+              <strong id="second-value">2x</strong>
+              <input id="second-coefficient" type="range" min="1" max="4" step="1" value="2" />
+              <span class="range-scale" aria-hidden="true"><span>1x</span><span>4x</span></span>
+            </label>
+          </div>
+
+          <div id="like-terms-conclusion" class="conclusion-card" hidden>
+            <h2>Nur Gleichartiges kann zusammengefasst werden.</h2>
+            <p>x-Bausteine mit x-Bausteinen, Einer mit Einern.</p>
+          </div>
+        </section>
+      </section>
+
+      <section class="like-terms-insight" aria-live="polite">
+        <p id="like-terms-insight" class="insight-text">
+          Warum kann ich nur einen dieser Terme weiter zusammenfassen?
+        </p>
+        <div class="like-terms-controls">
+          <button id="like-terms-next" class="primary-button" type="button">Weiter</button>
+          <button id="like-terms-reset" class="reset-button" type="button">Zurücksetzen</button>
+        </div>
+        <p id="like-terms-live" class="visually-hidden" aria-live="polite"></p>
+      </section>
+
+      <noscript>Für diesen interaktiven Aha-Moment muss JavaScript aktiviert sein.</noscript>
+    </main>
+    <script type="module" src="./src/like-terms-app.js"></script>
+  </body>
+</html>
