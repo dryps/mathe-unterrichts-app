@@ -128,7 +128,7 @@ test("Offline-Cache enthält das vollständige Ordnungsmodul", () => {
   ]) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
-  assert.match(files.worker, /mathe-unterrichts-app-v18/);
+  assert.match(files.worker, /mathe-unterrichts-app-v20/);
   assert.match(files.app, /serviceWorker\.register/);
 });
 

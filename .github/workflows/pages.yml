@@ -49,6 +49,7 @@ jobs:
           npm run test:multiplication-visual
           npm run test:terms-visual
           npm run test:like-terms-visual
+          npm run test:term-multiplication-visual
 
       - name: Kontrolliertes Pages-Artefakt bauen
         run: npm run build:pages

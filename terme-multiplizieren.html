@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f4f7fb" />
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Mathe im Unterricht" />
+    <meta name="description" content="Interaktiver Aha-Moment zum Multiplizieren von Termen." />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./icon-180.png" />
+    <link rel="stylesheet" href="./navigation.css" />
+    <link rel="stylesheet" href="./term-multiplication.css" />
+    <title>Warum ist x · x = x² – und nicht 2x?</title>
+  </head>
+  <body>
+    <main class="term-multiplication-shell">
+      <nav class="module-navigation" aria-label="Modulnavigation">
+        <a class="module-back-link" href="./#rechnen-mit-termen">← Rechnen mit Termen</a>
+      </nav>
+
+      <header class="term-multiplication-header">
+        <div>
+          <p class="eyebrow">Rechnen mit Termen · Kapitel 3</p>
+          <h1>Warum ist x · x = x² – und nicht 2x?</h1>
+          <p class="subtitle">Terme multiplizieren</p>
+        </div>
+        <p class="local-note" aria-label="Datenschutzstatus">
+          <span aria-hidden="true">●</span> lokal · ohne Speicherung
+        </p>
+      </header>
+
+      <section
+        id="term-multiplication-board"
+        class="term-multiplication-board"
+        data-state="irritation"
+        aria-labelledby="term-multiplication-board-title"
+      >
+        <h2 id="term-multiplication-board-title" class="visually-hidden">
+          Vergleich von Addition und Multiplikation mit x
+        </h2>
+
+        <section id="term-multiplication-irritation" class="state-panel irritation-panel">
+          <div class="irritation-formulas" aria-label="Addition und Multiplikation vergleichen">
+            <p>x + x</p>
+            <span aria-hidden="true">oder</span>
+            <p>x · x</p>
+          </div>
+          <p class="state-question">
+            In beiden Ausdrücken steht zweimal x. Entsteht deshalb zweimal dasselbe?
+          </p>
+        </section>
+
+        <section id="term-multiplication-addition" class="state-panel addition-panel" hidden>
+          <p class="state-formula">x + x = 2x</p>
+          <p class="structure-label">Zwei x-Längen werden aneinandergelegt.</p>
+          <div class="addition-length" aria-label="Zwei Längen x ergeben die Gesamtlänge 2x">
+            <span class="addition-segment"><strong>x</strong></span>
+            <span class="addition-segment"><strong>x</strong></span>
+          </div>
+          <p id="addition-total" class="measure-caption">Gesamtlänge 2x</p>
+        </section>
+
+        <section id="term-multiplication-square" class="state-panel square-panel" hidden>
+          <p id="square-formula" class="state-formula">x · x</p>
+          <p class="structure-label">Zwei Seitenlängen x spannen ein Quadrat auf.</p>
+          <div class="square-stage">
+            <div
+              id="square-shape"
+              class="square-shape"
+              aria-label="Quadrat mit zwei Seitenlängen x"
+            >
+              <div class="square-fill" aria-hidden="true"></div>
+              <span class="square-side square-side-horizontal">Seitenlänge x</span>
+              <span class="square-side square-side-vertical">Seitenlänge x</span>
+              <strong id="square-area-label" class="square-area-label" hidden>Fläche x²</strong>
+            </div>
+          </div>
+        </section>
+
+        <section id="term-multiplication-comparison" class="state-panel comparison-panel" hidden>
+          <div class="comparison-grid">
+            <article class="comparison-card length-card">
+              <p class="comparison-kind">Addition · Länge</p>
+              <p class="comparison-formula">x + x = 2x</p>
+              <div class="mini-length" aria-hidden="true">
+                <span></span><span></span>
+              </div>
+              <p>Zwei x-Strecken liegen hintereinander.</p>
+            </article>
+            <article class="comparison-card area-card">
+              <p class="comparison-kind">Multiplikation · Fläche</p>
+              <p class="comparison-formula">x · x = x²</p>
+              <div class="mini-square" aria-hidden="true"></div>
+              <p>Zwei Seitenlängen bestimmen ein Quadrat.</p>
+            </article>
+          </div>
+          <p class="comparison-summary">Gleicher Buchstabe – verschiedene Struktur.</p>
+        </section>
+
+        <section id="term-multiplication-explore" class="state-panel explore-panel" hidden>
+          <div class="explore-grid">
+            <article class="explore-card length-card">
+              <p class="comparison-kind">Addition · Gesamtlänge</p>
+              <p id="explore-addition-formula" class="explore-formula">x + x = 2x = 6</p>
+              <div class="addition-length explore-length" aria-hidden="true">
+                <span class="addition-segment"><strong>x</strong></span>
+                <span class="addition-segment"><strong>x</strong></span>
+              </div>
+            </article>
+            <article class="explore-card area-card">
+              <p class="comparison-kind">Multiplikation · Fläche</p>
+              <p id="explore-multiplication-formula" class="explore-formula">x · x = x² = 9</p>
+              <div class="explore-square" aria-hidden="true"><strong>x²</strong></div>
+            </article>
+          </div>
+
+          <label class="range-control" for="x-control">
+            <span>Verändere beide x-Längen gleichzeitig</span>
+            <strong id="x-value">x = 3</strong>
+            <input id="x-control" type="range" min="1" max="5" step="1" value="3" />
+            <span class="range-scale" aria-hidden="true"><span>1</span><span>5</span></span>
+          </label>
+
+          <p id="term-multiplication-comparison-note" class="numeric-note">
+            Länge 6 und Fläche 9 haben verschiedene Werte.
+          </p>
+
+          <div id="term-multiplication-conclusion" class="conclusion-card" hidden>
+            <h2>2x und x² sind nicht zwei Schreibweisen für dasselbe.</h2>
+            <p>Addieren zählt Längen zusammen. Multiplizieren erzeugt hier eine Fläche.</p>
+          </div>
+        </section>
+      </section>
+
+      <section class="term-multiplication-insight" aria-live="polite">
+        <p id="term-multiplication-insight" class="insight-text">
+          Zweimal x kann Addition oder Multiplikation bedeuten.
+        </p>
+        <div class="term-multiplication-controls">
+          <button id="term-multiplication-next" class="primary-button" type="button">Weiter</button>
+          <button id="term-multiplication-reset" class="reset-button" type="button">Zurücksetzen</button>
+        </div>
+        <p id="term-multiplication-live" class="visually-hidden" aria-live="polite"></p>
+      </section>
+
+      <noscript>Für diesen interaktiven Aha-Moment muss JavaScript aktiviert sein.</noscript>
+    </main>
+    <script type="module" src="./src/term-multiplication-app.js"></script>
+  </body>
+</html>
