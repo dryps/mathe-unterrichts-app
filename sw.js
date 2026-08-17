@@ -1,4 +1,4 @@
-const CACHE_NAME = "mathe-unterrichts-app-v27";
+const CACHE_NAME = "mathe-unterrichts-app-v28";
 const NAVIGATION_FALLBACK = "./index.html";
 const APP_FILES = [
   "./",
@@ -132,6 +132,12 @@ const APP_FILES = [
   "./src/solution-set-math.js",
   "./src/solution-set-state.js",
   "./src/solution-set-animation.js",
+  "./eigenschaften-statt-optik.html",
+  "./quadrilateral-properties.css",
+  "./src/quadrilateral-properties-app.js",
+  "./src/quadrilateral-properties-animation.js",
+  "./src/quadrilateral-properties-geometry.js",
+  "./src/quadrilateral-properties-state.js",
   "./manifest.webmanifest",
   "./icon.svg",
   "./icon-180.png",

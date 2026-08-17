@@ -130,8 +130,8 @@ test("Installation füllt Version 27 vollständig und Aktivierung entfernt Versi
 
   assert.equal(harness.skipped, true);
   assert.equal(harness.claimed, true);
-  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v27"]);
-  const current = harness.stores.get("mathe-unterrichts-app-v27");
+  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v28"]);
+  const current = harness.stores.get("mathe-unterrichts-app-v28");
   for (const path of [
     "./",
     "./index.html",

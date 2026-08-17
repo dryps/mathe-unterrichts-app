@@ -136,6 +136,14 @@ h2 {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+.chapter-quadrilaterals .module-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.chapter-quadrilaterals .module-card {
+  grid-column: auto;
+}
+
 .module-card {
   display: flex;
   min-height: clamp(220px, 28vw, 330px);

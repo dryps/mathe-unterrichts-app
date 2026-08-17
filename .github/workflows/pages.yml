@@ -57,6 +57,7 @@ jobs:
           npm run test:both-sides-visual
           npm run test:negative-inequality-visual
           npm run test:solution-set-visual
+          npm run test:quadrilateral-properties-visual
 
       - name: Kontrolliertes Pages-Artefakt bauen
         run: npm run build:pages
