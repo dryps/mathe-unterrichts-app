@@ -55,6 +55,8 @@ async function harness({ reducedMotion = true } = {}) {
     "term-multiplication-explore",
     "term-multiplication-conclusion",
     "addition-total",
+    "square-formula",
+    "square-shape",
     "square-area-label",
     "explore-addition-formula",
     "explore-multiplication-formula",
@@ -132,9 +134,17 @@ test("Weiter zeigt alle sechs Lernansichten in der vereinbarten Reihenfolge", as
 
   next.dispatch("click");
   assert.equal(board.dataset.state, "square");
+  assert.equal(setup.ids.get("#square-formula").textContent, "x · x");
+  assert.equal(
+    setup.ids.get("#square-shape").getAttribute("aria-label"),
+    "Quadrat mit zwei Seitenlängen x",
+  );
+  assert.equal(setup.ids.get("#square-area-label").hidden, true);
 
   next.dispatch("click");
   assert.equal(board.dataset.state, "area");
+  assert.equal(setup.ids.get("#square-formula").textContent, "x · x = x²");
+  assert.equal(setup.ids.get("#square-area-label").hidden, false);
   assert.equal(setup.ids.get("#square-area-label").textContent, "Fläche x²");
 
   next.dispatch("click");
@@ -146,7 +156,7 @@ test("Weiter zeigt alle sechs Lernansichten in der vereinbarten Reihenfolge", as
   assert.equal(setup.ids.get("#x-control").disabled, false);
 });
 
-test("Mehrfachtipps und Reset können eine laufende Füllung nicht überholen", async () => {
+test("Mehrfachtipps können eine laufende Füllung nicht überholen", async () => {
   const setup = await harness({ reducedMotion: false });
   const next = setup.ids.get("#term-multiplication-next");
   const reset = setup.ids.get("#term-multiplication-reset");
@@ -156,19 +166,43 @@ test("Mehrfachtipps und Reset können eine laufende Füllung nicht überholen", 
   next.dispatch("click");
   next.dispatch("click");
   assert.equal(board.dataset.state, "filling");
+  assert.equal(setup.ids.get("#square-area-label").hidden, true);
   assert.equal(next.disabled, true);
-  assert.equal(reset.disabled, true);
+  assert.equal(reset.disabled, false);
   assert.equal(setup.animationFrames.length, 1);
 
   next.dispatch("click");
-  reset.dispatch("click");
   assert.equal(board.dataset.state, "filling");
   assert.equal(setup.animationFrames.length, 1);
 
   setup.animationFrames[0](0);
   setup.animationFrames.at(-1)(900);
   assert.equal(board.dataset.state, "area");
+  assert.equal(setup.ids.get("#square-area-label").hidden, false);
   assert.equal(next.disabled, false);
+});
+
+test("Reset beendet eine laufende Füllung und neutralisiert verspätete Rückrufe", async () => {
+  const setup = await harness({ reducedMotion: false });
+  const next = setup.ids.get("#term-multiplication-next");
+  const reset = setup.ids.get("#term-multiplication-reset");
+  const board = setup.ids.get("#term-multiplication-board");
+
+  next.dispatch("click");
+  next.dispatch("click");
+  next.dispatch("click");
+  const queuedFrame = setup.animationFrames[0];
+  const queuedFallback = setup.timerCallbacks[0];
+  reset.dispatch("click");
+
+  assert.equal(board.dataset.state, "irritation");
+  assert.equal(setup.ids.get("#term-multiplication-irritation").hidden, false);
+  assert.equal(board.style.getPropertyValue("--fill-scale"), "0");
+
+  queuedFrame(900);
+  queuedFallback();
+  assert.equal(board.dataset.state, "irritation");
+  assert.equal(setup.ids.get("#square-area-label").hidden, true);
 });
 
 test("Timeout-Fallback beendet die Füllung ohne Animationsframe korrekt", async () => {

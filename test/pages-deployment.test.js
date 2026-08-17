@@ -100,7 +100,7 @@ test("jeder Einstieg registriert den Worker explizit im Projekt-Scope ohne HTTP-
 
 test("Service Worker schützt Update, Redirects, Fehlerseiten und Navigation", async () => {
   const worker = await read("sw.js");
-  assert.match(worker, /mathe-unterrichts-app-v19/);
+  assert.match(worker, /mathe-unterrichts-app-v20/);
   assert.match(worker, /cache: "reload"/);
   assert.match(worker, /redirect: "error"/);
   assert.match(worker, /!response\.ok \|\| response\.redirected/);

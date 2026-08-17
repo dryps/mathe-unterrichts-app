@@ -65,14 +65,18 @@
         </section>
 
         <section id="term-multiplication-square" class="state-panel square-panel" hidden>
-          <p class="state-formula">x · x = x²</p>
+          <p id="square-formula" class="state-formula">x · x</p>
           <p class="structure-label">Zwei Seitenlängen x spannen ein Quadrat auf.</p>
           <div class="square-stage">
-            <div class="square-shape" aria-label="Quadrat mit Seitenlänge x und Fläche x Quadrat">
+            <div
+              id="square-shape"
+              class="square-shape"
+              aria-label="Quadrat mit zwei Seitenlängen x"
+            >
               <div class="square-fill" aria-hidden="true"></div>
               <span class="square-side square-side-horizontal">Seitenlänge x</span>
               <span class="square-side square-side-vertical">Seitenlänge x</span>
-              <strong id="square-area-label" class="square-area-label">Fläche x²</strong>
+              <strong id="square-area-label" class="square-area-label" hidden>Fläche x²</strong>
             </div>
           </div>
         </section>

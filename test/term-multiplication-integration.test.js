@@ -33,8 +33,8 @@ test("Startseite integriert K3.3 genau einmal als dritte K3-Karte", () => {
   assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 15);
 });
 
-test("Cache v19 enthält ausschließlich die sechs neuen Laufzeitdateien", () => {
-  assert.match(files.worker, /mathe-unterrichts-app-v19/);
+test("Cache v20 enthält ausschließlich die sechs neuen Laufzeitdateien", () => {
+  assert.match(files.worker, /mathe-unterrichts-app-v20/);
   assert.doesNotMatch(files.worker, /mathe-unterrichts-app-v18/);
   for (const file of runtimeFiles) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));

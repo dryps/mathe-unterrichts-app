@@ -1,4 +1,4 @@
-const CACHE_NAME = "mathe-unterrichts-app-v19";
+const CACHE_NAME = "mathe-unterrichts-app-v20";
 const NAVIGATION_FALLBACK = "./index.html";
 const APP_FILES = [
   "./",

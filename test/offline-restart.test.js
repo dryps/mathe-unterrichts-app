@@ -9,7 +9,7 @@ const origin = "https://mathe-app.test";
 function createWorkerHarness() {
   const listeners = new Map();
   const stores = new Map([
-    ["mathe-unterrichts-app-v18", new Map([["old", new Response("alt")]])],
+    ["mathe-unterrichts-app-v19", new Map([["old", new Response("alt")]])],
   ]);
   let claimed = false;
   let skipped = false;
@@ -123,15 +123,15 @@ function createWorkerHarness() {
   };
 }
 
-test("Installation füllt Version 19 vollständig und Aktivierung entfernt Version 18", async () => {
+test("Installation füllt Version 20 vollständig und Aktivierung entfernt Version 19", async () => {
   const harness = createWorkerHarness();
   await harness.dispatchLifecycle("install");
   await harness.dispatchLifecycle("activate");
 
   assert.equal(harness.skipped, true);
   assert.equal(harness.claimed, true);
-  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v19"]);
-  const current = harness.stores.get("mathe-unterrichts-app-v19");
+  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v20"]);
+  const current = harness.stores.get("mathe-unterrichts-app-v20");
   for (const path of [
     "./",
     "./index.html",

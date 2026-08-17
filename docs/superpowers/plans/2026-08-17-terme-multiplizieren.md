@@ -24,10 +24,10 @@
 - Create: `test/term-multiplication-math.test.js`
 - Create: `src/term-multiplication-math.js`
 
-- [ ] Tabellen für `x = 1…5`, `2x`, `x²`, Formeln und den Sonderfall `x = 2` schreiben.
-- [ ] Den fokussierten Test ausführen und das erwartete Fehlen des Moduls beobachten.
-- [ ] Normalisierung, Auswertung, Formel- und Vergleichsmodell minimal implementieren.
-- [ ] Fokussierten Test grün ausführen.
+- [x] Tabellen für `x = 1…5`, `2x`, `x²`, Formeln und den Sonderfall `x = 2` schreiben.
+- [x] Den fokussierten Test ausführen und das erwartete Fehlen des Moduls beobachten.
+- [x] Normalisierung, Auswertung, Formel- und Vergleichsmodell minimal implementieren.
+- [x] Fokussierten Test grün ausführen.
 
 ### Task 2: Zustandsmaschine und Rennen testgetrieben absichern
 
@@ -35,9 +35,9 @@
 - Create: `test/term-multiplication-state.test.js`
 - Create: `src/term-multiplication-state.js`
 
-- [ ] Tests für sechs didaktische Zustände, Animationssperre, Mehrfachtipps, x-Grenzen, echte Änderung, Sonderhinweis und vollständigen Reset schreiben.
-- [ ] Rotlauf beobachten, dann eine unveränderliche Zustandsmaschine mit reinem View-Model implementieren.
-- [ ] Fokussierten Test grün ausführen.
+- [x] Tests für sechs didaktische Zustände, Animationssperre, Mehrfachtipps, x-Grenzen, echte Änderung, Sonderhinweis und vollständigen Reset schreiben.
+- [x] Rotlauf beobachten, dann eine unveränderliche Zustandsmaschine mit reinem View-Model implementieren.
+- [x] Fokussierten Test grün ausführen.
 
 ### Task 3: Deterministische Flächenanimation testgetrieben absichern
 
@@ -45,9 +45,9 @@
 - Create: `test/term-multiplication-animation.test.js`
 - Create: `src/term-multiplication-animation.js`
 
-- [ ] Start-, Mittel-, End-, Überlauf- und Monotonie-Tests schreiben und rot beobachten.
-- [ ] Reine, begrenzte Animationsframes implementieren; reduzierte Bewegung wird im Controller sofort abgeschlossen.
-- [ ] Fokussierten Test grün ausführen.
+- [x] Start-, Mittel-, End-, Überlauf- und Monotonie-Tests schreiben und rot beobachten.
+- [x] Reine, begrenzte Animationsframes implementieren; reduzierte Bewegung wird im Controller sofort abgeschlossen.
+- [x] Fokussierten Test grün ausführen.
 
 ### Task 4: Oberfläche und reale Interaktion
 
@@ -58,11 +58,11 @@
 - Create: `test/term-multiplication-interaction.test.js`
 - Create: `test/term-multiplication-static.test.js`
 
-- [ ] DOM-Harness und statische Verträge zuerst schreiben; fehlende Oberfläche rot beobachten.
-- [ ] Semantische Zustandsflächen, Live-Region, Buttons, Regler und lokalen Service-Worker-Hook implementieren.
-- [ ] Responsive Darstellung für 320 px, Telefon, iPad-Hoch-/Querformat und Klassenraumbreite ergänzen.
-- [ ] Controller für Weiter, Animationsabschluss, Mehrfachtipps, Regler und Reset implementieren.
-- [ ] Interaktions- und Strukturtests grün ausführen.
+- [x] DOM-Harness und statische Verträge zuerst schreiben; fehlende Oberfläche rot beobachten.
+- [x] Semantische Zustandsflächen, Live-Region, Buttons, Regler und lokalen Service-Worker-Hook implementieren.
+- [x] Responsive Darstellung für 320 px, Telefon, iPad-Hoch-/Querformat und Klassenraumbreite ergänzen.
+- [x] Controller für Weiter, Animationsabschluss, Mehrfachtipps, Regler und Reset implementieren.
+- [x] Interaktions- und Strukturtests grün ausführen.
 
 ### Task 5: Standalone-Renderer und erster Checkpoint
 
@@ -70,34 +70,35 @@
 - Create: `scripts/render-term-multiplication-states.mjs`
 - Verify: alle neuen modulbezogenen Dateien
 
-- [ ] Deterministische Zustandsbilder und stabile Renderer-Ausgabe prüfen.
-- [ ] Fokussierte Tests, Syntaxprüfungen, lokales Smoke der Modulressourcen und responsive Browserprüfung ausführen.
-- [ ] `git diff --check`, Status, Dateiliste und vollständigen Diff prüfen.
-- [ ] Moduldateien explizit stagen, als Standalone-Checkpoint committen und ohne Force-Push veröffentlichen.
+- [x] Deterministische Zustandsbilder und stabile Renderer-Ausgabe prüfen.
+- [x] Fokussierte Tests, Syntaxprüfungen, lokales Smoke der Modulressourcen und responsive Browserprüfung ausführen.
+- [x] `git diff --check`, Status, Dateiliste und vollständigen Diff prüfen.
+- [x] Moduldateien explizit stagen, als Standalone-Checkpoint committen und ohne Force-Push veröffentlichen.
 
 ### Task 6: Zentrale Integration testgetrieben ausführen
 
 **Files:**
 - Modify: `index.html`
-- Modify: `src/app.js`
+- Modify: `home.css`
 - Modify: `sw.js`
 - Modify: `scripts/pages-runtime-files.mjs`
 - Modify: `scripts/smoke.mjs`
+- Modify: `scripts/verify-pages.mjs`
 - Modify: `package.json`
 - Modify: `.github/workflows/pages.yml`
 - Modify/Create: zentrale Integrations- und Pages-Tests
 
-- [ ] Zuerst fehlschlagende Tests für K3.3-Karte, Navigation, Runtime-Dateien, Smoke, Renderer-Workflow und neue Cache-Version schreiben.
-- [ ] Startseite/Navigation sowie explizite Offline-, Pages-, Smoke- und Renderer-Listen integrieren; Cache kontrolliert von `v18` auf `v19` erhöhen.
-- [ ] Fokussierte Integrationsprüfungen grün ausführen.
-- [ ] Vollständig `npm test`, Modulrenderer, `npm run build:pages`, `npm run test:pages`, `npm run test:smoke`, Syntax- und Diff-Prüfungen ausführen.
-- [ ] Integrationsdateien explizit stagen, zweiten Commit erstellen und ohne Force-Push veröffentlichen.
+- [x] Zuerst fehlschlagende Tests für K3.3-Karte, Navigation, Runtime-Dateien, Smoke, Renderer-Workflow und neue Cache-Version schreiben.
+- [x] Startseite/Navigation sowie explizite Offline-, Pages-, Smoke- und Renderer-Listen integrieren; Cache kontrolliert von `v18` auf `v20` erhöhen.
+- [x] Fokussierte Integrationsprüfungen grün ausführen.
+- [x] Vollständig `npm test`, Modulrenderer, `npm run build:pages`, `npm run test:pages`, `npm run test:smoke`, Syntax- und Diff-Prüfungen ausführen.
+- [x] Integrationsdateien explizit stagen, zweiten Commit erstellen und ohne Force-Push veröffentlichen.
 
 ### Task 7: Review, PR, Merge und Produktivprüfung
 
-- [ ] Unabhängigen Read-only-Code-Review gegen den verifizierten Basis-SHA durchführen; kritische/wichtige Befunde vor dem PR beheben.
+- [x] Unabhängigen Read-only-Code-Review gegen den verifizierten Basis-SHA durchführen; kritische/wichtige Befunde vor dem PR beheben.
 - [ ] Pull Request erstellen, prüfbare Beschreibung ergänzen und aus Draft in Ready überführen.
 - [ ] Checks abwarten; bei grünen Gates per Squash in `main` mergen.
 - [ ] Pages-Lauf und Artefakt demselben neuen `main`-SHA zuordnen; bei externem 5xx exakt die freigegebene einmalige `workflow_dispatch`-Fallback-Regel anwenden.
-- [ ] Live-Seite, Offline-Cache `v19`, direkte Modul-URL, Startseitenkarte und responsive Layout-Gates verifizieren.
+- [ ] Live-Seite, Offline-Cache `v20`, direkte Modul-URL, Startseitenkarte und responsive Layout-Gates verifizieren.
 - [ ] Erst auf Basis des erneut abgerufenen `main` mit K3.4 beginnen.

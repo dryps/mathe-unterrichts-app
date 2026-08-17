@@ -21,6 +21,8 @@ const comparisonPanel = $("#term-multiplication-comparison");
 const explorePanel = $("#term-multiplication-explore");
 const conclusion = $("#term-multiplication-conclusion");
 const additionTotal = $("#addition-total");
+const squareFormula = $("#square-formula");
+const squareShape = $("#square-shape");
 const squareAreaLabel = $("#square-area-label");
 const exploreAdditionFormula = $("#explore-addition-formula");
 const exploreMultiplicationFormula = $("#explore-multiplication-formula");
@@ -63,7 +65,15 @@ function render() {
   squarePanel.classList.toggle("is-filled", model.showArea);
 
   additionTotal.textContent = "Gesamtlänge 2x";
+  squareFormula.textContent = model.showArea ? "x · x = x²" : "x · x";
+  squareShape.setAttribute(
+    "aria-label",
+    model.showArea
+      ? "Quadrat mit Seitenlänge x und Fläche x Quadrat"
+      : "Quadrat mit zwei Seitenlängen x",
+  );
   squareAreaLabel.textContent = "Fläche x²";
+  squareAreaLabel.hidden = !model.showArea;
   exploreAdditionFormula.textContent = model.additionFormula;
   exploreMultiplicationFormula.textContent = model.multiplicationFormula;
   comparisonNote.textContent = model.comparisonNote;
@@ -76,7 +86,7 @@ function render() {
     : "";
   nextButton.hidden = !model.showNext;
   nextButton.disabled = model.controlsLocked;
-  resetButton.disabled = model.controlsLocked;
+  resetButton.disabled = false;
   setVisualScale(model.x);
 
   if (!model.showFilling) {
@@ -129,7 +139,6 @@ nextButton.addEventListener("click", () => {
 });
 
 resetButton.addEventListener("click", () => {
-  if (current.locked) return;
   clearAnimation();
   current = resetTermMultiplicationState();
   render();

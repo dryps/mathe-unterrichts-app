@@ -24,6 +24,9 @@ test("Addition ist eindimensionale Länge, Multiplikation eine Quadratfläche", 
   assert.match(files.html, /x · x = x²/);
   assert.match(files.html, /Zwei x-Längen/);
   assert.match(files.html, /Seitenlänge x/);
+  assert.match(files.html, /id="square-formula" class="state-formula">x · x<\/p>/);
+  assert.match(files.html, /id="square-shape"[\s\S]*aria-label="Quadrat mit zwei Seitenlängen x"/);
+  assert.match(files.html, /id="square-area-label" class="square-area-label" hidden/);
   assert.match(files.css, /\.addition-segment/);
   assert.match(files.css, /\.square-shape\s*\{[\s\S]*aspect-ratio:\s*1/);
   assert.match(files.css, /\.square-fill/);
