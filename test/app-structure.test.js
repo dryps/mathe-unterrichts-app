@@ -43,6 +43,8 @@ const files = {
   bracketSignApp: await readFile(new URL("../src/bracket-sign-app.js", import.meta.url), "utf8"),
   distribution: await readFile(new URL("../ausmultiplizieren.html", import.meta.url), "utf8"),
   distributionApp: await readFile(new URL("../src/distribution-app.js", import.meta.url), "utf8"),
+  equivalence: await readFile(new URL("../aequivalenzumformungen.html", import.meta.url), "utf8"),
+  equivalenceApp: await readFile(new URL("../src/equivalence-app.js", import.meta.url), "utf8"),
   worker: await readFile(new URL("../sw.js", import.meta.url), "utf8"),
   manifest: await readFile(new URL("../manifest.webmanifest", import.meta.url), "utf8"),
 };
@@ -63,23 +65,25 @@ const landscapeTabletCss = mediaBlock(
   "@media (orientation: landscape) and (min-width: 900px) and (max-width: 1500px)",
 );
 
-test("Startseite zeigt Klasse 7 mit den drei produktiven Kapiteln", () => {
+test("Startseite zeigt Klasse 7 mit den vier produktiven Kapiteln", () => {
   assert.match(files.home, /<h1>Mathe im Unterricht<\/h1>/);
   assert.match(files.home, /Interaktive Aha-Momente/);
   assert.match(files.home, /<p class="grade-label">Klasse 7<\/p>/);
-  assert.equal((files.home.match(/class="chapter(?:\s|")/g) ?? []).length, 3);
+  assert.equal((files.home.match(/class="chapter(?:\s|")/g) ?? []).length, 4);
   assert.match(files.home, /id="rationale-zahlen"/);
   assert.match(files.home, /<h2 id="rationale-title">1\. Rationale Zahlen<\/h2>/);
   assert.match(files.home, /<h2 id="chapter-title">2\. Dreiecke<\/h2>/);
   assert.match(files.home, /id="rechnen-mit-termen"/);
   assert.match(files.home, /<h2 id="terms-title">3\. Rechnen mit Termen<\/h2>/);
+  assert.match(files.home, /id="gleichungen-ungleichungen"/);
+  assert.match(files.home, /<h2 id="equations-title">4\. Gleichungen · Ungleichungen<\/h2>/);
   assert.doesNotMatch(files.home, /Private Unterrichts-App|>Kapitel</);
   assert.doesNotMatch(files.home, /Klasse 8|Klasse 9|Klassenauswahl/);
   assert.doesNotMatch(files.home, /<ul|<ol/);
 });
 
-test("Kapitel 1, 2 und 3 enthalten je sechs Module", () => {
-  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 18);
+test("Kapitel 1 bis 3 enthalten je sechs Module und Kapitel 4 startet mit K4.1", () => {
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 19);
   assert.match(files.home, /href="\.\/zahlengerade\.html"/);
   assert.match(files.home, /Warum liegen negative Zahlen links von der Null\?/);
   assert.match(files.home, /<span class="module-subtitle">Zahlengerade<\/span>/);
@@ -140,8 +144,10 @@ test("Kapitel 1, 2 und 3 enthalten je sechs Module", () => {
   assert.match(files.home, /href="\.\/plus-minus-klammern\.html"/);
   assert.match(files.home, /Warum ändern sich bei einer Minusklammer alle Vorzeichen\?/);
   assert.match(files.home, /href="\.\/ausmultiplizieren\.html"/);
-  assert.equal((files.home.match(/class="module-status"/g) ?? []).length, 18);
-  assert.equal((files.home.match(/fertig/g) ?? []).length, 18);
+  assert.match(files.home, /href="\.\/aequivalenzumformungen\.html"/);
+  assert.match(files.home, /Warum bleibt eine Gleichung wahr, wenn ich auf beiden Seiten dasselbe tue\?/);
+  assert.equal((files.home.match(/class="module-status"/g) ?? []).length, 19);
+  assert.equal((files.home.match(/fertig/g) ?? []).length, 19);
 });
 
 test("Alle Dreiecksmodule behalten ausschließlich ihren bisherigen Rückweg", () => {
@@ -182,6 +188,12 @@ test("Alle sechs Kapitel-3-Module führen ausschließlich zu Rechnen mit Termen 
     );
     assert.doesNotMatch(module, /Suche|Einstellungen|Favoriten|Statistik|Anmelden/);
   }
+});
+
+test("K4.1 führt ausschließlich zu Gleichungen · Ungleichungen zurück", () => {
+  assert.equal((files.equivalence.match(/class="module-navigation"/g) ?? []).length, 1);
+  assert.match(files.equivalence, /class="module-back-link" href="\.\/#gleichungen-ungleichungen">← Gleichungen · Ungleichungen<\/a>/);
+  assert.doesNotMatch(files.equivalence, /Suche|Einstellungen|Favoriten|Statistik|Anmelden/);
 });
 
 test("Startseite ist für iPad, Querformat und Klassenraumbildschirm ausgelegt", () => {
@@ -379,13 +391,19 @@ test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und beide Kapite
     "src/distribution-math.js",
     "src/distribution-state.js",
     "src/distribution-animation.js",
+    "aequivalenzumformungen.html",
+    "equivalence.css",
+    "src/equivalence-app.js",
+    "src/equivalence-math.js",
+    "src/equivalence-state.js",
+    "src/equivalence-animation.js",
     "manifest.webmanifest",
     "icon.svg",
   ]) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
   assert.match(files.shell, /serviceWorker\.register/);
-  assert.match(files.worker, /mathe-unterrichts-app-v23/);
+  assert.match(files.worker, /mathe-unterrichts-app-v24/);
 });
 
 test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", () => {
@@ -414,6 +432,8 @@ test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", 
     files.termMultiplicationApp,
     files.termDivision,
     files.termDivisionApp,
+    files.equivalence,
+    files.equivalenceApp,
     files.worker,
   ].join("\n");
   assert.doesNotMatch(runtime, /localStorage|sessionStorage|indexedDB|document\.cookie/);

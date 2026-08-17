@@ -132,6 +132,11 @@ h2 {
   grid-column: span 2;
 }
 
+.chapter-equations .module-grid {
+  grid-template-columns: minmax(0, 1fr);
+  width: min(100%, 420px);
+}
+
 .module-card {
   display: flex;
   min-height: clamp(220px, 28vw, 330px);
@@ -221,6 +226,11 @@ noscript {
 
   .chapter-terms .module-card {
     grid-column: auto;
+  }
+
+  .chapter-equations .module-grid {
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
   }
 
   .module-card {
