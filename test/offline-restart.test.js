@@ -9,7 +9,7 @@ const origin = "https://mathe-app.test";
 function createWorkerHarness() {
   const listeners = new Map();
   const stores = new Map([
-    ["mathe-unterrichts-app-v17", new Map([["old", new Response("alt")]])],
+    ["mathe-unterrichts-app-v18", new Map([["old", new Response("alt")]])],
   ]);
   let claimed = false;
   let skipped = false;
@@ -123,15 +123,15 @@ function createWorkerHarness() {
   };
 }
 
-test("Installation füllt Version 18 vollständig und Aktivierung entfernt Version 17", async () => {
+test("Installation füllt Version 19 vollständig und Aktivierung entfernt Version 18", async () => {
   const harness = createWorkerHarness();
   await harness.dispatchLifecycle("install");
   await harness.dispatchLifecycle("activate");
 
   assert.equal(harness.skipped, true);
   assert.equal(harness.claimed, true);
-  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v18"]);
-  const current = harness.stores.get("mathe-unterrichts-app-v18");
+  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v19"]);
+  const current = harness.stores.get("mathe-unterrichts-app-v19");
   for (const path of [
     "./",
     "./index.html",
@@ -193,6 +193,12 @@ test("Installation füllt Version 18 vollständig und Aktivierung entfernt Versi
     "./src/like-terms-math.js",
     "./src/like-terms-state.js",
     "./src/like-terms-animation.js",
+    "./terme-multiplizieren.html",
+    "./term-multiplication.css",
+    "./src/term-multiplication-app.js",
+    "./src/term-multiplication-math.js",
+    "./src/term-multiplication-state.js",
+    "./src/term-multiplication-animation.js",
   ]) {
     assert.equal(current.has(new URL(path, `${origin}/`).href), true);
   }
@@ -264,6 +270,12 @@ test("Offline-Neustart liefert Startseite und alle Kapitel ohne Netzwerk aus", a
     "/src/like-terms-math.js",
     "/src/like-terms-state.js",
     "/src/like-terms-animation.js",
+    "/terme-multiplizieren.html",
+    "/term-multiplication.css",
+    "/src/term-multiplication-app.js",
+    "/src/term-multiplication-math.js",
+    "/src/term-multiplication-state.js",
+    "/src/term-multiplication-animation.js",
   ]) {
     const response = await harness.dispatchFetch(path);
     assert.equal(response.status, 200);

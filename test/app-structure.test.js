@@ -35,6 +35,8 @@ const files = {
   termsApp: await readFile(new URL("../src/terms-variables-app.js", import.meta.url), "utf8"),
   likeTerms: await readFile(new URL("../gleichartige-terme.html", import.meta.url), "utf8"),
   likeTermsApp: await readFile(new URL("../src/like-terms-app.js", import.meta.url), "utf8"),
+  termMultiplication: await readFile(new URL("../terme-multiplizieren.html", import.meta.url), "utf8"),
+  termMultiplicationApp: await readFile(new URL("../src/term-multiplication-app.js", import.meta.url), "utf8"),
   worker: await readFile(new URL("../sw.js", import.meta.url), "utf8"),
   manifest: await readFile(new URL("../manifest.webmanifest", import.meta.url), "utf8"),
 };
@@ -70,8 +72,8 @@ test("Startseite zeigt Klasse 7 mit den drei produktiven Kapiteln", () => {
   assert.doesNotMatch(files.home, /<ul|<ol/);
 });
 
-test("Kapitel 1 und 2 enthalten je sechs Karten, Kapitel 3 genau zwei Module", () => {
-  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 14);
+test("Kapitel 1 und 2 enthalten je sechs Karten, Kapitel 3 genau drei Module", () => {
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 15);
   assert.match(files.home, /href="\.\/zahlengerade\.html"/);
   assert.match(files.home, /Warum liegen negative Zahlen links von der Null\?/);
   assert.match(files.home, /<span class="module-subtitle">Zahlengerade<\/span>/);
@@ -123,8 +125,11 @@ test("Kapitel 1 und 2 enthalten je sechs Karten, Kapitel 3 genau zwei Module", (
   assert.match(files.home, /href="\.\/gleichartige-terme\.html"/);
   assert.match(files.home, /Warum darf ich 3x \+ 2x zu 5x machen – aber 3x \+ 2 nicht\?/);
   assert.match(files.home, /<span class="module-subtitle">Gleichartige Terme<\/span>/);
-  assert.equal((files.home.match(/class="module-status"/g) ?? []).length, 14);
-  assert.equal((files.home.match(/fertig/g) ?? []).length, 14);
+  assert.match(files.home, /href="\.\/terme-multiplizieren\.html"/);
+  assert.match(files.home, /Warum ist x · x = x² – und nicht 2x\?/);
+  assert.match(files.home, /<span class="module-subtitle">Terme multiplizieren<\/span>/);
+  assert.equal((files.home.match(/class="module-status"/g) ?? []).length, 15);
+  assert.equal((files.home.match(/fertig/g) ?? []).length, 15);
 });
 
 test("Alle Dreiecksmodule behalten ausschließlich ihren bisherigen Rückweg", () => {
@@ -156,8 +161,8 @@ test("Alle Module aus Kapitel 1 führen ausschließlich zu Rationale Zahlen zur�
   }
 });
 
-test("Beide Kapitel-3-Module führen ausschließlich zu Rechnen mit Termen zurück", () => {
-  for (const module of [files.terms, files.likeTerms]) {
+test("Alle drei Kapitel-3-Module führen ausschließlich zu Rechnen mit Termen zurück", () => {
+  for (const module of [files.terms, files.likeTerms, files.termMultiplication]) {
     assert.equal((module.match(/class="module-navigation"/g) ?? []).length, 1);
     assert.match(
       module,
@@ -179,9 +184,9 @@ test("Startseite ist für iPad, Querformat und Klassenraumbildschirm ausgelegt",
   );
   assert.match(files.homeCss, /\.grade-label/);
   assert.match(files.navigationCss, /min-height: 46px/);
-  assert.match(files.homeCss, /\.chapter-terms \.module-grid\s*\{\s*grid-template-columns: repeat\(2, minmax\(0, 1fr\)\)/);
+  assert.match(files.homeCss, /\.chapter-terms \.module-grid\s*\{\s*grid-template-columns: repeat\(3, minmax\(0, 1fr\)\)/);
   assert.match(landscapeTabletCss, /\.chapter-terms \.module-grid\s*\{\s*grid-template-columns: repeat\(6, minmax\(0, 1fr\)\)/);
-  assert.match(landscapeTabletCss, /\.chapter-terms \.module-card\s*\{\s*grid-column: span 3/);
+  assert.match(landscapeTabletCss, /\.chapter-terms \.module-card\s*\{\s*grid-column: span 2/);
   assert.equal(JSON.parse(files.manifest).display, "standalone");
   assert.equal(JSON.parse(files.manifest).start_url, "./");
 });
@@ -338,13 +343,19 @@ test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und beide Kapite
     "src/like-terms-math.js",
     "src/like-terms-state.js",
     "src/like-terms-animation.js",
+    "terme-multiplizieren.html",
+    "term-multiplication.css",
+    "src/term-multiplication-app.js",
+    "src/term-multiplication-math.js",
+    "src/term-multiplication-state.js",
+    "src/term-multiplication-animation.js",
     "manifest.webmanifest",
     "icon.svg",
   ]) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
   assert.match(files.shell, /serviceWorker\.register/);
-  assert.match(files.worker, /mathe-unterrichts-app-v18/);
+  assert.match(files.worker, /mathe-unterrichts-app-v19/);
 });
 
 test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", () => {
@@ -369,6 +380,8 @@ test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", 
     files.termsApp,
     files.likeTerms,
     files.likeTermsApp,
+    files.termMultiplication,
+    files.termMultiplicationApp,
     files.worker,
   ].join("\n");
   assert.doesNotMatch(runtime, /localStorage|sessionStorage|indexedDB|document\.cookie/);

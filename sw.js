@@ -1,4 +1,4 @@
-const CACHE_NAME = "mathe-unterrichts-app-v18";
+const CACHE_NAME = "mathe-unterrichts-app-v19";
 const NAVIGATION_FALLBACK = "./index.html";
 const APP_FILES = [
   "./",
@@ -83,6 +83,12 @@ const APP_FILES = [
   "./src/like-terms-math.js",
   "./src/like-terms-state.js",
   "./src/like-terms-animation.js",
+  "./terme-multiplizieren.html",
+  "./term-multiplication.css",
+  "./src/term-multiplication-app.js",
+  "./src/term-multiplication-math.js",
+  "./src/term-multiplication-state.js",
+  "./src/term-multiplication-animation.js",
   "./manifest.webmanifest",
   "./icon.svg",
   "./icon-180.png",
