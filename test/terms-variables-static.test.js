@@ -4,6 +4,10 @@ import test from "node:test";
 
 const html = await readFile(new URL("../terme-variablen.html", import.meta.url), "utf8");
 const css = await readFile(new URL("../terms-variables.css", import.meta.url), "utf8");
+const app = await readFile(new URL("../src/terms-variables-app.js", import.meta.url), "utf8");
+const worker = await readFile(new URL("../sw.js", import.meta.url), "utf8");
+const workflow = await readFile(new URL("../.github/workflows/pages.yml", import.meta.url), "utf8");
+const packageJson = JSON.parse(await readFile(new URL("../package.json", import.meta.url), "utf8"));
 
 test("Leitfrage, Untertitel und Irritation nennen ausschließlich den festen Term", () => {
   assert.match(html, /<title>Wie kann sich x ändern, obwohl der Term derselbe bleibt\?<\/title>/);
@@ -75,10 +79,36 @@ test("responsive Regeln schützen Hochformat, Querformat, kleine Breite und Klas
 });
 
 test("Modul bleibt standalone, lokal und frei von ausgeschlossenen Metaphern", () => {
-  const runtime = `${html}\n${css}`;
+  const runtime = `${html}\n${css}\n${app}`;
   assert.doesNotMatch(runtime, /<canvas|Zahlengerade|Waage|Schulden|Temperatur|Aufzug/i);
   assert.doesNotMatch(runtime, /(?:src|href)=["'`]https?:\/\//);
   assert.doesNotMatch(runtime, /localStorage|sessionStorage|indexedDB|document\.cookie/);
   assert.match(html, /src="\.\/src\/terms-variables-app\.js"/);
   assert.doesNotMatch(html, /serviceWorker|sw\.js/);
+});
+
+test("produktiver Einstieg und Offline-Cache enthalten ausschließlich die fünf Laufzeitdateien", () => {
+  assert.match(
+    app,
+    /register\("\.\/sw\.js", \{ scope: "\.\/", updateViaCache: "none" \}\)/,
+  );
+  for (const file of [
+    "terme-variablen.html",
+    "terms-variables.css",
+    "src/terms-variables-app.js",
+    "src/terms-variables-math.js",
+    "src/terms-variables-state.js",
+  ]) {
+    assert.match(worker, new RegExp(file.replaceAll(".", "\\.")));
+  }
+  assert.match(worker, /mathe-unterrichts-app-v17/);
+  assert.doesNotMatch(worker, /render-terms-variables-states|terme-variablen-design/);
+});
+
+test("Pages-Workflow rendert die freigegebenen Modulzustände", () => {
+  assert.equal(
+    packageJson.scripts["test:terms-visual"],
+    "node scripts/render-terms-variables-states.mjs",
+  );
+  assert.match(workflow, /npm run test:terms-visual/);
 });

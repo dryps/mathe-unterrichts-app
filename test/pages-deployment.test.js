@@ -13,6 +13,7 @@ const htmlFiles = [
   "addition-negativ.html",
   "subtraktion-negativ.html",
   "multiplikation-negativ.html",
+  "terme-variablen.html",
   "winkelsumme.html",
   "dreiecksungleichung.html",
   "dreiecksflaeche.html",
@@ -33,11 +34,11 @@ test("Pages-Artefakt ist eine explizite Freigabeliste ohne interne Dateien", () 
   for (const file of htmlFiles) assert.equal(PAGES_RUNTIME_FILES.includes(file), true, file);
 });
 
-test("alle zwölf direkten Modulpfade und ihre Rücklinks bleiben projektpfadrelativ", async () => {
-  assert.equal(moduleFiles.length, 12);
+test("alle dreizehn direkten Modulpfade und ihre Rücklinks bleiben projektpfadrelativ", async () => {
+  assert.equal(moduleFiles.length, 13);
   for (const file of moduleFiles) {
     const html = await read(file);
-    assert.match(html, /class="module-back-link" href="\.\/#(?:rationale-zahlen|dreiecke)"/);
+    assert.match(html, /class="module-back-link" href="\.\/#(?:rationale-zahlen|dreiecke|rechnen-mit-termen)"/);
     assert.doesNotMatch(html, /(?:src|href)="\/(?!\/)/);
   }
 });
@@ -79,6 +80,7 @@ test("jeder Einstieg registriert den Worker explizit im Projekt-Scope ohne HTTP-
     "src/addition-negative-app.js",
     "src/subtraction-negative-app.js",
     "src/multiplication-negative-app.js",
+    "src/terms-variables-app.js",
     "src/app.js",
     "src/triangle-inequality-app.js",
     "src/triangle-area-app.js",
@@ -94,7 +96,7 @@ test("jeder Einstieg registriert den Worker explizit im Projekt-Scope ohne HTTP-
 
 test("Service Worker schützt Update, Redirects, Fehlerseiten und Navigation", async () => {
   const worker = await read("sw.js");
-  assert.match(worker, /mathe-unterrichts-app-v16/);
+  assert.match(worker, /mathe-unterrichts-app-v17/);
   assert.match(worker, /cache: "reload"/);
   assert.match(worker, /redirect: "error"/);
   assert.match(worker, /!response\.ok \|\| response\.redirected/);
@@ -119,4 +121,5 @@ test("Workflow reagiert nur auf main oder manuell und besitzt minimale Rechte", 
   ]) {
     assert.match(workflow, new RegExp(action.replace("/", "\\/")));
   }
+  assert.match(workflow, /npm run test:terms-visual/);
 });

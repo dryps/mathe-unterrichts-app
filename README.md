@@ -6,8 +6,8 @@ sichtbaren fachlichen Mehrwert bieten.
 
 Die Startseite „Mathe im Unterricht“ ist direkt dem Bereich „Klasse 7“
 zugeordnet. Sie führt über große Karten zu den Buchkapiteln „1. Rationale
-Zahlen“ und „2. Dreiecke“. Jedes Modul besitzt einen einzigen Rückweg zu seiner
-Kapitelübersicht.
+Zahlen“, „2. Dreiecke“ und „3. Rechnen mit Termen“. Jedes Modul besitzt einen
+einzigen Rückweg zu seiner Kapitelübersicht.
 
 ## Kapitel 1: Aha-Module
 
@@ -152,6 +152,18 @@ fester Winkelstrahl und ein Kreis zwei verschiedene Schnittpunkte: Beide
 Dreiecke erfüllen dieselbe sichtbare Grundseiten-, Seiten- und Winkelvorgabe,
 sind aber nicht kongruent.
 
+## Kapitel 3: Aha-Module
+
+**Wie kann sich x ändern, obwohl der Term derselbe bleibt?**
+
+*Variablen und Terme*
+
+Unter `terme-variablen.html` bleibt die algebraische Struktur `2x + 3` aus zwei
+gleichen x-Bausteinen und drei Einern konstant. Für `x = 0` bis `x = 5` ändern
+sich ausschließlich die zugehörigen Termwerte zu `3, 5, 7, 9, 11, 13`. Nach
+der kontrollierten Gegenüberstellung lässt sich x ganzzahlig verändern; der
+Term selbst bleibt unverändert.
+
 ## Mathematische Regeln
 
 - Die Innenwinkel werden aus den tatsächlichen Punktkoordinaten mit Skalarprodukt
@@ -191,6 +203,7 @@ npm run test:absolute-visual
 npm run test:addition-visual
 npm run test:subtraction-visual
 npm run test:multiplication-visual
+npm run test:terms-visual
 npm start
 ```
 
