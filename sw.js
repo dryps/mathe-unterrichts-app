@@ -1,4 +1,4 @@
-const CACHE_NAME = "mathe-unterrichts-app-v17";
+const CACHE_NAME = "mathe-unterrichts-app-v18";
 const NAVIGATION_FALLBACK = "./index.html";
 const APP_FILES = [
   "./",
@@ -77,6 +77,12 @@ const APP_FILES = [
   "./src/terms-variables-app.js",
   "./src/terms-variables-math.js",
   "./src/terms-variables-state.js",
+  "./gleichartige-terme.html",
+  "./like-terms.css",
+  "./src/like-terms-app.js",
+  "./src/like-terms-math.js",
+  "./src/like-terms-state.js",
+  "./src/like-terms-animation.js",
   "./manifest.webmanifest",
   "./icon.svg",
   "./icon-180.png",

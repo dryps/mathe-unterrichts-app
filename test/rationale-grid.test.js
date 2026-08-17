@@ -51,7 +51,10 @@ test("Kapitel 1 ordnet im Querformat drei plus drei ohne implizite Spalten", () 
   assert.match(landscapeCss, /\.chapter-rationale \.module-grid\s*\{[\s\S]*repeat\(6, minmax\(0, 1fr\)\)/);
   assert.match(landscapeCss, /\.chapter-rationale \.module-card\s*\{\s*grid-column: span 2/);
   assert.doesNotMatch(landscapeCss, /\.chapter-rationale \.module-card:nth-child/);
-  assert.doesNotMatch(landscapeCss, /\.chapter-rationale[\s\S]*span 3/);
+  assert.doesNotMatch(
+    landscapeCss,
+    /\.chapter-rationale \.module-card\s*\{[^}]*grid-column:\s*span 3/,
+  );
 });
 
 test("Kapitel 2 behält sein Sechsspaltenmodell und die drei Zweispaltenkarten je Reihe", () => {
@@ -72,24 +75,16 @@ test("breiter Klassenraumbildschirm ordnet Kapitel 1 als drei plus drei", () => 
   assert.doesNotMatch(classroomLandscapeCss, /#dreiecke|\.chapter:not\(\.chapter-rationale\)/);
 });
 
-test("Kapitel 3 enthält genau eine ruhige, später erweiterbare Modulkarte", () => {
+test("Kapitel 3 enthält genau zwei gleichwertige, responsive Modulkarten", () => {
   const chapter = html.match(
     /<section[^>]*id="rechnen-mit-termen"[^>]*class="chapter chapter-terms"[\s\S]*?<\/section>/,
   )?.[0];
   assert.ok(chapter);
-  assert.equal((chapter.match(/class="module-card"/g) ?? []).length, 1);
-  assert.equal((chapter.match(/class="module-status"/g) ?? []).length, 1);
-  assert.match(css, /\.chapter-terms \.module-card:only-child\s*\{\s*grid-column: 2/);
-  assert.match(
-    mobileCss,
-    /\.chapter-terms \.module-card:only-child\s*\{\s*grid-column: auto/,
-  );
-  assert.match(
-    portraitCss,
-    /\.chapter-terms \.module-card:only-child\s*\{[\s\S]*grid-column: 1 \/ -1[\s\S]*justify-self: center[\s\S]*width: min\(100%, 460px\)/,
-  );
-  assert.match(
-    landscapeCss,
-    /\.chapter-terms \.module-card:only-child\s*\{\s*grid-column: 3 \/ span 2/,
-  );
+  assert.equal((chapter.match(/class="module-card"/g) ?? []).length, 2);
+  assert.equal((chapter.match(/class="module-status"/g) ?? []).length, 2);
+  assert.match(css, /\.chapter-terms \.module-grid\s*\{\s*grid-template-columns: repeat\(2, minmax\(0, 1fr\)\)/);
+  assert.match(mobileCss, /\.chapter-terms \.module-grid\s*\{\s*grid-template-columns: 1fr/);
+  assert.match(portraitCss, /\.chapter-terms \.module-grid\s*\{[\s\S]*repeat\(2, minmax\(0, 1fr\)\)/);
+  assert.match(landscapeCss, /\.chapter-terms \.module-grid\s*\{\s*grid-template-columns: repeat\(6, minmax\(0, 1fr\)\)/);
+  assert.match(landscapeCss, /\.chapter-terms \.module-card\s*\{\s*grid-column: span 3/);
 });
