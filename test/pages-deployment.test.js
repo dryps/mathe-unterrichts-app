@@ -17,6 +17,7 @@ const htmlFiles = [
   "gleichartige-terme.html",
   "terme-multiplizieren.html",
   "terme-dividieren.html",
+  "plus-minus-klammern.html",
   "winkelsumme.html",
   "dreiecksungleichung.html",
   "dreiecksflaeche.html",
@@ -37,8 +38,8 @@ test("Pages-Artefakt ist eine explizite Freigabeliste ohne interne Dateien", () 
   for (const file of htmlFiles) assert.equal(PAGES_RUNTIME_FILES.includes(file), true, file);
 });
 
-test("alle sechzehn direkten Modulpfade und ihre Rücklinks bleiben projektpfadrelativ", async () => {
-  assert.equal(moduleFiles.length, 16);
+test("alle siebzehn direkten Modulpfade und ihre Rücklinks bleiben projektpfadrelativ", async () => {
+  assert.equal(moduleFiles.length, 17);
   for (const file of moduleFiles) {
     const html = await read(file);
     assert.match(html, /class="module-back-link" href="\.\/#(?:rationale-zahlen|dreiecke|rechnen-mit-termen)"/);
@@ -87,6 +88,7 @@ test("jeder Einstieg registriert den Worker explizit im Projekt-Scope ohne HTTP-
     "src/like-terms-app.js",
     "src/term-multiplication-app.js",
     "src/term-division-app.js",
+    "src/bracket-sign-app.js",
     "src/app.js",
     "src/triangle-inequality-app.js",
     "src/triangle-area-app.js",
@@ -102,7 +104,7 @@ test("jeder Einstieg registriert den Worker explizit im Projekt-Scope ohne HTTP-
 
 test("Service Worker schützt Update, Redirects, Fehlerseiten und Navigation", async () => {
   const worker = await read("sw.js");
-  assert.match(worker, /mathe-unterrichts-app-v21/);
+  assert.match(worker, /mathe-unterrichts-app-v22/);
   assert.match(worker, /cache: "reload"/);
   assert.match(worker, /redirect: "error"/);
   assert.match(worker, /!response\.ok \|\| response\.redirected/);

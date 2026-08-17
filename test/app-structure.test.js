@@ -39,6 +39,8 @@ const files = {
   termMultiplicationApp: await readFile(new URL("../src/term-multiplication-app.js", import.meta.url), "utf8"),
   termDivision: await readFile(new URL("../terme-dividieren.html", import.meta.url), "utf8"),
   termDivisionApp: await readFile(new URL("../src/term-division-app.js", import.meta.url), "utf8"),
+  bracketSign: await readFile(new URL("../plus-minus-klammern.html", import.meta.url), "utf8"),
+  bracketSignApp: await readFile(new URL("../src/bracket-sign-app.js", import.meta.url), "utf8"),
   worker: await readFile(new URL("../sw.js", import.meta.url), "utf8"),
   manifest: await readFile(new URL("../manifest.webmanifest", import.meta.url), "utf8"),
 };
@@ -74,8 +76,8 @@ test("Startseite zeigt Klasse 7 mit den drei produktiven Kapiteln", () => {
   assert.doesNotMatch(files.home, /<ul|<ol/);
 });
 
-test("Kapitel 1 und 2 enthalten je sechs Karten, Kapitel 3 genau vier Module", () => {
-  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 16);
+test("Kapitel 1 und 2 enthalten je sechs Karten, Kapitel 3 genau fünf Module", () => {
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 17);
   assert.match(files.home, /href="\.\/zahlengerade\.html"/);
   assert.match(files.home, /Warum liegen negative Zahlen links von der Null\?/);
   assert.match(files.home, /<span class="module-subtitle">Zahlengerade<\/span>/);
@@ -133,8 +135,10 @@ test("Kapitel 1 und 2 enthalten je sechs Karten, Kapitel 3 genau vier Module", (
   assert.match(files.home, /href="\.\/terme-dividieren\.html"/);
   assert.match(files.home, /Warum bleibt beim Teilen eines Terms genau das übrig, was nicht weggeteilt wurde\?/);
   assert.match(files.home, /<span class="module-subtitle">Terme dividieren<\/span>/);
-  assert.equal((files.home.match(/class="module-status"/g) ?? []).length, 16);
-  assert.equal((files.home.match(/fertig/g) ?? []).length, 16);
+  assert.match(files.home, /href="\.\/plus-minus-klammern\.html"/);
+  assert.match(files.home, /Warum ändern sich bei einer Minusklammer alle Vorzeichen\?/);
+  assert.equal((files.home.match(/class="module-status"/g) ?? []).length, 17);
+  assert.equal((files.home.match(/fertig/g) ?? []).length, 17);
 });
 
 test("Alle Dreiecksmodule behalten ausschließlich ihren bisherigen Rückweg", () => {
@@ -166,8 +170,8 @@ test("Alle Module aus Kapitel 1 führen ausschließlich zu Rationale Zahlen zur�
   }
 });
 
-test("Alle vier Kapitel-3-Module führen ausschließlich zu Rechnen mit Termen zurück", () => {
-  for (const module of [files.terms, files.likeTerms, files.termMultiplication, files.termDivision]) {
+test("Alle fünf Kapitel-3-Module führen ausschließlich zu Rechnen mit Termen zurück", () => {
+  for (const module of [files.terms, files.likeTerms, files.termMultiplication, files.termDivision, files.bracketSign]) {
     assert.equal((module.match(/class="module-navigation"/g) ?? []).length, 1);
     assert.match(
       module,
@@ -189,9 +193,9 @@ test("Startseite ist für iPad, Querformat und Klassenraumbildschirm ausgelegt",
   );
   assert.match(files.homeCss, /\.grade-label/);
   assert.match(files.navigationCss, /min-height: 46px/);
-  assert.match(files.homeCss, /\.chapter-terms \.module-grid\s*\{\s*grid-template-columns: repeat\(4, minmax\(0, 1fr\)\)/);
-  assert.match(landscapeTabletCss, /\.chapter-terms \.module-grid\s*\{\s*grid-template-columns: repeat\(4, minmax\(0, 1fr\)\)/);
-  assert.match(landscapeTabletCss, /\.chapter-terms \.module-card\s*\{\s*grid-column: auto/);
+  assert.match(files.homeCss, /\.chapter-terms \.module-grid\s*\{\s*grid-template-columns: repeat\(6, minmax\(0, 1fr\)\)/);
+  assert.match(landscapeTabletCss, /\.chapter-terms \.module-grid\s*\{\s*grid-template-columns: repeat\(6, minmax\(0, 1fr\)\)/);
+  assert.match(landscapeTabletCss, /\.chapter-terms \.module-card\s*\{\s*grid-column: span 2/);
   assert.equal(JSON.parse(files.manifest).display, "standalone");
   assert.equal(JSON.parse(files.manifest).start_url, "./");
 });
@@ -360,13 +364,19 @@ test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und beide Kapite
     "src/term-division-math.js",
     "src/term-division-state.js",
     "src/term-division-animation.js",
+    "plus-minus-klammern.html",
+    "bracket-sign.css",
+    "src/bracket-sign-app.js",
+    "src/bracket-sign-math.js",
+    "src/bracket-sign-state.js",
+    "src/bracket-sign-animation.js",
     "manifest.webmanifest",
     "icon.svg",
   ]) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
   assert.match(files.shell, /serviceWorker\.register/);
-  assert.match(files.worker, /mathe-unterrichts-app-v21/);
+  assert.match(files.worker, /mathe-unterrichts-app-v22/);
 });
 
 test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", () => {

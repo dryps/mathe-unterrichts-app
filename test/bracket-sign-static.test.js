@@ -5,50 +5,47 @@ import test from "node:test";
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), "utf8");
 
 const files = {
-  html: await read("terme-dividieren.html"),
-  css: await read("term-division.css"),
-  app: await read("src/term-division-app.js"),
-  math: await read("src/term-division-math.js"),
-  state: await read("src/term-division-state.js"),
-  animation: await read("src/term-division-animation.js"),
+  html: await read("plus-minus-klammern.html"),
+  css: await read("bracket-sign.css"),
+  app: await read("src/bracket-sign-app.js"),
+  math: await read("src/bracket-sign-math.js"),
+  state: await read("src/bracket-sign-state.js"),
+  animation: await read("src/bracket-sign-animation.js"),
   home: await read("index.html"),
   worker: await read("sw.js"),
 };
 
 test("Leitfrage, Untertitel und Kernerkenntnis sind wortgetreu vorhanden", () => {
-  assert.match(
-    files.html,
-    /Warum bleibt beim Teilen eines Terms genau das übrig, was nicht weggeteilt wurde\?/,
-  );
-  assert.match(files.html, /<p class="subtitle">Terme dividieren<\/p>/);
-  assert.match(files.html, /Division macht einen vorhandenen Faktor rückgängig\./);
+  assert.match(files.html, /Warum ändern sich bei einer Minusklammer alle Vorzeichen\?/);
+  assert.match(files.html, /<p class="subtitle">Plus- und Minusklammern<\/p>/);
+  assert.match(files.html, /Das Minus wirkt auf das gesamte Paket\./);
 });
 
-test("Kernbeispiel zerlegt das Produkt in drei sichtbare Pakete zu je vier x", () => {
-  assert.match(files.html, /\(3 · 4 · x\) : 3/);
-  assert.match(files.html, /3 · \(4x\)/);
-  assert.equal((files.html.match(/class="division-package"/g) ?? []).length, 5);
-  assert.equal((files.html.match(/class="x-unit"/g) ?? []).length, 20);
-  assert.match(files.html, /3 gleiche Gruppen mit je 4x/);
+test("Kernbeispiel zeigt ein Paket und die Wirkung desselben äußeren Faktors auf beide Terme", () => {
+  assert.match(files.html, /−\(x − 3\)/);
+  assert.match(files.html, /−1 · \(x − 3\)/);
+  assert.match(files.html, /−x \+ 3/);
+  assert.match(files.html, /id="package-variable"/);
+  assert.match(files.html, /id="package-constant"/);
+  assert.match(files.html, /id="acting-arrow-variable"/);
+  assert.match(files.html, /id="acting-arrow-constant"/);
 });
 
-test("Division wird als Inhalt einer Gruppe und nicht als magisches Wegstreichen erklärt", () => {
-  assert.match(files.html, /Inhalt einer von drei gleichen Gruppen/);
-  assert.doesNotMatch(files.html, /wegstreichen|durchkürzen|<s>|<del>/i);
-  assert.doesNotMatch(files.css, /line-through/);
-  assert.doesNotMatch(files.html, /:\s*x|x\s*≠|Definitionsbereich/);
+test("Ergebnis bleibt bis nach der Minuswirkung verborgen und Vergleich bleibt auf plus/minus eins begrenzt", () => {
+  assert.match(files.html, /id="package-result"[^>]*hidden/);
+  assert.match(files.html, /id="factor-control"[^>]*min="-1"[^>]*max="1"[^>]*step="2"/);
+  assert.doesNotMatch(files.html, /ausmultiplizieren|Distributivgesetz|binomische Formel/i);
 });
 
 test("Bedienung bleibt auf Weiter, Zurücksetzen, Regler und Rücklink begrenzt", () => {
   assert.equal((files.html.match(/<button\b/g) ?? []).length, 2);
   assert.equal((files.html.match(/type="range"/g) ?? []).length, 1);
-  assert.match(files.html, /id="group-control"[^>]*min="2"[^>]*max="5"[^>]*step="1"/);
   assert.equal((files.html.match(/<a\b/g) ?? []).length, 1);
 });
 
 test("Controller-Selektoren sind vollständig mit dem HTML verbunden", () => {
   const selectors = [...files.app.matchAll(/\$\("#([^"\n]+)"\)/g)].map((match) => match[1]);
-  assert.ok(selectors.length >= 20);
+  assert.ok(selectors.length >= 18);
   for (const id of selectors) assert.match(files.html, new RegExp(`id="${id}"`));
 });
 
@@ -70,15 +67,8 @@ test("Responsive Regeln schützen kleine Breite, Telefon, iPad und Klassenraum",
 });
 
 test("Produktintegration enthält Startseitenkarte und vollständige Offline-Ressourcen", () => {
-  assert.match(files.home, /terme-dividieren\.html/);
-  for (const file of [
-    "terme-dividieren.html",
-    "term-division.css",
-    "src/term-division-app.js",
-    "src/term-division-math.js",
-    "src/term-division-state.js",
-    "src/term-division-animation.js",
-  ]) {
+  assert.match(files.home, /plus-minus-klammern\.html/);
+  for (const file of ["plus-minus-klammern.html", "bracket-sign.css", "src/bracket-sign-app.js", "src/bracket-sign-math.js", "src/bracket-sign-state.js", "src/bracket-sign-animation.js"]) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
   assert.match(files.worker, /mathe-unterrichts-app-v22/);

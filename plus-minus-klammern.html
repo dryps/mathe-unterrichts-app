@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f7f5ff" />
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Mathe im Unterricht" />
+    <meta name="description" content="Interaktiver Aha-Moment zu Plus- und Minusklammern." />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./icon-180.png" />
+    <link rel="stylesheet" href="./navigation.css" />
+    <link rel="stylesheet" href="./bracket-sign.css" />
+    <title>Warum ändern sich bei einer Minusklammer alle Vorzeichen?</title>
+  </head>
+  <body>
+    <main class="bracket-sign-shell">
+      <nav class="module-navigation" aria-label="Modulnavigation">
+        <a class="module-back-link" href="./#rechnen-mit-termen">← Rechnen mit Termen</a>
+      </nav>
+      <header class="bracket-sign-header">
+        <div>
+          <p class="eyebrow">Rechnen mit Termen · Kapitel 3</p>
+          <h1>Warum ändern sich bei einer Minusklammer alle Vorzeichen?</h1>
+          <p class="subtitle">Plus- und Minusklammern</p>
+        </div>
+        <p class="local-note" aria-label="Datenschutzstatus"><span aria-hidden="true">●</span> lokal · ohne Speicherung</p>
+      </header>
+
+      <section id="bracket-sign-board" class="bracket-sign-board" data-state="irritation" aria-labelledby="board-title">
+        <h2 id="board-title" class="visually-hidden">Ein äußerer Faktor wirkt auf ein ganzes Klammerpaket</h2>
+        <section id="bracket-sign-irritation" class="state-panel irritation-panel">
+          <div class="irritation-pair" aria-label="Plusklammer und Minusklammer im Vergleich">
+            <span>+(x − 3)</span><span>−(x − 3)</span>
+          </div>
+          <p class="state-question">Warum bleiben die Vorzeichen links gleich – und wechseln rechts beide?</p>
+        </section>
+
+        <section id="bracket-sign-package" class="state-panel package-panel" hidden>
+          <div class="factor-package-row">
+            <span id="outer-factor-token" class="outer-factor">−1</span><span class="operator">·</span>
+            <div id="bracket-package" class="bracket-package" aria-label="Klammerpaket aus plus x und minus drei">
+              <span class="bracket" aria-hidden="true">(</span>
+              <span id="package-variable" class="term-token variable-token">+x</span>
+              <span id="package-constant" class="term-token constant-token">−3</span>
+              <span class="bracket" aria-hidden="true">)</span>
+              <div id="acting-overlay" class="acting-overlay" hidden aria-hidden="true">
+                <span id="acting-arrow-variable" class="acting-arrow">↓</span>
+                <span id="acting-arrow-constant" class="acting-arrow">↓</span>
+              </div>
+            </div>
+          </div>
+          <p id="package-result" class="package-result" hidden>−x + 3</p>
+          <p class="package-caption">Die Klammer hält beide Terme als ein Paket zusammen.</p>
+          <section id="bracket-sign-explore" class="explore-panel" hidden>
+            <label for="factor-control">Äußerer Faktor <strong id="factor-value">−1</strong></label>
+            <input id="factor-control" type="range" min="-1" max="1" step="2" value="-1" />
+            <div class="range-scale" aria-hidden="true"><span>−1</span><span>+1</span></div>
+          </section>
+          <section id="bracket-sign-conclusion" class="conclusion-card" hidden>
+            <h2>Das Minus wirkt auf das gesamte Paket.</h2>
+            <p>−1 kehrt beide Vorzeichen um: −1 · (x − 3) = −x + 3.</p>
+          </section>
+        </section>
+
+        <section id="bracket-sign-comparison" class="state-panel comparison-panel" hidden>
+          <article><p>+1 · (x − 3)</p><strong id="comparison-plus-result">x − 3</strong><span>beide Vorzeichen bleiben</span></article>
+          <article><p>−1 · (x − 3)</p><strong id="comparison-minus-result">−x + 3</strong><span>beide Vorzeichen wechseln</span></article>
+        </section>
+      </section>
+
+      <section class="bracket-sign-insight" aria-live="polite">
+        <p id="bracket-sign-insight" class="insight-text">Warum verändert nur eine der beiden Klammern ihre inneren Vorzeichen?</p>
+        <div class="bracket-sign-controls">
+          <button id="bracket-sign-next" class="primary-button" type="button">Weiter</button>
+          <button id="bracket-sign-reset" class="reset-button" type="button">Zurücksetzen</button>
+        </div>
+        <p id="bracket-sign-live" class="visually-hidden" aria-live="polite"></p>
+      </section>
+      <noscript>Für diesen interaktiven Aha-Moment muss JavaScript aktiviert sein.</noscript>
+    </main>
+    <script type="module" src="./src/bracket-sign-app.js"></script>
+  </body>
+</html>

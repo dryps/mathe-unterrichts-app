@@ -123,15 +123,15 @@ function createWorkerHarness() {
   };
 }
 
-test("Installation füllt Version 21 vollständig und Aktivierung entfernt Version 20", async () => {
+test("Installation füllt Version 22 vollständig und Aktivierung entfernt Version 21", async () => {
   const harness = createWorkerHarness();
   await harness.dispatchLifecycle("install");
   await harness.dispatchLifecycle("activate");
 
   assert.equal(harness.skipped, true);
   assert.equal(harness.claimed, true);
-  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v21"]);
-  const current = harness.stores.get("mathe-unterrichts-app-v21");
+  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v22"]);
+  const current = harness.stores.get("mathe-unterrichts-app-v22");
   for (const path of [
     "./",
     "./index.html",
@@ -205,6 +205,12 @@ test("Installation füllt Version 21 vollständig und Aktivierung entfernt Versi
     "./src/term-division-math.js",
     "./src/term-division-state.js",
     "./src/term-division-animation.js",
+    "./plus-minus-klammern.html",
+    "./bracket-sign.css",
+    "./src/bracket-sign-app.js",
+    "./src/bracket-sign-math.js",
+    "./src/bracket-sign-state.js",
+    "./src/bracket-sign-animation.js",
   ]) {
     assert.equal(current.has(new URL(path, `${origin}/`).href), true);
   }
@@ -288,6 +294,12 @@ test("Offline-Neustart liefert Startseite und alle Kapitel ohne Netzwerk aus", a
     "/src/term-division-math.js",
     "/src/term-division-state.js",
     "/src/term-division-animation.js",
+    "/plus-minus-klammern.html",
+    "/bracket-sign.css",
+    "/src/bracket-sign-app.js",
+    "/src/bracket-sign-math.js",
+    "/src/bracket-sign-state.js",
+    "/src/bracket-sign-animation.js",
   ]) {
     const response = await harness.dispatchFetch(path);
     assert.equal(response.status, 200);

@@ -27,20 +27,20 @@ test("Startseite integriert K3.4 genau einmal als vierte K3-Karte", () => {
     /<section\s+id="rechnen-mit-termen"[\s\S]*?<\/section>/,
   )?.[0];
   assert.ok(chapter);
-  assert.equal((chapter.match(/class="module-card"/g) ?? []).length, 4);
+  assert.equal((chapter.match(/class="module-card"/g) ?? []).length, 5);
   assert.equal((files.home.match(/href="\.\/terme-dividieren\.html"/g) ?? []).length, 1);
   assert.match(
     files.home,
     /Warum bleibt beim Teilen eines Terms genau das übrig, was nicht weggeteilt wurde\?/,
   );
   assert.match(files.home, /<span class="module-subtitle">Terme dividieren<\/span>/);
-  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 16);
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 17);
 });
 
-test("K3-Raster ordnet vier Karten auf großen Breiten und iPad ausgewogen an", () => {
+test("K3-Raster bleibt nach der fünften Karte auf großen Breiten und iPad ausgewogen", () => {
   assert.match(
     files.homeCss,
-    /\.chapter-terms \.module-grid\s*{[^}]*grid-template-columns:\s*repeat\(4,/s,
+    /\.chapter-terms \.module-grid\s*{[^}]*grid-template-columns:\s*repeat\(6,/s,
   );
   assert.match(
     files.homeCss,
@@ -49,7 +49,7 @@ test("K3-Raster ordnet vier Karten auf großen Breiten und iPad ausgewogen an", 
 });
 
 test("Cache v21 enthält ausschließlich die sechs neuen Laufzeitdateien", () => {
-  assert.match(files.worker, /mathe-unterrichts-app-v21/);
+  assert.match(files.worker, /mathe-unterrichts-app-v22/);
   assert.doesNotMatch(files.worker, /mathe-unterrichts-app-v20/);
   for (const file of runtimeFiles) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));

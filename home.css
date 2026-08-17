@@ -125,7 +125,19 @@ h2 {
 }
 
 .chapter-terms .module-grid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.chapter-terms .module-card {
+  grid-column: span 2;
+}
+
+.chapter-terms .module-card:nth-child(4) {
+  grid-column: 2 / span 2;
+}
+
+.chapter-terms .module-card:nth-child(5) {
+  grid-column: 4 / span 2;
 }
 
 .module-card {
@@ -215,6 +227,12 @@ noscript {
     grid-template-columns: 1fr;
   }
 
+  .chapter-terms .module-card,
+  .chapter-terms .module-card:nth-child(4),
+  .chapter-terms .module-card:nth-child(5) {
+    grid-column: auto;
+  }
+
   .module-card {
     min-height: 210px;
   }
@@ -235,6 +253,12 @@ noscript {
 
   .chapter-terms .module-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .chapter-terms .module-card,
+  .chapter-terms .module-card:nth-child(4),
+  .chapter-terms .module-card:nth-child(5) {
+    grid-column: auto;
   }
 
 }
@@ -283,7 +307,7 @@ noscript {
   }
 
   .chapter-terms .module-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 
   .module-card {
@@ -310,7 +334,15 @@ noscript {
   }
 
   .chapter-terms .module-card {
-    grid-column: auto;
+    grid-column: span 2;
+  }
+
+  .chapter-terms .module-card:nth-child(4) {
+    grid-column: 2 / span 2;
+  }
+
+  .chapter-terms .module-card:nth-child(5) {
+    grid-column: 4 / span 2;
   }
 
   .module-status {
