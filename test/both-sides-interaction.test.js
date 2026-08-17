@@ -55,6 +55,10 @@ test("Regler synchronisiert Ausgangsgleichung, beide Gruppen und Schluss", async
   assert.equal(setup.ids.get("#both-sides-reduced-equation").textContent, "3x + 3 = 18");
   assert.match(setup.ids.get("#both-sides-conclusion-text").textContent, /verkürzte Schreibweise/);
   assert.match(setup.ids.get("#both-sides-live").textContent, /beiden Seiten/);
+  slider.value = "1"; slider.dispatch("input");
+  assert.equal(setup.ids.get("#both-sides-left-shared").getAttribute("aria-label"), "Gemeinsame Gruppe links: ein x-Baustein");
+  assert.equal(setup.ids.get("#both-sides-right-shared").getAttribute("aria-label"), "Gemeinsame Gruppe rechts: ein x-Baustein");
+  assert.equal(setup.ids.get("#both-sides-live").textContent, "x wird auf beiden Seiten entfernt. Übrig bleibt 3x plus 3 gleich 18.");
 });
 
 test("Mehrfachtipps überholen die laufende Entfernung nicht", async () => {

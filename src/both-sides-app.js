@@ -10,13 +10,13 @@ let current=createBothSidesState(),frameId=null,timerId=null,animationToken=0;
 function setRemoval(frame){for(const group of [leftShared,rightShared]){group.style.setProperty("--remove-progress",String(frame.progress));group.style.setProperty("--remove-lift",`${frame.lift}px`);}}
 function clearAnimation(){animationToken+=1;if(frameId!==null)cancelAnimationFrame(frameId);if(timerId!==null)clearTimeout(timerId);frameId=null;timerId=null;next.disabled=false;}
 function render(){
-  const model=bothSidesViewModel(current);board.dataset.state=current.view;source.hidden=!model.showSource;sourceEquation.textContent=model.sourceEquation;reduced.hidden=!model.showReduced;reducedEquation.textContent=model.reducedEquation;explore.hidden=!model.showExplore;conclusion.hidden=!model.showConclusion;conclusionText.textContent=model.conclusion;
+  const model=bothSidesViewModel(current),sharedName=model.shared===1?"ein x-Baustein":`${model.shared} x-Bausteine`;board.dataset.state=current.view;source.hidden=!model.showSource;sourceEquation.textContent=model.sourceEquation;reduced.hidden=!model.showReduced;reducedEquation.textContent=model.reducedEquation;explore.hidden=!model.showExplore;conclusion.hidden=!model.showConclusion;conclusionText.textContent=model.conclusion;
   leftShared.hidden=!model.showSource;rightShared.hidden=!model.showSource;
-  leftShared.setAttribute("aria-label",model.showDecomposition?`Gemeinsame Gruppe links: ${model.shared} x-Bausteine`:"x-Bausteine auf der linken Seite");rightShared.setAttribute("aria-label",model.showDecomposition?`Gemeinsame Gruppe rechts: ${model.shared} x-Bausteine`:"x-Bausteine auf der rechten Seite");
+  leftShared.setAttribute("aria-label",model.showDecomposition?`Gemeinsame Gruppe links: ${sharedName}`:"x-Bausteine auf der linken Seite");rightShared.setAttribute("aria-label",model.showDecomposition?`Gemeinsame Gruppe rechts: ${sharedName}`:"x-Bausteine auf der rechten Seite");
   leftSharedLabel.hidden=!model.showDecomposition;rightSharedLabel.hidden=!model.showDecomposition;leftSharedLabel.textContent=`− ${model.shared}x`;rightSharedLabel.textContent=`− ${model.shared}x`;
   leftTiles.forEach((tile,index)=>tile.hidden=index>=model.shared);rightTiles.forEach((tile,index)=>tile.hidden=index>=model.shared);
   sharedControl.value=String(model.shared);sharedControl.disabled=!model.interactive;sharedValue.textContent=`${model.shared}x`;insight.textContent=model.insight;next.hidden=!model.showNext;next.disabled=model.controlsLocked;
-  live.textContent=model.showConclusion?`${model.shared}x werden auf beiden Seiten entfernt. Übrig bleibt 3x plus 3 gleich 18.`:"";
+  live.textContent=model.showConclusion?(model.shared===1?"x wird auf beiden Seiten entfernt. Übrig bleibt 3x plus 3 gleich 18.":`${model.shared}x werden auf beiden Seiten entfernt. Übrig bleibt 3x plus 3 gleich 18.`):"";
   if(!model.removing)setRemoval({progress:0,lift:0});
 }
 function finishRemoval(token){if(token!==animationToken||current.view!==BOTH_SIDES_VIEWS.removing)return;clearAnimation();current=finishBothSidesRemoval(current);render();}
