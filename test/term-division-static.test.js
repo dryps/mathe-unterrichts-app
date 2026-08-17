@@ -69,10 +69,19 @@ test("Responsive Regeln schützen kleine Breite, Telefon, iPad und Klassenraum",
   assert.match(files.css, /overflow-x:\s*hidden/);
 });
 
-test("Standalone-Phase verändert weder Startseite noch produktiven Offline-Cache", () => {
-  assert.doesNotMatch(files.home, /terme-dividieren\.html/);
-  assert.doesNotMatch(files.worker, /terme-dividieren\.html|term-division/);
-  assert.match(files.worker, /mathe-unterrichts-app-v20/);
+test("Produktintegration enthält Startseitenkarte und vollständige Offline-Ressourcen", () => {
+  assert.match(files.home, /terme-dividieren\.html/);
+  for (const file of [
+    "terme-dividieren.html",
+    "term-division.css",
+    "src/term-division-app.js",
+    "src/term-division-math.js",
+    "src/term-division-state.js",
+    "src/term-division-animation.js",
+  ]) {
+    assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
+  }
+  assert.match(files.worker, /mathe-unterrichts-app-v21/);
 });
 
 test("Modul enthält keine Speicherung, Fremdaufrufe oder ausgeschlossenen Produktfunktionen", () => {

@@ -1,4 +1,4 @@
-const CACHE_NAME = "mathe-unterrichts-app-v20";
+const CACHE_NAME = "mathe-unterrichts-app-v21";
 const NAVIGATION_FALLBACK = "./index.html";
 const APP_FILES = [
   "./",
@@ -89,6 +89,12 @@ const APP_FILES = [
   "./src/term-multiplication-math.js",
   "./src/term-multiplication-state.js",
   "./src/term-multiplication-animation.js",
+  "./terme-dividieren.html",
+  "./term-division.css",
+  "./src/term-division-app.js",
+  "./src/term-division-math.js",
+  "./src/term-division-state.js",
+  "./src/term-division-animation.js",
   "./manifest.webmanifest",
   "./icon.svg",
   "./icon-180.png",

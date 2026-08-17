@@ -76,10 +76,10 @@
 - Modify: `.github/workflows/pages.yml`
 - Modify/Create: zentrale Integrations-, Pages- und Offline-Tests
 
-- [ ] Zuerst fehlschlagende Tests für genau eine vierte K3-Karte und alle sechs Runtime-Dateien schreiben.
-- [ ] Zentrale Dateien minimal integrieren und Cache von der verifizierten Version `v20` genau auf `v21` erhöhen.
-- [ ] Vollständige Regression, Renderer, Build, Pages, Smoke, Offline, Syntax, Diff und Browserprüfung ausführen.
-- [ ] Integrationscommit erstellen und normal pushen.
+- [x] Zuerst fehlschlagende Tests für genau eine vierte K3-Karte und alle sechs Runtime-Dateien schreiben.
+- [x] Zentrale Dateien minimal integrieren und Cache von der verifizierten Version `v20` genau auf `v21` erhöhen.
+- [x] Vollständige Regression, Renderer, Build, Pages, Smoke, Offline, Syntax, Diff und Browserprüfung ausführen.
+- [x] Integrationscommit erstellen und normal pushen.
 
 ### Task 7: Review, PR, Merge und Produktion
 

@@ -105,7 +105,7 @@ test("Responsive Regeln schützen Hochformat, Querformat, kleine Breite und Klas
   assert.doesNotMatch(files.css, /overflow:\s*visible/);
 });
 
-test("Offline-Cache und Pages-Gate enthalten Modul und Zustandsrenderer auf Version 20", () => {
+test("Offline-Cache und Pages-Gate enthalten Modul und Zustandsrenderer auf Version 21", () => {
   for (const file of [
     "subtraktion-negativ.html",
     "subtraction-negative.css",
@@ -116,7 +116,7 @@ test("Offline-Cache und Pages-Gate enthalten Modul und Zustandsrenderer auf Vers
   ]) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
-  assert.match(files.worker, /mathe-unterrichts-app-v20/);
+  assert.match(files.worker, /mathe-unterrichts-app-v21/);
   assert.equal(
     files.package.scripts["test:subtraction-visual"],
     "node scripts/render-subtraction-negative-states.mjs",
