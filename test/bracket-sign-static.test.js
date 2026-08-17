@@ -66,10 +66,12 @@ test("Responsive Regeln schützen kleine Breite, Telefon, iPad und Klassenraum",
   assert.match(files.css, /overflow-x:\s*hidden/);
 });
 
-test("Standalone-Stufe verändert weder Startseite noch Produktcache", () => {
-  assert.doesNotMatch(files.home, /plus-minus-klammern\.html/);
-  assert.doesNotMatch(files.worker, /plus-minus-klammern\.html|bracket-sign/);
-  assert.match(files.worker, /mathe-unterrichts-app-v21/);
+test("Produktintegration enthält Startseitenkarte und vollständige Offline-Ressourcen", () => {
+  assert.match(files.home, /plus-minus-klammern\.html/);
+  for (const file of ["plus-minus-klammern.html", "bracket-sign.css", "src/bracket-sign-app.js", "src/bracket-sign-math.js", "src/bracket-sign-state.js", "src/bracket-sign-animation.js"]) {
+    assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
+  }
+  assert.match(files.worker, /mathe-unterrichts-app-v22/);
 });
 
 test("Modul enthält keine Speicherung, Fremdaufrufe oder ausgeschlossenen Produktfunktionen", () => {

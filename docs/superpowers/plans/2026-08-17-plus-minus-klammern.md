@@ -47,16 +47,16 @@
 
 - [x] Alle Zustände deterministisch rendern und zweimal identische Ausgabe prüfen.
 - [x] Fokussierte Tests, Syntax, Diff und reale Browserprüfung ausführen.
-- [ ] Standalone-Dateien committen und normal pushen.
+- [x] Standalone-Dateien committen und normal pushen.
 
 ### Task 6: Zentrale Integration
 
 **Files:** zentrale Startseiten-, Raster-, Cache-, Pages-, Smoke-, Workflow- und Regressionstestdateien
 
-- [ ] Rote Verträge für genau eine fünfte K3-Karte und sechs Runtime-Dateien schreiben.
-- [ ] Zentral minimal integrieren und Cache exakt `v21 → v22` erhöhen.
-- [ ] Vollständige Regression, alle Renderer, Build, Pages, Smoke, Offline und Browser ausführen.
-- [ ] Integrationscommit erstellen und normal pushen.
+- [x] Rote Verträge für genau eine fünfte K3-Karte und sechs Runtime-Dateien schreiben.
+- [x] Zentral minimal integrieren und Cache exakt `v21 → v22` erhöhen.
+- [x] Vollständige Regression, alle Renderer, Build, Pages, Smoke, Offline und Browser ausführen.
+- [x] Integrationscommit erstellen und normal pushen.
 
 ### Task 7: Review, PR, Merge und Produktion
 

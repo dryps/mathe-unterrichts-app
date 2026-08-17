@@ -1,4 +1,4 @@
-const CACHE_NAME = "mathe-unterrichts-app-v21";
+const CACHE_NAME = "mathe-unterrichts-app-v22";
 const NAVIGATION_FALLBACK = "./index.html";
 const APP_FILES = [
   "./",
@@ -95,6 +95,12 @@ const APP_FILES = [
   "./src/term-division-math.js",
   "./src/term-division-state.js",
   "./src/term-division-animation.js",
+  "./plus-minus-klammern.html",
+  "./bracket-sign.css",
+  "./src/bracket-sign-app.js",
+  "./src/bracket-sign-math.js",
+  "./src/bracket-sign-state.js",
+  "./src/bracket-sign-animation.js",
   "./manifest.webmanifest",
   "./icon.svg",
   "./icon-180.png",
