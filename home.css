@@ -124,6 +124,10 @@ h2 {
   grid-column: span 2;
 }
 
+.chapter-terms .module-card:only-child {
+  grid-column: 2;
+}
+
 .module-card {
   display: flex;
   min-height: clamp(220px, 28vw, 330px);
@@ -207,6 +211,10 @@ noscript {
     grid-column: auto;
   }
 
+  .chapter-terms .module-card:only-child {
+    grid-column: auto;
+  }
+
   .module-card {
     min-height: 210px;
   }
@@ -223,6 +231,12 @@ noscript {
 
   .chapter-rationale .module-card {
     grid-column: span 2;
+  }
+
+  .chapter-terms .module-card:only-child {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: min(100%, 460px);
   }
 
 }
@@ -291,6 +305,10 @@ noscript {
 
   .chapter-rationale .module-card {
     grid-column: span 2;
+  }
+
+  .chapter-terms .module-card:only-child {
+    grid-column: 3 / span 2;
   }
 
   .module-status {

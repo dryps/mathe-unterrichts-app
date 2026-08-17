@@ -71,3 +71,25 @@ test("breiter Klassenraumbildschirm ordnet Kapitel 1 als drei plus drei", () => 
   assert.doesNotMatch(classroomLandscapeCss, /\.chapter-rationale \.module-card:nth-child/);
   assert.doesNotMatch(classroomLandscapeCss, /#dreiecke|\.chapter:not\(\.chapter-rationale\)/);
 });
+
+test("Kapitel 3 enthält genau eine ruhige, später erweiterbare Modulkarte", () => {
+  const chapter = html.match(
+    /<section[^>]*id="rechnen-mit-termen"[^>]*class="chapter chapter-terms"[\s\S]*?<\/section>/,
+  )?.[0];
+  assert.ok(chapter);
+  assert.equal((chapter.match(/class="module-card"/g) ?? []).length, 1);
+  assert.equal((chapter.match(/class="module-status"/g) ?? []).length, 1);
+  assert.match(css, /\.chapter-terms \.module-card:only-child\s*\{\s*grid-column: 2/);
+  assert.match(
+    mobileCss,
+    /\.chapter-terms \.module-card:only-child\s*\{\s*grid-column: auto/,
+  );
+  assert.match(
+    portraitCss,
+    /\.chapter-terms \.module-card:only-child\s*\{[\s\S]*grid-column: 1 \/ -1[\s\S]*justify-self: center[\s\S]*width: min\(100%, 460px\)/,
+  );
+  assert.match(
+    landscapeCss,
+    /\.chapter-terms \.module-card:only-child\s*\{\s*grid-column: 3 \/ span 2/,
+  );
+});
