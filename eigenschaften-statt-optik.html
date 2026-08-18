@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f5f7fb" />
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Mathe im Unterricht" />
+    <meta name="description" content="Interaktiver Aha-Moment zu definierenden Eigenschaften von Vierecken." />
+    <link rel="manifest" href="./manifest.webmanifest" /><link rel="icon" href="./icon.svg" type="image/svg+xml" /><link rel="apple-touch-icon" sizes="180x180" href="./icon-180.png" />
+    <link rel="stylesheet" href="./navigation.css" /><link rel="stylesheet" href="./quadrilateral-properties.css" />
+    <title>Warum bleibt ein Viereck dieselbe Art, obwohl ich es drehe oder anders zeichne?</title>
+  </head>
+  <body>
+    <main class="properties-shell">
+      <nav class="module-navigation" aria-label="Modulnavigation"><a class="module-back-link" href="./#vierecke">← Vierecke</a></nav>
+      <header class="properties-header"><div><p class="eyebrow">Vierecke · Kapitel 5</p><h1>Warum bleibt ein Viereck dieselbe Art, obwohl ich es drehe oder anders zeichne?</h1><p class="subtitle">Eigenschaften statt Optik</p></div><p class="local-note" aria-label="Datenschutzstatus"><span aria-hidden="true">●</span> lokal · ohne Speicherung</p></header>
+      <section id="properties-board" class="properties-board" data-state="irritation" aria-labelledby="properties-board-title">
+        <h2 id="properties-board-title" class="visually-hidden">Ein Parallelogramm verändert Lage und Form</h2>
+        <svg id="properties-stage" class="properties-stage" viewBox="0 0 800 480" role="img" aria-label="Unmarkiertes Parallelogramm in typischer Lage.">
+          <polygon id="properties-shape" class="shape-fill" points="" />
+          <line id="properties-side-ab" class="property-side pair-one"/><line id="properties-side-bc" class="property-side pair-two"/><line id="properties-side-cd" class="property-side pair-one"/><line id="properties-side-da" class="property-side pair-two"/>
+          <g id="properties-markers" class="property-markers" hidden aria-label="Gegenüberliegende Seiten sind paarweise parallel und gleich lang.">
+            <line id="properties-marker-ab"/><line id="properties-marker-cd"/><line id="properties-marker-bc-1"/><line id="properties-marker-bc-2"/><line id="properties-marker-da-1"/><line id="properties-marker-da-2"/>
+            <text x="400" y="445" text-anchor="middle">gleiche Farbe + gleiche Striche = dasselbe Seitenpaar</text><text x="400" y="468" text-anchor="middle">gegenüberliegend · parallel · gleich lang</text>
+          </g>
+        </svg>
+        <section id="properties-explore" class="properties-explore" hidden>
+          <div class="control-row"><label for="properties-rotation-control">Drehung <strong id="properties-rotation-value">28°</strong></label><div class="step-range"><button id="properties-rotation-decrease" type="button" aria-label="Drehung verringern">−</button><input id="properties-rotation-control" type="range" min="-35" max="35" step="1" value="28"/><button id="properties-rotation-increase" type="button" aria-label="Drehung erhöhen">+</button></div></div>
+          <div class="control-row"><label for="properties-shift-control">Verschiebung <strong id="properties-shift-value">55</strong></label><div class="step-range"><button id="properties-shift-decrease" type="button" aria-label="Nach links verschieben">−</button><input id="properties-shift-control" type="range" min="-90" max="90" step="1" value="55"/><button id="properties-shift-increase" type="button" aria-label="Nach rechts verschieben">+</button></div></div>
+          <div class="control-row"><label for="properties-slant-control">Form <strong id="properties-slant-value">−50</strong></label><div class="step-range"><button id="properties-slant-decrease" type="button" aria-label="Formwert verringern">−</button><input id="properties-slant-control" type="range" min="-70" max="70" step="1" value="-50"/><button id="properties-slant-increase" type="button" aria-label="Formwert erhöhen">+</button></div></div>
+        </section>
+        <section id="properties-conclusion" class="conclusion-card" hidden><h2>Aha</h2><p id="properties-conclusion-text">Viereckstypen werden über Eigenschaften definiert, nicht über typische Bilder.</p></section>
+      </section>
+      <section class="properties-insight" aria-live="polite"><p id="properties-insight">Sieht ein Parallelogramm nur in dieser typischen Lage wie ein Parallelogramm aus?</p><div class="properties-controls"><button id="properties-next" class="primary-button" type="button">Weiter</button><button id="properties-reset" class="reset-button" type="button">Zurücksetzen</button></div><p id="properties-live" class="visually-hidden" aria-live="polite"></p></section>
+      <noscript>Für diesen interaktiven Aha-Moment muss JavaScript aktiviert sein.</noscript>
+    </main>
+    <script type="module" src="./src/quadrilateral-properties-app.js"></script>
+  </body>
+</html>

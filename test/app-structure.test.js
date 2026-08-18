@@ -51,6 +51,8 @@ const files = {
   negativeInequalityApp: await readFile(new URL("../src/negative-inequality-app.js", import.meta.url), "utf8"),
   solutionSet: await readFile(new URL("../loesungsmengen.html", import.meta.url), "utf8"),
   solutionSetApp: await readFile(new URL("../src/solution-set-app.js", import.meta.url), "utf8"),
+  quadrilateralProperties: await readFile(new URL("../eigenschaften-statt-optik.html", import.meta.url), "utf8"),
+  quadrilateralPropertiesApp: await readFile(new URL("../src/quadrilateral-properties-app.js", import.meta.url), "utf8"),
   worker: await readFile(new URL("../sw.js", import.meta.url), "utf8"),
   manifest: await readFile(new URL("../manifest.webmanifest", import.meta.url), "utf8"),
 };
@@ -71,11 +73,11 @@ const landscapeTabletCss = mediaBlock(
   "@media (orientation: landscape) and (min-width: 900px) and (max-width: 1500px)",
 );
 
-test("Startseite zeigt Klasse 7 mit den vier produktiven Kapiteln", () => {
+test("Startseite zeigt Klasse 7 mit den fünf produktiven Kapiteln", () => {
   assert.match(files.home, /<h1>Mathe im Unterricht<\/h1>/);
   assert.match(files.home, /Interaktive Aha-Momente/);
   assert.match(files.home, /<p class="grade-label">Klasse 7<\/p>/);
-  assert.equal((files.home.match(/class="chapter(?:\s|")/g) ?? []).length, 4);
+  assert.equal((files.home.match(/class="chapter(?:\s|")/g) ?? []).length, 5);
   assert.match(files.home, /id="rationale-zahlen"/);
   assert.match(files.home, /<h2 id="rationale-title">1\. Rationale Zahlen<\/h2>/);
   assert.match(files.home, /<h2 id="chapter-title">2\. Dreiecke<\/h2>/);
@@ -83,13 +85,15 @@ test("Startseite zeigt Klasse 7 mit den vier produktiven Kapiteln", () => {
   assert.match(files.home, /<h2 id="terms-title">3\. Rechnen mit Termen<\/h2>/);
   assert.match(files.home, /id="gleichungen-ungleichungen"/);
   assert.match(files.home, /<h2 id="equations-title">4\. Gleichungen · Ungleichungen<\/h2>/);
+  assert.match(files.home, /id="vierecke"/);
+  assert.match(files.home, /<h2 id="quadrilaterals-title">5\. Vierecke<\/h2>/);
   assert.doesNotMatch(files.home, /Private Unterrichts-App|>Kapitel</);
   assert.doesNotMatch(files.home, /Klasse 8|Klasse 9|Klassenauswahl/);
   assert.doesNotMatch(files.home, /<ul|<ol/);
 });
 
-test("Kapitel 1 bis 3 enthalten je sechs Module und Kapitel 4 enthält K4.1 bis K4.4", () => {
-  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 22);
+test("Kapitel 1 bis 3 enthalten je sechs Module, Kapitel 4 vier und Kapitel 5 K5.1", () => {
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 23);
   assert.match(files.home, /href="\.\/zahlengerade\.html"/);
   assert.match(files.home, /Warum liegen negative Zahlen links von der Null\?/);
   assert.match(files.home, /<span class="module-subtitle">Zahlengerade<\/span>/);
@@ -157,8 +161,11 @@ test("Kapitel 1 bis 3 enthalten je sechs Module und Kapitel 4 enthält K4.1 bis 
   assert.match(files.home, /href="\.\/loesungsmengen\.html"/);
   assert.match(files.home, /Warum beschreibt eine Ungleichung einen ganzen Bereich statt nur einen Wert\?/);
   assert.match(files.home, /<span class="module-subtitle">Lösungsmengen<\/span>/);
-  assert.equal((files.home.match(/class="module-status"/g) ?? []).length, 22);
-  assert.equal((files.home.match(/fertig/g) ?? []).length, 22);
+  assert.match(files.home, /href="\.\/eigenschaften-statt-optik\.html"/);
+  assert.match(files.home, /Warum bleibt ein Viereck dieselbe Art, obwohl ich es drehe oder anders zeichne\?/);
+  assert.match(files.home, /<span class="module-subtitle">Eigenschaften statt Optik<\/span>/);
+  assert.equal((files.home.match(/class="module-status"/g) ?? []).length, 23);
+  assert.equal((files.home.match(/fertig/g) ?? []).length, 23);
 });
 
 test("Alle Dreiecksmodule behalten ausschließlich ihren bisherigen Rückweg", () => {
@@ -207,6 +214,12 @@ test("Kapitel-4-Module führen ausschließlich zu Gleichungen · Ungleichungen z
     assert.match(module, /class="module-back-link" href="\.\/#gleichungen-ungleichungen">← Gleichungen · Ungleichungen<\/a>/);
     assert.doesNotMatch(module, /Suche|Einstellungen|Favoriten|Statistik|Anmelden/);
   }
+});
+
+test("K5.1 führt ausschließlich zu Vierecke zurück", () => {
+  assert.equal((files.quadrilateralProperties.match(/class="module-navigation"/g) ?? []).length, 1);
+  assert.match(files.quadrilateralProperties, /class="module-back-link" href="\.\/#vierecke">← Vierecke<\/a>/);
+  assert.doesNotMatch(files.quadrilateralProperties, /Suche|Einstellungen|Favoriten|Statistik|Anmelden/);
 });
 
 test("Startseite ist für iPad, Querformat und Klassenraumbildschirm ausgelegt", () => {
@@ -429,13 +442,19 @@ test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und beide Kapite
     "src/solution-set-math.js",
     "src/solution-set-state.js",
     "src/solution-set-animation.js",
+    "eigenschaften-statt-optik.html",
+    "quadrilateral-properties.css",
+    "src/quadrilateral-properties-app.js",
+    "src/quadrilateral-properties-animation.js",
+    "src/quadrilateral-properties-geometry.js",
+    "src/quadrilateral-properties-state.js",
     "manifest.webmanifest",
     "icon.svg",
   ]) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
   assert.match(files.shell, /serviceWorker\.register/);
-  assert.match(files.worker, /mathe-unterrichts-app-v27/);
+  assert.match(files.worker, /mathe-unterrichts-app-v28/);
 });
 
 test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", () => {
@@ -472,6 +491,8 @@ test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", 
     files.negativeInequalityApp,
     files.solutionSet,
     files.solutionSetApp,
+    files.quadrilateralProperties,
+    files.quadrilateralPropertiesApp,
     files.worker,
   ].join("\n");
   assert.doesNotMatch(runtime, /localStorage|sessionStorage|indexedDB|document\.cookie/);

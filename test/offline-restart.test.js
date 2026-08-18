@@ -123,15 +123,15 @@ function createWorkerHarness() {
   };
 }
 
-test("Installation füllt Version 27 vollständig und Aktivierung entfernt Version 25", async () => {
+test("Installation füllt Version 28 vollständig und Aktivierung entfernt ältere Versionen", async () => {
   const harness = createWorkerHarness();
   await harness.dispatchLifecycle("install");
   await harness.dispatchLifecycle("activate");
 
   assert.equal(harness.skipped, true);
   assert.equal(harness.claimed, true);
-  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v27"]);
-  const current = harness.stores.get("mathe-unterrichts-app-v27");
+  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v28"]);
+  const current = harness.stores.get("mathe-unterrichts-app-v28");
   for (const path of [
     "./",
     "./index.html",
