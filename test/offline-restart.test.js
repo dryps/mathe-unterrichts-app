@@ -123,15 +123,15 @@ function createWorkerHarness() {
   };
 }
 
-test("Installation füllt Version 36 vollständig und Aktivierung entfernt ältere Versionen", async () => {
+test("Installation füllt Version 37 vollständig und Aktivierung entfernt ältere Versionen", async () => {
   const harness = createWorkerHarness();
   await harness.dispatchLifecycle("install");
   await harness.dispatchLifecycle("activate");
 
   assert.equal(harness.skipped, true);
   assert.equal(harness.claimed, true);
-  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v36"]);
-  const current = harness.stores.get("mathe-unterrichts-app-v36");
+  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v37"]);
+  const current = harness.stores.get("mathe-unterrichts-app-v37");
   for (const path of [
     "./",
     "./index.html",
@@ -296,6 +296,12 @@ test("Installation füllt Version 36 vollständig und Aktivierung entfernt älte
     "./src/model-choice-animation.js",
     "./src/model-choice-math.js",
     "./src/model-choice-state.js",
+    "./prozent-als-anteil.html",
+    "./percentage-share.css",
+    "./src/percentage-share-app.js",
+    "./src/percentage-share-animation.js",
+    "./src/percentage-share-math.js",
+    "./src/percentage-share-state.js",
   ]) {
     assert.equal(current.has(new URL(path, `${origin}/`).href), true);
   }
@@ -470,6 +476,12 @@ test("Offline-Neustart liefert Startseite und alle Kapitel ohne Netzwerk aus", a
     "/src/model-choice-animation.js",
     "/src/model-choice-math.js",
     "/src/model-choice-state.js",
+    "/prozent-als-anteil.html",
+    "/percentage-share.css",
+    "/src/percentage-share-app.js",
+    "/src/percentage-share-animation.js",
+    "/src/percentage-share-math.js",
+    "/src/percentage-share-state.js",
   ]) {
     const response = await harness.dispatchFetch(path);
     assert.equal(response.status, 200);

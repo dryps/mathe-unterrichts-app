@@ -39,7 +39,8 @@
     "test:proportional-comparison-visual": "node scripts/render-proportional-comparison-states.mjs",
     "test:proportional-rule-three-visual": "node scripts/render-proportional-rule-three-states.mjs",
     "test:inverse-assignment-visual": "node scripts/render-inverse-assignment-states.mjs",
-    "test:model-choice-visual": "node scripts/render-model-choice-states.mjs"
+    "test:model-choice-visual": "node scripts/render-model-choice-states.mjs",
+    "test:percentage-share-visual": "node scripts/render-percentage-share-states.mjs"
   },
   "engines": {
     "node": ">=20"
