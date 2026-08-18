@@ -13,7 +13,7 @@ test("Startseite integriert K7.3 genau einmal als dritte Kapitel-7-Karte",()=>{
   assert.equal((chapter.match(/class="module-card"/g)??[]).length,5);
   assert.equal((files.home.match(/href="\.\/grundwert-prozentwert-prozentsatz\.html"/g)??[]).length,1);
   assert.match(chapter,/Warum sind Grundwert, Prozentwert und Prozentsatz keine drei verschiedenen Themen\?/);
-  assert.equal((files.home.match(/class="module-card"/g)??[]).length,39);
+  assert.equal((files.home.match(/class="module-card"/g)??[]).length,40);
   assert.equal((files.home.match(/class="chapter(?:\s|")/g)??[]).length,8);
   assert.match(files.css,/\.chapter-percentages \.module-grid\s*\{[^}]*repeat\(5, minmax\(0, 1fr\)\)/s);
   assert.match(files.css,/@media \(min-width: 721px\) and \(max-width: 1040px\)[\s\S]*?\.chapter-percentages \.module-grid\s*\{[^}]*repeat\(2, minmax\(0, 1fr\)\)/s);
@@ -22,8 +22,8 @@ test("Startseite integriert K7.3 genau einmal als dritte Kapitel-7-Karte",()=>{
   assert.match(landscape,/\.chapter-percentages \.module-card\s*\{[^}]*grid-column:\s*span 2/s);
 });
 
-test("Cache v44, Pages und Smoke enthalten die sechs K7.3-Laufzeitdateien",()=>{
-  assert.match(files.worker,/mathe-unterrichts-app-v44/);
+test("Cache v45, Pages und Smoke enthalten die sechs K7.3-Laufzeitdateien",()=>{
+  assert.match(files.worker,/mathe-unterrichts-app-v45/);
   assert.doesNotMatch(files.worker,/mathe-unterrichts-app-v38/);
   for(const file of runtime){
     const pattern=new RegExp(file.replaceAll(".","\\."));

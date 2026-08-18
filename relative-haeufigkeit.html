@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f5f7fb" />
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Mathe im Unterricht" />
+    <meta name="description" content="Interaktiver Aha-Moment zur relativen Häufigkeit." />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./icon-180.png" />
+    <link rel="stylesheet" href="./navigation.css" />
+    <link rel="stylesheet" href="./relative-frequency.css" />
+    <title>Warum bedeutet Wahrscheinlichkeit 1/6 nicht, dass genau jeder sechste Wurf eine Sechs ist?</title>
+  </head>
+  <body>
+    <main class="rh-shell">
+      <nav class="module-navigation" aria-label="Modulnavigation">
+        <a class="module-back-link" href="./#wahrscheinlichkeit">← Wahrscheinlichkeit</a>
+      </nav>
+      <header class="rh-header">
+        <div>
+          <p class="eyebrow">Wahrscheinlichkeit · Kapitel 8</p>
+          <h1>Warum bedeutet Wahrscheinlichkeit 1/6 nicht, dass genau jeder sechste Wurf eine Sechs ist?</h1>
+          <p class="subtitle">Relative Häufigkeit</p>
+        </div>
+        <p class="local-note" aria-label="Datenschutzstatus"><span aria-hidden="true">●</span> lokal · ohne Speicherung</p>
+      </header>
+
+      <section id="rh-workspace" class="rh-workspace" data-state="irritation" aria-busy="false">
+        <section class="irritation-card" aria-label="Ausgangsfrage zum Würfeln">
+          <div class="probability-token"><span>Wahrscheinlichkeit für eine Sechs</span><strong>1/6</strong><small>etwa 16,7 % pro Wurf</small></div>
+          <div class="rh-arrow" aria-hidden="true">≠</div>
+          <div class="rhythm-token"><span>Kein fester Takt</span><strong>6 · 6 · 6 · …?</strong><small>Eine Chance ist kein Stundenplan.</small></div>
+        </section>
+
+        <section id="rh-chart-card" class="chart-card" hidden>
+          <div class="chart-copy">
+            <div><p class="section-label">Ein reproduzierbarer Simulationslauf</p><h2>Die relative Häufigkeit schwankt</h2></div>
+            <p>10 → 100 → 1.000 → 10.000: jeweils zehnmal so viele Würfe</p>
+          </div>
+          <div class="chart-layout">
+            <div class="chart-panel">
+              <p class="chart-scroll-hint">Seitlich wischen für alle vier Stufen.</p>
+              <div class="chart-scroll">
+              <svg id="rh-chart" class="rh-chart" viewBox="0 0 670 370" role="img" aria-label="Diagramm der relativen Häufigkeit; noch keine Simulation sichtbar.">
+              <g aria-hidden="true">
+                <line class="grid-line" x1="45" y1="320" x2="630" y2="320"></line>
+                <line class="grid-line" x1="45" y1="266" x2="630" y2="266"></line>
+                <line class="grid-line" x1="45" y1="212" x2="630" y2="212"></line>
+                <line class="grid-line" x1="45" y1="158" x2="630" y2="158"></line>
+                <line class="grid-line" x1="45" y1="104" x2="630" y2="104"></line>
+                <line class="grid-line" x1="45" y1="50" x2="630" y2="50"></line>
+                <text class="y-label" x="38" y="325">12 %</text>
+                <text class="y-label" x="38" y="271">14 %</text>
+                <text class="y-label" x="38" y="217">16 %</text>
+                <text class="y-label" x="38" y="163">18 %</text>
+                <text class="y-label" x="38" y="109">20 %</text>
+                <text class="y-label" x="38" y="55">22 %</text>
+                <line class="reference-line" x1="45" y1="194" x2="630" y2="194"></line>
+                <text class="reference-label" x="625" y="185">1/6 ≈ 16,7 %</text>
+                <polyline id="rh-line" class="rh-line" points=""></polyline>
+                <circle class="rh-point" data-index="0" cx="80" cy="104" r="10" hidden></circle>
+                <circle class="rh-point" data-index="1" cx="250" cy="239" r="10" hidden></circle>
+                <circle class="rh-point" data-index="2" cx="420" cy="174.2" r="10" hidden></circle>
+                <circle class="rh-point" data-index="3" cx="590" cy="203.9" r="10" hidden></circle>
+                <text class="x-label" x="80" y="350">10</text>
+                <text class="x-label" x="250" y="350">100</text>
+                <text class="x-label" x="420" y="350">1.000</text>
+                <text class="x-label" x="590" y="350">10.000</text>
+              </g>
+              </svg>
+              </div>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <caption>Checkpoints des Simulationslaufs</caption>
+                <thead><tr><th>Würfe</th><th>Sechsen</th><th>relative Häufigkeit</th></tr></thead>
+                <tbody>
+                  <tr id="rh-row-10" class="rh-row" data-index="0" hidden><th>10</th><td>2</td><td>2 / 10 = <strong>20,0 %</strong></td></tr>
+                  <tr id="rh-row-100" class="rh-row" data-index="1" hidden><th>100</th><td>15</td><td>15 / 100 = <strong>15,0 %</strong></td></tr>
+                  <tr id="rh-row-1000" class="rh-row" data-index="2" hidden><th>1.000</th><td>174</td><td>174 / 1.000 = <strong>17,4 %</strong></td></tr>
+                  <tr id="rh-row-10000" class="rh-row" data-index="3" hidden><th>10.000</th><td>1.630</td><td>1.630 / 10.000 = <strong>16,3 %</strong></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="metric-grid" aria-label="Ausgewählter Checkpoint">
+            <p><span>Würfe</span><strong id="rh-throws">10</strong></p>
+            <p><span>Sechsen</span><strong id="rh-sixes">2</strong></p>
+            <p><span>Bruch</span><strong id="rh-fraction">2 / 10</strong></p>
+            <p><span>relative Häufigkeit</span><strong id="rh-frequency">20,0 %</strong></p>
+          </div>
+        </section>
+
+        <section id="rh-explore" class="explore-card" hidden>
+          <label for="rh-checkpoint-slider">Checkpoint des Simulationslaufs erkunden</label>
+          <input id="rh-checkpoint-slider" type="range" min="0" max="3" step="1" value="3" aria-label="Versuchsreihe erkunden: 10.000 Würfe, 1.630 Sechsen, relative Häufigkeit 16,3 Prozent" aria-valuetext="10.000 Würfe, 1.630 Sechsen, relative Häufigkeit 16,3 Prozent" />
+          <output id="rh-checkpoint-output" for="rh-checkpoint-slider">10.000 Würfe</output>
+        </section>
+
+        <section id="rh-conclusion" class="conclusion-card" hidden>
+          <h2>Aha</h2>
+          <p><strong>Wahrscheinlichkeit beschreibt langfristiges Verhalten, keinen festen Einzelrhythmus.</strong></p>
+          <p>Die relative Häufigkeit schwankt in einer Versuchsreihe. Bei vielen Würfen kann sie nahe bei 1/6 liegen, ohne einen festen Sechser-Rhythmus zu bilden.</p>
+        </section>
+      </section>
+
+      <section class="rh-insight" aria-live="polite">
+        <p id="rh-insight">Wenn genau jeder sechste Wurf eine Sechs sein müsste: Was dürfte dann in zehn Würfen passieren?</p>
+        <div class="rh-controls">
+          <button id="rh-next" class="primary-button" type="button">Weiter</button>
+          <button id="rh-reset" class="reset-button" type="button">Zurücksetzen</button>
+        </div>
+        <p id="rh-live" class="visually-hidden" aria-live="polite"></p>
+      </section>
+      <noscript>Für diesen interaktiven Aha-Moment muss JavaScript aktiviert sein.</noscript>
+    </main>
+    <script type="module" src="./src/relative-frequency-app.js"></script>
+  </body>
+</html>

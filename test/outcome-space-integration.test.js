@@ -16,25 +16,25 @@ const files = [
 test("K8.2 ist genau einmal als zweite Karte des achten Kapitels integriert", () => {
   const chapter = home.match(/<section id="wahrscheinlichkeit"[\s\S]*?<\/section>/)?.[0] ?? "";
   assert.equal((home.match(/class="chapter(?:\s|")/g) ?? []).length, 8);
-  assert.equal((chapter.match(/class="module-card"/g) ?? []).length, 3);
+  assert.equal((chapter.match(/class="module-card"/g) ?? []).length, 4);
   assert.equal((home.match(/href="\.\/ergebnisraum\.html"/g) ?? []).length, 1);
   assert.ok(chapter.indexOf("./ergebnis-und-ereignis.html") < chapter.indexOf("./ergebnisraum.html"));
-  assert.equal((home.match(/class="module-card"/g) ?? []).length, 39);
+  assert.equal((home.match(/class="module-card"/g) ?? []).length, 40);
 });
 
-test("K8-Raster bleibt mobil einspaltig, am Tablet zweispaltig und breit dreispaltig", () => {
-  assert.match(css, /\.chapter-probability \.module-grid\s*\{[^}]*repeat\(3, minmax\(0, 1fr\)\)/s);
+test("K8-Raster bleibt mobil einspaltig, am Tablet zweispaltig und breit vierspaltig", () => {
+  assert.match(css, /\.chapter-probability \.module-grid\s*\{[^}]*repeat\(4, minmax\(0, 1fr\)\)/s);
   const mobile = css.match(/@media \(max-width: 720px\)[\s\S]*?(?=\n@media|$)/)?.[0] ?? "";
   const tablet = css.match(/@media \(min-width: 721px\) and \(max-width: 1040px\)[\s\S]*?(?=\n@media|$)/)?.[0] ?? "";
   const landscape = css.match(/@media \(orientation: landscape\)[\s\S]*$/)?.[0] ?? "";
   assert.match(mobile, /\.chapter-probability \.module-grid\s*\{[^}]*1fr/s);
   assert.match(tablet, /\.chapter-probability \.module-grid\s*\{[^}]*repeat\(2, minmax\(0, 1fr\)\)/s);
-  assert.match(landscape, /\.chapter-probability \.module-grid\s*\{[^}]*repeat\(3, minmax\(0, 1fr\)\)/s);
+  assert.match(landscape, /\.chapter-probability \.module-grid\s*\{[^}]*repeat\(2, minmax\(0, 1fr\)\)/s);
   assert.match(landscape, /\.chapter-probability \.module-card\s*\{[^}]*grid-column:\s*auto/s);
 });
 
-test("Cache v44, Pages, Smoke und Workflow enthalten genau die sechs K8.2-Laufzeitdateien", () => {
-  assert.match(worker, /mathe-unterrichts-app-v44/);
+test("Cache v45, Pages, Smoke und Workflow enthalten genau die sechs K8.2-Laufzeitdateien", () => {
+  assert.match(worker, /mathe-unterrichts-app-v45/);
   for (const file of files) {
     const pattern = new RegExp(file.replaceAll(".", "\\."));
     assert.match(worker, pattern);

@@ -47,7 +47,8 @@
     "test:percentage-chart-visual": "node scripts/render-percentage-chart-states.mjs",
     "test:random-event-visual": "node scripts/render-random-event-states.mjs",
     "test:outcome-space-visual": "node scripts/render-outcome-space-states.mjs",
-    "test:laplace-visual": "node scripts/render-laplace-states.mjs"
+    "test:laplace-visual": "node scripts/render-laplace-states.mjs",
+    "test:relative-frequency-visual": "node scripts/render-relative-frequency-states.mjs"
   },
   "engines": {
     "node": ">=20"
