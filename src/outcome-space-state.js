@@ -41,7 +41,7 @@ export function outcomeSpaceViewModel(current) {
   const rank = ORDER.indexOf(current.view);
   if (rank < 0) throw new RangeError("Unbekannter Lernzustand.");
   const showWrong = rank >= 1;
-  const showMissing = rank >= 2;
+  const showMissing = rank === 2;
   const showComplete = rank >= 3;
   const favorableResults = showComplete ? [...CORRECT.favorable] : showWrong ? [...WRONG.favorable] : [];
   const labNames = [

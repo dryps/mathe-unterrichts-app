@@ -63,6 +63,7 @@ test("Weiter korrigiert Raum, günstige Ergebnisse und Rechnung erst am vollstä
   next.dispatch("click");
   assert.equal(elements.get("#os-placeholder").hidden, true);
   assert.equal(elements.get("#os-six").hidden, false);
+  assert.equal(elements.get("#os-missing").hidden, true);
   assert.equal(elements.get("#os-correct").hidden, false);
   assert.equal(cards[5].classList.contains("is-favorable"), true);
   assert.match(cards[5].getAttribute("aria-label"), /günstig/);

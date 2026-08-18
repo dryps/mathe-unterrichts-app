@@ -10,7 +10,7 @@ test("Lernweg öffnet falsche Rechnung, fehlendes Ergebnis, vollständigen Raum 
     const model = outcomeSpaceViewModel(state);
     views.push(model.view);
     assert.equal(model.showWrong, step >= 1);
-    assert.equal(model.showMissing, step >= 2);
+    assert.equal(model.showMissing, step === 2);
     assert.equal(model.showComplete, step >= 3);
     assert.equal(model.showConclusion, step >= 4);
     state = finishOutcomeSpaceReveal(nextOutcomeSpaceState(state));
@@ -34,6 +34,7 @@ test("vollständiger Zustand korrigiert Zähler, Nenner, Menge und Prozentwert g
   for (let step = 0; step < 3; step += 1) state = finishOutcomeSpaceReveal(nextOutcomeSpaceState(state));
   const model = outcomeSpaceViewModel(state);
   assert.equal(model.showSix, true);
+  assert.equal(model.showMissing, false);
   assert.equal(model.correctEquation, "3/6 = 1/2 = 50 %");
   assert.equal(model.completeSet, "{1, 2, 3, 4, 5, 6}");
   assert.deepEqual(model.favorableResults, [2, 4, 6]);
