@@ -137,7 +137,7 @@ h2 {
 }
 
 .chapter-quadrilaterals .module-grid {
-  grid-template-columns: minmax(0, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .chapter-quadrilaterals .module-card {
@@ -238,6 +238,10 @@ noscript {
   .chapter-equations .module-grid {
     grid-template-columns: 1fr;
     width: 100%;
+  }
+
+  .chapter-quadrilaterals .module-grid {
+    grid-template-columns: 1fr;
   }
 
   .module-card {

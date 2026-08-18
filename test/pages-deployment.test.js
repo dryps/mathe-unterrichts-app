@@ -24,6 +24,7 @@ const htmlFiles = [
   "ungleichungen-negativ.html",
   "loesungsmengen.html",
   "eigenschaften-statt-optik.html",
+  "haus-der-vierecke.html",
   "winkelsumme.html",
   "dreiecksungleichung.html",
   "dreiecksflaeche.html",
@@ -44,8 +45,8 @@ test("Pages-Artefakt ist eine explizite Freigabeliste ohne interne Dateien", () 
   for (const file of htmlFiles) assert.equal(PAGES_RUNTIME_FILES.includes(file), true, file);
 });
 
-test("alle dreiundzwanzig direkten Modulpfade und ihre Rücklinks bleiben projektpfadrelativ", async () => {
-  assert.equal(moduleFiles.length, 23);
+test("alle vierundzwanzig direkten Modulpfade und ihre Rücklinks bleiben projektpfadrelativ", async () => {
+  assert.equal(moduleFiles.length, 24);
   for (const file of moduleFiles) {
     const html = await read(file);
     assert.match(html, /class="module-back-link" href="\.\/#(?:rationale-zahlen|dreiecke|rechnen-mit-termen|gleichungen-ungleichungen|vierecke)"/);
@@ -101,6 +102,7 @@ test("jeder Einstieg registriert den Worker explizit im Projekt-Scope ohne HTTP-
     "src/negative-inequality-app.js",
     "src/solution-set-app.js",
     "src/quadrilateral-properties-app.js",
+    "src/quadrilateral-house-app.js",
     "src/app.js",
     "src/triangle-inequality-app.js",
     "src/triangle-area-app.js",
@@ -116,7 +118,7 @@ test("jeder Einstieg registriert den Worker explizit im Projekt-Scope ohne HTTP-
 
 test("Service Worker schützt Update, Redirects, Fehlerseiten und Navigation", async () => {
   const worker = await read("sw.js");
-  assert.match(worker, /mathe-unterrichts-app-v28/);
+  assert.match(worker, /mathe-unterrichts-app-v29/);
   assert.match(worker, /cache: "reload"/);
   assert.match(worker, /redirect: "error"/);
   assert.match(worker, /!response\.ok \|\| response\.redirected/);
@@ -149,4 +151,5 @@ test("Workflow reagiert nur auf main oder manuell und besitzt minimale Rechte", 
   assert.match(workflow, /npm run test:negative-inequality-visual/);
   assert.match(workflow, /npm run test:solution-set-visual/);
   assert.match(workflow, /npm run test:quadrilateral-properties-visual/);
+  assert.match(workflow, /npm run test:quadrilateral-house-visual/);
 });

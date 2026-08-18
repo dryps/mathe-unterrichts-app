@@ -116,7 +116,7 @@ test("Offline-Cache und Pages-Gate enthalten Modul und Zustandsrenderer auf Vers
   ]) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
-  assert.match(files.worker, /mathe-unterrichts-app-v28/);
+  assert.match(files.worker, /mathe-unterrichts-app-v29/);
   assert.equal(
     files.package.scripts["test:subtraction-visual"],
     "node scripts/render-subtraction-negative-states.mjs",
