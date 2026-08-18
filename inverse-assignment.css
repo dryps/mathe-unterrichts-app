@@ -1,0 +1,82 @@
+:root{color-scheme:light;--ink:#172033;--muted:#5f6f83;--surface:#fff;--line:#d8e0ea;--accent:#9c4328;--accent-soft:#fff0e9;--green:#157d61;--shadow:0 18px 50px rgba(31,45,65,.12);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+*{box-sizing:border-box}
+body{margin:0;min-width:320px;background:radial-gradient(circle at 12% 5%,#fff4ed 0,transparent 34%),#f5f7fb;color:var(--ink)}
+button,input{font:inherit}
+.inverse-shell{width:min(1180px,calc(100% - 28px));margin:0 auto;padding:max(20px,env(safe-area-inset-top)) 0 max(28px,env(safe-area-inset-bottom))}
+.inverse-header{display:flex;justify-content:space-between;gap:24px;align-items:flex-start;margin:20px 0 22px}
+.eyebrow{margin:0 0 8px;color:var(--accent);font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.inverse-header h1{max-width:930px;margin:0;font-size:clamp(2rem,4.4vw,4.2rem);line-height:1.03;letter-spacing:-.045em}
+.subtitle{margin:12px 0 0;color:var(--muted);font-size:clamp(1.05rem,2vw,1.45rem)}
+.local-note{flex:0 0 auto;margin:4px 0 0;padding:8px 12px;border:1px solid #bfdccd;border-radius:999px;background:#effaf5;color:#17664f;font-size:.86rem;font-weight:750}
+.local-note span{color:#27a376}
+.inverse-workspace{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px;transition:opacity .2s ease}
+.work-card,.double-card,.table-card,.graph-card,.product-card,.explore-card,.conclusion-card,.inverse-insight{border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.96);box-shadow:var(--shadow)}
+.work-card{grid-column:span 6;padding:24px;background:linear-gradient(145deg,#fff,#fff7f2)}
+.card-label{margin:0 0 15px;color:var(--muted);font-weight:750}
+.pair-line{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:0;font-size:clamp(1.35rem,2.8vw,2.25rem)}
+.pair-line span{color:var(--accent)}
+.work-card>p:last-child{margin:16px 0 0;color:var(--muted)}
+.double-card{grid-column:span 6;padding:24px}
+.double-card p{margin:0 0 10px}
+.double-card .double-result{color:var(--accent);font-size:1.35rem;font-weight:800}
+.double-card p:last-child{display:flex;justify-content:space-around;margin:16px 0 0;color:var(--green);font-weight:850}
+.table-card{grid-column:span 5;padding:22px}
+.table-card h2,.graph-card h2,.product-card h2,.conclusion-card h2{margin:0 0 14px;font-size:1.1rem}
+table{width:100%;border-collapse:collapse;text-align:center}
+th,td{padding:7px 8px;border-bottom:1px solid #e8edf3}
+thead th{color:var(--muted);font-size:.83rem}
+tbody tr.is-current{background:var(--accent-soft);color:#762f1e;font-weight:800}
+.graph-card{grid-column:span 7;padding:18px}
+.graph-card svg{display:block;width:100%;height:clamp(300px,50vw,390px)}
+.axes path{fill:none;stroke:#52647b;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.axes text{fill:#52647b;font-size:28px;font-weight:700}
+.axes text[x="565"]{text-anchor:end}
+.grid path{fill:none;stroke:#8b9aab;stroke-width:2}
+.grid text{fill:#52647b;font-size:24px;text-anchor:middle}
+.grid text[x="55"]{text-anchor:end}
+.hyperbola{fill:none;stroke:var(--accent);stroke-width:6;stroke-linecap:round}
+.current-point circle{fill:var(--green);stroke:white;stroke-width:4}
+.current-point text{fill:#0c6048;font-size:28px;font-weight:850}
+.product-card{grid-column:span 6;padding:22px;text-align:center}
+.product-card p{margin:6px 0 14px;font-size:1.2rem;font-weight:800}
+.product-card output{display:block;padding:12px;border-radius:14px;background:#edf8f4;color:#0f654e;font-size:1.25rem;font-weight:850}
+.explore-card{grid-column:span 6;display:grid;gap:12px;padding:22px}
+.explore-card label{font-weight:800}
+.explore-card input{width:100%;accent-color:var(--accent)}
+.explore-card output{color:#71301f;font-size:1.15rem;font-weight:850}
+.conclusion-card{grid-column:1/-1;padding:24px;border-color:#efbca9;background:linear-gradient(135deg,#fff9f6,#ffede5)}
+.conclusion-card h2{color:var(--accent);text-transform:uppercase;letter-spacing:.08em}
+.conclusion-card p{margin:0;font-size:clamp(1.2rem,2.2vw,1.75rem);font-weight:850}
+.inverse-insight{margin-top:16px;padding:20px 22px}
+.inverse-insight>p:first-child{margin:0 0 14px;font-weight:750}
+.inverse-controls{display:flex;gap:10px;flex-wrap:wrap}
+.primary-button,.reset-button{min-height:48px;padding:10px 18px;border-radius:14px;font-weight:800;cursor:pointer}
+.primary-button{border:0;background:var(--accent);color:white}
+.reset-button{border:1px solid #bfc9d5;background:white;color:var(--ink)}
+button:focus-visible,input:focus-visible{outline:4px solid rgba(156,67,40,.25);outline-offset:3px}
+.visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+[hidden]{display:none!important}
+@media(max-width:720px){
+  .inverse-shell{width:min(100% - 20px,620px)}
+  .inverse-header{display:block}
+  .local-note{display:inline-block}
+  .inverse-workspace{grid-template-columns:1fr}
+  .work-card,.double-card,.table-card,.graph-card,.product-card,.explore-card,.conclusion-card{grid-column:1}
+  .pair-line{align-items:flex-start;flex-direction:column;gap:8px}
+  .pair-line span{transform:rotate(90deg);margin-left:16px}
+  .graph-card{padding:12px 8px}
+  .graph-card svg{height:280px}
+  .inverse-controls>*{flex:1 1 140px}
+}
+@media(min-width:721px) and (max-width:1040px){
+  .work-card,.double-card{grid-column:span 6}
+  .table-card,.graph-card{grid-column:1/-1}
+}
+@media(orientation:landscape) and (min-width:900px) and (max-width:1500px){
+  .inverse-shell{padding-top:max(16px,env(safe-area-inset-top))}
+  .inverse-header{margin:12px 0 16px}
+  .inverse-header h1{font-size:clamp(2rem,3.7vw,3.4rem)}
+  .graph-card svg{height:340px}
+}
+@media(min-width:1501px){.inverse-workspace,.inverse-insight{font-size:1.05rem}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
