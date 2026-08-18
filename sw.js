@@ -1,4 +1,4 @@
-const CACHE_NAME = "mathe-unterrichts-app-v44";
+const CACHE_NAME = "mathe-unterrichts-app-v45";
 const NAVIGATION_FALLBACK = "./index.html";
 const APP_FILES = [
   "./",
@@ -234,6 +234,12 @@ const APP_FILES = [
   "./src/laplace-animation.js",
   "./src/laplace-math.js",
   "./src/laplace-state.js",
+  "./relative-haeufigkeit.html",
+  "./relative-frequency.css",
+  "./src/relative-frequency-app.js",
+  "./src/relative-frequency-animation.js",
+  "./src/relative-frequency-math.js",
+  "./src/relative-frequency-state.js",
   "./manifest.webmanifest",
   "./icon.svg",
   "./icon-180.png",

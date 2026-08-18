@@ -16,20 +16,20 @@ const files = [
 test("K8.1 ist genau einmal als erste Karte des achten Kapitels integriert", () => {
   const chapter = home.match(/<section id="wahrscheinlichkeit"[\s\S]*?<\/section>/)?.[0] ?? "";
   assert.equal((home.match(/class="chapter(?:\s|")/g) ?? []).length, 8);
-  assert.equal((chapter.match(/class="module-card"/g) ?? []).length, 3);
+  assert.equal((chapter.match(/class="module-card"/g) ?? []).length, 4);
   assert.equal((home.match(/href="\.\/ergebnis-und-ereignis\.html"/g) ?? []).length, 1);
-  assert.equal((home.match(/class="module-card"/g) ?? []).length, 39);
+  assert.equal((home.match(/class="module-card"/g) ?? []).length, 40);
   assert.match(chapter, /8\. Wahrscheinlichkeit/);
 });
 
 test("das neue Kapitel bleibt bei Telefon, Tablet und Desktop ohne konkurrierendes Raster", () => {
-  assert.match(css, /\.chapter-probability \.module-grid\s*\{[^}]*grid-template-columns:\s*repeat\(3, minmax\(0, 1fr\)\)/s);
+  assert.match(css, /\.chapter-probability \.module-grid\s*\{[^}]*grid-template-columns:\s*repeat\(4, minmax\(0, 1fr\)\)/s);
   assert.match(css, /@media \(max-width: 720px\)[\s\S]*\.chapter-probability \.module-grid\s*\{[^}]*1fr/s);
   assert.match(css, /@media \(orientation: landscape\)[\s\S]*\.chapter-probability \.module-card\s*\{[^}]*grid-column:\s*auto/s);
 });
 
-test("Cache v44, Pages, Smoke und Workflow enthalten genau die sechs K8.1-Laufzeitdateien", () => {
-  assert.match(worker, /mathe-unterrichts-app-v44/);
+test("Cache v45, Pages, Smoke und Workflow enthalten genau die sechs K8.1-Laufzeitdateien", () => {
+  assert.match(worker, /mathe-unterrichts-app-v45/);
   for (const file of files) {
     const pattern = new RegExp(file.replaceAll(".", "\\."));
     assert.match(worker, pattern);

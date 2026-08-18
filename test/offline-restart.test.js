@@ -123,15 +123,15 @@ function createWorkerHarness() {
   };
 }
 
-test("Installation füllt Version 44 vollständig und Aktivierung entfernt ältere Versionen", async () => {
+test("Installation füllt Version 45 vollständig und Aktivierung entfernt ältere Versionen", async () => {
   const harness = createWorkerHarness();
   await harness.dispatchLifecycle("install");
   await harness.dispatchLifecycle("activate");
 
   assert.equal(harness.skipped, true);
   assert.equal(harness.claimed, true);
-  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v44"]);
-  const current = harness.stores.get("mathe-unterrichts-app-v44");
+  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v45"]);
+  const current = harness.stores.get("mathe-unterrichts-app-v45");
   for (const path of [
     "./",
     "./index.html",
@@ -344,6 +344,12 @@ test("Installation füllt Version 44 vollständig und Aktivierung entfernt älte
     "./src/laplace-animation.js",
     "./src/laplace-math.js",
     "./src/laplace-state.js",
+    "./relative-haeufigkeit.html",
+    "./relative-frequency.css",
+    "./src/relative-frequency-app.js",
+    "./src/relative-frequency-animation.js",
+    "./src/relative-frequency-math.js",
+    "./src/relative-frequency-state.js",
   ]) {
     assert.equal(current.has(new URL(path, `${origin}/`).href), true);
   }
@@ -566,6 +572,12 @@ test("Offline-Neustart liefert Startseite und alle Kapitel ohne Netzwerk aus", a
     "/src/laplace-animation.js",
     "/src/laplace-math.js",
     "/src/laplace-state.js",
+    "/relative-haeufigkeit.html",
+    "/relative-frequency.css",
+    "/src/relative-frequency-app.js",
+    "/src/relative-frequency-animation.js",
+    "/src/relative-frequency-math.js",
+    "/src/relative-frequency-state.js",
   ]) {
     const response = await harness.dispatchFetch(path);
     assert.equal(response.status, 200);

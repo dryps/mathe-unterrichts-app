@@ -9,7 +9,7 @@ test("K7.4 ist genau einmal als vierte K7-Karte integriert",()=>{
   assert.equal((home.match(/href="\.\/prozent-als-faktor\.html"/g)??[]).length,1);
   const chapter=home.match(/<section id="prozentrechnung"[\s\S]*?<\/section>/)?.[0]??"";
   assert.equal((chapter.match(/class="module-card"/g)??[]).length,5);
-  assert.equal((home.match(/class="module-card"/g)??[]).length,39);
+  assert.equal((home.match(/class="module-card"/g)??[]).length,40);
 });
 
 test("K7-Raster bleibt nach fünf Karten ausgewogen",()=>{
@@ -21,8 +21,8 @@ test("K7-Raster bleibt nach fünf Karten ausgewogen",()=>{
   assert.match(landscape,/\.chapter-percentages \.module-card:nth-child\(n\)\s*\{[^}]*grid-column:\s*span 2/s);
 });
 
-test("Cache v44, Pages, Smoke und Workflow enthalten das vollständige Modul",()=>{
-  assert.match(worker,/mathe-unterrichts-app-v44/);
+test("Cache v45, Pages, Smoke und Workflow enthalten das vollständige Modul",()=>{
+  assert.match(worker,/mathe-unterrichts-app-v45/);
   for(const file of files){const pattern=new RegExp(file.replaceAll(".","\\."));assert.match(worker,pattern);assert.match(runtime,pattern);assert.match(smoke,pattern);}
   const packageJson=JSON.parse(pkg);
   assert.equal(packageJson.scripts["test:percentage-factor-visual"],"node scripts/render-percentage-factor-states.mjs");
