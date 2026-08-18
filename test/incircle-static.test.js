@@ -123,7 +123,7 @@ test("Offline-Cache enthält das vollständige fünfte Modul auf Version 12", ()
   ]) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
-  assert.match(files.worker, /mathe-unterrichts-app-v38/);
+  assert.match(files.worker, /mathe-unterrichts-app-v39/);
   assert.match(files.app, /serviceWorker\.register/);
 });
 

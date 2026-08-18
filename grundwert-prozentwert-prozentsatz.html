@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f5f7fb" />
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Mathe im Unterricht" />
+  <meta name="description" content="Interaktiver Aha-Moment zu Grundwert, Prozentwert und Prozentsatz als Rollen derselben Beziehung." />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./icon-180.png" />
+  <link rel="stylesheet" href="./navigation.css" />
+  <link rel="stylesheet" href="./percentage-roles.css" />
+  <title>Warum sind Grundwert, Prozentwert und Prozentsatz keine drei verschiedenen Themen?</title>
+</head>
+<body>
+  <main class="pr-shell">
+    <nav class="module-navigation" aria-label="Modulnavigation"><a class="module-back-link" href="./#prozentrechnung">← Prozentrechnung</a></nav>
+    <header class="pr-header">
+      <div>
+        <p class="eyebrow">Prozentrechnung · Kapitel 7</p>
+        <h1>Warum sind Grundwert, Prozentwert und Prozentsatz keine drei verschiedenen Themen?</h1>
+        <p class="subtitle">Grundwert · Prozentwert · Prozentsatz</p>
+      </div>
+      <p class="local-note" aria-label="Datenschutzstatus"><span aria-hidden="true">●</span> lokal · ohne Speicherung</p>
+    </header>
+
+    <section id="pr-workspace" class="pr-workspace" data-state="irritation" aria-busy="false">
+      <section class="situation-card">
+        <p class="situation-label">Eine gemeinsame Situation</p>
+        <h2>Verkaufte Karten beim Schulfest</h2>
+        <div id="pr-diagram" class="percentage-diagram" role="img" aria-label="Prozentband einer gemeinsamen Situation; noch ohne benannte Größen.">
+          <span id="pr-fill" class="percentage-fill" style="width:25%"></span>
+          <span class="diagram-boundary" aria-hidden="true"></span>
+        </div>
+        <p class="diagram-caption"><span id="pr-part-caption" hidden>markierter Teil</span><span id="pr-whole-caption" hidden>Ganzes</span></p>
+      </section>
+
+      <section class="role-grid" aria-label="Drei Rollen der Prozentbeziehung">
+        <article id="pr-whole" class="role-card whole-role" aria-label="Grundwert G: 80" hidden>
+          <p>Ganzes</p><h2>Grundwert <span>G</span></h2><strong id="pr-whole-value">80</strong>
+        </article>
+        <article id="pr-part" class="role-card part-role" aria-label="Prozentwert W: 20" hidden>
+          <p>markierter Teil</p><h2>Prozentwert <span>W</span></h2><strong id="pr-part-value">20</strong>
+        </article>
+        <article id="pr-rate" class="role-card rate-role" aria-label="Prozentsatz p Prozent: 25 Prozent" hidden>
+          <p>Verhältnis</p><h2>Prozentsatz <span>p %</span></h2><strong id="pr-rate-value">25 %</strong>
+        </article>
+      </section>
+
+      <section id="pr-relation" class="relation-card" hidden>
+        <p>Eine Beziehung</p>
+        <strong id="pr-equation">20 / 80 = 25 / 100</strong>
+      </section>
+
+      <section id="pr-explore" class="explore-card" hidden>
+        <fieldset>
+          <legend>Welche Rolle ist gesucht?</legend>
+          <div class="unknown-buttons">
+            <button id="pr-unknown-whole" type="button" data-role="whole" aria-pressed="true">Grundwert G</button>
+            <button id="pr-unknown-part" type="button" data-role="part" aria-pressed="false">Prozentwert W</button>
+            <button id="pr-unknown-rate" type="button" data-role="rate" aria-pressed="false">Prozentsatz p %</button>
+          </div>
+        </fieldset>
+        <label for="pr-scenario">Dieselbe Beziehung mit anderen Zahlen</label>
+        <input id="pr-scenario" type="range" min="0" max="2" step="1" value="0" aria-label="Gemeinsame Prozent-Situation verändern: Situation 1 von 3; 20 Karten sind 25 Prozent; Grundwert gesucht" aria-valuetext="Situation 1 von 3; 20 Karten sind 25 Prozent; Grundwert gesucht" />
+        <output id="pr-scenario-output" for="pr-scenario">Situation 1</output>
+      </section>
+
+      <section id="pr-conclusion" class="conclusion-card" hidden>
+        <h2>Aha</h2>
+        <p>Drei Rollen derselben Beziehung.</p>
+      </section>
+    </section>
+
+    <section class="pr-insight" aria-live="polite">
+      <p id="pr-insight">Eine Situation – aber welche Zahl übernimmt welche Rolle?</p>
+      <div class="pr-controls">
+        <button id="pr-next" class="primary-button" type="button">Weiter</button>
+        <button id="pr-reset" class="reset-button" type="button">Zurücksetzen</button>
+      </div>
+      <p id="pr-live" class="visually-hidden" aria-live="polite"></p>
+    </section>
+    <noscript>Für diesen interaktiven Aha-Moment muss JavaScript aktiviert sein.</noscript>
+  </main>
+  <script type="module" src="./src/percentage-roles-app.js"></script>
+</body>
+</html>
