@@ -12,6 +12,10 @@ for (let step = 0; step < Object.values(RELATIVE_FREQUENCY_VIEWS).length; step +
   const model = relativeFrequencyViewModel(state);
   assert.doesNotMatch(JSON.stringify(model), /undefined|NaN|Infinity/);
   assert.equal(model.visibleCheckpointCount, Math.min(4, step));
+  assert.equal(model.checkpoints.filter((checkpoint) => checkpoint.visible).length, model.visibleCheckpointCount);
+  assert.equal(model.showScrollHint, model.visibleCheckpointCount >= 3);
+  const hiddenThrowCounts = model.checkpoints.slice(model.visibleCheckpointCount).map((checkpoint) => checkpoint.throwCountText);
+  for (const throwCount of hiddenThrowCounts) assert.doesNotMatch(model.stageSummary, new RegExp(`(^|\\D)${throwCount.replace(".", "\\.")}($|\\D)`));
   count += 1;
   state = finishRelativeFrequencyReveal(nextRelativeFrequencyState(state));
 }

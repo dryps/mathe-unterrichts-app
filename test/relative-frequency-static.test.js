@@ -20,12 +20,15 @@ test("vier Checkpoints, Erkundung und Schluss sind initial echt hidden", () => {
     assert.match(html, new RegExp(`id="${id}"[\\s\\S]{0,140}?hidden`));
   }
   assert.match(css, /\[hidden\]\s*\{\s*display:\s*none\s*!important/);
+  const irritation = html.match(/<section class="irritation-card"[\s\S]*?<\/section>/)?.[0] ?? "";
+  assert.match(irritation, /Fester Sechser-Takt\?/);
+  assert.doesNotMatch(irritation, /≠|Kein fester Takt|kein Stundenplan/);
 });
 
-test("Graph erklärt Verzehnfachungsstufen und trennt Referenzlinie von Messwerten", () => {
+test("Graph gibt Verzehnfachungsstufen seriell frei und trennt Referenzlinie von Messwerten", () => {
   assert.match(html, /class="chart-scroll"/);
-  assert.match(html, /Seitlich wischen für alle vier Stufen/);
-  assert.match(html, /jeweils zehnmal so viele Würfe/);
+  assert.match(html, /id="rh-scroll-hint"[^>]*hidden>Seitlich wischen für die sichtbaren Stufen/);
+  assert.equal((html.match(/class="x-label rh-x-label"[^>]*hidden/g) ?? []).length, 4);
   assert.match(html, /1\/6 ≈ 16,7 %/);
   assert.match(html, /class="reference-line"/);
   assert.match(html, /class="rh-line"/);
@@ -39,6 +42,9 @@ test("Controller synchronisiert Tabelle, Graph, Regler und zugänglichen Namen",
   assert.match(app, /slider\.setAttribute\("aria-label", `Versuchsreihe erkunden: \$\{model\.sliderValueText\}`\)/);
   assert.match(app, /chart\.setAttribute\("aria-label", model\.chartAriaLabel\)/);
   assert.match(app, /point\.toggleAttribute\("hidden", !checkpoint\.visible\)/);
+  assert.match(app, /label\.toggleAttribute\("hidden", !checkpoint\.visible\)/);
+  assert.match(app, /chartHeading\.textContent = model\.chartHeading/);
+  assert.match(app, /stageSummary\.textContent = model\.stageSummary/);
   assert.match(app, /point\.classList\.toggle\("is-selected"/);
 });
 

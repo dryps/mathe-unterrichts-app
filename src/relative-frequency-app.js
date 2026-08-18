@@ -5,6 +5,9 @@ const $ = (selector) => document.querySelector(selector);
 const workspace = $("#rh-workspace");
 const chartCard = $("#rh-chart-card");
 const chart = $("#rh-chart");
+const chartHeading = $("#rh-chart-heading");
+const stageSummary = $("#rh-stage-summary");
+const scrollHint = $("#rh-scroll-hint");
 const line = $("#rh-line");
 const explore = $("#rh-explore");
 const conclusion = $("#rh-conclusion");
@@ -20,6 +23,7 @@ const next = $("#rh-next");
 const reset = $("#rh-reset");
 const rows = [...document.querySelectorAll(".rh-row")];
 const points = [...document.querySelectorAll(".rh-point")];
+const xLabels = [...document.querySelectorAll(".rh-x-label")];
 
 let current = createRelativeFrequencyState();
 let frameId = null;
@@ -52,6 +56,10 @@ function renderCheckpoints(model) {
     point.setAttribute("cy", checkpoint.point.y);
     point.classList.toggle("is-selected", checkpoint.selected);
   });
+  xLabels.forEach((label) => {
+    const checkpoint = model.checkpoints[Number(label.dataset.index)];
+    label.toggleAttribute("hidden", !checkpoint.visible);
+  });
   line.setAttribute("points", model.checkpoints.filter((checkpoint) => checkpoint.visible).map((checkpoint) => `${checkpoint.point.x},${checkpoint.point.y}`).join(" "));
 }
 
@@ -62,6 +70,9 @@ function render() {
   explore.hidden = !model.showExplore;
   conclusion.hidden = !model.showConclusion;
   chart.setAttribute("aria-label", model.chartAriaLabel);
+  chartHeading.textContent = model.chartHeading;
+  stageSummary.textContent = model.stageSummary;
+  scrollHint.hidden = !model.showScrollHint;
   throwsValue.textContent = model.throwCountText;
   sixesValue.textContent = model.sixCountText;
   fractionValue.textContent = model.fractionText;

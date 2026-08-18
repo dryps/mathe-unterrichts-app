@@ -72,6 +72,16 @@ export function relativeFrequencyViewModel(current) {
   });
   const selected = checkpoints[current.selectedIndex];
   const visibleDescriptions = checkpoints.slice(0, visibleCheckpointCount).map((checkpoint) => `${checkpoint.throwCountText} Würfe: ${checkpoint.frequencyAriaText}`);
+  const chartHeadings = [
+    "Ein Checkpoint wird sichtbar",
+    "Erster Checkpoint",
+    "Zwei Checkpoints im Vergleich",
+    "Drei Checkpoints: Der Wert wechselt die Richtung",
+    "Vier Checkpoints: Die relative Häufigkeit schwankt",
+  ];
+  const stageSummary = visibleCheckpointCount === 0
+    ? ""
+    : `${checkpoints.slice(0, visibleCheckpointCount).map((checkpoint) => checkpoint.throwCountText).join(" → ")} Würfe`;
   const insights = {
     irritation: "Wenn genau jeder sechste Wurf eine Sechs sein müsste: Was dürfte dann in zehn Würfen passieren?",
     ten: "2 Sechsen in 10 Würfen: Die relative Häufigkeit beträgt 20,0 %.",
@@ -86,6 +96,9 @@ export function relativeFrequencyViewModel(current) {
     selectedIndex: current.selectedIndex,
     checkpoints,
     visibleCheckpointCount,
+    chartHeading: chartHeadings[visibleCheckpointCount],
+    stageSummary,
+    showScrollHint: visibleCheckpointCount >= 3,
     showChart: rank >= 1,
     showExplore,
     showConclusion: showExplore,

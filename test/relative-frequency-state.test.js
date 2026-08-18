@@ -5,6 +5,7 @@ import { RELATIVE_FREQUENCY_VIEWS, createRelativeFrequencyState, finishRelativeF
 
 test("10, 100, 1.000, 10.000 und Erkundung öffnen seriell", () => {
   let state = createRelativeFrequencyState();
+  const hiddenFuturePatterns = [/100|1\.000|10\.000/, /1\.000|10\.000/, /10\.000/, /$^/, /$^/, /$^/];
   Object.values(RELATIVE_FREQUENCY_VIEWS).forEach((view, step) => {
     const model = relativeFrequencyViewModel(state);
     assert.equal(model.view, view);
@@ -12,8 +13,19 @@ test("10, 100, 1.000, 10.000 und Erkundung öffnen seriell", () => {
     assert.equal(model.showChart, step >= 1);
     assert.equal(model.showExplore, step >= 5);
     assert.equal(model.showConclusion, step >= 5);
+    assert.doesNotMatch(model.stageSummary, hiddenFuturePatterns[step]);
+    assert.equal(model.showScrollHint, step >= 3);
     state = finishRelativeFrequencyReveal(nextRelativeFrequencyState(state));
   });
+});
+
+test("Überschrift benennt Schwankungen erst nach mehreren sichtbaren Checkpoints", () => {
+  let state = finishRelativeFrequencyReveal(nextRelativeFrequencyState(createRelativeFrequencyState()));
+  assert.equal(relativeFrequencyViewModel(state).chartHeading, "Erster Checkpoint");
+  state = finishRelativeFrequencyReveal(nextRelativeFrequencyState(state));
+  assert.equal(relativeFrequencyViewModel(state).chartHeading, "Zwei Checkpoints im Vergleich");
+  state = finishRelativeFrequencyReveal(nextRelativeFrequencyState(state));
+  assert.equal(relativeFrequencyViewModel(state).chartHeading, "Drei Checkpoints: Der Wert wechselt die Richtung");
 });
 
 test("jeder Reveal wählt den gerade sichtbaren Checkpoint und hält alle Texte synchron", () => {

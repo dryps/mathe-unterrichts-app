@@ -18,15 +18,16 @@ function element(value = "") {
 }
 
 async function harness({ reduced = true } = {}) {
-  const ids = ["rh-workspace", "rh-chart-card", "rh-chart", "rh-line", "rh-explore", "rh-conclusion", "rh-throws", "rh-sixes", "rh-fraction", "rh-frequency", "rh-checkpoint-slider", "rh-checkpoint-output", "rh-insight", "rh-live", "rh-next", "rh-reset"];
+  const ids = ["rh-workspace", "rh-chart-card", "rh-chart", "rh-line", "rh-chart-heading", "rh-stage-summary", "rh-scroll-hint", "rh-explore", "rh-conclusion", "rh-throws", "rh-sixes", "rh-fraction", "rh-frequency", "rh-checkpoint-slider", "rh-checkpoint-output", "rh-insight", "rh-live", "rh-next", "rh-reset"];
   const elements = new Map(ids.map((id) => [`#${id}`, element(id === "rh-checkpoint-slider" ? "0" : "")]));
   const rows = [0, 1, 2, 3].map((index) => { const item = element(); item.dataset.index = String(index); return item; });
   const points = [0, 1, 2, 3].map((index) => { const item = element(); item.dataset.index = String(index); return item; });
+  const xLabels = [0, 1, 2, 3].map((index) => { const item = element(); item.dataset.index = String(index); return item; });
   const frames = [];
   const timers = [];
   Object.defineProperty(globalThis, "document", { configurable: true, value: {
     querySelector: (selector) => elements.get(selector),
-    querySelectorAll: (selector) => selector === ".rh-row" ? rows : selector === ".rh-point" ? points : [],
+    querySelectorAll: (selector) => selector === ".rh-row" ? rows : selector === ".rh-point" ? points : selector === ".rh-x-label" ? xLabels : [],
   } });
   Object.defineProperty(globalThis, "window", { configurable: true, value: { matchMedia: () => ({ matches: reduced }), addEventListener() {} } });
   Object.defineProperty(globalThis, "navigator", { configurable: true, value: {} });
@@ -35,20 +36,23 @@ async function harness({ reduced = true } = {}) {
   Object.defineProperty(globalThis, "setTimeout", { configurable: true, value: (callback) => { timers.push(callback); return timers.length; } });
   Object.defineProperty(globalThis, "clearTimeout", { configurable: true, value() {} });
   await import(`../src/relative-frequency-app.js?${Date.now()}-${Math.random()}`);
-  return { elements, rows, points, frames, timers };
+  return { elements, rows, points, xLabels, frames, timers };
 }
 
 test("Weiter zeigt alle vier Checkpoints seriell und öffnet dann die Erkundung", async () => {
-  const { elements, rows, points } = await harness();
+  const { elements, rows, points, xLabels } = await harness();
   const next = elements.get("#rh-next");
   for (let step = 0; step < 4; step += 1) {
     next.dispatch("click");
     assert.equal(rows.filter((row) => !row.hidden).length, step + 1);
     assert.equal(points.filter((point) => !point.hasAttribute("hidden")).length, step + 1);
+    assert.equal(xLabels.filter((label) => !label.hasAttribute("hidden")).length, step + 1);
+    assert.doesNotMatch(elements.get("#rh-stage-summary").textContent, step === 0 ? /100|1\.000|10\.000/ : step === 1 ? /1\.000|10\.000/ : step === 2 ? /10\.000/ : /$^/);
   }
   next.dispatch("click");
   assert.equal(elements.get("#rh-workspace").dataset.state, "explore");
   assert.equal(elements.get("#rh-conclusion").hidden, false);
+  assert.equal(elements.get("#rh-scroll-hint").hidden, false);
 });
 
 test("Regler aktualisiert 10 bis 10.000 Würfe gemeinsam", async () => {
