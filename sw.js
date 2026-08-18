@@ -1,4 +1,4 @@
-const CACHE_NAME = "mathe-unterrichts-app-v31";
+const CACHE_NAME = "mathe-unterrichts-app-v32";
 const NAVIGATION_FALLBACK = "./index.html";
 const APP_FILES = [
   "./",
@@ -156,6 +156,12 @@ const APP_FILES = [
   "./src/unique-quadrilateral-animation.js",
   "./src/unique-quadrilateral-math.js",
   "./src/unique-quadrilateral-state.js",
+  "./zuordnungen-darstellen.html",
+  "./assignment-representations.css",
+  "./src/assignment-representations-app.js",
+  "./src/assignment-representations-animation.js",
+  "./src/assignment-representations-math.js",
+  "./src/assignment-representations-state.js",
   "./manifest.webmanifest",
   "./icon.svg",
   "./icon-180.png",
