@@ -71,6 +71,8 @@ const files = {
   modelChoiceApp: await readFile(new URL("../src/model-choice-app.js", import.meta.url), "utf8"),
   percentageShare: await readFile(new URL("../prozent-als-anteil.html", import.meta.url), "utf8"),
   percentageShareApp: await readFile(new URL("../src/percentage-share-app.js", import.meta.url), "utf8"),
+  absoluteRelative: await readFile(new URL("../absolut-relativ.html", import.meta.url), "utf8"),
+  absoluteRelativeApp: await readFile(new URL("../src/absolute-relative-app.js", import.meta.url), "utf8"),
   worker: await readFile(new URL("../sw.js", import.meta.url), "utf8"),
   manifest: await readFile(new URL("../manifest.webmanifest", import.meta.url), "utf8"),
 };
@@ -115,7 +117,7 @@ test("Startseite zeigt Klasse 7 mit den sieben produktiven Kapiteln", () => {
 });
 
 test("Kapitel 1 bis 3 enthalten je sechs Module, Kapitel 4 vier und Kapitel 5 sowie 6 vollständig", () => {
-  assert.equal((files.home.match(/class="module-card"/g) ?? []).length,32);
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length,33);
   assert.match(files.home, /href="\.\/zahlengerade\.html"/);
   assert.match(files.home, /Warum liegen negative Zahlen links von der Null\?/);
   assert.match(files.home, /<span class="module-subtitle">Zahlengerade<\/span>/);
@@ -213,8 +215,11 @@ test("Kapitel 1 bis 3 enthalten je sechs Module, Kapitel 4 vier und Kapitel 5 so
   assert.match(files.home, /href="\.\/prozent-als-anteil\.html"/);
   assert.match(files.home, /Warum sagt 25 % ohne ein Ganzes noch nicht, wie viel das ist\?/);
   assert.match(files.home, /<span class="module-subtitle">Prozent als Anteil<\/span>/);
-  assert.equal((files.home.match(/class="module-status"/g) ?? []).length,32);
-  assert.equal((files.home.match(/fertig/g) ?? []).length,32);
+  assert.match(files.home, /href="\.\/absolut-relativ\.html"/);
+  assert.match(files.home, /Wie kann die kleinere Anzahl trotzdem der größere Anteil sein\?/);
+  assert.match(files.home, /<span class="module-subtitle">Absolut und relativ<\/span>/);
+  assert.equal((files.home.match(/class="module-status"/g) ?? []).length,33);
+  assert.equal((files.home.match(/fertig/g) ?? []).length,33);
 });
 
 test("Alle Dreiecksmodule behalten ausschließlich ihren bisherigen Rückweg", () => {
@@ -281,10 +286,12 @@ test("K6.1 bis K6.5 führen ausschließlich zu Proportional · Antiproportional 
   }
 });
 
-test("K7.1 führt ausschließlich zu Prozentrechnung zurück", () => {
-  assert.equal((files.percentageShare.match(/class="module-navigation"/g) ?? []).length, 1);
-  assert.match(files.percentageShare, /class="module-back-link" href="\.\/#prozentrechnung">← Prozentrechnung<\/a>/);
-  assert.doesNotMatch(files.percentageShare, /Suche|Einstellungen|Favoriten|Statistik|Anmelden/);
+test("K7.1 und K7.2 führen ausschließlich zu Prozentrechnung zurück", () => {
+  for (const module of [files.percentageShare, files.absoluteRelative]) {
+    assert.equal((module.match(/class="module-navigation"/g) ?? []).length, 1);
+    assert.match(module, /class="module-back-link" href="\.\/#prozentrechnung">← Prozentrechnung<\/a>/);
+    assert.doesNotMatch(module, /Suche|Einstellungen|Favoriten|Statistik|Anmelden/);
+  }
 });
 
 test("Startseite ist für iPad, Querformat und Klassenraumbildschirm ausgelegt", () => {
@@ -567,13 +574,19 @@ test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und beide Kapite
     "src/percentage-share-animation.js",
     "src/percentage-share-math.js",
     "src/percentage-share-state.js",
+    "absolut-relativ.html",
+    "absolute-relative.css",
+    "src/absolute-relative-app.js",
+    "src/absolute-relative-animation.js",
+    "src/absolute-relative-math.js",
+    "src/absolute-relative-state.js",
     "manifest.webmanifest",
     "icon.svg",
   ]) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
   assert.match(files.shell, /serviceWorker\.register/);
-  assert.match(files.worker, /mathe-unterrichts-app-v37/);
+  assert.match(files.worker, /mathe-unterrichts-app-v38/);
 });
 
 test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", () => {
@@ -630,6 +643,8 @@ test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", 
     files.modelChoiceApp,
     files.percentageShare,
     files.percentageShareApp,
+    files.absoluteRelative,
+    files.absoluteRelativeApp,
     files.worker,
   ].join("\n");
   assert.doesNotMatch(runtime, /localStorage|sessionStorage|indexedDB|document\.cookie/);
