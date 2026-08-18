@@ -39,6 +39,7 @@ const htmlFiles = [
   "prozentdiagramme.html",
   "ergebnis-und-ereignis.html",
   "ergebnisraum.html",
+  "laplace-wahrscheinlichkeit.html",
   "winkelsumme.html",
   "dreiecksungleichung.html",
   "dreiecksflaeche.html",
@@ -59,8 +60,8 @@ test("Pages-Artefakt ist eine explizite Freigabeliste ohne interne Dateien", () 
   for (const file of htmlFiles) assert.equal(PAGES_RUNTIME_FILES.includes(file), true, file);
 });
 
-test("alle achtunddreißig direkten Modulpfade und ihre Rücklinks bleiben projektpfadrelativ", async () => {
-  assert.equal(moduleFiles.length,38);
+test("alle neununddreißig direkten Modulpfade und ihre Rücklinks bleiben projektpfadrelativ", async () => {
+  assert.equal(moduleFiles.length,39);
   for (const file of moduleFiles) {
     const html = await read(file);
     assert.match(html, /class="module-back-link" href="\.\/#(?:rationale-zahlen|dreiecke|rechnen-mit-termen|gleichungen-ungleichungen|vierecke|zuordnungen|prozentrechnung|wahrscheinlichkeit)"/);
@@ -131,6 +132,7 @@ test("jeder Einstieg registriert den Worker explizit im Projekt-Scope ohne HTTP-
     "src/percentage-chart-app.js",
     "src/random-event-app.js",
     "src/outcome-space-app.js",
+    "src/laplace-app.js",
     "src/app.js",
     "src/triangle-inequality-app.js",
     "src/triangle-area-app.js",
@@ -146,7 +148,7 @@ test("jeder Einstieg registriert den Worker explizit im Projekt-Scope ohne HTTP-
 
 test("Service Worker schützt Update, Redirects, Fehlerseiten und Navigation", async () => {
   const worker = await read("sw.js");
-  assert.match(worker, /mathe-unterrichts-app-v43/);
+  assert.match(worker, /mathe-unterrichts-app-v44/);
   assert.match(worker, /cache: "reload"/);
   assert.match(worker, /redirect: "error"/);
   assert.match(worker, /!response\.ok \|\| response\.redirected/);

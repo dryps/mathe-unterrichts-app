@@ -123,15 +123,15 @@ function createWorkerHarness() {
   };
 }
 
-test("Installation füllt Version 43 vollständig und Aktivierung entfernt ältere Versionen", async () => {
+test("Installation füllt Version 44 vollständig und Aktivierung entfernt ältere Versionen", async () => {
   const harness = createWorkerHarness();
   await harness.dispatchLifecycle("install");
   await harness.dispatchLifecycle("activate");
 
   assert.equal(harness.skipped, true);
   assert.equal(harness.claimed, true);
-  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v43"]);
-  const current = harness.stores.get("mathe-unterrichts-app-v43");
+  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v44"]);
+  const current = harness.stores.get("mathe-unterrichts-app-v44");
   for (const path of [
     "./",
     "./index.html",
@@ -338,6 +338,12 @@ test("Installation füllt Version 43 vollständig und Aktivierung entfernt älte
     "./src/outcome-space-animation.js",
     "./src/outcome-space-math.js",
     "./src/outcome-space-state.js",
+    "./laplace-wahrscheinlichkeit.html",
+    "./laplace.css",
+    "./src/laplace-app.js",
+    "./src/laplace-animation.js",
+    "./src/laplace-math.js",
+    "./src/laplace-state.js",
   ]) {
     assert.equal(current.has(new URL(path, `${origin}/`).href), true);
   }
@@ -554,6 +560,12 @@ test("Offline-Neustart liefert Startseite und alle Kapitel ohne Netzwerk aus", a
     "/src/outcome-space-animation.js",
     "/src/outcome-space-math.js",
     "/src/outcome-space-state.js",
+    "/laplace-wahrscheinlichkeit.html",
+    "/laplace.css",
+    "/src/laplace-app.js",
+    "/src/laplace-animation.js",
+    "/src/laplace-math.js",
+    "/src/laplace-state.js",
   ]) {
     const response = await harness.dispatchFetch(path);
     assert.equal(response.status, 200);
