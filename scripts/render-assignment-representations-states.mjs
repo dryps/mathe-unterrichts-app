@@ -1,0 +1,14 @@
+import assert from "node:assert/strict";
+import { ASSIGNMENT_REVEAL_DURATION,assignmentRevealFrame } from "../src/assignment-representations-animation.js";
+import { assignmentRecord,graphPoint } from "../src/assignment-representations-math.js";
+import { ASSIGNMENT_VIEWS,assignmentViewModel,createAssignmentState } from "../src/assignment-representations-state.js";
+
+const states=[createAssignmentState(),...Object.values(ASSIGNMENT_VIEWS).slice(1).map(view=>({view,locked:false,input:view===ASSIGNMENT_VIEWS.explore?6:3}))];
+const render=state=>{const model=assignmentViewModel(state);return `<section data-state="${model.view}"><p>${model.showSituation?model.record.situation:""}</p><p>${model.showPair?model.pairText:""}</p><circle cx="${model.point.x}" cy="${model.point.y}" hidden="${!model.showGraph}"/></section>`;};
+let count=0;
+for(const state of states){const first=render(state);assert.equal(first,render({...state}));assert.doesNotMatch(first,/undefined|NaN|Infinity/);count+=1;}
+for(const input of [1,2,3,5,6]){const record=assignmentRecord(input);assert.deepEqual(graphPoint(record),{x:70+input*75,y:360-input*44});count+=1;}
+let previous=-1;
+for(const time of [0,130,260,390,520,ASSIGNMENT_REVEAL_DURATION]){const frame=assignmentRevealFrame(time);assert.ok(frame.opacity>=previous);previous=frame.opacity;count+=1;}
+assert.equal(count,17);
+console.log(`${count}/${count} Zuordnungsdarstellungen gerendert`);

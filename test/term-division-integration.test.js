@@ -34,7 +34,7 @@ test("Startseite integriert K3.4 genau einmal als vierte K3-Karte", () => {
     /Warum bleibt beim Teilen eines Terms genau das übrig, was nicht weggeteilt wurde\?/,
   );
   assert.match(files.home, /<span class="module-subtitle">Terme dividieren<\/span>/);
-  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 26);
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 27);
 });
 
 test("K3-Raster bleibt nach der fünften Karte auf großen Breiten und iPad ausgewogen", () => {
@@ -49,7 +49,7 @@ test("K3-Raster bleibt nach der fünften Karte auf großen Breiten und iPad ausg
 });
 
 test("Cache v21 enthält ausschließlich die sechs neuen Laufzeitdateien", () => {
-  assert.match(files.worker, /mathe-unterrichts-app-v31/);
+  assert.match(files.worker, /mathe-unterrichts-app-v32/);
   assert.doesNotMatch(files.worker, /mathe-unterrichts-app-v20/);
   for (const file of runtimeFiles) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));

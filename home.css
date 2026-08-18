@@ -144,6 +144,10 @@ h2 {
   grid-column: auto;
 }
 
+.chapter-assignments .module-grid {
+  grid-template-columns: 1fr;
+}
+
 .module-card {
   display: flex;
   min-height: clamp(220px, 28vw, 330px);

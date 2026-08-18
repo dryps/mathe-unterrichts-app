@@ -15,7 +15,7 @@ test("Startseite behält K5.2 genau einmal innerhalb der vier Kapitel-5-Karten",
   assert.equal((files.home.match(/href="\.\/haus-der-vierecke\.html"/g) ?? []).length, 1);
   assert.match(chapter, /Warum ist jedes Quadrat auch ein Rechteck und eine Raute\?/);
   assert.match(chapter, /<span class="module-subtitle">Haus der Vierecke<\/span>/);
-  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 26);
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 27);
 });
 
 test("Kapitel-5-Raster ordnet die Karten responsiv ohne Überlauf", () => {
@@ -23,8 +23,8 @@ test("Kapitel-5-Raster ordnet die Karten responsiv ohne Überlauf", () => {
   assert.match(files.homeCss, /@media \(max-width: 720px\)[\s\S]*\.chapter-quadrilaterals \.module-grid\s*{[^}]*grid-template-columns:\s*1fr/s);
 });
 
-test("Cache v31 und Pages-Artefakt behalten die sechs K5.2-Laufzeitdateien", () => {
-  assert.match(files.worker, /mathe-unterrichts-app-v31/);
+test("Cache v32 und Pages-Artefakt behalten die sechs K5.2-Laufzeitdateien", () => {
+  assert.match(files.worker, /mathe-unterrichts-app-v32/);
   assert.doesNotMatch(files.worker, /mathe-unterrichts-app-v29/);
   for (const file of runtimeFiles) {
     const pattern = new RegExp(file.replaceAll(".", "\\."));
