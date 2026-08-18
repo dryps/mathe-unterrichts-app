@@ -96,7 +96,7 @@ test("Offline-Cache enthält das vollständige Zahlengeradenmodul", () => {
   ]) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
-  assert.match(files.worker, /mathe-unterrichts-app-v37/);
+  assert.match(files.worker, /mathe-unterrichts-app-v38/);
   assert.match(files.app, /serviceWorker\.register/);
 });
 

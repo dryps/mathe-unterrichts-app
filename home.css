@@ -152,6 +152,14 @@ h2 {
   grid-column: span 2;
 }
 
+.chapter-percentages .module-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.chapter-percentages .module-card {
+  grid-column: auto;
+}
+
 .module-card {
   display: flex;
   min-height: clamp(220px, 28vw, 330px);
@@ -258,6 +266,10 @@ noscript {
 
   .chapter-assignments .module-card {
     grid-column: auto;
+  }
+
+  .chapter-percentages .module-grid {
+    grid-template-columns: 1fr;
   }
 
   .module-card {
