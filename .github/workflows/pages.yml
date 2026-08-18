@@ -64,6 +64,7 @@ jobs:
           npm run test:assignment-representations-visual
           npm run test:proportional-comparison-visual
           npm run test:proportional-rule-three-visual
+          npm run test:inverse-assignment-visual
 
       - name: Kontrolliertes Pages-Artefakt bauen
         run: npm run build:pages

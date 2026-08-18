@@ -1,0 +1,3 @@
+import assert from "node:assert/strict";import test from "node:test";import { INVERSE_REVEAL_DURATION,inverseRevealFrame } from "../src/inverse-assignment-animation.js";
+test("Reveal dauert ruhig 700 Millisekunden und endet exakt",()=>{assert.equal(INVERSE_REVEAL_DURATION,700);assert.deepEqual(inverseRevealFrame(0),{progress:0,opacity:0,complete:false});assert.deepEqual(inverseRevealFrame(700),{progress:1,opacity:1,complete:true});});
+test("Reveal bleibt begrenzt und weist ungültige Zeit ab",()=>{assert.equal(inverseRevealFrame(-20).progress,0);assert.equal(inverseRevealFrame(900).progress,1);assert.throws(()=>inverseRevealFrame(Number.NaN),RangeError);});

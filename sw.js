@@ -1,4 +1,4 @@
-const CACHE_NAME = "mathe-unterrichts-app-v34";
+const CACHE_NAME = "mathe-unterrichts-app-v35";
 const NAVIGATION_FALLBACK = "./index.html";
 const APP_FILES = [
   "./",
@@ -174,6 +174,12 @@ const APP_FILES = [
   "./src/proportional-rule-three-animation.js",
   "./src/proportional-rule-three-math.js",
   "./src/proportional-rule-three-state.js",
+  "./antiproportionale-zuordnungen.html",
+  "./inverse-assignment.css",
+  "./src/inverse-assignment-app.js",
+  "./src/inverse-assignment-animation.js",
+  "./src/inverse-assignment-math.js",
+  "./src/inverse-assignment-state.js",
   "./manifest.webmanifest",
   "./icon.svg",
   "./icon-180.png",
