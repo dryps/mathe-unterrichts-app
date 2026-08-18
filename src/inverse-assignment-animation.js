@@ -1,2 +1,1 @@
 export const INVERSE_REVEAL_DURATION=700;const ease=t=>1-(1-t)**3;export function inverseRevealFrame(elapsed){if(!Number.isFinite(elapsed))throw new RangeError("Ungültige Animationszeit.");const progress=Math.max(0,Math.min(1,elapsed/INVERSE_REVEAL_DURATION));return Object.freeze({progress,opacity:ease(progress),complete:progress>=1});}
-

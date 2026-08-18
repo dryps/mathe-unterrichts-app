@@ -3,4 +3,3 @@ export function snapPeople(index){if(!Number.isFinite(index))return 4;const safe
 export function inversePair(people){if(!INVERSE_PEOPLE.includes(people))throw new RangeError("Unzulässige Personenzahl.");return Object.freeze({people,hours:WORK_PRODUCT/people,product:WORK_PRODUCT});}
 export function inversePairs(){return INVERSE_PEOPLE.map(inversePair);}
 export function inversePoint(pair){return Object.freeze({x:70+40*pair.people,y:360-(pair.hours/24)*300});}
-

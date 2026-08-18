@@ -30,4 +30,3 @@ Das Modul macht an einer festen Arbeitsmenge sichtbar, warum eine Verdopplung de
 - Reveal-Gates verwenden echtes `hidden` und semantische Alternativtexte.
 - Übergänge sind tokenisiert, zurücksetzbar und bei Reduced Motion sofort abgeschlossen.
 - Responsive Prüfung für 320, 390, 768, 1024 und 1920 Pixel.
-
