@@ -21,6 +21,9 @@ test("Zählung, Feldgrößen, Wahrscheinlichkeiten, Erkundung und Schluss sind i
     assert.match(html, new RegExp(`id="${id}"[\\s\\S]{0,120}?hidden`));
   }
   assert.match(css, /\[hidden\]\s*\{\s*display:\s*none\s*!important/);
+  assert.match(html, /id="lp-equal-heading">vier beschriftete Ergebnisse<\/h2>/);
+  assert.match(html, /id="lp-unequal-heading">vier beschriftete Ergebnisse<\/h2>/);
+  assert.doesNotMatch(html, /class="pointer"/);
 });
 
 test("Controller synchronisiert Auswahl, Radnamen und Markierungen aus einem Modell", () => {
@@ -28,6 +31,9 @@ test("Controller synchronisiert Auswahl, Radnamen und Markierungen aus einem Mod
   assert.match(app, /slider\.setAttribute\("aria-label", `Ergebnis vergleichen: \$\{model\.sliderValueText\}`\)/);
   assert.match(app, /equalWheel\.setAttribute\("aria-label", model\.equalAriaLabel\)/);
   assert.match(app, /unequalWheel\.setAttribute\("aria-label", model\.unequalAriaLabel\)/);
+  assert.match(app, /equalHeading\.textContent = model\.equalHeading/);
+  assert.match(app, /unequalHeading\.textContent = model\.unequalHeading/);
+  assert.match(app, /model\.displayUnequalSegments/);
   assert.match(app, /segment\.classList\.toggle\("is-selected", Number\(segment\.dataset\.result\) === model\.selectedResult\)/);
 });
 

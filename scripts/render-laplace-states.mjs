@@ -12,6 +12,12 @@ let count = 0;
 for (let step = 0; step < Object.values(LAPLACE_VIEWS).length; step += 1) {
   const model = laplaceViewModel(state);
   assert.doesNotMatch(JSON.stringify(model), /undefined|NaN|Infinity/);
+  if (step < 2) {
+    assert.deepEqual(model.displayUnequalSegments, model.equalSegments);
+    assert.doesNotMatch(`${model.equalHeading} ${model.unequalHeading}`, /gleich große|unterschiedlich große/);
+  } else {
+    assert.notDeepEqual(model.displayUnequalSegments, model.equalSegments);
+  }
   count += 1;
   state = finishLaplaceReveal(nextLaplaceState(state));
 }

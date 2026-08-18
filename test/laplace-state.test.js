@@ -22,8 +22,15 @@ test("vor dem Flächengate verraten zugängliche Namen keine ungleichen Chancen"
   for (let step = 0; step < 2; step += 1) {
     const model = laplaceViewModel(state);
     assert.doesNotMatch(`${model.equalAriaLabel} ${model.unequalAriaLabel}`, /180|90|60|30|Hälfte|1\/2/);
+    assert.equal(model.equalHeading, "vier beschriftete Ergebnisse");
+    assert.equal(model.unequalHeading, "vier beschriftete Ergebnisse");
+    assert.deepEqual(model.displayUnequalSegments, model.equalSegments);
     state = finishLaplaceReveal(nextLaplaceState(state));
   }
+  const areas = laplaceViewModel(state);
+  assert.equal(areas.equalHeading, "gleich große Felder");
+  assert.equal(areas.unequalHeading, "unterschiedlich große Felder");
+  assert.notDeepEqual(areas.displayUnequalSegments, areas.equalSegments);
 });
 
 test("Wahrscheinlichkeitsgate trennt ein Viertel von einer Hälfte", () => {

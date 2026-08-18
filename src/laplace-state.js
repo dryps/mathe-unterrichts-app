@@ -53,6 +53,8 @@ export function laplaceViewModel(current) {
   const unequal = spinnerProbability(UNEQUAL_SPINNER_ANGLES, current.selectedResult);
   const showAreas = rank >= 2;
   const showProbability = rank >= 3;
+  const equalSegments = spinnerSegments(EQUAL_SPINNER_ANGLES);
+  const unequalSegments = spinnerSegments(UNEQUAL_SPINNER_ANGLES);
   const equalNames = [
     "Glücksrad A mit vier beschrifteten Feldern.",
     `Glücksrad A: Ergebnis ${current.selectedResult} ist eines von vier beschrifteten Ergebnissen.`,
@@ -75,8 +77,11 @@ export function laplaceViewModel(current) {
   return Object.freeze({
     view: current.view,
     selectedResult: current.selectedResult,
-    equalSegments: spinnerSegments(EQUAL_SPINNER_ANGLES),
-    unequalSegments: spinnerSegments(UNEQUAL_SPINNER_ANGLES),
+    equalSegments,
+    unequalSegments,
+    displayUnequalSegments: showAreas ? unequalSegments : equalSegments,
+    equalHeading: showAreas ? "gleich große Felder" : "vier beschriftete Ergebnisse",
+    unequalHeading: showAreas ? "unterschiedlich große Felder" : "vier beschriftete Ergebnisse",
     equalAngle: equal.angle,
     unequalAngle: unequal.angle,
     equalProbability: equal.fraction,

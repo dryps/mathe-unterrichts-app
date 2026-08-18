@@ -32,7 +32,7 @@
       <section id="lp-workspace" class="lp-workspace" data-state="irritation" aria-busy="false">
         <section class="wheel-grid" aria-label="Vergleich zweier Glücksräder">
           <article class="wheel-card">
-            <div class="wheel-heading"><div><span>Rad A</span><h2>gleich große Felder</h2></div><strong>Ausgewählt: <span class="lp-selected-result">1</span></strong></div>
+            <div class="wheel-heading"><div><span>Rad A</span><h2 id="lp-equal-heading">vier beschriftete Ergebnisse</h2></div><strong>Ausgewählt: <span class="lp-selected-result">1</span></strong></div>
             <svg id="lp-equal-wheel" class="wheel" viewBox="0 0 300 300" role="img" aria-label="Glücksrad A mit vier beschrifteten Feldern.">
               <g aria-hidden="true">
                 <path class="lp-segment segment-1" data-wheel="equal" data-result="1"></path>
@@ -44,13 +44,12 @@
                 <text class="lp-segment-label" data-wheel="equal" data-result="3">3</text>
                 <text class="lp-segment-label" data-wheel="equal" data-result="4">4</text>
                 <circle class="hub" cx="150" cy="150" r="10"></circle>
-                <path class="pointer" d="M150 15 L137 43 L163 43 Z"></path>
               </g>
             </svg>
           </article>
 
           <article class="wheel-card">
-            <div class="wheel-heading"><div><span>Rad B</span><h2>unterschiedlich große Felder</h2></div><strong>Ausgewählt: <span class="lp-selected-result">1</span></strong></div>
+            <div class="wheel-heading"><div><span>Rad B</span><h2 id="lp-unequal-heading">vier beschriftete Ergebnisse</h2></div><strong>Ausgewählt: <span class="lp-selected-result">1</span></strong></div>
             <svg id="lp-unequal-wheel" class="wheel" viewBox="0 0 300 300" role="img" aria-label="Glücksrad B mit vier beschrifteten Feldern.">
               <g aria-hidden="true">
                 <path class="lp-segment segment-1" data-wheel="unequal" data-result="1"></path>
@@ -62,7 +61,6 @@
                 <text class="lp-segment-label" data-wheel="unequal" data-result="3">3</text>
                 <text class="lp-segment-label" data-wheel="unequal" data-result="4">4</text>
                 <circle class="hub" cx="150" cy="150" r="10"></circle>
-                <path class="pointer" d="M150 15 L137 43 L163 43 Z"></path>
               </g>
             </svg>
           </article>

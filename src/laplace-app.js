@@ -5,6 +5,8 @@ const $ = (selector) => document.querySelector(selector);
 const workspace = $("#lp-workspace");
 const equalWheel = $("#lp-equal-wheel");
 const unequalWheel = $("#lp-unequal-wheel");
+const equalHeading = $("#lp-equal-heading");
+const unequalHeading = $("#lp-unequal-heading");
 const count = $("#lp-count");
 const areas = $("#lp-areas");
 const probability = $("#lp-probability");
@@ -42,7 +44,7 @@ function clearAnimation() {
 
 function renderSegments(model) {
   for (const wheel of ["equal", "unequal"]) {
-    const geometry = wheel === "equal" ? model.equalSegments : model.unequalSegments;
+    const geometry = wheel === "equal" ? model.equalSegments : model.displayUnequalSegments;
     segments.filter((segment) => segment.dataset.wheel === wheel).forEach((segment, index) => {
       segment.setAttribute("d", geometry[index].path);
       segment.classList.toggle("is-selected", Number(segment.dataset.result) === model.selectedResult);
@@ -59,6 +61,8 @@ function render() {
   workspace.dataset.state = model.view;
   equalWheel.setAttribute("aria-label", model.equalAriaLabel);
   unequalWheel.setAttribute("aria-label", model.unequalAriaLabel);
+  equalHeading.textContent = model.equalHeading;
+  unequalHeading.textContent = model.unequalHeading;
   count.hidden = !model.showCount;
   areas.hidden = !model.showAreas;
   probability.hidden = !model.showProbability;

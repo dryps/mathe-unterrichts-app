@@ -26,7 +26,6 @@ h1 { max-width: 930px; margin: 0; font-size: clamp(1.75rem, 3.7vw, 3rem); line-h
 .lp-segment.is-selected { stroke: #17213a; stroke-width: 9; filter: brightness(1.08); }
 .lp-segment-label { fill: #fff; font-size: 28px; font-weight: 900; text-anchor: middle; dominant-baseline: middle; paint-order: stroke; stroke: rgba(23,33,58,.45); stroke-width: 3px; }
 .hub { fill: #fff; stroke: #17213a; stroke-width: 5; }
-.pointer { fill: #17213a; }
 .comparison-card, .area-card, .probability-card, .explore-card, .conclusion-card { padding: 17px 20px; border: 1px solid #cbd8e8; border-radius: 17px; background: #fff; }
 .comparison-card h2, .area-card h2, .probability-card h2 { margin: 0 0 12px; color: #52627b; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; }
 .comparison-columns { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }

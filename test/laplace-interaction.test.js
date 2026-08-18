@@ -16,7 +16,7 @@ function element(value = "") {
 }
 
 async function harness({ reduced = true } = {}) {
-  const ids = ["lp-workspace", "lp-equal-wheel", "lp-unequal-wheel", "lp-count", "lp-areas", "lp-probability", "lp-explore", "lp-conclusion", "lp-equal-angle", "lp-unequal-angle", "lp-equal-probability", "lp-unequal-probability", "lp-result-slider", "lp-result-output", "lp-insight", "lp-live", "lp-next", "lp-reset"];
+  const ids = ["lp-workspace", "lp-equal-wheel", "lp-unequal-wheel", "lp-equal-heading", "lp-unequal-heading", "lp-count", "lp-areas", "lp-probability", "lp-explore", "lp-conclusion", "lp-equal-angle", "lp-unequal-angle", "lp-equal-probability", "lp-unequal-probability", "lp-result-slider", "lp-result-output", "lp-insight", "lp-live", "lp-next", "lp-reset"];
   const elements = new Map(ids.map((id) => [`#${id}`, element(id === "lp-result-slider" ? "1" : "")]));
   const selectedLabels = Array.from({ length: 8 }, () => element());
   const segments = ["equal", "unequal"].flatMap((wheel) => [1, 2, 3, 4].map((result) => { const item = element(); item.dataset.wheel = wheel; item.dataset.result = String(result); return item; }));
@@ -50,6 +50,22 @@ test("Weiter öffnet alle Gates und der Regler aktualisiert beide Räder gemeins
   assert.match(slider.getAttribute("aria-label"), /Ergebnis 4 von 4; Rad A 1\/4, Rad B 2\/15/);
   assert.match(elements.get("#lp-unequal-wheel").getAttribute("aria-label"), /Ergebnis 4.*48 Grad.*2\/15/);
   assert.equal(segments.filter((segment) => segment.classList.contains("is-selected")).every((segment) => segment.dataset.result === "4"), true);
+});
+
+test("ungleiche Flächen erscheinen sichtbar erst am Flächengate", async () => {
+  const { elements, segments } = await harness();
+  const equalFirst = segments.find((segment) => segment.dataset.wheel === "equal" && segment.dataset.result === "1");
+  const unequalFirst = segments.find((segment) => segment.dataset.wheel === "unequal" && segment.dataset.result === "1");
+  assert.equal(elements.get("#lp-equal-heading").textContent, "vier beschriftete Ergebnisse");
+  assert.equal(elements.get("#lp-unequal-heading").textContent, "vier beschriftete Ergebnisse");
+  assert.equal(unequalFirst.getAttribute("d"), equalFirst.getAttribute("d"));
+  elements.get("#lp-next").dispatch("click");
+  assert.equal(elements.get("#lp-unequal-heading").textContent, "vier beschriftete Ergebnisse");
+  assert.equal(unequalFirst.getAttribute("d"), equalFirst.getAttribute("d"));
+  elements.get("#lp-next").dispatch("click");
+  assert.equal(elements.get("#lp-equal-heading").textContent, "gleich große Felder");
+  assert.equal(elements.get("#lp-unequal-heading").textContent, "unterschiedlich große Felder");
+  assert.notEqual(unequalFirst.getAttribute("d"), equalFirst.getAttribute("d"));
 });
 
 test("Mehrfachtipp und Reset neutralisieren veraltete Rückrufe", async () => {
