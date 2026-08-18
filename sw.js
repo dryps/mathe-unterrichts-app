@@ -1,4 +1,4 @@
-const CACHE_NAME = "mathe-unterrichts-app-v33";
+const CACHE_NAME = "mathe-unterrichts-app-v34";
 const NAVIGATION_FALLBACK = "./index.html";
 const APP_FILES = [
   "./",
@@ -168,6 +168,12 @@ const APP_FILES = [
   "./src/proportional-comparison-animation.js",
   "./src/proportional-comparison-math.js",
   "./src/proportional-comparison-state.js",
+  "./proportionaler-dreisatz.html",
+  "./proportional-rule-three.css",
+  "./src/proportional-rule-three-app.js",
+  "./src/proportional-rule-three-animation.js",
+  "./src/proportional-rule-three-math.js",
+  "./src/proportional-rule-three-state.js",
   "./manifest.webmanifest",
   "./icon.svg",
   "./icon-180.png",

@@ -63,6 +63,8 @@ const files = {
   assignmentRepresentationsApp: await readFile(new URL("../src/assignment-representations-app.js", import.meta.url), "utf8"),
   proportionalComparison: await readFile(new URL("../proportionale-zuordnungen.html", import.meta.url), "utf8"),
   proportionalComparisonApp: await readFile(new URL("../src/proportional-comparison-app.js", import.meta.url), "utf8"),
+  proportionalRuleThree: await readFile(new URL("../proportionaler-dreisatz.html", import.meta.url), "utf8"),
+  proportionalRuleThreeApp: await readFile(new URL("../src/proportional-rule-three-app.js", import.meta.url), "utf8"),
   worker: await readFile(new URL("../sw.js", import.meta.url), "utf8"),
   manifest: await readFile(new URL("../manifest.webmanifest", import.meta.url), "utf8"),
 };
@@ -105,7 +107,7 @@ test("Startseite zeigt Klasse 7 mit den sechs produktiven Kapiteln", () => {
 });
 
 test("Kapitel 1 bis 3 enthalten je sechs Module, Kapitel 4 vier und Kapitel 5 vollständig", () => {
-  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 28);
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length,29);
   assert.match(files.home, /href="\.\/zahlengerade\.html"/);
   assert.match(files.home, /Warum liegen negative Zahlen links von der Null\?/);
   assert.match(files.home, /<span class="module-subtitle">Zahlengerade<\/span>/);
@@ -191,8 +193,11 @@ test("Kapitel 1 bis 3 enthalten je sechs Module, Kapitel 4 vier und Kapitel 5 vo
   assert.match(files.home, /href="\.\/proportionale-zuordnungen\.html"/);
   assert.match(files.home, /Warum bedeutet „beide werden größer“ noch nicht proportional\?/);
   assert.match(files.home, /<span class="module-subtitle">Proportionale Zuordnungen<\/span>/);
-  assert.equal((files.home.match(/class="module-status"/g) ?? []).length, 28);
-  assert.equal((files.home.match(/fertig/g) ?? []).length, 28);
+  assert.match(files.home, /href="\.\/proportionaler-dreisatz\.html"/);
+  assert.match(files.home, /Warum funktioniert der Dreisatz über den Wert für 1\?/);
+  assert.match(files.home, /<span class="module-subtitle">Proportionaler Dreisatz<\/span>/);
+  assert.equal((files.home.match(/class="module-status"/g) ?? []).length,29);
+  assert.equal((files.home.match(/fertig/g) ?? []).length,29);
 });
 
 test("Alle Dreiecksmodule behalten ausschließlich ihren bisherigen Rückweg", () => {
@@ -251,8 +256,8 @@ test("K5.1 bis K5.4 führen ausschließlich zu Vierecke zurück", () => {
   }
 });
 
-test("K6.1 und K6.2 führen ausschließlich zu Proportional · Antiproportional zurück", () => {
-  for (const module of [files.assignmentRepresentations, files.proportionalComparison]) {
+test("K6.1 bis K6.3 führen ausschließlich zu Proportional · Antiproportional zurück", () => {
+  for (const module of [files.assignmentRepresentations, files.proportionalComparison, files.proportionalRuleThree]) {
     assert.equal((module.match(/class="module-navigation"/g) ?? []).length, 1);
     assert.match(module, /class="module-back-link" href="\.\/#zuordnungen">← Proportional · Antiproportional<\/a>/);
     assert.doesNotMatch(module, /Suche|Einstellungen|Favoriten|Statistik|Anmelden/);
@@ -515,13 +520,19 @@ test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und beide Kapite
     "src/proportional-comparison-animation.js",
     "src/proportional-comparison-math.js",
     "src/proportional-comparison-state.js",
+    "proportionaler-dreisatz.html",
+    "proportional-rule-three.css",
+    "src/proportional-rule-three-app.js",
+    "src/proportional-rule-three-animation.js",
+    "src/proportional-rule-three-math.js",
+    "src/proportional-rule-three-state.js",
     "manifest.webmanifest",
     "icon.svg",
   ]) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
   assert.match(files.shell, /serviceWorker\.register/);
-  assert.match(files.worker, /mathe-unterrichts-app-v33/);
+  assert.match(files.worker, /mathe-unterrichts-app-v34/);
 });
 
 test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", () => {
@@ -570,6 +581,8 @@ test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", 
     files.assignmentRepresentationsApp,
     files.proportionalComparison,
     files.proportionalComparisonApp,
+    files.proportionalRuleThree,
+    files.proportionalRuleThreeApp,
     files.worker,
   ].join("\n");
   assert.doesNotMatch(runtime, /localStorage|sessionStorage|indexedDB|document\.cookie/);

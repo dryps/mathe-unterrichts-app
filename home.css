@@ -145,7 +145,7 @@ h2 {
 }
 
 .chapter-assignments .module-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .module-card {
@@ -282,6 +282,10 @@ noscript {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .chapter-assignments .module-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
 }
 
 @media (orientation: landscape) and (min-width: 900px) and (max-width: 1500px) {
@@ -329,6 +333,10 @@ noscript {
 
   .chapter-terms .module-grid {
     grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .chapter-assignments .module-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .chapter-equations .module-grid {
