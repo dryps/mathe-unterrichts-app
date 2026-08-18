@@ -1,4 +1,4 @@
-const CACHE_NAME = "mathe-unterrichts-app-v29";
+const CACHE_NAME = "mathe-unterrichts-app-v30";
 const NAVIGATION_FALLBACK = "./index.html";
 const APP_FILES = [
   "./",
@@ -144,6 +144,12 @@ const APP_FILES = [
   "./src/quadrilateral-house-animation.js",
   "./src/quadrilateral-house-math.js",
   "./src/quadrilateral-house-state.js",
+  "./viereck-winkelsumme.html",
+  "./quadrilateral-angle-sum.css",
+  "./src/quadrilateral-angle-sum-app.js",
+  "./src/quadrilateral-angle-sum-animation.js",
+  "./src/quadrilateral-angle-sum-math.js",
+  "./src/quadrilateral-angle-sum-state.js",
   "./manifest.webmanifest",
   "./icon.svg",
   "./icon-180.png",

@@ -59,6 +59,7 @@ jobs:
           npm run test:solution-set-visual
           npm run test:quadrilateral-properties-visual
           npm run test:quadrilateral-house-visual
+          npm run test:quadrilateral-angle-sum-visual
 
       - name: Kontrolliertes Pages-Artefakt bauen
         run: npm run build:pages

@@ -18,7 +18,7 @@ test("Startseite integriert K4.1 genau einmal als erste Kapitel-4-Karte", () => 
   assert.match(chapter, /4\. Gleichungen · Ungleichungen/);
   assert.match(chapter, /Warum bleibt eine Gleichung wahr, wenn ich auf beiden Seiten dasselbe tue\?/);
   assert.match(chapter, /<span class="module-subtitle">Äquivalenzumformungen<\/span>/);
-  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 24);
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 25);
 });
 
 test("Kapitel-4-Raster bleibt mit vier Karten responsiv und gleichwertig", () => {
@@ -27,7 +27,7 @@ test("Kapitel-4-Raster bleibt mit vier Karten responsiv und gleichwertig", () =>
 });
 
 test("aktueller Cache enthält weiterhin die sechs K4.1-Laufzeitdateien", () => {
-  assert.match(files.worker, /mathe-unterrichts-app-v29/);
+  assert.match(files.worker, /mathe-unterrichts-app-v30/);
   for (const file of runtimeFiles) assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   assert.doesNotMatch(files.worker, /render-equivalence-states|aequivalenzumformungen-(?:design|static\.test)/);
 });
