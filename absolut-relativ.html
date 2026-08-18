@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f5f7fb" />
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Mathe im Unterricht" />
+  <meta name="description" content="Interaktiver Aha-Moment zum Unterschied zwischen absoluter Anzahl und relativem Anteil." />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./icon-180.png" />
+  <link rel="stylesheet" href="./navigation.css" />
+  <link rel="stylesheet" href="./absolute-relative.css" />
+  <title>Wie kann die kleinere Anzahl trotzdem der größere Anteil sein?</title>
+</head>
+<body>
+  <main class="ar-shell">
+    <nav class="module-navigation" aria-label="Modulnavigation"><a class="module-back-link" href="./#prozentrechnung">← Prozentrechnung</a></nav>
+    <header class="ar-header">
+      <div>
+        <p class="eyebrow">Prozentrechnung · Kapitel 7</p>
+        <h1>Wie kann die kleinere Anzahl trotzdem der größere Anteil sein?</h1>
+        <p class="subtitle">Absolut und relativ</p>
+      </div>
+      <p class="local-note" aria-label="Datenschutzstatus"><span aria-hidden="true">●</span> lokal · ohne Speicherung</p>
+    </header>
+
+    <section id="ar-workspace" class="ar-workspace" data-state="irritation" aria-busy="false">
+      <section class="group-comparison" aria-label="Zwei unterschiedlich große Gruppen">
+        <article class="group-card group-a">
+          <p class="group-name">Gruppe A</p>
+          <h2>6 von 50</h2>
+          <div id="ar-left-dots" class="dot-grid dot-grid-a" role="img" aria-label="Gruppe A: 6 markierte von 50."></div>
+        </article>
+        <p class="against" aria-hidden="true">gegen</p>
+        <article class="group-card group-b">
+          <p class="group-name">Gruppe B</p>
+          <h2>5 von 40</h2>
+          <div id="ar-right-dots" class="dot-grid dot-grid-b" role="img" aria-label="Gruppe B: 5 markierte von 40."></div>
+        </article>
+      </section>
+
+      <section id="ar-absolute" class="result-card absolute-card" hidden>
+        <p>Absolute Anzahl</p>
+        <strong>6 &gt; 5</strong>
+        <span>Gruppe A hat mehr Markierte.</span>
+      </section>
+
+      <section id="ar-normalize" class="normalize-card" hidden>
+        <h2>Gemeinsame Bezugsgröße: 200</h2>
+        <div class="normalized-row" role="img" aria-label="Gruppe A normalisiert: 24 von 200; das sind 12 Prozent.">
+          <span>Gruppe A · 24 von 200</span><div class="ratio-track"><span style="width:12%"></span></div>
+        </div>
+        <div class="normalized-row" role="img" aria-label="Gruppe B normalisiert: 25 von 200; das sind 12,5 Prozent.">
+          <span>Gruppe B · 25 von 200</span><div class="ratio-track"><span style="width:12.5%"></span></div>
+        </div>
+      </section>
+
+      <section id="ar-relative" class="result-card relative-card" hidden>
+        <p>Relativer Anteil</p>
+        <strong>12 % &lt; 12,5 %</strong>
+        <span>Gruppe B hat den größeren Anteil.</span>
+      </section>
+
+      <section id="ar-explore" class="explore-card" hidden>
+        <label for="ar-scale">Beide Gruppen gemeinsam skalieren</label>
+        <input id="ar-scale" type="range" min="0" max="2" step="1" value="0" aria-label="Beide Gruppen gemeinsam skalieren: Faktor 1" aria-valuetext="Faktor 1; links 6 von 50, rechts 5 von 40" />
+        <output id="ar-scale-output" for="ar-scale">Faktor 1</output>
+        <div class="explore-comparison">
+          <article id="ar-left-explore-image" role="img" aria-label="6 markierte von 50; das sind 12 Prozent.">
+            <strong id="ar-left-explore-label">6 von 50</strong>
+            <div class="ratio-track"><span id="ar-left-explore-track" style="width:12%"></span></div>
+          </article>
+          <article id="ar-right-explore-image" role="img" aria-label="5 markierte von 40; das sind 12,5 Prozent.">
+            <strong id="ar-right-explore-label">5 von 40</strong>
+            <div class="ratio-track"><span id="ar-right-explore-track" style="width:12.5%"></span></div>
+          </article>
+        </div>
+        <p id="ar-explore-common">Normalisiert: 24 von 200 · 25 von 200</p>
+        <p><strong id="ar-explore-absolute">6 &gt; 5</strong> absolut · <strong id="ar-explore-relative">12 % &lt; 12,5 %</strong> relativ</p>
+      </section>
+
+      <section id="ar-conclusion" class="conclusion-card" hidden>
+        <h2>Aha</h2>
+        <p>Absolute Anzahl und relativer Anteil beantworten unterschiedliche Fragen.</p>
+      </section>
+    </section>
+
+    <section class="ar-insight" aria-live="polite">
+      <p id="ar-insight">Welche Gruppe hat mehr Markierte – und welche den größeren Anteil?</p>
+      <div class="ar-controls">
+        <button id="ar-next" class="primary-button" type="button">Weiter</button>
+        <button id="ar-reset" class="reset-button" type="button">Zurücksetzen</button>
+      </div>
+      <p id="ar-live" class="visually-hidden" aria-live="polite"></p>
+    </section>
+    <noscript>Für diesen interaktiven Aha-Moment muss JavaScript aktiviert sein.</noscript>
+  </main>
+  <script type="module" src="./src/absolute-relative-app.js"></script>
+</body>
+</html>
