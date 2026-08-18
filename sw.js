@@ -1,4 +1,4 @@
-const CACHE_NAME = "mathe-unterrichts-app-v42";
+const CACHE_NAME = "mathe-unterrichts-app-v43";
 const NAVIGATION_FALLBACK = "./index.html";
 const APP_FILES = [
   "./",
@@ -222,6 +222,12 @@ const APP_FILES = [
   "./src/random-event-animation.js",
   "./src/random-event-math.js",
   "./src/random-event-state.js",
+  "./ergebnisraum.html",
+  "./outcome-space.css",
+  "./src/outcome-space-app.js",
+  "./src/outcome-space-animation.js",
+  "./src/outcome-space-math.js",
+  "./src/outcome-space-state.js",
   "./manifest.webmanifest",
   "./icon.svg",
   "./icon-180.png",

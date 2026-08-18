@@ -22,7 +22,7 @@ test("Startseite integriert K4.4 genau einmal als vierte Kapitel-4-Karte", () =>
   assert.equal((files.home.match(/href="\.\/loesungsmengen\.html"/g) ?? []).length, 1);
   assert.match(chapter, /Warum beschreibt eine Ungleichung einen ganzen Bereich statt nur einen Wert\?/);
   assert.match(chapter, /<span class="module-subtitle">Lösungsmengen<\/span>/);
-  assert.equal((files.home.match(/class="module-card"/g) ?? []).length,37);
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length,38);
 });
 
 test("Kapitel-4-Raster ordnet vier Karten responsiv ohne Überlauf", () => {
@@ -31,8 +31,8 @@ test("Kapitel-4-Raster ordnet vier Karten responsiv ohne Überlauf", () => {
   assert.match(files.homeCss, /@media \(min-width: 721px\) and \(max-width: 1040px\)[\s\S]*\.chapter-equations \.module-grid\s*{[^}]*repeat\(2,\s*minmax\(0,\s*1fr\)\)/s);
 });
 
-test("Cache v42 und Pages-Artefakt enthalten ausschließlich die sieben Laufzeitdateien", () => {
-  assert.match(files.worker, /mathe-unterrichts-app-v42/);
+test("Cache v43 und Pages-Artefakt enthalten ausschließlich die sieben Laufzeitdateien", () => {
+  assert.match(files.worker, /mathe-unterrichts-app-v43/);
   assert.doesNotMatch(files.worker, /mathe-unterrichts-app-v26/);
   for (const file of runtimeFiles) {
     const pattern = new RegExp(file.replaceAll(".", "\\."));

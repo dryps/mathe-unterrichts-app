@@ -81,6 +81,8 @@ const files = {
   percentageChartApp: await readFile(new URL("../src/percentage-chart-app.js", import.meta.url), "utf8"),
   randomEvent: await readFile(new URL("../ergebnis-und-ereignis.html", import.meta.url), "utf8"),
   randomEventApp: await readFile(new URL("../src/random-event-app.js", import.meta.url), "utf8"),
+  outcomeSpace: await readFile(new URL("../ergebnisraum.html", import.meta.url), "utf8"),
+  outcomeSpaceApp: await readFile(new URL("../src/outcome-space-app.js", import.meta.url), "utf8"),
   worker: await readFile(new URL("../sw.js", import.meta.url), "utf8"),
   manifest: await readFile(new URL("../manifest.webmanifest", import.meta.url), "utf8"),
 };
@@ -127,7 +129,7 @@ test("Startseite zeigt Klasse 7 mit den acht produktiven Kapiteln", () => {
 });
 
 test("Kapitel 1 bis 3 enthalten je sechs Module, Kapitel 4 vier und Kapitel 5 sowie 6 vollständig", () => {
-  assert.equal((files.home.match(/class="module-card"/g) ?? []).length,37);
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length,38);
   assert.match(files.home, /href="\.\/zahlengerade\.html"/);
   assert.match(files.home, /Warum liegen negative Zahlen links von der Null\?/);
   assert.match(files.home, /<span class="module-subtitle">Zahlengerade<\/span>/);
@@ -234,8 +236,11 @@ test("Kapitel 1 bis 3 enthalten je sechs Module, Kapitel 4 vier und Kapitel 5 so
   assert.match(files.home, /href="\.\/ergebnis-und-ereignis\.html"/);
   assert.match(files.home, /Warum ist 4 ein Ergebnis, aber „gerade Zahl“ ein Ereignis\?/);
   assert.match(files.home, /<span class="module-subtitle">Ergebnis und Ereignis<\/span>/);
-  assert.equal((files.home.match(/class="module-status"/g) ?? []).length,37);
-  assert.equal((files.home.match(/fertig/g) ?? []).length,37);
+  assert.match(files.home, /href="\.\/ergebnisraum\.html"/);
+  assert.match(files.home, /Warum muss der Ergebnisraum vollständig sein, bevor ich eine Wahrscheinlichkeit berechne\?/);
+  assert.match(files.home, /<span class="module-subtitle">Ergebnisraum<\/span>/);
+  assert.equal((files.home.match(/class="module-status"/g) ?? []).length,38);
+  assert.equal((files.home.match(/fertig/g) ?? []).length,38);
 });
 
 test("Alle Dreiecksmodule behalten ausschließlich ihren bisherigen Rückweg", () => {
@@ -310,10 +315,12 @@ test("K7.1 bis K7.5 führen ausschließlich zu Prozentrechnung zurück", () => {
   }
 });
 
-test("K8.1 führt ausschließlich zu Wahrscheinlichkeit zurück", () => {
-  assert.equal((files.randomEvent.match(/class="module-navigation"/g) ?? []).length, 1);
-  assert.match(files.randomEvent, /class="module-back-link" href="\.\/#wahrscheinlichkeit">← Wahrscheinlichkeit<\/a>/);
-  assert.doesNotMatch(files.randomEvent, /Suche|Einstellungen|Favoriten|Statistik|Anmelden/);
+test("K8.1 und K8.2 führen ausschließlich zu Wahrscheinlichkeit zurück", () => {
+  for (const module of [files.randomEvent, files.outcomeSpace]) {
+    assert.equal((module.match(/class="module-navigation"/g) ?? []).length, 1);
+    assert.match(module, /class="module-back-link" href="\.\/#wahrscheinlichkeit">← Wahrscheinlichkeit<\/a>/);
+    assert.doesNotMatch(module, /Suche|Einstellungen|Favoriten|Statistik|Anmelden/);
+  }
 });
 
 test("Startseite ist für iPad, Querformat und Klassenraumbildschirm ausgelegt", () => {
@@ -626,13 +633,19 @@ test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und beide Kapite
     "src/random-event-animation.js",
     "src/random-event-math.js",
     "src/random-event-state.js",
+    "ergebnisraum.html",
+    "outcome-space.css",
+    "src/outcome-space-app.js",
+    "src/outcome-space-animation.js",
+    "src/outcome-space-math.js",
+    "src/outcome-space-state.js",
     "manifest.webmanifest",
     "icon.svg",
   ]) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
   assert.match(files.shell, /serviceWorker\.register/);
-  assert.match(files.worker, /mathe-unterrichts-app-v42/);
+  assert.match(files.worker, /mathe-unterrichts-app-v43/);
 });
 
 test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", () => {
@@ -699,6 +712,8 @@ test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", 
     files.percentageChartApp,
     files.randomEvent,
     files.randomEventApp,
+    files.outcomeSpace,
+    files.outcomeSpaceApp,
     files.worker,
   ].join("\n");
   assert.doesNotMatch(runtime, /localStorage|sessionStorage|indexedDB|document\.cookie/);

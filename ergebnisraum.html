@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f5f7fb" />
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Mathe im Unterricht" />
+    <meta name="description" content="Interaktiver Aha-Moment zum vollständigen Ergebnisraum." />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./icon-180.png" />
+    <link rel="stylesheet" href="./navigation.css" />
+    <link rel="stylesheet" href="./outcome-space.css" />
+    <title>Warum muss der Ergebnisraum vollständig sein, bevor ich eine Wahrscheinlichkeit berechne?</title>
+  </head>
+  <body>
+    <main class="os-shell">
+      <nav class="module-navigation" aria-label="Modulnavigation">
+        <a class="module-back-link" href="./#wahrscheinlichkeit">← Wahrscheinlichkeit</a>
+      </nav>
+      <header class="os-header">
+        <div>
+          <p class="eyebrow">Wahrscheinlichkeit · Kapitel 8</p>
+          <h1>Warum muss der Ergebnisraum vollständig sein, bevor ich eine Wahrscheinlichkeit berechne?</h1>
+          <p class="subtitle">Ergebnisraum</p>
+        </div>
+        <p class="local-note" aria-label="Datenschutzstatus"><span aria-hidden="true">●</span> lokal · ohne Speicherung</p>
+      </header>
+
+      <section id="os-workspace" class="os-workspace" data-state="irritation" aria-busy="false">
+        <section id="os-lab" class="lab-stage" role="group" aria-label="Zufallslabor: Fünf Würfelergebnisse sind notiert, ein Platz bleibt leer.">
+          <div class="lab-heading">
+            <div><p class="stage-label">Ereignis</p><h2>gerade Zahl</h2></div>
+            <p>Welche Ergebnisse kann ein Würfel zeigen?</p>
+          </div>
+          <div class="outcome-grid" aria-label="Notierter Ergebnisraum">
+            <span class="os-outcome outcome-card" data-value="1" aria-label="Ergebnis 1">1</span>
+            <span class="os-outcome outcome-card" data-value="2" aria-label="Ergebnis 2">2</span>
+            <span class="os-outcome outcome-card" data-value="3" aria-label="Ergebnis 3">3</span>
+            <span class="os-outcome outcome-card" data-value="4" aria-label="Ergebnis 4">4</span>
+            <span class="os-outcome outcome-card" data-value="5" aria-label="Ergebnis 5">5</span>
+            <span id="os-placeholder" class="outcome-placeholder" aria-label="Leerer Platz">?</span>
+            <span id="os-six" class="os-outcome outcome-card" data-value="6" aria-label="Ergebnis 6" hidden>6</span>
+          </div>
+
+          <article id="os-wrong" class="equation-card is-wrong" hidden>
+            <p>Rechnung aus dem unvollständigen Raum</p>
+            <strong>2/5 = 40 %</strong>
+          </article>
+          <article id="os-missing" class="missing-card" hidden>
+            <strong>Ergebnis 6 fehlt.</strong>
+            <span>Auch 6 gehört zum Ereignis „gerade Zahl“.</span>
+          </article>
+          <article id="os-correct" class="equation-card is-correct" hidden>
+            <p>Rechnung mit vollständigem Ergebnisraum</p>
+            <strong>3/6 = 1/2 = 50 %</strong>
+          </article>
+        </section>
+
+        <section id="os-conclusion" class="conclusion-card" hidden>
+          <h2>Aha</h2>
+          <p><strong>Der Nenner basiert auf allen möglichen elementaren Ergebnissen.</strong></p>
+          <p>Der Nenner einer Laplace-Wahrscheinlichkeit basiert auf dem vollständigen Ergebnisraum.</p>
+          <p>Man darf mögliche Ergebnisse nicht vergessen.</p>
+        </section>
+      </section>
+
+      <section class="os-insight" aria-live="polite">
+        <p id="os-insight">Für das Ereignis „gerade Zahl“ sind bisher nur fünf mögliche Ergebnisse notiert.</p>
+        <div class="os-controls">
+          <button id="os-next" class="primary-button" type="button">Weiter</button>
+          <button id="os-reset" class="reset-button" type="button">Zurücksetzen</button>
+        </div>
+        <p id="os-live" class="visually-hidden" aria-live="polite"></p>
+      </section>
+      <noscript>Für diesen interaktiven Aha-Moment muss JavaScript aktiviert sein.</noscript>
+    </main>
+    <script type="module" src="./src/outcome-space-app.js"></script>
+  </body>
+</html>

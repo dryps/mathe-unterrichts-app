@@ -45,7 +45,8 @@
     "test:percentage-roles-visual": "node scripts/render-percentage-roles-states.mjs",
     "test:percentage-factor-visual": "node scripts/render-percentage-factor-states.mjs",
     "test:percentage-chart-visual": "node scripts/render-percentage-chart-states.mjs",
-    "test:random-event-visual": "node scripts/render-random-event-states.mjs"
+    "test:random-event-visual": "node scripts/render-random-event-states.mjs",
+    "test:outcome-space-visual": "node scripts/render-outcome-space-states.mjs"
   },
   "engines": {
     "node": ">=20"
