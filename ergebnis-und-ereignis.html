@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f5f7fb" />
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Mathe im Unterricht" />
+    <meta name="description" content="Interaktiver Aha-Moment zu Ergebnis und Ereignis im Zufallslabor." />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./icon-180.png" />
+    <link rel="stylesheet" href="./navigation.css" />
+    <link rel="stylesheet" href="./random-event.css" />
+    <title>Warum ist 4 ein Ergebnis, aber „gerade Zahl“ ein Ereignis?</title>
+  </head>
+  <body>
+    <main class="rl-shell">
+      <nav class="module-navigation" aria-label="Modulnavigation">
+        <a class="module-back-link" href="./#wahrscheinlichkeit">← Wahrscheinlichkeit</a>
+      </nav>
+      <header class="rl-header">
+        <div>
+          <p class="eyebrow">Wahrscheinlichkeit · Kapitel 8</p>
+          <h1>Warum ist 4 ein Ergebnis, aber „gerade Zahl“ ein Ereignis?</h1>
+          <p class="subtitle">Ergebnis und Ereignis</p>
+        </div>
+        <p class="local-note" aria-label="Datenschutzstatus"><span aria-hidden="true">●</span> lokal · ohne Speicherung</p>
+      </header>
+
+      <section id="rl-workspace" class="rl-workspace" data-state="irritation" aria-busy="false">
+        <section id="rl-lab" class="lab-stage" role="group" aria-label="Zufallslabor: Ein Würfel zeigt die 4. Noch ist offen, wie dieser Ausgang eingeordnet wird.">
+          <div class="die-area">
+            <p class="stage-label">Versuch: Würfelwurf</p>
+            <div class="die-face" aria-label="Würfelergebnis 4">4</div>
+          </div>
+
+          <article id="rl-result" class="result-card" hidden>
+            <span class="result-number">4</span>
+            <div><strong>Ergebnis</strong><p>ein einzelner möglicher Ausgang</p></div>
+          </article>
+
+          <section id="rl-room" class="room-card" aria-labelledby="rl-room-title" hidden>
+            <h2 id="rl-room-title">Ergebnisraum</h2>
+            <div class="outcome-grid">
+              <span class="rl-outcome outcome-card" data-value="1" aria-label="Ergebnis 1">1</span>
+              <span class="rl-outcome outcome-card" data-value="2" aria-label="Ergebnis 2">2</span>
+              <span class="rl-outcome outcome-card" data-value="3" aria-label="Ergebnis 3">3</span>
+              <span class="rl-outcome outcome-card" data-value="4" aria-label="Ergebnis 4">4</span>
+              <span class="rl-outcome outcome-card" data-value="5" aria-label="Ergebnis 5">5</span>
+              <span class="rl-outcome outcome-card" data-value="6" aria-label="Ergebnis 6">6</span>
+            </div>
+          </section>
+
+          <section id="rl-event" class="event-card" hidden>
+            <p>Ereignis „<strong id="rl-event-label">gerade Zahl</strong>“</p>
+            <output id="rl-event-set">{2, 4, 6}</output>
+          </section>
+        </section>
+
+        <section id="rl-explore" class="explore-card" hidden>
+          <label for="rl-event-select">Ereignis auswählen</label>
+          <select id="rl-event-select" aria-label="Ereignis auswählen: gerade Zahl mit den Ergebnissen 2, 4, 6">
+            <option value="even">gerade Zahl</option>
+            <option value="greater-four">größer als 4</option>
+            <option value="one">die Zahl 1</option>
+          </select>
+        </section>
+
+        <section id="rl-conclusion" class="conclusion-card" hidden>
+          <h2>Aha</h2>
+          <p><strong>Ereignis = Menge aus Ergebnissen.</strong></p>
+          <p>Ein Ergebnis ist ein einzelner möglicher Ausgang. Ein Ereignis ist eine Menge aus einem oder mehreren Ergebnissen.</p>
+        </section>
+      </section>
+
+      <section class="rl-insight" aria-live="polite">
+        <p id="rl-insight">Der Würfel zeigt 4. Ist das schon dasselbe wie „gerade Zahl“?</p>
+        <div class="rl-controls">
+          <button id="rl-next" class="primary-button" type="button">Weiter</button>
+          <button id="rl-reset" class="reset-button" type="button">Zurücksetzen</button>
+        </div>
+        <p id="rl-live" class="visually-hidden" aria-live="polite"></p>
+      </section>
+      <noscript>Für diesen interaktiven Aha-Moment muss JavaScript aktiviert sein.</noscript>
+    </main>
+    <script type="module" src="./src/random-event-app.js"></script>
+  </body>
+</html>

@@ -79,6 +79,8 @@ const files = {
   percentageFactorApp: await readFile(new URL("../src/percentage-factor-app.js", import.meta.url), "utf8"),
   percentageChart: await readFile(new URL("../prozentdiagramme.html", import.meta.url), "utf8"),
   percentageChartApp: await readFile(new URL("../src/percentage-chart-app.js", import.meta.url), "utf8"),
+  randomEvent: await readFile(new URL("../ergebnis-und-ereignis.html", import.meta.url), "utf8"),
+  randomEventApp: await readFile(new URL("../src/random-event-app.js", import.meta.url), "utf8"),
   worker: await readFile(new URL("../sw.js", import.meta.url), "utf8"),
   manifest: await readFile(new URL("../manifest.webmanifest", import.meta.url), "utf8"),
 };
@@ -99,11 +101,11 @@ const landscapeTabletCss = mediaBlock(
   "@media (orientation: landscape) and (min-width: 900px) and (max-width: 1500px)",
 );
 
-test("Startseite zeigt Klasse 7 mit den sieben produktiven Kapiteln", () => {
+test("Startseite zeigt Klasse 7 mit den acht produktiven Kapiteln", () => {
   assert.match(files.home, /<h1>Mathe im Unterricht<\/h1>/);
   assert.match(files.home, /Interaktive Aha-Momente/);
   assert.match(files.home, /<p class="grade-label">Klasse 7<\/p>/);
-  assert.equal((files.home.match(/class="chapter(?:\s|")/g) ?? []).length, 7);
+  assert.equal((files.home.match(/class="chapter(?:\s|")/g) ?? []).length, 8);
   assert.match(files.home, /id="rationale-zahlen"/);
   assert.match(files.home, /<h2 id="rationale-title">1\. Rationale Zahlen<\/h2>/);
   assert.match(files.home, /<h2 id="chapter-title">2\. Dreiecke<\/h2>/);
@@ -117,13 +119,15 @@ test("Startseite zeigt Klasse 7 mit den sieben produktiven Kapiteln", () => {
   assert.match(files.home, /<h2 id="assignments-title">6\. Proportional · Antiproportional<\/h2>/);
   assert.match(files.home, /id="prozentrechnung"/);
   assert.match(files.home, /<h2 id="percentages-title">7\. Prozentrechnung<\/h2>/);
+  assert.match(files.home, /id="wahrscheinlichkeit"/);
+  assert.match(files.home, /<h2 id="probability-title">8\. Wahrscheinlichkeit<\/h2>/);
   assert.doesNotMatch(files.home, /Private Unterrichts-App|>Kapitel</);
   assert.doesNotMatch(files.home, /Klasse 8|Klasse 9|Klassenauswahl/);
   assert.doesNotMatch(files.home, /<ul|<ol/);
 });
 
 test("Kapitel 1 bis 3 enthalten je sechs Module, Kapitel 4 vier und Kapitel 5 sowie 6 vollständig", () => {
-  assert.equal((files.home.match(/class="module-card"/g) ?? []).length,36);
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length,37);
   assert.match(files.home, /href="\.\/zahlengerade\.html"/);
   assert.match(files.home, /Warum liegen negative Zahlen links von der Null\?/);
   assert.match(files.home, /<span class="module-subtitle">Zahlengerade<\/span>/);
@@ -227,8 +231,11 @@ test("Kapitel 1 bis 3 enthalten je sechs Module, Kapitel 4 vier und Kapitel 5 so
   assert.match(files.home, /href="\.\/grundwert-prozentwert-prozentsatz\.html"/);
   assert.match(files.home, /Warum sind Grundwert, Prozentwert und Prozentsatz keine drei verschiedenen Themen\?/);
   assert.match(files.home, /<span class="module-subtitle">Grundwert · Prozentwert · Prozentsatz<\/span>/);
-  assert.equal((files.home.match(/class="module-status"/g) ?? []).length,36);
-  assert.equal((files.home.match(/fertig/g) ?? []).length,36);
+  assert.match(files.home, /href="\.\/ergebnis-und-ereignis\.html"/);
+  assert.match(files.home, /Warum ist 4 ein Ergebnis, aber „gerade Zahl“ ein Ereignis\?/);
+  assert.match(files.home, /<span class="module-subtitle">Ergebnis und Ereignis<\/span>/);
+  assert.equal((files.home.match(/class="module-status"/g) ?? []).length,37);
+  assert.equal((files.home.match(/fertig/g) ?? []).length,37);
 });
 
 test("Alle Dreiecksmodule behalten ausschließlich ihren bisherigen Rückweg", () => {
@@ -301,6 +308,12 @@ test("K7.1 bis K7.5 führen ausschließlich zu Prozentrechnung zurück", () => {
     assert.match(module, /class="module-back-link" href="\.\/#prozentrechnung">← Prozentrechnung<\/a>/);
     assert.doesNotMatch(module, /Suche|Einstellungen|Favoriten|Statistik|Anmelden/);
   }
+});
+
+test("K8.1 führt ausschließlich zu Wahrscheinlichkeit zurück", () => {
+  assert.equal((files.randomEvent.match(/class="module-navigation"/g) ?? []).length, 1);
+  assert.match(files.randomEvent, /class="module-back-link" href="\.\/#wahrscheinlichkeit">← Wahrscheinlichkeit<\/a>/);
+  assert.doesNotMatch(files.randomEvent, /Suche|Einstellungen|Favoriten|Statistik|Anmelden/);
 });
 
 test("Startseite ist für iPad, Querformat und Klassenraumbildschirm ausgelegt", () => {
@@ -607,13 +620,19 @@ test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und beide Kapite
     "src/percentage-chart-animation.js",
     "src/percentage-chart-math.js",
     "src/percentage-chart-state.js",
+    "ergebnis-und-ereignis.html",
+    "random-event.css",
+    "src/random-event-app.js",
+    "src/random-event-animation.js",
+    "src/random-event-math.js",
+    "src/random-event-state.js",
     "manifest.webmanifest",
     "icon.svg",
   ]) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
   assert.match(files.shell, /serviceWorker\.register/);
-  assert.match(files.worker, /mathe-unterrichts-app-v41/);
+  assert.match(files.worker, /mathe-unterrichts-app-v42/);
 });
 
 test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", () => {
@@ -678,6 +697,8 @@ test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", 
     files.percentageFactorApp,
     files.percentageChart,
     files.percentageChartApp,
+    files.randomEvent,
+    files.randomEventApp,
     files.worker,
   ].join("\n");
   assert.doesNotMatch(runtime, /localStorage|sessionStorage|indexedDB|document\.cookie/);
