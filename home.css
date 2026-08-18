@@ -370,6 +370,10 @@ noscript {
     grid-column: span 2;
   }
 
+  .chapter-assignments .module-card {
+    grid-column: auto;
+  }
+
   .module-status {
     margin-bottom: clamp(11px, 1.4vw, 16px);
     padding: 6px 10px;
