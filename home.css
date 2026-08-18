@@ -145,7 +145,7 @@ h2 {
 }
 
 .chapter-assignments .module-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .module-card {
@@ -336,7 +336,7 @@ noscript {
   }
 
   .chapter-assignments .module-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .chapter-equations .module-grid {
@@ -379,7 +379,7 @@ noscript {
   }
 
   .chapter-assignments .module-card {
-    grid-column: auto;
+    grid-column: span 2;
   }
 
   .module-status {
