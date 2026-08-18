@@ -28,11 +28,11 @@ test("Startseite behält K5.3 genau einmal innerhalb der vier Kapitel-5-Karten",
   assert.equal((files.home.match(/href="\.\/viereck-winkelsumme\.html"/g) ?? []).length, 1);
   assert.match(chapter, /Warum sind es im Viereck immer 360°\?/);
   assert.match(chapter, /<span class="module-subtitle">Winkelsumme im Viereck<\/span>/);
-  assert.equal((files.home.match(/class="module-card"/g) ?? []).length,36);
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length,37);
 });
 
-test("Cache v41, Pages und Smoke enthalten exakt die sechs neuen Laufzeitdateien", () => {
-  assert.match(files.worker, /mathe-unterrichts-app-v41/);
+test("Cache v42, Pages und Smoke enthalten exakt die sechs neuen Laufzeitdateien", () => {
+  assert.match(files.worker, /mathe-unterrichts-app-v42/);
   assert.doesNotMatch(files.worker, /mathe-unterrichts-app-v29/);
   for (const file of runtimeFiles) {
     const pattern = new RegExp(file.replaceAll(".", "\\."));

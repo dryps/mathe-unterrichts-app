@@ -123,15 +123,15 @@ function createWorkerHarness() {
   };
 }
 
-test("Installation füllt Version 41 vollständig und Aktivierung entfernt ältere Versionen", async () => {
+test("Installation füllt Version 42 vollständig und Aktivierung entfernt ältere Versionen", async () => {
   const harness = createWorkerHarness();
   await harness.dispatchLifecycle("install");
   await harness.dispatchLifecycle("activate");
 
   assert.equal(harness.skipped, true);
   assert.equal(harness.claimed, true);
-  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v41"]);
-  const current = harness.stores.get("mathe-unterrichts-app-v41");
+  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v42"]);
+  const current = harness.stores.get("mathe-unterrichts-app-v42");
   for (const path of [
     "./",
     "./index.html",
@@ -326,6 +326,12 @@ test("Installation füllt Version 41 vollständig und Aktivierung entfernt älte
     "./src/percentage-chart-animation.js",
     "./src/percentage-chart-math.js",
     "./src/percentage-chart-state.js",
+    "./ergebnis-und-ereignis.html",
+    "./random-event.css",
+    "./src/random-event-app.js",
+    "./src/random-event-animation.js",
+    "./src/random-event-math.js",
+    "./src/random-event-state.js",
   ]) {
     assert.equal(current.has(new URL(path, `${origin}/`).href), true);
   }
@@ -530,6 +536,12 @@ test("Offline-Neustart liefert Startseite und alle Kapitel ohne Netzwerk aus", a
     "/src/percentage-chart-animation.js",
     "/src/percentage-chart-math.js",
     "/src/percentage-chart-state.js",
+    "/ergebnis-und-ereignis.html",
+    "/random-event.css",
+    "/src/random-event-app.js",
+    "/src/random-event-animation.js",
+    "/src/random-event-math.js",
+    "/src/random-event-state.js",
   ]) {
     const response = await harness.dispatchFetch(path);
     assert.equal(response.status, 200);

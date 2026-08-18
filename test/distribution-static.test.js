@@ -57,7 +57,7 @@ test("Responsive Regeln schützen kleine Breite, Telefon, iPad und Klassenraum",
 test("Produktintegration enthält Startseitenkarte und vollständige Offline-Ressourcen", () => {
   assert.match(files.home, /ausmultiplizieren\.html/);
   for (const file of ["ausmultiplizieren.html", "distribution.css", "src/distribution-app.js", "src/distribution-math.js", "src/distribution-state.js", "src/distribution-animation.js"]) assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
-  assert.match(files.worker, /mathe-unterrichts-app-v41/);
+  assert.match(files.worker, /mathe-unterrichts-app-v42/);
 });
 
 test("Modul enthält keine Speicherung, Fremdaufrufe oder ausgeschlossenen Produktfunktionen", () => {

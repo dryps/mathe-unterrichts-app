@@ -160,6 +160,14 @@ h2 {
   grid-column: auto;
 }
 
+.chapter-probability .module-grid {
+  grid-template-columns: 1fr;
+}
+
+.chapter-probability .module-card {
+  grid-column: auto;
+}
+
 .module-card {
   display: flex;
   min-height: clamp(220px, 28vw, 330px);
@@ -272,6 +280,10 @@ noscript {
     grid-template-columns: 1fr;
   }
 
+  .chapter-probability .module-grid {
+    grid-template-columns: 1fr;
+  }
+
   .module-card {
     min-height: 210px;
   }
@@ -316,6 +328,10 @@ noscript {
 
   .chapter-percentages .module-card:nth-child(5) {
     grid-column: span 2;
+  }
+
+  .chapter-probability .module-grid {
+    grid-template-columns: 1fr;
   }
 
 }
@@ -420,6 +436,14 @@ noscript {
 
   .chapter-percentages .module-card:nth-child(5) {
     grid-column: 4 / span 2;
+  }
+
+  .chapter-probability .module-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .chapter-probability .module-card {
+    grid-column: auto;
   }
 
   .chapter-rationale .module-card {
