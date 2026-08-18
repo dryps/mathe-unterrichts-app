@@ -69,6 +69,8 @@ const files = {
   inverseAssignmentApp: await readFile(new URL("../src/inverse-assignment-app.js", import.meta.url), "utf8"),
   modelChoice: await readFile(new URL("../modellwahl.html", import.meta.url), "utf8"),
   modelChoiceApp: await readFile(new URL("../src/model-choice-app.js", import.meta.url), "utf8"),
+  percentageShare: await readFile(new URL("../prozent-als-anteil.html", import.meta.url), "utf8"),
+  percentageShareApp: await readFile(new URL("../src/percentage-share-app.js", import.meta.url), "utf8"),
   worker: await readFile(new URL("../sw.js", import.meta.url), "utf8"),
   manifest: await readFile(new URL("../manifest.webmanifest", import.meta.url), "utf8"),
 };
@@ -89,11 +91,11 @@ const landscapeTabletCss = mediaBlock(
   "@media (orientation: landscape) and (min-width: 900px) and (max-width: 1500px)",
 );
 
-test("Startseite zeigt Klasse 7 mit den sechs produktiven Kapiteln", () => {
+test("Startseite zeigt Klasse 7 mit den sieben produktiven Kapiteln", () => {
   assert.match(files.home, /<h1>Mathe im Unterricht<\/h1>/);
   assert.match(files.home, /Interaktive Aha-Momente/);
   assert.match(files.home, /<p class="grade-label">Klasse 7<\/p>/);
-  assert.equal((files.home.match(/class="chapter(?:\s|")/g) ?? []).length, 6);
+  assert.equal((files.home.match(/class="chapter(?:\s|")/g) ?? []).length, 7);
   assert.match(files.home, /id="rationale-zahlen"/);
   assert.match(files.home, /<h2 id="rationale-title">1\. Rationale Zahlen<\/h2>/);
   assert.match(files.home, /<h2 id="chapter-title">2\. Dreiecke<\/h2>/);
@@ -105,13 +107,15 @@ test("Startseite zeigt Klasse 7 mit den sechs produktiven Kapiteln", () => {
   assert.match(files.home, /<h2 id="quadrilaterals-title">5\. Vierecke<\/h2>/);
   assert.match(files.home, /id="zuordnungen"/);
   assert.match(files.home, /<h2 id="assignments-title">6\. Proportional · Antiproportional<\/h2>/);
+  assert.match(files.home, /id="prozentrechnung"/);
+  assert.match(files.home, /<h2 id="percentages-title">7\. Prozentrechnung<\/h2>/);
   assert.doesNotMatch(files.home, /Private Unterrichts-App|>Kapitel</);
   assert.doesNotMatch(files.home, /Klasse 8|Klasse 9|Klassenauswahl/);
   assert.doesNotMatch(files.home, /<ul|<ol/);
 });
 
 test("Kapitel 1 bis 3 enthalten je sechs Module, Kapitel 4 vier und Kapitel 5 sowie 6 vollständig", () => {
-  assert.equal((files.home.match(/class="module-card"/g) ?? []).length,31);
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length,32);
   assert.match(files.home, /href="\.\/zahlengerade\.html"/);
   assert.match(files.home, /Warum liegen negative Zahlen links von der Null\?/);
   assert.match(files.home, /<span class="module-subtitle">Zahlengerade<\/span>/);
@@ -206,8 +210,11 @@ test("Kapitel 1 bis 3 enthalten je sechs Module, Kapitel 4 vier und Kapitel 5 so
   assert.match(files.home, /href="\.\/modellwahl\.html"/);
   assert.match(files.home, /Warum muss ich vor dem Dreisatz wissen, welches Modell vorliegt\?/);
   assert.match(files.home, /<span class="module-subtitle">Proportional oder antiproportional\?<\/span>/);
-  assert.equal((files.home.match(/class="module-status"/g) ?? []).length,31);
-  assert.equal((files.home.match(/fertig/g) ?? []).length,31);
+  assert.match(files.home, /href="\.\/prozent-als-anteil\.html"/);
+  assert.match(files.home, /Warum sagt 25 % ohne ein Ganzes noch nicht, wie viel das ist\?/);
+  assert.match(files.home, /<span class="module-subtitle">Prozent als Anteil<\/span>/);
+  assert.equal((files.home.match(/class="module-status"/g) ?? []).length,32);
+  assert.equal((files.home.match(/fertig/g) ?? []).length,32);
 });
 
 test("Alle Dreiecksmodule behalten ausschließlich ihren bisherigen Rückweg", () => {
@@ -272,6 +279,12 @@ test("K6.1 bis K6.5 führen ausschließlich zu Proportional · Antiproportional 
     assert.match(module, /class="module-back-link" href="\.\/#zuordnungen">← Proportional · Antiproportional<\/a>/);
     assert.doesNotMatch(module, /Suche|Einstellungen|Favoriten|Statistik|Anmelden/);
   }
+});
+
+test("K7.1 führt ausschließlich zu Prozentrechnung zurück", () => {
+  assert.equal((files.percentageShare.match(/class="module-navigation"/g) ?? []).length, 1);
+  assert.match(files.percentageShare, /class="module-back-link" href="\.\/#prozentrechnung">← Prozentrechnung<\/a>/);
+  assert.doesNotMatch(files.percentageShare, /Suche|Einstellungen|Favoriten|Statistik|Anmelden/);
 });
 
 test("Startseite ist für iPad, Querformat und Klassenraumbildschirm ausgelegt", () => {
@@ -548,13 +561,19 @@ test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und beide Kapite
     "src/model-choice-animation.js",
     "src/model-choice-math.js",
     "src/model-choice-state.js",
+    "prozent-als-anteil.html",
+    "percentage-share.css",
+    "src/percentage-share-app.js",
+    "src/percentage-share-animation.js",
+    "src/percentage-share-math.js",
+    "src/percentage-share-state.js",
     "manifest.webmanifest",
     "icon.svg",
   ]) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
   assert.match(files.shell, /serviceWorker\.register/);
-  assert.match(files.worker, /mathe-unterrichts-app-v36/);
+  assert.match(files.worker, /mathe-unterrichts-app-v37/);
 });
 
 test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", () => {
@@ -609,6 +628,8 @@ test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", 
     files.inverseAssignmentApp,
     files.modelChoice,
     files.modelChoiceApp,
+    files.percentageShare,
+    files.percentageShareApp,
     files.worker,
   ].join("\n");
   assert.doesNotMatch(runtime, /localStorage|sessionStorage|indexedDB|document\.cookie/);

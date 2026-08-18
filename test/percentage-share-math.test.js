@@ -1,0 +1,3 @@
+import assert from "node:assert/strict";import test from "node:test";import { PERCENTAGE_WHOLES,percentageShare,snapPercentageWhole } from "../src/percentage-share-math.js";
+test("25 Prozent liefern für alle drei verbindlichen Ganzen die exakten Anteile",()=>{assert.deepEqual(PERCENTAGE_WHOLES,[20,80,200]);assert.deepEqual(percentageShare(20),{percent:25,whole:20,part:5});assert.deepEqual(percentageShare(80),{percent:25,whole:80,part:20});assert.deepEqual(percentageShare(200),{percent:25,whole:200,part:50});});
+test("der diskrete Regler rastet sicher auf 20, 80 oder 200",()=>{assert.equal(snapPercentageWhole(-2),20);assert.equal(snapPercentageWhole(1),80);assert.equal(snapPercentageWhole(99),200);});
