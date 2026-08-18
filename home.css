@@ -145,7 +145,11 @@ h2 {
 }
 
 .chapter-assignments .module-grid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.chapter-assignments .module-card {
+  grid-column: span 2;
 }
 
 .module-card {
@@ -252,6 +256,10 @@ noscript {
     grid-template-columns: 1fr;
   }
 
+  .chapter-assignments .module-card {
+    grid-column: auto;
+  }
+
   .module-card {
     min-height: 210px;
   }
@@ -284,6 +292,10 @@ noscript {
 
   .chapter-assignments .module-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .chapter-assignments .module-card {
+    grid-column: auto;
   }
 
 }
@@ -336,7 +348,7 @@ noscript {
   }
 
   .chapter-assignments .module-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 
   .chapter-equations .module-grid {

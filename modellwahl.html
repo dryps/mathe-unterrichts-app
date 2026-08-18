@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+  <meta name="theme-color" content="#f5f7fb"/>
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-title" content="Mathe im Unterricht"/>
+  <meta name="description" content="Interaktiver Aha-Moment zur Modellwahl bei proportionalen und antiproportionalen Zuordnungen."/>
+  <link rel="manifest" href="./manifest.webmanifest"/>
+  <link rel="icon" href="./icon.svg" type="image/svg+xml"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="./icon-180.png"/>
+  <link rel="stylesheet" href="./navigation.css"/>
+  <link rel="stylesheet" href="./model-choice.css"/>
+  <title>Warum muss ich vor dem Dreisatz wissen, welches Modell vorliegt?</title>
+</head>
+<body>
+<main class="model-shell">
+  <nav class="module-navigation" aria-label="Modulnavigation"><a class="module-back-link" href="./#zuordnungen">← Proportional · Antiproportional</a></nav>
+  <header class="model-header"><div><p class="eyebrow">Zuordnungen · Kapitel 6</p><h1>Warum muss ich vor dem Dreisatz wissen, welches Modell vorliegt?</h1><p class="subtitle">Proportional oder antiproportional?</p></div><p class="local-note" aria-label="Datenschutzstatus"><span aria-hidden="true">●</span> lokal · ohne Speicherung</p></header>
+
+  <section id="model-workspace" class="model-workspace" data-state="irritation" aria-busy="false">
+    <section class="same-start" aria-label="Zwei Aufgaben mit demselben Startpaar"><article><h2>Aufgabe A</h2><strong>4 → 12</strong></article><article><h2>Aufgabe B</h2><strong>4 → 12</strong></article></section>
+
+    <section id="model-situations" class="model-stage situation-grid" hidden>
+      <article class="proportional-card"><p class="model-badge">Situation A</p><h2>Kinokarten</h2><p id="model-proportional-situation">4 Karten kosten 12 €.</p></article>
+      <article class="inverse-card"><p class="model-badge">Situation B</p><h2>Gemeinsame Arbeit</h2><p id="model-inverse-situation">4 Personen brauchen 12 Stunden.</p></article>
+    </section>
+
+    <section id="model-double" class="model-stage relation-grid" hidden>
+      <article class="proportional-card"><h2>Proportional</h2><p id="model-proportional-double-input" class="change-line">2 Karten → 4 Karten</p><p id="model-proportional-double-output" class="change-line result">6 € → 12 €</p><strong class="rule proportional-rule">doppelt → doppelt</strong></article>
+      <article class="inverse-card"><h2>Antiproportional</h2><p id="model-inverse-double-input" class="change-line">2 Personen → 4 Personen</p><p id="model-inverse-double-output" class="change-line result">24 Stunden → 12 Stunden</p><strong class="rule inverse-rule">doppelt → halb</strong></article>
+    </section>
+
+    <section id="model-tests" class="model-stage test-grid" hidden>
+      <article class="test-card proportional-card"><h2>Quotient prüfen</h2><p id="model-proportional-test">6 : 2 = 3; 12 : 4 = 3</p><strong>Quotient bleibt konstant.</strong></article>
+      <article class="test-card inverse-card"><h2>Produkt prüfen</h2><p id="model-inverse-test">2 · 24 = 48; 4 · 12 = 48</p><strong>Produkt bleibt konstant.</strong></article>
+    </section>
+
+    <section id="model-routes" class="model-stage route-grid" hidden>
+      <article class="route-card proportional-card"><h2>Proportionaler Dreisatz</h2><ol><li>4 Karten → 12 €</li><li>÷ 4: 1 Karte → 3 €</li><li id="model-proportional-route-target">× 4: 4 Karten → 12 €</li></ol></article>
+      <article class="route-card inverse-card"><h2>Antiproportional rechnen</h2><ol><li>4 Personen · 12 Stunden = 48</li><li>Produkt bleibt 48</li><li id="model-inverse-route-target">48 : 4 = 12 Stunden</li></ol></article>
+    </section>
+
+    <section id="model-explore" class="model-explore" hidden>
+      <label for="model-input">Gemeinsame Eingabe erkunden</label>
+      <input id="model-input" type="range" min="0" max="3" step="1" value="1" aria-label="Gemeinsame Eingabe erkunden: 4" aria-valuetext="4 als erster Wert"/>
+      <div class="explore-results"><output id="model-proportional-pair" for="model-input">4 Karten → 12 €</output><output id="model-inverse-pair" for="model-input">4 Personen → 12 Stunden</output></div>
+    </section>
+    <section id="model-conclusion" class="conclusion-card" hidden><h2>Aha</h2><p>Erst Beziehung verstehen, dann rechnen.</p></section>
+  </section>
+
+  <section class="model-insight" aria-live="polite"><p id="model-insight">Zweimal 4 → 12. Darf man deshalb zweimal gleich weiterrechnen?</p><div class="model-controls"><button id="model-next" class="primary-button" type="button">Weiter</button><button id="model-reset" class="reset-button" type="button">Zurücksetzen</button></div><p id="model-live" class="visually-hidden" aria-live="polite"></p></section>
+  <noscript>Für diesen interaktiven Aha-Moment muss JavaScript aktiviert sein.</noscript>
+</main>
+<script type="module" src="./src/model-choice-app.js"></script>
+</body>
+</html>

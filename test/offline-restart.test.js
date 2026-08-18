@@ -123,15 +123,15 @@ function createWorkerHarness() {
   };
 }
 
-test("Installation füllt Version 35 vollständig und Aktivierung entfernt ältere Versionen", async () => {
+test("Installation füllt Version 36 vollständig und Aktivierung entfernt ältere Versionen", async () => {
   const harness = createWorkerHarness();
   await harness.dispatchLifecycle("install");
   await harness.dispatchLifecycle("activate");
 
   assert.equal(harness.skipped, true);
   assert.equal(harness.claimed, true);
-  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v35"]);
-  const current = harness.stores.get("mathe-unterrichts-app-v35");
+  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v36"]);
+  const current = harness.stores.get("mathe-unterrichts-app-v36");
   for (const path of [
     "./",
     "./index.html",
@@ -290,6 +290,12 @@ test("Installation füllt Version 35 vollständig und Aktivierung entfernt älte
     "./src/inverse-assignment-animation.js",
     "./src/inverse-assignment-math.js",
     "./src/inverse-assignment-state.js",
+    "./modellwahl.html",
+    "./model-choice.css",
+    "./src/model-choice-app.js",
+    "./src/model-choice-animation.js",
+    "./src/model-choice-math.js",
+    "./src/model-choice-state.js",
   ]) {
     assert.equal(current.has(new URL(path, `${origin}/`).href), true);
   }
@@ -458,6 +464,12 @@ test("Offline-Neustart liefert Startseite und alle Kapitel ohne Netzwerk aus", a
     "/src/inverse-assignment-animation.js",
     "/src/inverse-assignment-math.js",
     "/src/inverse-assignment-state.js",
+    "/modellwahl.html",
+    "/model-choice.css",
+    "/src/model-choice-app.js",
+    "/src/model-choice-animation.js",
+    "/src/model-choice-math.js",
+    "/src/model-choice-state.js",
   ]) {
     const response = await harness.dispatchFetch(path);
     assert.equal(response.status, 200);
