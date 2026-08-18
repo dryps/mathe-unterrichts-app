@@ -12,7 +12,8 @@ test("Frage, Untertitel, Transformation und Aha sind exakt",()=>{
 });
 
 test("alle späteren Erkenntnisse sind initial echt verborgen",()=>{
-  for(const id of ["pf-hundredth","pf-reduced","pf-decimal","pf-product","pf-warning","pf-explore","pf-conclusion"]) assert.match(html,new RegExp(`id="${id}"[^>]*hidden`));
+  for(const id of ["pf-hundredth-step","pf-reduced-step","pf-decimal-step","pf-product","pf-warning","pf-explore","pf-conclusion"]) assert.match(html,new RegExp(`id="${id}"[^>]*hidden`));
+  assert.equal((html.match(/class="chain-step" hidden/g)??[]).length,3);
   assert.match(css,/\[hidden\]\s*\{\s*display:\s*none\s*!important/);
 });
 

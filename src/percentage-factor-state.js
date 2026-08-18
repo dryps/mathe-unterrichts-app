@@ -26,6 +26,8 @@ export function percentageFactorViewModel(current){
   const reducedText=`${relation.reducedNumerator} / ${relation.reducedDenominator}`;
   const decimalText=relation.factorText;
   const productText=`${decimalText} · ${relation.whole} = ${relation.result}`;
+  const warningTitle=`Warum nicht ${relation.rate} · ${relation.whole}?`;
+  const warningText=`${relation.rate} % bedeutet ${relation.numerator} / ${relation.denominator} – der Faktor ist ${decimalText}.`;
   const revealed=[`${relation.rate} Prozent`];
   if(rank>=1) revealed.push(`${relation.numerator} Hundertstel`);
   if(rank>=2) revealed.push(`gekürzt ${relation.reducedNumerator} durch ${relation.reducedDenominator}`);
@@ -42,7 +44,7 @@ export function percentageFactorViewModel(current){
     explore:CONCLUSION,
   };
   return Object.freeze({
-    view:current.view,scenarioIndex,relation,rateText,hundredthText,reducedText,decimalText,productText,chainAriaLabel,
+    view:current.view,scenarioIndex,relation,rateText,hundredthText,reducedText,decimalText,productText,warningTitle,warningText,chainAriaLabel,
     showHundredth:rank>=1,showReduced:rank>=2,showDecimal:rank>=3,showProduct:rank>=4,showWarning:rank>=4,showExplore:rank>=5,showConclusion:rank>=5,showNext:rank<5,
     controlsInteractive:rank>=5&&!current.locked,sliderValueText,sliderAriaLabel:`Prozentbeispiel verändern: ${sliderValueText}`,
     insight:insights[current.view],liveText:rank>=5?`${sliderValueText}. ${CONCLUSION}`:insights[current.view],conclusion:CONCLUSION,

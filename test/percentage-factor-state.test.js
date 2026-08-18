@@ -36,6 +36,8 @@ test("Erkundung hält die vollständige Darstellung synchron",()=>{
   assert.equal(model.reducedText,"3 / 4");
   assert.equal(model.decimalText,"0,75");
   assert.equal(model.productText,"0,75 · 40 = 30");
+  assert.equal(model.warningTitle,"Warum nicht 75 · 40?");
+  assert.equal(model.warningText,"75 % bedeutet 75 / 100 – der Faktor ist 0,75.");
   assert.equal(model.sliderValueText,"Beispiel 4 von 4: 75 Prozent sind der Faktor 0,75; 0,75 mal 40 ist 30");
   assert.match(model.liveText,/75 Prozent.*0,75.*40.*30/);
 });

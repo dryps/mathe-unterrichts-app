@@ -28,15 +28,15 @@
         <p class="stage-label">Dieselbe Zahl in vier Schreibweisen</p>
         <div id="pf-chain" class="factor-chain" role="img" aria-label="25 Prozent; weitere Darstellungen noch verborgen.">
           <strong id="pf-rate" class="factor-token rate-token">25 %</strong>
-          <span class="chain-step"><span aria-hidden="true">→</span><strong id="pf-hundredth" class="factor-token" hidden>25 / 100</strong></span>
-          <span class="chain-step"><span aria-hidden="true">→</span><strong id="pf-reduced" class="factor-token" hidden>1 / 4</strong></span>
-          <span class="chain-step"><span aria-hidden="true">→</span><strong id="pf-decimal" class="factor-token decimal-token" hidden>0,25</strong></span>
+          <span id="pf-hundredth-step" class="chain-step" hidden><span aria-hidden="true">→</span><strong id="pf-hundredth" class="factor-token">25 / 100</strong></span>
+          <span id="pf-reduced-step" class="chain-step" hidden><span aria-hidden="true">→</span><strong id="pf-reduced" class="factor-token">1 / 4</strong></span>
+          <span id="pf-decimal-step" class="chain-step" hidden><span aria-hidden="true">→</span><strong id="pf-decimal" class="factor-token decimal-token">0,25</strong></span>
         </div>
       </section>
 
       <section class="application-grid">
         <article id="pf-product" class="product-card" hidden><p>Als Faktor anwenden</p><strong>0,25 · 80 = 20</strong></article>
-        <article id="pf-warning" class="warning-card" hidden><p>Warum nicht 25 · 80?</p><strong>25 % bedeutet 25 / 100 – der Faktor ist 0,25.</strong></article>
+        <article id="pf-warning" class="warning-card" hidden><p id="pf-warning-title">Warum nicht 25 · 80?</p><strong id="pf-warning-text">25 % bedeutet 25 / 100 – der Faktor ist 0,25.</strong></article>
       </section>
 
       <section id="pf-explore" class="explore-card" hidden>
