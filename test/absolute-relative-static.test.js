@@ -24,10 +24,14 @@ test("alle Folgerungen und die Erkundung sind initial echt hidden",()=>{
   assert.match(css,/\[hidden\]\{display:none!important\}/);
 });
 
-test("Normalisierung zeigt dieselbe Bezugsgröße und zwei wertgenaue Bildnamen",()=>{
+test("Normalisierung zeigt dieselbe Bezugsgröße ohne den relativen Vergleich vorwegzunehmen",()=>{
   assert.match(html,/Gemeinsame Bezugsgröße: 200/);
-  assert.match(html,/aria-label="Gruppe A normalisiert: 24 von 200; das sind 12 Prozent\."/);
-  assert.match(html,/aria-label="Gruppe B normalisiert: 25 von 200; das sind 12,5 Prozent\."/);
+  assert.match(html,/aria-label="Gruppe A normalisiert: 24 von 200\."/);
+  assert.match(html,/aria-label="Gruppe B normalisiert: 25 von 200\."/);
+  const normalize=html.match(/id="ar-normalize"[\s\S]*?<\/section>/)?.[0];
+  assert.ok(normalize);
+  assert.doesNotMatch(normalize,/Prozent/);
+  assert.match(html,/id="ar-relative"[^>]*hidden[\s\S]*?12 % &lt; 12,5 %/);
 });
 
 test("Controller synchronisiert die freie Erkundung aus einem Modell",()=>{
