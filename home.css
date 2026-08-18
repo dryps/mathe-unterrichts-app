@@ -145,7 +145,7 @@ h2 {
 }
 
 .chapter-assignments .module-grid {
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .module-card {
@@ -245,6 +245,10 @@ noscript {
   }
 
   .chapter-quadrilaterals .module-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .chapter-assignments .module-grid {
     grid-template-columns: 1fr;
   }
 
@@ -364,6 +368,10 @@ noscript {
 
   .chapter-terms .module-card {
     grid-column: span 2;
+  }
+
+  .chapter-assignments .module-card {
+    grid-column: auto;
   }
 
   .module-status {

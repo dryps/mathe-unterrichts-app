@@ -61,6 +61,8 @@ const files = {
   uniqueQuadrilateralApp: await readFile(new URL("../src/unique-quadrilateral-app.js", import.meta.url), "utf8"),
   assignmentRepresentations: await readFile(new URL("../zuordnungen-darstellen.html", import.meta.url), "utf8"),
   assignmentRepresentationsApp: await readFile(new URL("../src/assignment-representations-app.js", import.meta.url), "utf8"),
+  proportionalComparison: await readFile(new URL("../proportionale-zuordnungen.html", import.meta.url), "utf8"),
+  proportionalComparisonApp: await readFile(new URL("../src/proportional-comparison-app.js", import.meta.url), "utf8"),
   worker: await readFile(new URL("../sw.js", import.meta.url), "utf8"),
   manifest: await readFile(new URL("../manifest.webmanifest", import.meta.url), "utf8"),
 };
@@ -103,7 +105,7 @@ test("Startseite zeigt Klasse 7 mit den sechs produktiven Kapiteln", () => {
 });
 
 test("Kapitel 1 bis 3 enthalten je sechs Module, Kapitel 4 vier und Kapitel 5 vollständig", () => {
-  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 27);
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 28);
   assert.match(files.home, /href="\.\/zahlengerade\.html"/);
   assert.match(files.home, /Warum liegen negative Zahlen links von der Null\?/);
   assert.match(files.home, /<span class="module-subtitle">Zahlengerade<\/span>/);
@@ -186,8 +188,11 @@ test("Kapitel 1 bis 3 enthalten je sechs Module, Kapitel 4 vier und Kapitel 5 vo
   assert.match(files.home, /href="\.\/zuordnungen-darstellen\.html"/);
   assert.match(files.home, /Wie kann dieselbe Zuordnung gleichzeitig in einer Situation, einer Tabelle und einem Graphen stecken\?/);
   assert.match(files.home, /<span class="module-subtitle">Zuordnungen darstellen<\/span>/);
-  assert.equal((files.home.match(/class="module-status"/g) ?? []).length, 27);
-  assert.equal((files.home.match(/fertig/g) ?? []).length, 27);
+  assert.match(files.home, /href="\.\/proportionale-zuordnungen\.html"/);
+  assert.match(files.home, /Warum bedeutet „beide werden größer“ noch nicht proportional\?/);
+  assert.match(files.home, /<span class="module-subtitle">Proportionale Zuordnungen<\/span>/);
+  assert.equal((files.home.match(/class="module-status"/g) ?? []).length, 28);
+  assert.equal((files.home.match(/fertig/g) ?? []).length, 28);
 });
 
 test("Alle Dreiecksmodule behalten ausschließlich ihren bisherigen Rückweg", () => {
@@ -246,9 +251,12 @@ test("K5.1 bis K5.4 führen ausschließlich zu Vierecke zurück", () => {
   }
 });
 
-test("K6.1 führt ausschließlich zu Proportional · Antiproportional zurück", () => {
-  assert.equal((files.assignmentRepresentations.match(/class="module-navigation"/g) ?? []).length, 1);
-  assert.match(files.assignmentRepresentations, /class="module-back-link" href="\.\/#zuordnungen">← Proportional · Antiproportional<\/a>/);
+test("K6.1 und K6.2 führen ausschließlich zu Proportional · Antiproportional zurück", () => {
+  for (const module of [files.assignmentRepresentations, files.proportionalComparison]) {
+    assert.equal((module.match(/class="module-navigation"/g) ?? []).length, 1);
+    assert.match(module, /class="module-back-link" href="\.\/#zuordnungen">← Proportional · Antiproportional<\/a>/);
+    assert.doesNotMatch(module, /Suche|Einstellungen|Favoriten|Statistik|Anmelden/);
+  }
 });
 
 test("Startseite ist für iPad, Querformat und Klassenraumbildschirm ausgelegt", () => {
@@ -501,13 +509,19 @@ test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und beide Kapite
     "src/assignment-representations-animation.js",
     "src/assignment-representations-math.js",
     "src/assignment-representations-state.js",
+    "proportionale-zuordnungen.html",
+    "proportional-comparison.css",
+    "src/proportional-comparison-app.js",
+    "src/proportional-comparison-animation.js",
+    "src/proportional-comparison-math.js",
+    "src/proportional-comparison-state.js",
     "manifest.webmanifest",
     "icon.svg",
   ]) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
   assert.match(files.shell, /serviceWorker\.register/);
-  assert.match(files.worker, /mathe-unterrichts-app-v32/);
+  assert.match(files.worker, /mathe-unterrichts-app-v33/);
 });
 
 test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", () => {
@@ -554,6 +568,8 @@ test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", 
     files.uniqueQuadrilateralApp,
     files.assignmentRepresentations,
     files.assignmentRepresentationsApp,
+    files.proportionalComparison,
+    files.proportionalComparisonApp,
     files.worker,
   ].join("\n");
   assert.doesNotMatch(runtime, /localStorage|sessionStorage|indexedDB|document\.cookie/);

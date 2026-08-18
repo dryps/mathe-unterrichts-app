@@ -1,4 +1,4 @@
-const CACHE_NAME = "mathe-unterrichts-app-v32";
+const CACHE_NAME = "mathe-unterrichts-app-v33";
 const NAVIGATION_FALLBACK = "./index.html";
 const APP_FILES = [
   "./",
@@ -162,6 +162,12 @@ const APP_FILES = [
   "./src/assignment-representations-animation.js",
   "./src/assignment-representations-math.js",
   "./src/assignment-representations-state.js",
+  "./proportionale-zuordnungen.html",
+  "./proportional-comparison.css",
+  "./src/proportional-comparison-app.js",
+  "./src/proportional-comparison-animation.js",
+  "./src/proportional-comparison-math.js",
+  "./src/proportional-comparison-state.js",
   "./manifest.webmanifest",
   "./icon.svg",
   "./icon-180.png",

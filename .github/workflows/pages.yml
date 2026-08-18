@@ -62,6 +62,7 @@ jobs:
           npm run test:quadrilateral-angle-sum-visual
           npm run test:unique-quadrilateral-visual
           npm run test:assignment-representations-visual
+          npm run test:proportional-comparison-visual
 
       - name: Kontrolliertes Pages-Artefakt bauen
         run: npm run build:pages

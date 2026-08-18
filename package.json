@@ -35,7 +35,8 @@
     "test:quadrilateral-house-visual": "node scripts/render-quadrilateral-house-states.mjs",
     "test:quadrilateral-angle-sum-visual": "node scripts/render-quadrilateral-angle-sum-states.mjs",
     "test:unique-quadrilateral-visual": "node scripts/render-unique-quadrilateral-states.mjs",
-    "test:assignment-representations-visual": "node scripts/render-assignment-representations-states.mjs"
+    "test:assignment-representations-visual": "node scripts/render-assignment-representations-states.mjs",
+    "test:proportional-comparison-visual": "node scripts/render-proportional-comparison-states.mjs"
   },
   "engines": {
     "node": ">=20"
