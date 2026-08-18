@@ -71,6 +71,7 @@ export function percentageRolesViewModel(current){
     explore:CONCLUSION,
   };
   const visibleRelation=hiddenRole===PERCENTAGE_UNKNOWN_ROLES.whole?`${relation.part} Karten sind ${relation.rate} Prozent; Grundwert gesucht`:hiddenRole===PERCENTAGE_UNKNOWN_ROLES.part?`${relation.rate} Prozent von ${relation.whole} Karten; Prozentwert gesucht`:`${relation.part} von ${relation.whole} Karten; Prozentsatz gesucht`;
+  const sliderValueText=`Situation ${scenarioIndex+1} von ${PERCENTAGE_ROLE_SCENARIOS.length}; ${visibleRelation}`;
   return Object.freeze({
     view:current.view,
     scenarioIndex,
@@ -87,8 +88,8 @@ export function percentageRolesViewModel(current){
     showConclusion:explore,
     showNext:rank<4,
     controlsInteractive:explore&&!current.locked,
-    sliderAriaLabel:"Gemeinsame Prozent-Situation verändern",
-    sliderValueText:`Situation ${scenarioIndex+1} von ${PERCENTAGE_ROLE_SCENARIOS.length}; ${visibleRelation}`,
+    sliderAriaLabel:`Gemeinsame Prozent-Situation verändern: ${sliderValueText}`,
+    sliderValueText,
     unknownRole:current.unknownRole,
     unknownName,
     conclusion:CONCLUSION,

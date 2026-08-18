@@ -46,8 +46,10 @@ test("Situation und alle sichtbaren Werte ändern sich gemeinsam",()=>{
   assert.equal(model.relation.rate,30);
   assert.equal(model.equation,"36 / 120 = ? / 100");
   assert.equal(model.sliderValueText,"Situation 2 von 3; 36 von 120 Karten; Prozentsatz gesucht");
+  assert.equal(model.sliderAriaLabel,"Gemeinsame Prozent-Situation verändern: Situation 2 von 3; 36 von 120 Karten; Prozentsatz gesucht");
   assert.match(model.liveText,/36 von 120/);
   assert.doesNotMatch(model.liveText,/30 Prozent/);
+  assert.doesNotMatch(model.sliderAriaLabel,/30 Prozent/);
 });
 
 test("Interaktionen bleiben vor Explore und während Reveal gesperrt",()=>{

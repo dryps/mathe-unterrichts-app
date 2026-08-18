@@ -16,6 +16,7 @@ test("Frage, Untertitel, drei Rollen und Aha sind wortgetreu",()=>{
   assert.match(html,/markierter Teil/);
   assert.match(html,/Verhältnis/);
   assert.match(html,/Drei Rollen derselben Beziehung\./);
+  assert.match(html,/aria-label="Gemeinsame Prozent-Situation verändern: Situation 1 von 3; 20 Karten sind 25 Prozent; Grundwert gesucht"/);
 });
 
 test("Rollen, Beziehung, Erkundung und Aha sind initial echt hidden",()=>{

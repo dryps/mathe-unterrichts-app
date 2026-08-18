@@ -41,6 +41,7 @@ test("Erkundung blendet immer genau eine Rolle aus und hält alle Darstellungen 
   assert.equal(elements.get("#pr-rate-value").textContent,"30 %");
   assert.equal(elements.get("#pr-fill").style.width,"30%");
   assert.equal(elements.get("#pr-equation").textContent,"? / 120 = 30 / 100");
+  assert.equal(input.getAttribute("aria-label"),"Gemeinsame Prozent-Situation verändern: Situation 2 von 3; 30 Prozent von 120 Karten; Prozentwert gesucht");
   assert.equal(input.getAttribute("aria-valuetext"),"Situation 2 von 3; 30 Prozent von 120 Karten; Prozentwert gesucht");
   assert.doesNotMatch(elements.get("#pr-diagram").getAttribute("aria-label"),/36/);
   assert.doesNotMatch(elements.get("#pr-live").textContent,/36/);
