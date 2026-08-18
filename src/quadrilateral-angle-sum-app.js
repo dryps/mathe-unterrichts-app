@@ -15,5 +15,5 @@ function animateReveal(){clearAnimation();const token=animationToken;board.style
 next.addEventListener("click",()=>{if(current.locked)return;current=nextAngleSumState(current);render();if(current.locked)animateReveal();});
 reset.addEventListener("click",()=>{clearAnimation();current=resetAngleSumState();render();});
 positionControl.addEventListener("input",event=>{current=setAngleSumPosition(current,Number(event.currentTarget.value));render();});
-if("serviceWorker" in navigator)window.addEventListener("load",()=>{navigator.serviceWorker.register("./sw.js",{scope:"./",updateViaCache:"none"}).catch(()=>{});});
+if("serviceWorker" in navigator)window.addEventListener("load",()=>{navigator.serviceWorker.register("./sw.js", { scope: "./", updateViaCache: "none" }).catch(()=>{});});
 render();

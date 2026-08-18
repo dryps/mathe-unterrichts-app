@@ -32,7 +32,8 @@
     "test:negative-inequality-visual": "node scripts/render-negative-inequality-states.mjs",
     "test:solution-set-visual": "node scripts/render-solution-set-states.mjs",
     "test:quadrilateral-properties-visual": "node scripts/render-quadrilateral-properties-states.mjs",
-    "test:quadrilateral-house-visual": "node scripts/render-quadrilateral-house-states.mjs"
+    "test:quadrilateral-house-visual": "node scripts/render-quadrilateral-house-states.mjs",
+    "test:quadrilateral-angle-sum-visual": "node scripts/render-quadrilateral-angle-sum-states.mjs"
   },
   "engines": {
     "node": ">=20"

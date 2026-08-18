@@ -55,6 +55,8 @@ const files = {
   quadrilateralPropertiesApp: await readFile(new URL("../src/quadrilateral-properties-app.js", import.meta.url), "utf8"),
   quadrilateralHouse: await readFile(new URL("../haus-der-vierecke.html", import.meta.url), "utf8"),
   quadrilateralHouseApp: await readFile(new URL("../src/quadrilateral-house-app.js", import.meta.url), "utf8"),
+  quadrilateralAngleSum: await readFile(new URL("../viereck-winkelsumme.html", import.meta.url), "utf8"),
+  quadrilateralAngleSumApp: await readFile(new URL("../src/quadrilateral-angle-sum-app.js", import.meta.url), "utf8"),
   worker: await readFile(new URL("../sw.js", import.meta.url), "utf8"),
   manifest: await readFile(new URL("../manifest.webmanifest", import.meta.url), "utf8"),
 };
@@ -94,8 +96,8 @@ test("Startseite zeigt Klasse 7 mit den fünf produktiven Kapiteln", () => {
   assert.doesNotMatch(files.home, /<ul|<ol/);
 });
 
-test("Kapitel 1 bis 3 enthalten je sechs Module, Kapitel 4 vier und Kapitel 5 K5.1 bis K5.2", () => {
-  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 24);
+test("Kapitel 1 bis 3 enthalten je sechs Module, Kapitel 4 vier und Kapitel 5 K5.1 bis K5.3", () => {
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 25);
   assert.match(files.home, /href="\.\/zahlengerade\.html"/);
   assert.match(files.home, /Warum liegen negative Zahlen links von der Null\?/);
   assert.match(files.home, /<span class="module-subtitle">Zahlengerade<\/span>/);
@@ -169,8 +171,11 @@ test("Kapitel 1 bis 3 enthalten je sechs Module, Kapitel 4 vier und Kapitel 5 K5
   assert.match(files.home, /href="\.\/haus-der-vierecke\.html"/);
   assert.match(files.home, /Warum ist jedes Quadrat auch ein Rechteck und eine Raute\?/);
   assert.match(files.home, /<span class="module-subtitle">Haus der Vierecke<\/span>/);
-  assert.equal((files.home.match(/class="module-status"/g) ?? []).length, 24);
-  assert.equal((files.home.match(/fertig/g) ?? []).length, 24);
+  assert.match(files.home, /href="\.\/viereck-winkelsumme\.html"/);
+  assert.match(files.home, /Warum sind es im Viereck immer 360°\?/);
+  assert.match(files.home, /<span class="module-subtitle">Winkelsumme im Viereck<\/span>/);
+  assert.equal((files.home.match(/class="module-status"/g) ?? []).length, 25);
+  assert.equal((files.home.match(/fertig/g) ?? []).length, 25);
 });
 
 test("Alle Dreiecksmodule behalten ausschließlich ihren bisherigen Rückweg", () => {
@@ -221,8 +226,8 @@ test("Kapitel-4-Module führen ausschließlich zu Gleichungen · Ungleichungen z
   }
 });
 
-test("K5.1 und K5.2 führen ausschließlich zu Vierecke zurück", () => {
-  for (const module of [files.quadrilateralProperties, files.quadrilateralHouse]) {
+test("K5.1 bis K5.3 führen ausschließlich zu Vierecke zurück", () => {
+  for (const module of [files.quadrilateralProperties, files.quadrilateralHouse, files.quadrilateralAngleSum]) {
     assert.equal((module.match(/class="module-navigation"/g) ?? []).length, 1);
     assert.match(module, /class="module-back-link" href="\.\/#vierecke">← Vierecke<\/a>/);
     assert.doesNotMatch(module, /Suche|Einstellungen|Favoriten|Statistik|Anmelden/);
@@ -461,13 +466,19 @@ test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und beide Kapite
     "src/quadrilateral-house-animation.js",
     "src/quadrilateral-house-math.js",
     "src/quadrilateral-house-state.js",
+    "viereck-winkelsumme.html",
+    "quadrilateral-angle-sum.css",
+    "src/quadrilateral-angle-sum-app.js",
+    "src/quadrilateral-angle-sum-animation.js",
+    "src/quadrilateral-angle-sum-math.js",
+    "src/quadrilateral-angle-sum-state.js",
     "manifest.webmanifest",
     "icon.svg",
   ]) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
   assert.match(files.shell, /serviceWorker\.register/);
-  assert.match(files.worker, /mathe-unterrichts-app-v29/);
+  assert.match(files.worker, /mathe-unterrichts-app-v30/);
 });
 
 test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", () => {
@@ -508,6 +519,8 @@ test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", 
     files.quadrilateralPropertiesApp,
     files.quadrilateralHouse,
     files.quadrilateralHouseApp,
+    files.quadrilateralAngleSum,
+    files.quadrilateralAngleSumApp,
     files.worker,
   ].join("\n");
   assert.doesNotMatch(runtime, /localStorage|sessionStorage|indexedDB|document\.cookie/);
