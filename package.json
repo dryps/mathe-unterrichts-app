@@ -33,7 +33,8 @@
     "test:solution-set-visual": "node scripts/render-solution-set-states.mjs",
     "test:quadrilateral-properties-visual": "node scripts/render-quadrilateral-properties-states.mjs",
     "test:quadrilateral-house-visual": "node scripts/render-quadrilateral-house-states.mjs",
-    "test:quadrilateral-angle-sum-visual": "node scripts/render-quadrilateral-angle-sum-states.mjs"
+    "test:quadrilateral-angle-sum-visual": "node scripts/render-quadrilateral-angle-sum-states.mjs",
+    "test:unique-quadrilateral-visual": "node scripts/render-unique-quadrilateral-states.mjs"
   },
   "engines": {
     "node": ">=20"
