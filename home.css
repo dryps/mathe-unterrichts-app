@@ -153,7 +153,7 @@ h2 {
 }
 
 .chapter-percentages .module-grid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
 .chapter-percentages .module-card {
@@ -314,6 +314,10 @@ noscript {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .chapter-percentages .module-card:nth-child(5) {
+    grid-column: span 2;
+  }
+
 }
 
 @media (orientation: landscape) and (min-width: 900px) and (max-width: 1500px) {
@@ -368,11 +372,11 @@ noscript {
   }
 
   .chapter-percentages .module-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 
   .chapter-percentages .module-card {
-    grid-column: auto;
+    grid-column: span 2;
   }
 
   .chapter-equations .module-grid {
@@ -407,7 +411,15 @@ noscript {
   }
 
   .chapter-percentages .module-card:nth-child(n) {
-    grid-column: auto;
+    grid-column: span 2;
+  }
+
+  .chapter-percentages .module-card:nth-child(4) {
+    grid-column: 2 / span 2;
+  }
+
+  .chapter-percentages .module-card:nth-child(5) {
+    grid-column: 4 / span 2;
   }
 
   .chapter-rationale .module-card {

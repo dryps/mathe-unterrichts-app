@@ -10,17 +10,17 @@ const runtime=["absolut-relativ.html","absolute-relative.css","src/absolute-rela
 test("Startseite integriert K7.2 genau einmal als zweite Kapitel-7-Karte",()=>{
   const chapter=files.home.match(/<section id="prozentrechnung"[\s\S]*?<\/section>/)?.[0];
   assert.ok(chapter);
-  assert.equal((chapter.match(/class="module-card"/g)??[]).length,4);
+  assert.equal((chapter.match(/class="module-card"/g)??[]).length,5);
   assert.equal((files.home.match(/href="\.\/absolut-relativ\.html"/g)??[]).length,1);
   assert.match(chapter,/Wie kann die kleinere Anzahl trotzdem der größere Anteil sein\?/);
-  assert.equal((files.home.match(/class="module-card"/g)??[]).length,35);
+  assert.equal((files.home.match(/class="module-card"/g)??[]).length,36);
   assert.equal((files.home.match(/class="chapter(?:\s|")/g)??[]).length,7);
-  assert.match(files.css,/\.chapter-percentages \.module-grid\s*\{[^}]*repeat\(4, minmax\(0, 1fr\)\)/s);
+  assert.match(files.css,/\.chapter-percentages \.module-grid\s*\{[^}]*repeat\(5, minmax\(0, 1fr\)\)/s);
   assert.match(files.css,/\.chapter-percentages \.module-card\s*\{[^}]*grid-column:\s*auto/s);
 });
 
-test("Cache v40, Pages und Smoke enthalten die sechs K7.2-Laufzeitdateien",()=>{
-  assert.match(files.worker,/mathe-unterrichts-app-v40/);
+test("Cache v41, Pages und Smoke enthalten die sechs K7.2-Laufzeitdateien",()=>{
+  assert.match(files.worker,/mathe-unterrichts-app-v41/);
   assert.doesNotMatch(files.worker,/mathe-unterrichts-app-v37/);
   for(const file of runtime){
     const pattern=new RegExp(file.replaceAll(".","\\."));

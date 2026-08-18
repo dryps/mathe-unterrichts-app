@@ -123,15 +123,15 @@ function createWorkerHarness() {
   };
 }
 
-test("Installation füllt Version 40 vollständig und Aktivierung entfernt ältere Versionen", async () => {
+test("Installation füllt Version 41 vollständig und Aktivierung entfernt ältere Versionen", async () => {
   const harness = createWorkerHarness();
   await harness.dispatchLifecycle("install");
   await harness.dispatchLifecycle("activate");
 
   assert.equal(harness.skipped, true);
   assert.equal(harness.claimed, true);
-  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v40"]);
-  const current = harness.stores.get("mathe-unterrichts-app-v40");
+  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v41"]);
+  const current = harness.stores.get("mathe-unterrichts-app-v41");
   for (const path of [
     "./",
     "./index.html",
@@ -320,6 +320,12 @@ test("Installation füllt Version 40 vollständig und Aktivierung entfernt älte
     "./src/percentage-factor-animation.js",
     "./src/percentage-factor-math.js",
     "./src/percentage-factor-state.js",
+    "./prozentdiagramme.html",
+    "./percentage-chart.css",
+    "./src/percentage-chart-app.js",
+    "./src/percentage-chart-animation.js",
+    "./src/percentage-chart-math.js",
+    "./src/percentage-chart-state.js",
   ]) {
     assert.equal(current.has(new URL(path, `${origin}/`).href), true);
   }
@@ -518,6 +524,12 @@ test("Offline-Neustart liefert Startseite und alle Kapitel ohne Netzwerk aus", a
     "/src/percentage-factor-animation.js",
     "/src/percentage-factor-math.js",
     "/src/percentage-factor-state.js",
+    "/prozentdiagramme.html",
+    "/percentage-chart.css",
+    "/src/percentage-chart-app.js",
+    "/src/percentage-chart-animation.js",
+    "/src/percentage-chart-math.js",
+    "/src/percentage-chart-state.js",
   ]) {
     const response = await harness.dispatchFetch(path);
     assert.equal(response.status, 200);

@@ -43,7 +43,8 @@
     "test:percentage-share-visual": "node scripts/render-percentage-share-states.mjs",
     "test:absolute-relative-visual": "node scripts/render-absolute-relative-states.mjs",
     "test:percentage-roles-visual": "node scripts/render-percentage-roles-states.mjs",
-    "test:percentage-factor-visual": "node scripts/render-percentage-factor-states.mjs"
+    "test:percentage-factor-visual": "node scripts/render-percentage-factor-states.mjs",
+    "test:percentage-chart-visual": "node scripts/render-percentage-chart-states.mjs"
   },
   "engines": {
     "node": ">=20"
