@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f5f7fb" />
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Mathe im Unterricht" />
+    <meta name="description" content="Interaktiver Aha-Moment zur Hierarchie der Vierecke." />
+    <link rel="manifest" href="./manifest.webmanifest" /><link rel="icon" href="./icon.svg" type="image/svg+xml" /><link rel="apple-touch-icon" sizes="180x180" href="./icon-180.png" />
+    <link rel="stylesheet" href="./navigation.css" /><link rel="stylesheet" href="./quadrilateral-house.css" />
+    <title>Warum ist jedes Quadrat auch ein Rechteck und eine Raute?</title>
+  </head>
+  <body>
+    <main class="house-shell">
+      <nav class="module-navigation" aria-label="Modulnavigation"><a class="module-back-link" href="./#vierecke">← Vierecke</a></nav>
+      <header class="house-header"><div><p class="eyebrow">Vierecke · Kapitel 5</p><h1>Warum ist jedes Quadrat auch ein Rechteck und eine Raute?</h1><p class="subtitle">Haus der Vierecke</p></div><p class="local-note" aria-label="Datenschutzstatus"><span aria-hidden="true">●</span> lokal · ohne Speicherung</p></header>
+      <section id="house-board" class="house-board" data-state="irritation" aria-labelledby="house-board-title">
+        <h2 id="house-board-title" class="visually-hidden">Eigenschaften im Haus der Vierecke</h2>
+        <div class="house-workspace">
+          <svg id="house-preview" class="house-preview" viewBox="0 0 720 420" role="img" aria-label="Noch nicht eingeordnetes Viereck.">
+            <polygon id="house-shape" class="house-shape" points=""/>
+            <line id="house-side-ab" class="house-side pair-one"/><line id="house-side-bc" class="house-side pair-two"/><line id="house-side-cd" class="house-side pair-one"/><line id="house-side-da" class="house-side pair-two"/>
+            <g id="house-right-markers" class="right-markers" hidden aria-label="Vier rechte Winkel"><path id="house-right-a"/><path id="house-right-b"/><path id="house-right-c"/><path id="house-right-d"/></g>
+            <g id="house-equal-markers" class="equal-markers" hidden aria-label="Vier gleich lange Seiten"><line id="house-equal-ab"/><line id="house-equal-bc"/><line id="house-equal-cd"/><line id="house-equal-da"/></g>
+          </svg>
+          <div class="house-map" aria-label="Hierarchie der Vierecke">
+            <article id="house-square" class="house-node node-square" hidden><strong>Quadrat</strong><span>Beides → Quadrat.</span></article>
+            <p id="house-path-square" class="house-path path-square" hidden aria-hidden="true">↑ beide Eigenschaften</p>
+            <article id="house-rectangle" class="house-node node-rectangle" hidden><strong>Rechteck</strong><span>Parallelogramm + rechte Winkel → Rechteck.</span></article>
+            <article id="house-rhombus" class="house-node node-rhombus" hidden><strong>Raute</strong><span>Parallelogramm + vier gleiche Seiten → Raute.</span></article>
+            <p id="house-path-rectangle" class="house-path path-rectangle" hidden aria-hidden="true">↖ rechte Winkel</p><p id="house-path-rhombus" class="house-path path-rhombus" hidden aria-hidden="true">gleiche Seiten ↗</p>
+            <article id="house-parallelogram" class="house-node node-parallelogram" hidden><strong>Parallelogramm</strong><span>gegenüberliegende Seiten parallel</span></article>
+          </div>
+        </div>
+        <section id="house-explore" class="house-explore" hidden aria-labelledby="house-explore-title">
+          <div><h2 id="house-explore-title">Eigenschaften ergänzen</h2><p>Aktuelle Einordnung: <strong id="house-current-type">Parallelogramm</strong></p><p id="house-property-summary">gegenüberliegende Seiten parallel</p></div>
+          <label><input id="house-right-control" type="checkbox"/> vier rechte Winkel</label><label><input id="house-equal-control" type="checkbox"/> vier gleiche Seiten</label>
+        </section>
+        <section id="house-conclusion" class="conclusion-card" hidden><h2>Aha</h2><p id="house-conclusion-text">Spezielle Figuren behalten die Eigenschaften ihrer Oberbegriffe.</p></section>
+      </section>
+      <section class="house-insight" aria-live="polite"><p id="house-insight">Welche Eigenschaften hat ein Quadrat mit Rechteck und Raute gemeinsam?</p><div class="house-controls"><button id="house-next" class="primary-button" type="button">Weiter</button><button id="house-reset" class="reset-button" type="button">Zurücksetzen</button></div><p id="house-live" class="visually-hidden" aria-live="polite"></p></section>
+      <noscript>Für diesen interaktiven Aha-Moment muss JavaScript aktiviert sein.</noscript>
+    </main>
+    <script type="module" src="./src/quadrilateral-house-app.js"></script>
+  </body>
+</html>

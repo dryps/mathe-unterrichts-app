@@ -123,15 +123,15 @@ function createWorkerHarness() {
   };
 }
 
-test("Installation füllt Version 28 vollständig und Aktivierung entfernt ältere Versionen", async () => {
+test("Installation füllt Version 29 vollständig und Aktivierung entfernt ältere Versionen", async () => {
   const harness = createWorkerHarness();
   await harness.dispatchLifecycle("install");
   await harness.dispatchLifecycle("activate");
 
   assert.equal(harness.skipped, true);
   assert.equal(harness.claimed, true);
-  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v28"]);
-  const current = harness.stores.get("mathe-unterrichts-app-v28");
+  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v29"]);
+  const current = harness.stores.get("mathe-unterrichts-app-v29");
   for (const path of [
     "./",
     "./index.html",
@@ -242,6 +242,18 @@ test("Installation füllt Version 28 vollständig und Aktivierung entfernt älte
     "./src/solution-set-math.js",
     "./src/solution-set-state.js",
     "./src/solution-set-animation.js",
+    "./eigenschaften-statt-optik.html",
+    "./quadrilateral-properties.css",
+    "./src/quadrilateral-properties-app.js",
+    "./src/quadrilateral-properties-animation.js",
+    "./src/quadrilateral-properties-geometry.js",
+    "./src/quadrilateral-properties-state.js",
+    "./haus-der-vierecke.html",
+    "./quadrilateral-house.css",
+    "./src/quadrilateral-house-app.js",
+    "./src/quadrilateral-house-animation.js",
+    "./src/quadrilateral-house-math.js",
+    "./src/quadrilateral-house-state.js",
   ]) {
     assert.equal(current.has(new URL(path, `${origin}/`).href), true);
   }
@@ -362,6 +374,18 @@ test("Offline-Neustart liefert Startseite und alle Kapitel ohne Netzwerk aus", a
     "/src/solution-set-math.js",
     "/src/solution-set-state.js",
     "/src/solution-set-animation.js",
+    "/eigenschaften-statt-optik.html",
+    "/quadrilateral-properties.css",
+    "/src/quadrilateral-properties-app.js",
+    "/src/quadrilateral-properties-animation.js",
+    "/src/quadrilateral-properties-geometry.js",
+    "/src/quadrilateral-properties-state.js",
+    "/haus-der-vierecke.html",
+    "/quadrilateral-house.css",
+    "/src/quadrilateral-house-app.js",
+    "/src/quadrilateral-house-animation.js",
+    "/src/quadrilateral-house-math.js",
+    "/src/quadrilateral-house-state.js",
   ]) {
     const response = await harness.dispatchFetch(path);
     assert.equal(response.status, 200);

@@ -30,11 +30,11 @@ test("Startseite behält K3.3 genau einmal als dritte K3-Karte", () => {
   assert.equal((files.home.match(/href="\.\/terme-multiplizieren\.html"/g) ?? []).length, 1);
   assert.match(files.home, /Warum ist x · x = x² – und nicht 2x\?/);
   assert.match(files.home, /<span class="module-subtitle">Terme multiplizieren<\/span>/);
-  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 23);
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 24);
 });
 
 test("Cache v21 enthält weiterhin alle sechs K3.3-Laufzeitdateien", () => {
-  assert.match(files.worker, /mathe-unterrichts-app-v28/);
+  assert.match(files.worker, /mathe-unterrichts-app-v29/);
   assert.doesNotMatch(files.worker, /mathe-unterrichts-app-v18/);
   for (const file of runtimeFiles) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));

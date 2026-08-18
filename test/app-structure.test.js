@@ -53,6 +53,8 @@ const files = {
   solutionSetApp: await readFile(new URL("../src/solution-set-app.js", import.meta.url), "utf8"),
   quadrilateralProperties: await readFile(new URL("../eigenschaften-statt-optik.html", import.meta.url), "utf8"),
   quadrilateralPropertiesApp: await readFile(new URL("../src/quadrilateral-properties-app.js", import.meta.url), "utf8"),
+  quadrilateralHouse: await readFile(new URL("../haus-der-vierecke.html", import.meta.url), "utf8"),
+  quadrilateralHouseApp: await readFile(new URL("../src/quadrilateral-house-app.js", import.meta.url), "utf8"),
   worker: await readFile(new URL("../sw.js", import.meta.url), "utf8"),
   manifest: await readFile(new URL("../manifest.webmanifest", import.meta.url), "utf8"),
 };
@@ -92,8 +94,8 @@ test("Startseite zeigt Klasse 7 mit den fünf produktiven Kapiteln", () => {
   assert.doesNotMatch(files.home, /<ul|<ol/);
 });
 
-test("Kapitel 1 bis 3 enthalten je sechs Module, Kapitel 4 vier und Kapitel 5 K5.1", () => {
-  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 23);
+test("Kapitel 1 bis 3 enthalten je sechs Module, Kapitel 4 vier und Kapitel 5 K5.1 bis K5.2", () => {
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 24);
   assert.match(files.home, /href="\.\/zahlengerade\.html"/);
   assert.match(files.home, /Warum liegen negative Zahlen links von der Null\?/);
   assert.match(files.home, /<span class="module-subtitle">Zahlengerade<\/span>/);
@@ -164,8 +166,11 @@ test("Kapitel 1 bis 3 enthalten je sechs Module, Kapitel 4 vier und Kapitel 5 K5
   assert.match(files.home, /href="\.\/eigenschaften-statt-optik\.html"/);
   assert.match(files.home, /Warum bleibt ein Viereck dieselbe Art, obwohl ich es drehe oder anders zeichne\?/);
   assert.match(files.home, /<span class="module-subtitle">Eigenschaften statt Optik<\/span>/);
-  assert.equal((files.home.match(/class="module-status"/g) ?? []).length, 23);
-  assert.equal((files.home.match(/fertig/g) ?? []).length, 23);
+  assert.match(files.home, /href="\.\/haus-der-vierecke\.html"/);
+  assert.match(files.home, /Warum ist jedes Quadrat auch ein Rechteck und eine Raute\?/);
+  assert.match(files.home, /<span class="module-subtitle">Haus der Vierecke<\/span>/);
+  assert.equal((files.home.match(/class="module-status"/g) ?? []).length, 24);
+  assert.equal((files.home.match(/fertig/g) ?? []).length, 24);
 });
 
 test("Alle Dreiecksmodule behalten ausschließlich ihren bisherigen Rückweg", () => {
@@ -216,10 +221,12 @@ test("Kapitel-4-Module führen ausschließlich zu Gleichungen · Ungleichungen z
   }
 });
 
-test("K5.1 führt ausschließlich zu Vierecke zurück", () => {
-  assert.equal((files.quadrilateralProperties.match(/class="module-navigation"/g) ?? []).length, 1);
-  assert.match(files.quadrilateralProperties, /class="module-back-link" href="\.\/#vierecke">← Vierecke<\/a>/);
-  assert.doesNotMatch(files.quadrilateralProperties, /Suche|Einstellungen|Favoriten|Statistik|Anmelden/);
+test("K5.1 und K5.2 führen ausschließlich zu Vierecke zurück", () => {
+  for (const module of [files.quadrilateralProperties, files.quadrilateralHouse]) {
+    assert.equal((module.match(/class="module-navigation"/g) ?? []).length, 1);
+    assert.match(module, /class="module-back-link" href="\.\/#vierecke">← Vierecke<\/a>/);
+    assert.doesNotMatch(module, /Suche|Einstellungen|Favoriten|Statistik|Anmelden/);
+  }
 });
 
 test("Startseite ist für iPad, Querformat und Klassenraumbildschirm ausgelegt", () => {
@@ -448,13 +455,19 @@ test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und beide Kapite
     "src/quadrilateral-properties-animation.js",
     "src/quadrilateral-properties-geometry.js",
     "src/quadrilateral-properties-state.js",
+    "haus-der-vierecke.html",
+    "quadrilateral-house.css",
+    "src/quadrilateral-house-app.js",
+    "src/quadrilateral-house-animation.js",
+    "src/quadrilateral-house-math.js",
+    "src/quadrilateral-house-state.js",
     "manifest.webmanifest",
     "icon.svg",
   ]) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
   assert.match(files.shell, /serviceWorker\.register/);
-  assert.match(files.worker, /mathe-unterrichts-app-v28/);
+  assert.match(files.worker, /mathe-unterrichts-app-v29/);
 });
 
 test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", () => {
@@ -493,6 +506,8 @@ test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", 
     files.solutionSetApp,
     files.quadrilateralProperties,
     files.quadrilateralPropertiesApp,
+    files.quadrilateralHouse,
+    files.quadrilateralHouseApp,
     files.worker,
   ].join("\n");
   assert.doesNotMatch(runtime, /localStorage|sessionStorage|indexedDB|document\.cookie/);
