@@ -21,18 +21,18 @@ const runtimeFiles = [
   "src/quadrilateral-angle-sum-state.js",
 ];
 
-test("Startseite integriert K5.3 genau einmal als dritte Kapitel-5-Karte", () => {
+test("Startseite behält K5.3 genau einmal innerhalb der vier Kapitel-5-Karten", () => {
   const chapter = files.home.match(/<section\s+id="vierecke"[\s\S]*?<\/section>/)?.[0];
   assert.ok(chapter);
-  assert.equal((chapter.match(/class="module-card"/g) ?? []).length, 3);
+  assert.equal((chapter.match(/class="module-card"/g) ?? []).length, 4);
   assert.equal((files.home.match(/href="\.\/viereck-winkelsumme\.html"/g) ?? []).length, 1);
   assert.match(chapter, /Warum sind es im Viereck immer 360°\?/);
   assert.match(chapter, /<span class="module-subtitle">Winkelsumme im Viereck<\/span>/);
-  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 25);
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 26);
 });
 
-test("Cache v30, Pages und Smoke enthalten exakt die sechs neuen Laufzeitdateien", () => {
-  assert.match(files.worker, /mathe-unterrichts-app-v30/);
+test("Cache v31, Pages und Smoke enthalten exakt die sechs neuen Laufzeitdateien", () => {
+  assert.match(files.worker, /mathe-unterrichts-app-v31/);
   assert.doesNotMatch(files.worker, /mathe-unterrichts-app-v29/);
   for (const file of runtimeFiles) {
     const pattern = new RegExp(file.replaceAll(".", "\\."));

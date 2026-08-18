@@ -18,20 +18,20 @@ const runtimeFiles = ["eigenschaften-statt-optik.html", "quadrilateral-propertie
 test("Startseite integriert K5.1 genau einmal als erste Kapitel-5-Karte", () => {
   const chapter = files.home.match(/<section\s+id="vierecke"[\s\S]*?<\/section>/)?.[0];
   assert.ok(chapter);
-  assert.equal((chapter.match(/class="module-card"/g) ?? []).length, 3);
+  assert.equal((chapter.match(/class="module-card"/g) ?? []).length, 4);
   assert.equal((files.home.match(/href="\.\/eigenschaften-statt-optik\.html"/g) ?? []).length, 1);
   assert.match(chapter, /Warum bleibt ein Viereck dieselbe Art, obwohl ich es drehe oder anders zeichne\?/);
   assert.match(chapter, /<span class="module-subtitle">Eigenschaften statt Optik<\/span>/);
-  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 25);
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length, 26);
 });
 
-test("Kapitel-5-Raster bleibt mit zwei Karten responsiv", () => {
+test("Kapitel-5-Raster bleibt mit vier Karten responsiv", () => {
   assert.match(files.homeCss, /\.chapter-quadrilaterals \.module-grid\s*{[^}]*repeat\(2,\s*minmax\(0,\s*1fr\)\)/s);
   assert.match(files.homeCss, /@media \(max-width: 720px\)[\s\S]*\.chapter-quadrilaterals \.module-grid\s*{[^}]*grid-template-columns:\s*1fr/s);
 });
 
-test("Cache v30 und Pages-Artefakt enthalten ausschließlich die sechs Laufzeitdateien", () => {
-  assert.match(files.worker, /mathe-unterrichts-app-v30/);
+test("Cache v31 und Pages-Artefakt enthalten ausschließlich die sechs Laufzeitdateien", () => {
+  assert.match(files.worker, /mathe-unterrichts-app-v31/);
   assert.doesNotMatch(files.worker, /mathe-unterrichts-app-v27/);
   for (const file of runtimeFiles) {
     const pattern = new RegExp(file.replaceAll(".", "\\."));

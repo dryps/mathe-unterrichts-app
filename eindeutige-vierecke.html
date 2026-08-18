@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" /><meta name="theme-color" content="#f5f7fb" />
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" /><meta name="apple-mobile-web-app-capable" content="yes" /><meta name="apple-mobile-web-app-title" content="Mathe im Unterricht" /><meta name="description" content="Interaktiver Aha-Moment zu eindeutigen Viereckskonstruktionen." />
+    <link rel="manifest" href="./manifest.webmanifest" /><link rel="icon" href="./icon.svg" type="image/svg+xml" /><link rel="apple-touch-icon" sizes="180x180" href="./icon-180.png" /><link rel="stylesheet" href="./navigation.css" /><link rel="stylesheet" href="./unique-quadrilateral.css" />
+    <title>Warum legen manche Angaben ein Viereck eindeutig fest – und andere nicht?</title>
+  </head>
+  <body>
+    <main class="unique-shell">
+      <nav class="module-navigation" aria-label="Modulnavigation"><a class="module-back-link" href="./#vierecke">← Vierecke</a></nav>
+      <header class="unique-header"><div><p class="eyebrow">Vierecke · Kapitel 5</p><h1>Warum legen manche Angaben ein Viereck eindeutig fest – und andere nicht?</h1><p class="subtitle">Vierecke konstruieren</p></div><p class="local-note" aria-label="Datenschutzstatus"><span aria-hidden="true">●</span> lokal · ohne Speicherung</p></header>
+      <section id="unique-workspace" class="unique-board" data-state="irritation" aria-labelledby="unique-title">
+        <h2 id="unique-title" class="visually-hidden">Freiheitsgrade eines Parallelogramms</h2>
+        <svg id="unique-board" viewBox="0 0 1000 640" role="img" aria-label="Unmarkiertes konvexes Viereck.">
+          <rect class="board-background" x="2" y="2" width="996" height="636" rx="32" />
+          <polygon id="unique-shape" class="unique-shape" points="" />
+          <g id="unique-parallel-markers" hidden aria-label="Gegenüberliegende Seiten sind parallel"><path data-parallel="0"/><path data-parallel="1"/><path data-parallel="2"/><path data-parallel="3"/></g>
+          <g id="unique-equal-markers" hidden aria-label="Je zwei gegenüberliegende Seiten sind gleich lang"><path data-equal="0"/><path data-equal="1"/><path data-equal="2"/><path data-equal="3"/></g>
+          <g id="unique-dimensions" hidden aria-label="AB ist 6 Zentimeter, AD ist 4 Zentimeter, Winkel DAB ist 70 Grad"><text id="unique-ab-label">6 cm</text><text id="unique-ad-label">4 cm</text><text id="unique-angle-label">70°</text></g>
+        </svg>
+        <section id="unique-freedom" class="freedom-card" hidden aria-labelledby="unique-freedom-title"><div><h2 id="unique-freedom-title">Ein Freiheitsgrad bleibt</h2><p>Figur bleibt beweglich.</p></div><label for="unique-shear">Viereck verschieben</label><input id="unique-shear" type="range" min="-120" max="120" step="1" value="0" /></section>
+        <section id="unique-independent" class="independent-card" hidden><h2>Geeignete unabhängige Angaben</h2><p id="unique-dimension-text">AB = 6 cm · AD = 4 cm · ∠DAB = 70°</p><strong>Figur wird festgelegt.</strong><small>Für dieses Parallelogramm bis auf kongruente Lage.</small></section>
+        <section id="unique-conclusion" class="conclusion-card" hidden><h2>Aha</h2><p>Nicht die Anzahl, sondern die Unabhängigkeit der Angaben legt die Figur fest.</p></section>
+      </section>
+      <section class="unique-insight" aria-live="polite"><p id="unique-insight">Welche Angaben verhindern, dass sich dieses Viereck noch verändert?</p><div class="unique-controls"><button id="unique-next" class="primary-button" type="button">Weiter</button><button id="unique-reset" class="reset-button" type="button">Zurücksetzen</button></div><p id="unique-live" class="visually-hidden" aria-live="polite"></p></section>
+      <noscript>Für diesen interaktiven Aha-Moment muss JavaScript aktiviert sein.</noscript>
+    </main>
+    <script type="module" src="./src/unique-quadrilateral-app.js"></script>
+  </body>
+</html>

@@ -123,15 +123,15 @@ function createWorkerHarness() {
   };
 }
 
-test("Installation füllt Version 30 vollständig und Aktivierung entfernt ältere Versionen", async () => {
+test("Installation füllt Version 31 vollständig und Aktivierung entfernt ältere Versionen", async () => {
   const harness = createWorkerHarness();
   await harness.dispatchLifecycle("install");
   await harness.dispatchLifecycle("activate");
 
   assert.equal(harness.skipped, true);
   assert.equal(harness.claimed, true);
-  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v30"]);
-  const current = harness.stores.get("mathe-unterrichts-app-v30");
+  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v31"]);
+  const current = harness.stores.get("mathe-unterrichts-app-v31");
   for (const path of [
     "./",
     "./index.html",
@@ -260,6 +260,12 @@ test("Installation füllt Version 30 vollständig und Aktivierung entfernt älte
     "./src/quadrilateral-angle-sum-animation.js",
     "./src/quadrilateral-angle-sum-math.js",
     "./src/quadrilateral-angle-sum-state.js",
+    "./eindeutige-vierecke.html",
+    "./unique-quadrilateral.css",
+    "./src/unique-quadrilateral-app.js",
+    "./src/unique-quadrilateral-animation.js",
+    "./src/unique-quadrilateral-math.js",
+    "./src/unique-quadrilateral-state.js",
   ]) {
     assert.equal(current.has(new URL(path, `${origin}/`).href), true);
   }
@@ -398,6 +404,12 @@ test("Offline-Neustart liefert Startseite und alle Kapitel ohne Netzwerk aus", a
     "/src/quadrilateral-angle-sum-animation.js",
     "/src/quadrilateral-angle-sum-math.js",
     "/src/quadrilateral-angle-sum-state.js",
+    "/eindeutige-vierecke.html",
+    "/unique-quadrilateral.css",
+    "/src/unique-quadrilateral-app.js",
+    "/src/unique-quadrilateral-animation.js",
+    "/src/unique-quadrilateral-math.js",
+    "/src/unique-quadrilateral-state.js",
   ]) {
     const response = await harness.dispatchFetch(path);
     assert.equal(response.status, 200);
