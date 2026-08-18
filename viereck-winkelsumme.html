@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f5f7fb" />
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Mathe im Unterricht" />
+    <meta name="description" content="Interaktiver Aha-Moment zur Winkelsumme im Viereck." />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./icon-180.png" />
+    <link rel="stylesheet" href="./navigation.css" />
+    <link rel="stylesheet" href="./quadrilateral-angle-sum.css" />
+    <title>Warum sind es im Viereck immer 360°?</title>
+  </head>
+  <body>
+    <main class="angle-sum-shell">
+      <nav class="module-navigation" aria-label="Modulnavigation">
+        <a class="module-back-link" href="./#vierecke">← Vierecke</a>
+      </nav>
+      <header class="angle-sum-header">
+        <div>
+          <p class="eyebrow">Vierecke · Kapitel 5</p>
+          <h1>Warum sind es im Viereck immer 360°?</h1>
+          <p class="subtitle">Winkelsumme im Viereck</p>
+        </div>
+        <p class="local-note" aria-label="Datenschutzstatus"><span aria-hidden="true">●</span> lokal · ohne Speicherung</p>
+      </header>
+
+      <section id="quadrilateral-workspace" class="angle-sum-board" data-state="irritation" aria-labelledby="quadrilateral-title">
+        <h2 id="quadrilateral-title" class="visually-hidden">Zerlegung eines konvexen Vierecks</h2>
+        <svg id="quadrilateral-board" viewBox="0 0 1000 640" role="img" aria-label="Konvexes Viereck ohne Hilfslinie.">
+          <rect class="board-background" x="2" y="2" width="996" height="636" rx="32" />
+          <g id="quadrilateral-triangles" hidden aria-label="Zwei Dreiecke im Viereck">
+            <polygon id="quadrilateral-triangle-one" class="triangle-one" points="" />
+            <polygon id="quadrilateral-triangle-two" class="triangle-two" points="" />
+          </g>
+          <polygon id="quadrilateral-shape" class="quadrilateral-shape" points="" />
+          <line id="quadrilateral-diagonal" class="quadrilateral-diagonal" hidden />
+          <g id="quadrilateral-angle-labels" hidden aria-label="Vier Innenwinkel">
+            <text data-angle-index="0"></text><text data-angle-index="1"></text>
+            <text data-angle-index="2"></text><text data-angle-index="3"></text>
+          </g>
+          <g class="vertex-labels" aria-hidden="true">
+            <text data-vertex-index="0">A</text><text data-vertex-index="1">B</text>
+            <text data-vertex-index="2">C</text><text data-vertex-index="3">D</text>
+          </g>
+        </svg>
+
+        <section id="quadrilateral-equation" class="equation-card" hidden aria-label="Zwei mal 180 Grad ergeben 360 Grad">
+          <strong>180° + 180° = 360°</strong>
+        </section>
+
+        <section id="quadrilateral-explore" class="angle-sum-explore" hidden aria-labelledby="quadrilateral-explore-title">
+          <div><h2 id="quadrilateral-explore-title">Viereck verformen</h2><p>Einzelwinkel ändern sich, Summe bleibt.</p></div>
+          <label for="quadrilateral-position">Form des Vierecks</label>
+          <input id="quadrilateral-position" type="range" min="-100" max="100" step="1" value="0" />
+          <output id="quadrilateral-angle-equation" for="quadrilateral-position">90° + 90° + 90° + 90° = 360°</output>
+        </section>
+
+        <section id="quadrilateral-conclusion" class="conclusion-card" hidden>
+          <h2>Aha</h2><p>Zwei Dreiecke erklären die 360° im Viereck.</p>
+        </section>
+      </section>
+
+      <section class="angle-sum-insight" aria-live="polite">
+        <p id="quadrilateral-insight">Wie kann man die vier Winkel mit etwas Bekanntem erklären?</p>
+        <div class="angle-sum-controls"><button id="quadrilateral-next" class="primary-button" type="button">Weiter</button><button id="quadrilateral-reset" class="reset-button" type="button">Zurücksetzen</button></div>
+        <p id="quadrilateral-live" class="visually-hidden" aria-live="polite"></p>
+      </section>
+      <noscript>Für diesen interaktiven Aha-Moment muss JavaScript aktiviert sein.</noscript>
+    </main>
+    <script type="module" src="./src/quadrilateral-angle-sum-app.js"></script>
+  </body>
+</html>
