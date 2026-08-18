@@ -116,6 +116,7 @@ test("jeder Einstieg registriert den Worker explizit im Projekt-Scope ohne HTTP-
     "src/proportional-comparison-app.js",
     "src/proportional-rule-three-app.js",
     "src/inverse-assignment-app.js",
+    "src/model-choice-app.js",
     "src/app.js",
     "src/triangle-inequality-app.js",
     "src/triangle-area-app.js",
