@@ -1,4 +1,4 @@
-const CACHE_NAME = "mathe-unterrichts-app-v39";
+const CACHE_NAME = "mathe-unterrichts-app-v40";
 const NAVIGATION_FALLBACK = "./index.html";
 const APP_FILES = [
   "./",
@@ -204,6 +204,12 @@ const APP_FILES = [
   "./src/percentage-roles-animation.js",
   "./src/percentage-roles-math.js",
   "./src/percentage-roles-state.js",
+  "./prozent-als-faktor.html",
+  "./percentage-factor.css",
+  "./src/percentage-factor-app.js",
+  "./src/percentage-factor-animation.js",
+  "./src/percentage-factor-math.js",
+  "./src/percentage-factor-state.js",
   "./manifest.webmanifest",
   "./icon.svg",
   "./icon-180.png",

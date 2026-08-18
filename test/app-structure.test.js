@@ -75,6 +75,8 @@ const files = {
   absoluteRelativeApp: await readFile(new URL("../src/absolute-relative-app.js", import.meta.url), "utf8"),
   percentageRoles: await readFile(new URL("../grundwert-prozentwert-prozentsatz.html", import.meta.url), "utf8"),
   percentageRolesApp: await readFile(new URL("../src/percentage-roles-app.js", import.meta.url), "utf8"),
+  percentageFactor: await readFile(new URL("../prozent-als-faktor.html", import.meta.url), "utf8"),
+  percentageFactorApp: await readFile(new URL("../src/percentage-factor-app.js", import.meta.url), "utf8"),
   worker: await readFile(new URL("../sw.js", import.meta.url), "utf8"),
   manifest: await readFile(new URL("../manifest.webmanifest", import.meta.url), "utf8"),
 };
@@ -119,7 +121,7 @@ test("Startseite zeigt Klasse 7 mit den sieben produktiven Kapiteln", () => {
 });
 
 test("Kapitel 1 bis 3 enthalten je sechs Module, Kapitel 4 vier und Kapitel 5 sowie 6 vollständig", () => {
-  assert.equal((files.home.match(/class="module-card"/g) ?? []).length,34);
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length,35);
   assert.match(files.home, /href="\.\/zahlengerade\.html"/);
   assert.match(files.home, /Warum liegen negative Zahlen links von der Null\?/);
   assert.match(files.home, /<span class="module-subtitle">Zahlengerade<\/span>/);
@@ -223,8 +225,8 @@ test("Kapitel 1 bis 3 enthalten je sechs Module, Kapitel 4 vier und Kapitel 5 so
   assert.match(files.home, /href="\.\/grundwert-prozentwert-prozentsatz\.html"/);
   assert.match(files.home, /Warum sind Grundwert, Prozentwert und Prozentsatz keine drei verschiedenen Themen\?/);
   assert.match(files.home, /<span class="module-subtitle">Grundwert · Prozentwert · Prozentsatz<\/span>/);
-  assert.equal((files.home.match(/class="module-status"/g) ?? []).length,34);
-  assert.equal((files.home.match(/fertig/g) ?? []).length,34);
+  assert.equal((files.home.match(/class="module-status"/g) ?? []).length,35);
+  assert.equal((files.home.match(/fertig/g) ?? []).length,35);
 });
 
 test("Alle Dreiecksmodule behalten ausschließlich ihren bisherigen Rückweg", () => {
@@ -292,7 +294,7 @@ test("K6.1 bis K6.5 führen ausschließlich zu Proportional · Antiproportional 
 });
 
 test("K7.1 bis K7.3 führen ausschließlich zu Prozentrechnung zurück", () => {
-  for (const module of [files.percentageShare, files.absoluteRelative, files.percentageRoles]) {
+  for (const module of [files.percentageShare, files.absoluteRelative, files.percentageRoles, files.percentageFactor]) {
     assert.equal((module.match(/class="module-navigation"/g) ?? []).length, 1);
     assert.match(module, /class="module-back-link" href="\.\/#prozentrechnung">← Prozentrechnung<\/a>/);
     assert.doesNotMatch(module, /Suche|Einstellungen|Favoriten|Statistik|Anmelden/);
@@ -591,13 +593,19 @@ test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und beide Kapite
     "src/percentage-roles-animation.js",
     "src/percentage-roles-math.js",
     "src/percentage-roles-state.js",
+    "prozent-als-faktor.html",
+    "percentage-factor.css",
+    "src/percentage-factor-app.js",
+    "src/percentage-factor-animation.js",
+    "src/percentage-factor-math.js",
+    "src/percentage-factor-state.js",
     "manifest.webmanifest",
     "icon.svg",
   ]) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
   assert.match(files.shell, /serviceWorker\.register/);
-  assert.match(files.worker, /mathe-unterrichts-app-v39/);
+  assert.match(files.worker, /mathe-unterrichts-app-v40/);
 });
 
 test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", () => {
@@ -658,6 +666,8 @@ test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", 
     files.absoluteRelativeApp,
     files.percentageRoles,
     files.percentageRolesApp,
+    files.percentageFactor,
+    files.percentageFactorApp,
     files.worker,
   ].join("\n");
   assert.doesNotMatch(runtime, /localStorage|sessionStorage|indexedDB|document\.cookie/);

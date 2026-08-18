@@ -10,20 +10,20 @@ const runtime=["grundwert-prozentwert-prozentsatz.html","percentage-roles.css","
 test("Startseite integriert K7.3 genau einmal als dritte Kapitel-7-Karte",()=>{
   const chapter=files.home.match(/<section id="prozentrechnung"[\s\S]*?<\/section>/)?.[0];
   assert.ok(chapter);
-  assert.equal((chapter.match(/class="module-card"/g)??[]).length,3);
+  assert.equal((chapter.match(/class="module-card"/g)??[]).length,4);
   assert.equal((files.home.match(/href="\.\/grundwert-prozentwert-prozentsatz\.html"/g)??[]).length,1);
   assert.match(chapter,/Warum sind Grundwert, Prozentwert und Prozentsatz keine drei verschiedenen Themen\?/);
-  assert.equal((files.home.match(/class="module-card"/g)??[]).length,34);
+  assert.equal((files.home.match(/class="module-card"/g)??[]).length,35);
   assert.equal((files.home.match(/class="chapter(?:\s|")/g)??[]).length,7);
-  assert.match(files.css,/\.chapter-percentages \.module-grid\s*\{[^}]*repeat\(3, minmax\(0, 1fr\)\)/s);
+  assert.match(files.css,/\.chapter-percentages \.module-grid\s*\{[^}]*repeat\(4, minmax\(0, 1fr\)\)/s);
   assert.match(files.css,/@media \(min-width: 721px\) and \(max-width: 1040px\)[\s\S]*?\.chapter-percentages \.module-grid\s*\{[^}]*repeat\(2, minmax\(0, 1fr\)\)/s);
   const landscape=files.css.match(/@media \(orientation: landscape\) and \(min-width: 900px\) and \(max-width: 1500px\)[\s\S]*?(?=\n@media|$)/)?.[0];
-  assert.match(landscape,/\.chapter-percentages \.module-grid\s*\{[^}]*repeat\(3, minmax\(0, 1fr\)\)/s);
+  assert.match(landscape,/\.chapter-percentages \.module-grid\s*\{[^}]*repeat\(2, minmax\(0, 1fr\)\)/s);
   assert.match(landscape,/\.chapter-percentages \.module-card\s*\{[^}]*grid-column:\s*auto/s);
 });
 
-test("Cache v39, Pages und Smoke enthalten die sechs K7.3-Laufzeitdateien",()=>{
-  assert.match(files.worker,/mathe-unterrichts-app-v39/);
+test("Cache v40, Pages und Smoke enthalten die sechs K7.3-Laufzeitdateien",()=>{
+  assert.match(files.worker,/mathe-unterrichts-app-v40/);
   assert.doesNotMatch(files.worker,/mathe-unterrichts-app-v38/);
   for(const file of runtime){
     const pattern=new RegExp(file.replaceAll(".","\\."));

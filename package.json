@@ -42,7 +42,8 @@
     "test:model-choice-visual": "node scripts/render-model-choice-states.mjs",
     "test:percentage-share-visual": "node scripts/render-percentage-share-states.mjs",
     "test:absolute-relative-visual": "node scripts/render-absolute-relative-states.mjs",
-    "test:percentage-roles-visual": "node scripts/render-percentage-roles-states.mjs"
+    "test:percentage-roles-visual": "node scripts/render-percentage-roles-states.mjs",
+    "test:percentage-factor-visual": "node scripts/render-percentage-factor-states.mjs"
   },
   "engines": {
     "node": ">=20"

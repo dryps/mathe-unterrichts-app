@@ -21,7 +21,7 @@ test("Startseite integriert K3.5 genau einmal als fünfte K3-Karte", () => {
   assert.equal((files.home.match(/href="\.\/plus-minus-klammern\.html"/g) ?? []).length, 1);
   assert.match(files.home, /Warum ändern sich bei einer Minusklammer alle Vorzeichen\?/);
   assert.match(files.home, /<span class="module-subtitle">Plus- und Minusklammern<\/span>/);
-  assert.equal((files.home.match(/class="module-card"/g) ?? []).length,34);
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length,35);
 });
 
 test("K3-Raster bleibt nach der sechsten Karte als drei plus drei ausgewogen", () => {
@@ -31,7 +31,7 @@ test("K3-Raster bleibt nach der sechsten Karte als drei plus drei ausgewogen", (
 });
 
 test("Cache v22 enthält ausschließlich die sechs neuen Laufzeitdateien", () => {
-  assert.match(files.worker, /mathe-unterrichts-app-v39/);
+  assert.match(files.worker, /mathe-unterrichts-app-v40/);
   assert.doesNotMatch(files.worker, /mathe-unterrichts-app-v21/);
   for (const file of runtimeFiles) assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   assert.doesNotMatch(files.worker, /render-bracket-sign-states|bracket-sign-(?:design|static\.test)/);
