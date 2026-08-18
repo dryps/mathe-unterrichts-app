@@ -29,4 +29,3 @@ Der sichtbare Dezimalwert nutzt das deutsche Komma. Der zugängliche Name des di
 ## Aha
 
 „Ein Prozentsatz lässt sich als Dezimalfaktor ausdrücken.“
-

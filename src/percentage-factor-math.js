@@ -32,4 +32,3 @@ export function percentageFactorScenario(index){
   const factor=percentageToFactor(scenario.rate);
   return Object.freeze({...factor,whole:scenario.whole,result:factor.factor*scenario.whole});
 }
-

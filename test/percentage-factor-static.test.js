@@ -24,4 +24,3 @@ test("Modul bleibt lokal, speicherfrei, responsiv und Reduced-Motion-fähig",()=
   assert.match(css,/@media\(prefers-reduced-motion:reduce\)/);
   assert.match(app,/serviceWorker\.register\("\.\/sw\.js", \{ scope: "\.\/", updateViaCache: "none" \}\)/);
 });
-

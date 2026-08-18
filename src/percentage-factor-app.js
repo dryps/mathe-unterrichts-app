@@ -24,4 +24,3 @@ reset.addEventListener("click",()=>{clearAnimation();current=resetPercentageFact
 scenarioInput.addEventListener("input",event=>{current=setPercentageFactorScenario(current,Number(event.currentTarget.value));render();});
 if("serviceWorker" in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js", { scope: "./", updateViaCache: "none" }).catch(()=>{}));
 render();
-

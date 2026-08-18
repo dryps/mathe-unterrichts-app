@@ -8,4 +8,3 @@ test("Reveal läuft begrenzt und endet exakt",()=>{
   assert.deepEqual(percentageFactorRevealFrame(PERCENTAGE_FACTOR_REVEAL_DURATION),{opacity:1,complete:true});
   assert.throws(()=>percentageFactorRevealFrame(Number.NaN),RangeError);
 });
-

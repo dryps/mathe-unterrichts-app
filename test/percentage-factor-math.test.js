@@ -22,4 +22,3 @@ test("diskrete Situationen werden sicher eingerastet",()=>{
   assert.throws(()=>snapPercentageFactorScenario(Number.NaN),RangeError);
   assert.throws(()=>percentageToFactor(-1),RangeError);
 });
-

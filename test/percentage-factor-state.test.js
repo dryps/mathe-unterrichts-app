@@ -50,4 +50,3 @@ test("Erkundung bleibt vor dem Schluss und während Reveal gesperrt",()=>{
 test("Reset stellt die Irritation wieder her",()=>{
   assert.deepEqual(resetPercentageFactorState(),createPercentageFactorState());
 });
-

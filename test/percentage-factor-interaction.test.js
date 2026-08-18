@@ -42,4 +42,3 @@ test("Mehrfachtipp und Reset neutralisieren alte Rückrufe",async()=>{
   assert.equal(elements.get("#pf-workspace").getAttribute("aria-busy"),"false");
   assert.equal(elements.get("#pf-hundredth").hidden,true);
 });
-
