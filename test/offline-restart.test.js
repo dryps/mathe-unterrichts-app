@@ -130,8 +130,8 @@ test("Installation füllt Version 35 vollständig und Aktivierung entfernt älte
 
   assert.equal(harness.skipped, true);
   assert.equal(harness.claimed, true);
-  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v35"]);
-  const current = harness.stores.get("mathe-unterrichts-app-v35");
+  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v36"]);
+  const current = harness.stores.get("mathe-unterrichts-app-v36");
   for (const path of [
     "./",
     "./index.html",

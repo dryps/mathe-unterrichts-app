@@ -67,6 +67,8 @@ const files = {
   proportionalRuleThreeApp: await readFile(new URL("../src/proportional-rule-three-app.js", import.meta.url), "utf8"),
   inverseAssignment: await readFile(new URL("../antiproportionale-zuordnungen.html", import.meta.url), "utf8"),
   inverseAssignmentApp: await readFile(new URL("../src/inverse-assignment-app.js", import.meta.url), "utf8"),
+  modelChoice: await readFile(new URL("../modellwahl.html", import.meta.url), "utf8"),
+  modelChoiceApp: await readFile(new URL("../src/model-choice-app.js", import.meta.url), "utf8"),
   worker: await readFile(new URL("../sw.js", import.meta.url), "utf8"),
   manifest: await readFile(new URL("../manifest.webmanifest", import.meta.url), "utf8"),
 };
@@ -108,8 +110,8 @@ test("Startseite zeigt Klasse 7 mit den sechs produktiven Kapiteln", () => {
   assert.doesNotMatch(files.home, /<ul|<ol/);
 });
 
-test("Kapitel 1 bis 3 enthalten je sechs Module, Kapitel 4 vier und Kapitel 5 vollständig", () => {
-  assert.equal((files.home.match(/class="module-card"/g) ?? []).length,30);
+test("Kapitel 1 bis 3 enthalten je sechs Module, Kapitel 4 vier und Kapitel 5 sowie 6 vollständig", () => {
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length,31);
   assert.match(files.home, /href="\.\/zahlengerade\.html"/);
   assert.match(files.home, /Warum liegen negative Zahlen links von der Null\?/);
   assert.match(files.home, /<span class="module-subtitle">Zahlengerade<\/span>/);
@@ -201,8 +203,11 @@ test("Kapitel 1 bis 3 enthalten je sechs Module, Kapitel 4 vier und Kapitel 5 vo
   assert.match(files.home, /href="\.\/antiproportionale-zuordnungen\.html"/);
   assert.match(files.home, /Warum wird bei antiproportional aus „doppelt“ plötzlich „halb“\?/);
   assert.match(files.home, /<span class="module-subtitle">Antiproportionale Zuordnungen<\/span>/);
-  assert.equal((files.home.match(/class="module-status"/g) ?? []).length,30);
-  assert.equal((files.home.match(/fertig/g) ?? []).length,30);
+  assert.match(files.home, /href="\.\/modellwahl\.html"/);
+  assert.match(files.home, /Warum muss ich vor dem Dreisatz wissen, welches Modell vorliegt\?/);
+  assert.match(files.home, /<span class="module-subtitle">Proportional oder antiproportional\?<\/span>/);
+  assert.equal((files.home.match(/class="module-status"/g) ?? []).length,31);
+  assert.equal((files.home.match(/fertig/g) ?? []).length,31);
 });
 
 test("Alle Dreiecksmodule behalten ausschließlich ihren bisherigen Rückweg", () => {
@@ -261,8 +266,8 @@ test("K5.1 bis K5.4 führen ausschließlich zu Vierecke zurück", () => {
   }
 });
 
-test("K6.1 bis K6.4 führen ausschließlich zu Proportional · Antiproportional zurück", () => {
-  for (const module of [files.assignmentRepresentations, files.proportionalComparison, files.proportionalRuleThree, files.inverseAssignment]) {
+test("K6.1 bis K6.5 führen ausschließlich zu Proportional · Antiproportional zurück", () => {
+  for (const module of [files.assignmentRepresentations, files.proportionalComparison, files.proportionalRuleThree, files.inverseAssignment, files.modelChoice]) {
     assert.equal((module.match(/class="module-navigation"/g) ?? []).length, 1);
     assert.match(module, /class="module-back-link" href="\.\/#zuordnungen">← Proportional · Antiproportional<\/a>/);
     assert.doesNotMatch(module, /Suche|Einstellungen|Favoriten|Statistik|Anmelden/);
@@ -537,13 +542,19 @@ test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und beide Kapite
     "src/inverse-assignment-animation.js",
     "src/inverse-assignment-math.js",
     "src/inverse-assignment-state.js",
+    "modellwahl.html",
+    "model-choice.css",
+    "src/model-choice-app.js",
+    "src/model-choice-animation.js",
+    "src/model-choice-math.js",
+    "src/model-choice-state.js",
     "manifest.webmanifest",
     "icon.svg",
   ]) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
   assert.match(files.shell, /serviceWorker\.register/);
-  assert.match(files.worker, /mathe-unterrichts-app-v35/);
+  assert.match(files.worker, /mathe-unterrichts-app-v36/);
 });
 
 test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", () => {
@@ -596,6 +607,8 @@ test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", 
     files.proportionalRuleThreeApp,
     files.inverseAssignment,
     files.inverseAssignmentApp,
+    files.modelChoice,
+    files.modelChoiceApp,
     files.worker,
   ].join("\n");
   assert.doesNotMatch(runtime, /localStorage|sessionStorage|indexedDB|document\.cookie/);

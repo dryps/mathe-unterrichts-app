@@ -1,4 +1,4 @@
-const CACHE_NAME = "mathe-unterrichts-app-v35";
+const CACHE_NAME = "mathe-unterrichts-app-v36";
 const NAVIGATION_FALLBACK = "./index.html";
 const APP_FILES = [
   "./",
@@ -180,6 +180,12 @@ const APP_FILES = [
   "./src/inverse-assignment-animation.js",
   "./src/inverse-assignment-math.js",
   "./src/inverse-assignment-state.js",
+  "./modellwahl.html",
+  "./model-choice.css",
+  "./src/model-choice-app.js",
+  "./src/model-choice-animation.js",
+  "./src/model-choice-math.js",
+  "./src/model-choice-state.js",
   "./manifest.webmanifest",
   "./icon.svg",
   "./icon-180.png",
