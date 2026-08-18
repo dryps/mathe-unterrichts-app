@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f5f7fb" />
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Mathe im Unterricht" />
+  <meta name="description" content="Interaktiver Aha-Moment zum Prozentsatz als Dezimalfaktor." />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./icon-180.png" />
+  <link rel="stylesheet" href="./navigation.css" />
+  <link rel="stylesheet" href="./percentage-factor.css" />
+  <title>Warum ist 25 % dasselbe wie 0,25?</title>
+</head>
+<body>
+  <main class="pf-shell">
+    <nav class="module-navigation" aria-label="Modulnavigation"><a class="module-back-link" href="./#prozentrechnung">← Prozentrechnung</a></nav>
+    <header class="pf-header">
+      <div><p class="eyebrow">Prozentrechnung · Kapitel 7</p><h1>Warum ist 25 % dasselbe wie 0,25?</h1><p class="subtitle">Prozent als Faktor</p></div>
+      <p class="local-note" aria-label="Datenschutzstatus"><span aria-hidden="true">●</span> lokal · ohne Speicherung</p>
+    </header>
+
+    <section id="pf-workspace" class="pf-workspace" data-state="irritation" aria-busy="false">
+      <section class="factor-stage">
+        <p class="stage-label">Dieselbe Zahl in vier Schreibweisen</p>
+        <div id="pf-chain" class="factor-chain" role="img" aria-label="25 Prozent; weitere Darstellungen noch verborgen.">
+          <strong id="pf-rate" class="factor-token rate-token">25 %</strong>
+          <span id="pf-hundredth-step" class="chain-step" hidden><span aria-hidden="true">→</span><strong id="pf-hundredth" class="factor-token">25 / 100</strong></span>
+          <span id="pf-reduced-step" class="chain-step" hidden><span aria-hidden="true">→</span><strong id="pf-reduced" class="factor-token">1 / 4</strong></span>
+          <span id="pf-decimal-step" class="chain-step" hidden><span aria-hidden="true">→</span><strong id="pf-decimal" class="factor-token decimal-token">0,25</strong></span>
+        </div>
+      </section>
+
+      <section class="application-grid">
+        <article id="pf-product" class="product-card" hidden><p>Als Faktor anwenden</p><strong>0,25 · 80 = 20</strong></article>
+        <article id="pf-warning" class="warning-card" hidden><p id="pf-warning-title">Warum nicht 25 · 80?</p><strong id="pf-warning-text">25 % bedeutet 25 / 100 – der Faktor ist 0,25.</strong></article>
+      </section>
+
+      <section id="pf-explore" class="explore-card" hidden>
+        <label for="pf-scenario">Gleichwertige Schreibweisen gemeinsam verändern</label>
+        <input id="pf-scenario" type="range" min="0" max="3" step="1" value="1" aria-label="Prozentbeispiel verändern: Beispiel 2 von 4: 25 Prozent sind der Faktor 0,25; 0,25 mal 80 ist 20" aria-valuetext="Beispiel 2 von 4: 25 Prozent sind der Faktor 0,25; 0,25 mal 80 ist 20" />
+        <output id="pf-scenario-output" for="pf-scenario">25 % → 0,25</output>
+      </section>
+
+      <section id="pf-conclusion" class="conclusion-card" hidden><h2>Aha</h2><p>Ein Prozentsatz lässt sich als Dezimalfaktor ausdrücken.</p></section>
+    </section>
+
+    <section class="pf-insight" aria-live="polite">
+      <p id="pf-insight">25 Prozent – welche Zahl wirkt beim Multiplizieren?</p>
+      <div class="pf-controls"><button id="pf-next" class="primary-button" type="button">Weiter</button><button id="pf-reset" class="reset-button" type="button">Zurücksetzen</button></div>
+      <p id="pf-live" class="visually-hidden" aria-live="polite"></p>
+    </section>
+    <noscript>Für diesen interaktiven Aha-Moment muss JavaScript aktiviert sein.</noscript>
+  </main>
+  <script type="module" src="./src/percentage-factor-app.js"></script>
+</body>
+</html>

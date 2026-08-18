@@ -69,6 +69,7 @@ jobs:
           npm run test:percentage-share-visual
           npm run test:absolute-relative-visual
           npm run test:percentage-roles-visual
+          npm run test:percentage-factor-visual
 
       - name: Kontrolliertes Pages-Artefakt bauen
         run: npm run build:pages
