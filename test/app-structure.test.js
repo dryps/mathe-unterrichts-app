@@ -83,6 +83,8 @@ const files = {
   randomEventApp: await readFile(new URL("../src/random-event-app.js", import.meta.url), "utf8"),
   outcomeSpace: await readFile(new URL("../ergebnisraum.html", import.meta.url), "utf8"),
   outcomeSpaceApp: await readFile(new URL("../src/outcome-space-app.js", import.meta.url), "utf8"),
+  laplace: await readFile(new URL("../laplace-wahrscheinlichkeit.html", import.meta.url), "utf8"),
+  laplaceApp: await readFile(new URL("../src/laplace-app.js", import.meta.url), "utf8"),
   worker: await readFile(new URL("../sw.js", import.meta.url), "utf8"),
   manifest: await readFile(new URL("../manifest.webmanifest", import.meta.url), "utf8"),
 };
@@ -129,7 +131,7 @@ test("Startseite zeigt Klasse 7 mit den acht produktiven Kapiteln", () => {
 });
 
 test("Kapitel 1 bis 3 enthalten je sechs Module, Kapitel 4 vier und Kapitel 5 sowie 6 vollständig", () => {
-  assert.equal((files.home.match(/class="module-card"/g) ?? []).length,38);
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length,39);
   assert.match(files.home, /href="\.\/zahlengerade\.html"/);
   assert.match(files.home, /Warum liegen negative Zahlen links von der Null\?/);
   assert.match(files.home, /<span class="module-subtitle">Zahlengerade<\/span>/);
@@ -239,8 +241,11 @@ test("Kapitel 1 bis 3 enthalten je sechs Module, Kapitel 4 vier und Kapitel 5 so
   assert.match(files.home, /href="\.\/ergebnisraum\.html"/);
   assert.match(files.home, /Warum muss der Ergebnisraum vollständig sein, bevor ich eine Wahrscheinlichkeit berechne\?/);
   assert.match(files.home, /<span class="module-subtitle">Ergebnisraum<\/span>/);
-  assert.equal((files.home.match(/class="module-status"/g) ?? []).length,38);
-  assert.equal((files.home.match(/fertig/g) ?? []).length,38);
+  assert.match(files.home, /href="\.\/laplace-wahrscheinlichkeit\.html"/);
+  assert.match(files.home, /Warum funktioniert „günstig durch möglich“ nur bei gleich wahrscheinlichen Ergebnissen\?/);
+  assert.match(files.home, /<span class="module-subtitle">Laplace-Wahrscheinlichkeit<\/span>/);
+  assert.equal((files.home.match(/class="module-status"/g) ?? []).length,39);
+  assert.equal((files.home.match(/fertig/g) ?? []).length,39);
 });
 
 test("Alle Dreiecksmodule behalten ausschließlich ihren bisherigen Rückweg", () => {
@@ -315,8 +320,8 @@ test("K7.1 bis K7.5 führen ausschließlich zu Prozentrechnung zurück", () => {
   }
 });
 
-test("K8.1 und K8.2 führen ausschließlich zu Wahrscheinlichkeit zurück", () => {
-  for (const module of [files.randomEvent, files.outcomeSpace]) {
+test("K8.1 bis K8.3 führen ausschließlich zu Wahrscheinlichkeit zurück", () => {
+  for (const module of [files.randomEvent, files.outcomeSpace, files.laplace]) {
     assert.equal((module.match(/class="module-navigation"/g) ?? []).length, 1);
     assert.match(module, /class="module-back-link" href="\.\/#wahrscheinlichkeit">← Wahrscheinlichkeit<\/a>/);
     assert.doesNotMatch(module, /Suche|Einstellungen|Favoriten|Statistik|Anmelden/);
@@ -639,13 +644,19 @@ test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und beide Kapite
     "src/outcome-space-animation.js",
     "src/outcome-space-math.js",
     "src/outcome-space-state.js",
+    "laplace-wahrscheinlichkeit.html",
+    "laplace.css",
+    "src/laplace-app.js",
+    "src/laplace-animation.js",
+    "src/laplace-math.js",
+    "src/laplace-state.js",
     "manifest.webmanifest",
     "icon.svg",
   ]) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
   assert.match(files.shell, /serviceWorker\.register/);
-  assert.match(files.worker, /mathe-unterrichts-app-v43/);
+  assert.match(files.worker, /mathe-unterrichts-app-v44/);
 });
 
 test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", () => {
@@ -714,6 +725,8 @@ test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", 
     files.randomEventApp,
     files.outcomeSpace,
     files.outcomeSpaceApp,
+    files.laplace,
+    files.laplaceApp,
     files.worker,
   ].join("\n");
   assert.doesNotMatch(runtime, /localStorage|sessionStorage|indexedDB|document\.cookie/);

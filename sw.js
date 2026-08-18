@@ -1,4 +1,4 @@
-const CACHE_NAME = "mathe-unterrichts-app-v43";
+const CACHE_NAME = "mathe-unterrichts-app-v44";
 const NAVIGATION_FALLBACK = "./index.html";
 const APP_FILES = [
   "./",
@@ -228,6 +228,12 @@ const APP_FILES = [
   "./src/outcome-space-animation.js",
   "./src/outcome-space-math.js",
   "./src/outcome-space-state.js",
+  "./laplace-wahrscheinlichkeit.html",
+  "./laplace.css",
+  "./src/laplace-app.js",
+  "./src/laplace-animation.js",
+  "./src/laplace-math.js",
+  "./src/laplace-state.js",
   "./manifest.webmanifest",
   "./icon.svg",
   "./icon-180.png",

@@ -73,6 +73,7 @@ jobs:
           npm run test:percentage-chart-visual
           npm run test:random-event-visual
           npm run test:outcome-space-visual
+          npm run test:laplace-visual
 
       - name: Kontrolliertes Pages-Artefakt bauen
         run: npm run build:pages
