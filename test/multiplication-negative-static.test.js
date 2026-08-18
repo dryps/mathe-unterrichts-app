@@ -125,7 +125,7 @@ test("Offline-Cache und Pages-Gate enthalten das vollständige Modul auf Version
   ]) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
-  assert.match(files.worker, /mathe-unterrichts-app-v32/);
+  assert.match(files.worker, /mathe-unterrichts-app-v33/);
   assert.equal(
     files.package.scripts["test:multiplication-visual"],
     "node scripts/render-multiplication-negative-states.mjs",

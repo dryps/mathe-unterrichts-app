@@ -9,5 +9,5 @@ function animateReveal(){clearAnimation();const token=animationToken;workspace.s
 next.addEventListener("click",()=>{if(current.locked)return;current=nextComparisonState(current);render();if(current.locked)animateReveal();});
 reset.addEventListener("click",()=>{clearAnimation();current=resetComparisonState();render();});
 comparisonInput.addEventListener("input",event=>{current=setComparisonInput(current,Number(event.currentTarget.value));render();});
-if("serviceWorker" in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js",{scope:"./",updateViaCache:"none"}).catch(()=>{}));
+if("serviceWorker" in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js", { scope: "./", updateViaCache: "none" }).catch(()=>{}));
 render();
