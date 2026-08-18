@@ -73,6 +73,8 @@ const files = {
   percentageShareApp: await readFile(new URL("../src/percentage-share-app.js", import.meta.url), "utf8"),
   absoluteRelative: await readFile(new URL("../absolut-relativ.html", import.meta.url), "utf8"),
   absoluteRelativeApp: await readFile(new URL("../src/absolute-relative-app.js", import.meta.url), "utf8"),
+  percentageRoles: await readFile(new URL("../grundwert-prozentwert-prozentsatz.html", import.meta.url), "utf8"),
+  percentageRolesApp: await readFile(new URL("../src/percentage-roles-app.js", import.meta.url), "utf8"),
   worker: await readFile(new URL("../sw.js", import.meta.url), "utf8"),
   manifest: await readFile(new URL("../manifest.webmanifest", import.meta.url), "utf8"),
 };
@@ -117,7 +119,7 @@ test("Startseite zeigt Klasse 7 mit den sieben produktiven Kapiteln", () => {
 });
 
 test("Kapitel 1 bis 3 enthalten je sechs Module, Kapitel 4 vier und Kapitel 5 sowie 6 vollständig", () => {
-  assert.equal((files.home.match(/class="module-card"/g) ?? []).length,33);
+  assert.equal((files.home.match(/class="module-card"/g) ?? []).length,34);
   assert.match(files.home, /href="\.\/zahlengerade\.html"/);
   assert.match(files.home, /Warum liegen negative Zahlen links von der Null\?/);
   assert.match(files.home, /<span class="module-subtitle">Zahlengerade<\/span>/);
@@ -218,8 +220,11 @@ test("Kapitel 1 bis 3 enthalten je sechs Module, Kapitel 4 vier und Kapitel 5 so
   assert.match(files.home, /href="\.\/absolut-relativ\.html"/);
   assert.match(files.home, /Wie kann die kleinere Anzahl trotzdem der größere Anteil sein\?/);
   assert.match(files.home, /<span class="module-subtitle">Absolut und relativ<\/span>/);
-  assert.equal((files.home.match(/class="module-status"/g) ?? []).length,33);
-  assert.equal((files.home.match(/fertig/g) ?? []).length,33);
+  assert.match(files.home, /href="\.\/grundwert-prozentwert-prozentsatz\.html"/);
+  assert.match(files.home, /Warum sind Grundwert, Prozentwert und Prozentsatz keine drei verschiedenen Themen\?/);
+  assert.match(files.home, /<span class="module-subtitle">Grundwert · Prozentwert · Prozentsatz<\/span>/);
+  assert.equal((files.home.match(/class="module-status"/g) ?? []).length,34);
+  assert.equal((files.home.match(/fertig/g) ?? []).length,34);
 });
 
 test("Alle Dreiecksmodule behalten ausschließlich ihren bisherigen Rückweg", () => {
@@ -286,8 +291,8 @@ test("K6.1 bis K6.5 führen ausschließlich zu Proportional · Antiproportional 
   }
 });
 
-test("K7.1 und K7.2 führen ausschließlich zu Prozentrechnung zurück", () => {
-  for (const module of [files.percentageShare, files.absoluteRelative]) {
+test("K7.1 bis K7.3 führen ausschließlich zu Prozentrechnung zurück", () => {
+  for (const module of [files.percentageShare, files.absoluteRelative, files.percentageRoles]) {
     assert.equal((module.match(/class="module-navigation"/g) ?? []).length, 1);
     assert.match(module, /class="module-back-link" href="\.\/#prozentrechnung">← Prozentrechnung<\/a>/);
     assert.doesNotMatch(module, /Suche|Einstellungen|Favoriten|Statistik|Anmelden/);
@@ -580,13 +585,19 @@ test("Gemeinsamer Offline-Cache enthält Übersicht, Navigation und beide Kapite
     "src/absolute-relative-animation.js",
     "src/absolute-relative-math.js",
     "src/absolute-relative-state.js",
+    "grundwert-prozentwert-prozentsatz.html",
+    "percentage-roles.css",
+    "src/percentage-roles-app.js",
+    "src/percentage-roles-animation.js",
+    "src/percentage-roles-math.js",
+    "src/percentage-roles-state.js",
     "manifest.webmanifest",
     "icon.svg",
   ]) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
   assert.match(files.shell, /serviceWorker\.register/);
-  assert.match(files.worker, /mathe-unterrichts-app-v38/);
+  assert.match(files.worker, /mathe-unterrichts-app-v39/);
 });
 
 test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", () => {
@@ -645,6 +656,8 @@ test("App-Struktur führt keine Speicherung oder externen Laufzeitaufrufe ein", 
     files.percentageShareApp,
     files.absoluteRelative,
     files.absoluteRelativeApp,
+    files.percentageRoles,
+    files.percentageRolesApp,
     files.worker,
   ].join("\n");
   assert.doesNotMatch(runtime, /localStorage|sessionStorage|indexedDB|document\.cookie/);

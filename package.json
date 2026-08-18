@@ -41,7 +41,8 @@
     "test:inverse-assignment-visual": "node scripts/render-inverse-assignment-states.mjs",
     "test:model-choice-visual": "node scripts/render-model-choice-states.mjs",
     "test:percentage-share-visual": "node scripts/render-percentage-share-states.mjs",
-    "test:absolute-relative-visual": "node scripts/render-absolute-relative-states.mjs"
+    "test:absolute-relative-visual": "node scripts/render-absolute-relative-states.mjs",
+    "test:percentage-roles-visual": "node scripts/render-percentage-roles-states.mjs"
   },
   "engines": {
     "node": ">=20"

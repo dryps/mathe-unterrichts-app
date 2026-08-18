@@ -150,7 +150,7 @@ test("Produktionsgates enthalten ausschließlich die sechs Laufzeitdateien und d
     assert.match(files.pagesRuntime, new RegExp(file.replaceAll(".", "\\.")));
     assert.match(files.smoke, new RegExp(file.replaceAll(".", "\\.")));
   }
-  assert.match(files.worker, /mathe-unterrichts-app-v38/);
+  assert.match(files.worker, /mathe-unterrichts-app-v39/);
   assert.equal(
     packageJson.scripts["test:like-terms-visual"],
     "node scripts/render-like-terms-states.mjs",

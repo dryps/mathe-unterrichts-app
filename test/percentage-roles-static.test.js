@@ -19,7 +19,7 @@ test("Frage, Untertitel, drei Rollen und Aha sind wortgetreu",()=>{
 });
 
 test("Rollen, Beziehung, Erkundung und Aha sind initial echt hidden",()=>{
-  for(const id of ["pr-whole","pr-part","pr-rate","pr-relation","pr-explore","pr-conclusion"]) assert.match(html,new RegExp(`id="${id}"[^>]*hidden`));
+  for(const id of ["pr-whole-caption","pr-part-caption","pr-whole","pr-part","pr-rate","pr-relation","pr-explore","pr-conclusion"]) assert.match(html,new RegExp(`id="${id}"[^>]*hidden`));
   assert.match(css,/\[hidden\]\{display:none!important\}/);
 });
 

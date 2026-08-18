@@ -123,15 +123,15 @@ function createWorkerHarness() {
   };
 }
 
-test("Installation füllt Version 38 vollständig und Aktivierung entfernt ältere Versionen", async () => {
+test("Installation füllt Version 39 vollständig und Aktivierung entfernt ältere Versionen", async () => {
   const harness = createWorkerHarness();
   await harness.dispatchLifecycle("install");
   await harness.dispatchLifecycle("activate");
 
   assert.equal(harness.skipped, true);
   assert.equal(harness.claimed, true);
-  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v38"]);
-  const current = harness.stores.get("mathe-unterrichts-app-v38");
+  assert.deepEqual([...harness.stores.keys()], ["mathe-unterrichts-app-v39"]);
+  const current = harness.stores.get("mathe-unterrichts-app-v39");
   for (const path of [
     "./",
     "./index.html",
@@ -308,6 +308,12 @@ test("Installation füllt Version 38 vollständig und Aktivierung entfernt älte
     "./src/absolute-relative-animation.js",
     "./src/absolute-relative-math.js",
     "./src/absolute-relative-state.js",
+    "./grundwert-prozentwert-prozentsatz.html",
+    "./percentage-roles.css",
+    "./src/percentage-roles-app.js",
+    "./src/percentage-roles-animation.js",
+    "./src/percentage-roles-math.js",
+    "./src/percentage-roles-state.js",
   ]) {
     assert.equal(current.has(new URL(path, `${origin}/`).href), true);
   }
@@ -494,6 +500,12 @@ test("Offline-Neustart liefert Startseite und alle Kapitel ohne Netzwerk aus", a
     "/src/absolute-relative-animation.js",
     "/src/absolute-relative-math.js",
     "/src/absolute-relative-state.js",
+    "/grundwert-prozentwert-prozentsatz.html",
+    "/percentage-roles.css",
+    "/src/percentage-roles-app.js",
+    "/src/percentage-roles-animation.js",
+    "/src/percentage-roles-math.js",
+    "/src/percentage-roles-state.js",
   ]) {
     const response = await harness.dispatchFetch(path);
     assert.equal(response.status, 200);

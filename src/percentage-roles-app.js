@@ -2,7 +2,7 @@ import { PERCENTAGE_ROLES_REVEAL_DURATION, percentageRolesRevealFrame } from "./
 import { createPercentageRolesState, finishPercentageRolesReveal, nextPercentageRolesState, percentageRolesViewModel, resetPercentageRolesState, setPercentageRoleScenario, setUnknownPercentageRole } from "./percentage-roles-state.js";
 
 const $=selector=>document.querySelector(selector);
-const workspace=$("#pr-workspace"),diagram=$("#pr-diagram"),fill=$("#pr-fill"),whole=$("#pr-whole"),part=$("#pr-part"),rate=$("#pr-rate"),relation=$("#pr-relation"),equation=$("#pr-equation"),explore=$("#pr-explore"),conclusion=$("#pr-conclusion"),scenarioInput=$("#pr-scenario"),scenarioOutput=$("#pr-scenario-output"),insight=$("#pr-insight"),live=$("#pr-live"),next=$("#pr-next"),reset=$("#pr-reset");
+const workspace=$("#pr-workspace"),diagram=$("#pr-diagram"),fill=$("#pr-fill"),wholeCaption=$("#pr-whole-caption"),partCaption=$("#pr-part-caption"),whole=$("#pr-whole"),part=$("#pr-part"),rate=$("#pr-rate"),relation=$("#pr-relation"),equation=$("#pr-equation"),explore=$("#pr-explore"),conclusion=$("#pr-conclusion"),scenarioInput=$("#pr-scenario"),scenarioOutput=$("#pr-scenario-output"),insight=$("#pr-insight"),live=$("#pr-live"),next=$("#pr-next"),reset=$("#pr-reset");
 const roleElements={whole,part,rate};
 const roleValueElements={whole:$("#pr-whole-value"),part:$("#pr-part-value"),rate:$("#pr-rate-value")};
 const unknownButtons=[$("#pr-unknown-whole"),$("#pr-unknown-part"),$("#pr-unknown-rate")];
@@ -25,6 +25,8 @@ function render(){
   workspace.dataset.state=model.view;
   diagram.setAttribute("aria-label",model.diagramAriaLabel);
   fill.style.width=`${model.fillPercent}%`;
+  wholeCaption.hidden=!model.showWhole;
+  partCaption.hidden=!model.showPart;
   whole.hidden=!model.showWhole;
   part.hidden=!model.showPart;
   rate.hidden=!model.showRate;

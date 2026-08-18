@@ -9,7 +9,7 @@ function element(id=""){
 }
 
 async function harness({reduced=true}={}){
-  const ids=["pr-workspace","pr-diagram","pr-fill","pr-whole","pr-part","pr-rate","pr-relation","pr-equation","pr-explore","pr-conclusion","pr-scenario","pr-scenario-output","pr-insight","pr-live","pr-next","pr-reset","pr-whole-value","pr-part-value","pr-rate-value","pr-unknown-whole","pr-unknown-part","pr-unknown-rate"];
+  const ids=["pr-workspace","pr-diagram","pr-fill","pr-whole-caption","pr-part-caption","pr-whole","pr-part","pr-rate","pr-relation","pr-equation","pr-explore","pr-conclusion","pr-scenario","pr-scenario-output","pr-insight","pr-live","pr-next","pr-reset","pr-whole-value","pr-part-value","pr-rate-value","pr-unknown-whole","pr-unknown-part","pr-unknown-rate"];
   const elements=new Map(ids.map(id=>[`#${id}`,element(id)])),frames=[],timers=[];
   Object.defineProperty(globalThis,"document",{configurable:true,value:{querySelector:selector=>elements.get(selector)??null}});
   Object.defineProperty(globalThis,"window",{configurable:true,value:{matchMedia:()=>({matches:reduced}),addEventListener(){}}});
