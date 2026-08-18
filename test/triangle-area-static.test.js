@@ -86,7 +86,7 @@ test("Offline-Cache enthält das vollständige dritte Modul", () => {
   ]) {
     assert.match(files.worker, new RegExp(file.replaceAll(".", "\\.")));
   }
-  assert.match(files.worker, /mathe-unterrichts-app-v40/);
+  assert.match(files.worker, /mathe-unterrichts-app-v41/);
   assert.match(files.app, /serviceWorker\.register/);
 });
 

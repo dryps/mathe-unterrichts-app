@@ -8,21 +8,21 @@ const files=["prozent-als-faktor.html","percentage-factor.css","src/percentage-f
 test("K7.4 ist genau einmal als vierte K7-Karte integriert",()=>{
   assert.equal((home.match(/href="\.\/prozent-als-faktor\.html"/g)??[]).length,1);
   const chapter=home.match(/<section id="prozentrechnung"[\s\S]*?<\/section>/)?.[0]??"";
-  assert.equal((chapter.match(/class="module-card"/g)??[]).length,4);
-  assert.equal((home.match(/class="module-card"/g)??[]).length,35);
+  assert.equal((chapter.match(/class="module-card"/g)??[]).length,5);
+  assert.equal((home.match(/class="module-card"/g)??[]).length,36);
 });
 
-test("K7-Raster nutzt 1, 2, 2 und 4 gleichwertige Spalten",()=>{
-  assert.match(css,/\.chapter-percentages \.module-grid\s*\{[^}]*repeat\(4, minmax\(0, 1fr\)\)/s);
+test("K7-Raster bleibt nach fünf Karten ausgewogen",()=>{
+  assert.match(css,/\.chapter-percentages \.module-grid\s*\{[^}]*repeat\(5, minmax\(0, 1fr\)\)/s);
   assert.match(css,/@media \(max-width: 720px\)[\s\S]*?\.chapter-percentages \.module-grid\s*\{[^}]*grid-template-columns:\s*1fr/s);
   assert.match(css,/@media \(min-width: 721px\) and \(max-width: 1040px\)[\s\S]*?\.chapter-percentages \.module-grid\s*\{[^}]*repeat\(2, minmax\(0, 1fr\)\)/s);
   const landscape=css.match(/@media \(orientation: landscape\) and \(min-width: 900px\) and \(max-width: 1500px\)[\s\S]*/)?.[0]??"";
-  assert.match(landscape,/\.chapter-percentages \.module-grid\s*\{[^}]*repeat\(2, minmax\(0, 1fr\)\)/s);
-  assert.match(landscape,/\.chapter-percentages \.module-card:nth-child\(n\)\s*\{[^}]*grid-column:\s*auto/s);
+  assert.match(landscape,/\.chapter-percentages \.module-grid\s*\{[^}]*repeat\(6, minmax\(0, 1fr\)\)/s);
+  assert.match(landscape,/\.chapter-percentages \.module-card:nth-child\(n\)\s*\{[^}]*grid-column:\s*span 2/s);
 });
 
-test("Cache v40, Pages, Smoke und Workflow enthalten das vollständige Modul",()=>{
-  assert.match(worker,/mathe-unterrichts-app-v40/);
+test("Cache v41, Pages, Smoke und Workflow enthalten das vollständige Modul",()=>{
+  assert.match(worker,/mathe-unterrichts-app-v41/);
   for(const file of files){const pattern=new RegExp(file.replaceAll(".","\\."));assert.match(worker,pattern);assert.match(runtime,pattern);assert.match(smoke,pattern);}
   const packageJson=JSON.parse(pkg);
   assert.equal(packageJson.scripts["test:percentage-factor-visual"],"node scripts/render-percentage-factor-states.mjs");
