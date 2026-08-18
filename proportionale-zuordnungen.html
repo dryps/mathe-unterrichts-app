@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+  <meta name="theme-color" content="#f5f7fb"/>
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-title" content="Mathe im Unterricht"/>
+  <meta name="description" content="Interaktiver Aha-Moment zu proportionalen Zuordnungen."/>
+  <link rel="manifest" href="./manifest.webmanifest"/>
+  <link rel="icon" href="./icon.svg" type="image/svg+xml"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="./icon-180.png"/>
+  <link rel="stylesheet" href="./navigation.css"/>
+  <link rel="stylesheet" href="./proportional-comparison.css"/>
+  <title>Warum bedeutet „beide werden größer“ noch nicht proportional?</title>
+</head>
+<body>
+<main class="comparison-shell">
+  <nav class="module-navigation" aria-label="Modulnavigation"><a class="module-back-link" href="./#zuordnungen">← Proportional · Antiproportional</a></nav>
+  <header class="comparison-header"><div><p class="eyebrow">Zuordnungen · Kapitel 6</p><h1>Warum bedeutet „beide werden größer“ noch nicht proportional?</h1><p class="subtitle">Proportionale Zuordnungen</p></div><p class="local-note" aria-label="Datenschutzstatus"><span aria-hidden="true">●</span> lokal · ohne Speicherung</p></header>
+
+  <section id="comparison-workspace" class="comparison-workspace" data-state="irritation" aria-busy="false">
+    <section class="irritation-grid" aria-label="Zwei steigende Beziehungen"><article><h2>Heftpreis</h2><strong>Die Werte steigen.</strong></article><article><h2>Taxipreis</h2><strong>Die Werte steigen.</strong></article></section>
+
+    <section id="comparison-values" class="comparison-stage" hidden>
+      <h2>Situation ↔ Wertepaar ↔ Tabelle</h2>
+      <div class="relation-grid">
+        <article class="relation-card proportional-card"><h3>Heftpreis</h3><p>Ein Heft kostet 2 €.</p><strong id="proportional-situation">2 Hefte kosten 4 €.</strong><p class="pair" id="proportional-pair">(2 | 4)</p><table><thead><tr><th>Hefte</th><th>Preis</th></tr></thead><tbody><tr data-comparison-input="1"><td>1</td><td>2 €</td></tr><tr data-comparison-input="2"><td>2</td><td>4 €</td></tr><tr data-comparison-input="3"><td>3</td><td>6 €</td></tr><tr data-comparison-input="4"><td>4</td><td>8 €</td></tr></tbody></table></article>
+        <article class="relation-card growing-card"><h3>Taxipreis</h3><p>3 € Grundpreis und 2 € je Kilometer.</p><strong id="growing-situation">2 km kosten 7 €.</strong><p class="pair" id="growing-pair">(2 | 7)</p><table><thead><tr><th>km</th><th>Preis</th></tr></thead><tbody><tr data-comparison-input="1"><td>1</td><td>5 €</td></tr><tr data-comparison-input="2"><td>2</td><td>7 €</td></tr><tr data-comparison-input="3"><td>3</td><td>9 €</td></tr><tr data-comparison-input="4"><td>4</td><td>11 €</td></tr></tbody></table></article>
+      </div>
+    </section>
+
+    <section id="comparison-quotient" class="comparison-stage evidence-grid" hidden><article class="evidence yes"><h2>Quotient konstant</h2><p>2 : 1 = 2 · 4 : 2 = 2 · 6 : 3 = 2 · 8 : 4 = 2</p><strong>immer Faktor 2</strong></article><article class="evidence no"><h2>Quotient verändert sich</h2><p>5 : 1 = 5 · 7 : 2 = 3,5 · 9 : 3 = 3 · 11 : 4 = 2,75</p><strong>kein konstanter Faktor</strong></article></section>
+
+    <section id="comparison-origin" class="comparison-stage" hidden>
+      <h2>Graph und Ursprung</h2>
+      <div class="graph-grid">
+        <article class="graph-card"><h3>Heftpreis</h3><svg id="proportional-graph" viewBox="0 0 600 420" role="img" aria-label="Proportionaler Graph; markierter Punkt (2 | 4): 2 Hefte, 4 Euro; der Graph geht durch den Ursprung."><path class="axes" d="M70 360 H545 M70 360 V55"/><path class="relation-line proportional-line" d="M70 360 L370 200"/><g class="ticks" aria-hidden="true"><text x="70" y="392">0</text><text x="145" y="392">1</text><text x="220" y="392">2</text><text x="295" y="392">3</text><text x="370" y="392">4</text><text class="axis-label" x="520" y="412">Hefte</text><text class="axis-label" x="78" y="42">Preis in €</text></g><g class="y-scale" aria-hidden="true"><text x="58" y="365">0</text><text x="58" y="325">2</text><text x="58" y="285">4</text><text x="58" y="245">6</text><text x="58" y="205">8</text><text x="58" y="165">10</text><text x="58" y="125">12</text></g><circle id="proportional-point" cx="220" cy="280" r="15"/><text id="proportional-point-label" x="238" y="265">(2 | 4)</text></svg><p class="origin-badge yes">geht durch (0 | 0)</p></article>
+        <article class="graph-card"><h3>Taxipreis</h3><svg id="growing-graph" viewBox="0 0 600 420" role="img" aria-label="Steigender, nicht proportionaler Graph; markierter Punkt (2 | 7): 2 Kilometer, 7 Euro; der Graph startet bei 3 Euro."><path class="axes" d="M70 360 H545 M70 360 V55"/><path class="relation-line growing-line" d="M70 300 L370 140"/><g class="ticks" aria-hidden="true"><text x="70" y="392">0</text><text x="145" y="392">1</text><text x="220" y="392">2</text><text x="295" y="392">3</text><text x="370" y="392">4</text><text class="axis-label" x="480" y="412">Kilometer</text><text class="axis-label" x="78" y="42">Preis in €</text></g><g class="y-scale" aria-hidden="true"><text x="58" y="365">0</text><text x="58" y="325">2</text><text x="58" y="285">4</text><text x="58" y="245">6</text><text x="58" y="205">8</text><text x="58" y="165">10</text><text x="58" y="125">12</text></g><circle id="growing-point" cx="220" cy="220" r="15"/><text id="growing-point-label" x="238" y="205">(2 | 7)</text></svg><p class="origin-badge no">startet bei (0 | 3)</p></article>
+      </div>
+    </section>
+
+    <section id="comparison-scaling" class="comparison-stage evidence-grid" hidden><article class="evidence yes"><h2>Menge verdoppelt</h2><p>2 Hefte → 4 €<br/>4 Hefte → 8 €</p><strong>Preis verdoppelt sich</strong></article><article class="evidence no"><h2>Strecke verdoppelt</h2><p>2 km → 7 €<br/>4 km → 11 €</p><strong>Preis verdoppelt sich nicht</strong></article></section>
+
+    <section id="comparison-explore" class="comparison-explore" hidden><label for="comparison-input">Gemeinsamer Eingabewert</label><input id="comparison-input" type="range" min="1" max="4" step="1" value="2"/><output id="comparison-output" for="comparison-input">2 → links 4 € · rechts 7 €</output></section>
+    <section id="comparison-conclusion" class="conclusion-card" hidden><h2>Aha</h2><p>Gemeinsames Steigen allein reicht nicht.</p></section>
+  </section>
+
+  <section class="comparison-insight" aria-live="polite"><p id="comparison-insight">Beide Wertefolgen steigen. Reicht das schon für Proportionalität?</p><div class="comparison-controls"><button id="comparison-next" class="primary-button" type="button">Weiter</button><button id="comparison-reset" class="reset-button" type="button">Zurücksetzen</button></div><p id="comparison-live" class="visually-hidden" aria-live="polite"></p></section>
+  <noscript>Für diesen interaktiven Aha-Moment muss JavaScript aktiviert sein.</noscript>
+</main>
+<script type="module" src="./src/proportional-comparison-app.js"></script>
+</body>
+</html>
